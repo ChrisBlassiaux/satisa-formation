@@ -1,10 +1,30 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ROUTES } from "@/lib/routes";
 
-export default function FloatingCta({ label = "Prendre un rdv" }: { label?: string }) {
+const HIDDEN_ON = [ROUTES.legalMentions, ROUTES.cgv, ROUTES.privacy];
+
+export default function FloatingCta() {
+  const pathname = usePathname();
+  const isContactPage = pathname === ROUTES.contact;
+
+  if (pathname && HIDDEN_ON.includes(pathname as (typeof HIDDEN_ON)[number])) {
+    return null;
+  }
+
+  if (isContactPage) {
+    return (
+      <a href="#main" className="btn btn--dark floating-cta">
+        Retour en haut
+      </a>
+    );
+  }
+
   return (
     <Link href={ROUTES.contact} className="btn btn--dark floating-cta">
-      {label}
+      Prendre un rdv
     </Link>
   );
 }
