@@ -1,0 +1,53 @@
+// Couleurs charte Satisa Formation
+$color-dark: #002730;
+$color-teal-dark: #073734;
+$color-primary: #15b4a2;
+$color-mint: #97e1dc;
+$color-white: #ffffff;
+
+$gradient-primary: linear-gradient(135deg, #176862, #138f82, #15b8a6);
+
+// Teintes dérivées (tints/shades) pour surfaces et états
+$color-mint-light: #d4f3f0;
+$color-primary-dark: #0f8a7c;
+$color-ink: $color-dark;
+$color-muted: #4a6b70;
+$color-border: rgba(0, 39, 48, 0.12);
+$color-surface: #f7fbfa;
+
+// Hero rayons de soleil (décoratif uniquement)
+$color-ray-yellow: #fecc01;
+$color-ray-yellow-soft: #f4dd8f;
+
+// Typographie
+$font-family-base: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+$fs-h1: clamp(2.25rem, 4vw + 1rem, 3.5rem);
+$fs-h2: clamp(1.75rem, 2.5vw + 1rem, 2.5rem);
+$fs-h3: clamp(1.25rem, 1.5vw + 1rem, 1.5rem);
+$fs-body: 1rem;
+$fs-small: 0.875rem;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2.5rem;
+$spacing-xl: 4rem;
+$spacing-2xl: 6rem;
+
+// Layout
+$container-width: 1200px;
+$radius-sm: 8px;
+$radius-md: 14px;
+$radius-lg: 24px;
+
+// Breakpoints
+$bp-tablet: 768px;
+$bp-desktop: 1080px;
+
+@mixin from($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
