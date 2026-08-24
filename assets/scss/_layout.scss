@@ -1,0 +1,256 @@
+@use 'variables' as *;
+
+// Header
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: $color-white;
+  border-bottom: 1px solid $color-border;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding-block: $spacing-xs;
+}
+
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.site-header__logo img {
+  height: 34px;
+  width: auto;
+
+  @include from($bp-tablet) {
+    height: 40px;
+  }
+}
+
+.nav {
+  display: none;
+
+  @include from($bp-desktop) {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+  }
+}
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.nav__link {
+  font-size: $fs-small;
+  font-weight: 600;
+  color: $color-dark;
+  padding: $spacing-xs 0;
+  transition: color 0.15s ease;
+
+  &:hover,
+  &[aria-current='page'] {
+    color: $color-primary-dark;
+  }
+}
+
+.btn.site-header__cta {
+  display: none;
+
+  @include from($bp-desktop) {
+    display: inline-flex;
+  }
+}
+
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-sm;
+
+  @include from($bp-desktop) {
+    display: none;
+  }
+}
+
+.nav-toggle__bar {
+  position: relative;
+  width: 22px;
+  height: 2px;
+  background: $color-dark;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 2px;
+    background: $color-dark;
+    transition: transform 0.2s ease;
+  }
+
+  &::before {
+    top: -7px;
+  }
+
+  &::after {
+    top: 7px;
+  }
+}
+
+.nav-toggle[aria-expanded='true'] .nav-toggle__bar {
+  background: transparent;
+
+  &::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+}
+
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-sm $spacing-md;
+  border-top: 1px solid $color-border;
+  background: $color-white;
+
+  @include from($bp-desktop) {
+    display: none !important;
+  }
+
+  &.is-open {
+    display: flex;
+  }
+}
+
+.mobile-nav__link {
+  display: block;
+  padding: $spacing-xs 0;
+  font-weight: 600;
+  color: $color-dark;
+  border-bottom: 1px solid $color-border;
+}
+
+.mobile-nav__cta {
+  margin-top: $spacing-xs;
+}
+
+// Footer
+.site-footer {
+  background: $color-dark;
+  color: rgba(255, 255, 255, 0.75);
+  padding-block: $spacing-xl $spacing-lg;
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: $spacing-lg;
+  grid-template-columns: 1fr;
+  padding-bottom: $spacing-lg;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  @include from($bp-tablet) {
+    grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+    gap: $spacing-md;
+  }
+}
+
+.site-footer__brand img {
+  height: 32px;
+  margin-bottom: $spacing-sm;
+}
+
+.site-footer__brand p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: $fs-small;
+  max-width: 26ch;
+}
+
+.site-footer__col h3 {
+  font-size: $fs-small;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: $spacing-sm;
+}
+
+.site-footer__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.site-footer__col a:not(.btn) {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: $fs-small;
+
+  &:hover {
+    color: $color-mint;
+  }
+}
+
+.site-footer__contact p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: $fs-small;
+  margin-bottom: $spacing-xs;
+}
+
+.site-footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding-top: $spacing-lg;
+  font-size: $fs-small;
+  color: rgba(255, 255, 255, 0.5);
+
+  @include from($bp-tablet) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.site-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.site-footer__legal a:hover {
+  color: $color-mint;
+}
+
+// Grids partagées
+.grid {
+  display: grid;
+  gap: $spacing-md;
+}
+
+.grid--2 {
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid--3 {
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+

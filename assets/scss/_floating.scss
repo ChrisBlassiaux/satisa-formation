@@ -1,0 +1,18 @@
+@use 'variables' as *;
+
+.floating-cta {
+  position: fixed;
+  right: $spacing-sm;
+  bottom: $spacing-sm;
+  z-index: 150;
+  box-shadow: 0 8px 24px rgba(0, 39, 48, 0.25);
+
+  @include from($bp-tablet) {
+    right: $spacing-lg;
+    bottom: $spacing-lg;
+  }
+
+  @include from($bp-desktop) {
+    display: none;
+  }
+}

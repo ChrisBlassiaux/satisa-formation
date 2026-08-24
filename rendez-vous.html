@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prendre un rendez-vous - Satisa Formation</title>
+  <meta name="description" content="Écrivez-nous, réservez un créneau ou contactez-nous sur WhatsApp. Un échange sans engagement pour parler de votre projet de certification ou de formation.">
+  <link rel="canonical" href="https://www.satisa-formation.fr/rendez-vous.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__logo" aria-label="Satisa Formation, accueil">
+        <img src="assets/images/logo/logo-satisa.svg" alt="Satisa Formation" width="150" height="42">
+      </a>
+      <nav class="nav" aria-label="Navigation principale">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="deposer-une-certification-rncp-rs.html">Déposer une certification RNCP/RS</a></li>
+          <li><a class="nav__link" href="concevoir-digitaliser-vos-formations.html">Concevoir et digitaliser vos formations</a></li>
+          <li><a class="nav__link" href="a-propos.html">À propos</a></li>
+        </ul>
+      </nav>
+      <a href="rendez-vous.html" class="btn btn--dark site-header__cta" aria-current="page">Prendre contact</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Ouvrir le menu">
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Navigation mobile">
+      <a class="mobile-nav__link" href="deposer-une-certification-rncp-rs.html">Déposer une certification RNCP/RS</a>
+      <a class="mobile-nav__link" href="concevoir-digitaliser-vos-formations.html">Concevoir et digitaliser vos formations</a>
+      <a class="mobile-nav__link" href="a-propos.html">À propos</a>
+      <a class="mobile-nav__link" href="blog.html">Blog</a>
+      <a href="rendez-vous.html" class="btn btn--dark btn--block mobile-nav__cta">Prendre contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section>
+      <div class="container section-head section-head--center">
+        <p class="eyebrow">Contact</p>
+        <h1>Parlons de votre projet</h1>
+        <p class="hero-page__subtitle" style="margin-inline: auto;">Pas d'engagement, juste un échange pour comprendre votre besoin et voir si Satisa est la bonne réponse. Choisissez le canal qui vous convient.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="grid grid--2" style="align-items: stretch;">
+          <div class="contact-channel">
+            <h3>Nous écrire</h3>
+            <p>Décrivez votre projet, nous revenons vers vous sous 48h.</p>
+            <!-- PLACEHOLDER: brancher ce formulaire sur un endpoint réel (backend / service tiers) -->
+            <form action="mailto:chris@satisa.fr" method="post" enctype="text/plain">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="firstname">Prénom</label>
+                  <input type="text" id="firstname" name="prenom" required>
+                </div>
+                <div class="form-field">
+                  <label for="lastname">Nom</label>
+                  <input type="text" id="lastname" name="nom" required>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-field">
+                <label for="project-type">Type de projet</label>
+                <select id="project-type" name="type_projet">
+                  <option value="certification">Certification RNCP/RS</option>
+                  <option value="formations">Formations et digital</option>
+                  <option value="autre">Autre</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn btn--dark btn--block">Envoyer le message</button>
+            </form>
+          </div>
+
+          <div class="contact-stack">
+            <div class="contact-channel">
+              <h3>Prendre rendez-vous</h3>
+              <p>Réservez directement un créneau de 30 minutes dans l'agenda.</p>
+              <button
+                type="button"
+                class="btn btn--primary btn--block"
+                data-cal-link="satisa/formation"
+                data-cal-namespace="formation"
+                data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+              >Choisir un créneau</button>
+            </div>
+
+            <div class="contact-channel contact-channel--whatsapp">
+              <h3>Réponse rapide</h3>
+              <p>Une question simple ? Écrivez directement sur WhatsApp, réponse rapide garantie.</p>
+              <a href="https://wa.me/33783456753" class="btn btn--primary btn--block" target="_blank" rel="noopener">Discuter sur WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__brand">
+          <img src="assets/images/logo/logo-satisa-light.svg" alt="Satisa Formation" width="140" height="39">
+          <p>Ingénierie de certification RNCP/RS et ingénierie pédagogique et digitale pour les organismes de formation.</p>
+        </div>
+        <div class="site-footer__col">
+          <h3>Offres</h3>
+          <ul>
+            <li><a href="deposer-une-certification-rncp-rs.html">Certification RNCP/RS</a></li>
+            <li><a href="concevoir-digitaliser-vos-formations.html">Formations et digital</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>Ressources</h3>
+          <ul>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="rendez-vous.html">Prendre un rendez-vous</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col site-footer__contact">
+          <h3>Contact</h3>
+          <p>chris@satisa.fr</p>
+          <a href="https://wa.me/33783456753" class="btn btn--primary" target="_blank" rel="noopener">Discuter sur WhatsApp</a>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 Satisa Formation</p>
+        <div class="site-footer__legal">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgv.html">CGV</a>
+          <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#main" class="btn btn--dark floating-cta">Retour en haut</a>
+  <script src="assets/js/main.js" defer></script>
+  <!-- Cal element-click embed code begins -->
+  <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "formation", {origin:"https://app.cal.com"});
+    Cal.config = Cal.config || {};
+    Cal.config.forwardQueryParams = true;
+
+    Cal.ns.formation("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+  </script>
+  <!-- Cal element-click embed code ends -->
+</body>
+</html>
+

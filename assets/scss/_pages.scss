@@ -1,0 +1,440 @@
+@use 'variables' as *;
+
+// À propos
+.about-photo {
+  border-radius: $radius-lg;
+  overflow: hidden;
+}
+
+.about-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.about-photo--compact {
+  max-width: 82%;
+}
+
+.about-story p + p {
+  margin-top: $spacing-sm;
+}
+
+// Frise chronologique (parcours)
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+  max-width: 700px;
+  margin-inline: auto;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: $color-border;
+}
+
+.timeline__item {
+  position: relative;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline__item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline__item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.timeline__marker {
+  position: absolute;
+  left: -32px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: $color-primary;
+  box-shadow: 0 0 0 3px $color-white;
+}
+
+.timeline__date {
+  font-size: $fs-small;
+  font-weight: 700;
+  color: $color-primary-dark;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3em;
+}
+
+.timeline__title {
+  font-size: 1.05rem;
+  margin-bottom: 0.4em;
+}
+
+.timeline__text {
+  font-size: $fs-small;
+  color: $color-muted;
+}
+
+.timeline__text strong {
+  color: $color-dark;
+}
+
+.timeline__text + .timeline__text {
+  margin-top: $spacing-sm;
+}
+
+.timeline__list {
+  display: grid;
+  gap: $spacing-xs;
+}
+
+.timeline__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  font-size: $fs-small;
+  color: $color-muted;
+}
+
+.timeline__list li::before {
+  content: '✓';
+  color: $color-primary-dark;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.timeline__logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin-top: 0.5em;
+}
+
+.timeline__logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em 0.9em;
+  border-radius: $radius-sm;
+  background: $color-white;
+  border: 1px solid $color-border;
+  transition: border-color 0.15s ease;
+}
+
+.timeline__logo-badge:hover {
+  border-color: $color-primary;
+}
+
+.timeline__logo-badge img {
+  height: 20px;
+  width: auto;
+  filter: grayscale(100%);
+  opacity: 0.75;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.timeline__logo-badge:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.competence-block {
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  height: 100%;
+}
+
+.competence-block h3 {
+  margin-bottom: $spacing-xs;
+}
+
+.competence-block ul {
+  margin-top: $spacing-sm;
+  display: grid;
+  gap: $spacing-xs;
+}
+
+.competence-block li {
+  font-size: $fs-small;
+  color: $color-dark;
+  display: flex;
+  gap: $spacing-xs;
+}
+
+.competence-block li::before {
+  content: '→';
+  color: $color-primary-dark;
+  flex-shrink: 0;
+}
+
+// Blog article
+.article-header {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.article-header .post-card__meta {
+  margin-top: 0.75rem;
+}
+
+.article-body {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.article-body h2 {
+  margin-top: $spacing-lg;
+  margin-bottom: $spacing-sm;
+}
+
+.article-body h3 {
+  margin-top: $spacing-md;
+  margin-bottom: $spacing-xs;
+}
+
+.article-body p {
+  margin-bottom: $spacing-sm;
+  color: $color-dark;
+}
+
+.article-body ul {
+  margin: 0 0 $spacing-sm $spacing-md;
+  list-style: disc;
+  color: $color-dark;
+}
+
+.article-body li {
+  margin-bottom: 0.4em;
+}
+
+// Blog filters
+.blog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-lg;
+}
+
+.blog-filters button {
+  cursor: pointer;
+}
+
+// Problem section (page certification)
+.problem-section {
+  background: $color-dark;
+}
+
+.problem-section .eyebrow {
+  color: $color-mint;
+}
+
+.problem-section .eyebrow::before {
+  background: $color-mint;
+}
+
+.problem-section h2 {
+  color: $color-white;
+}
+
+.problem-list {
+  display: grid;
+  gap: $spacing-lg;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.problem-list--2col {
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.problem-list li {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.problem-list__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.08);
+  color: $color-mint;
+  flex-shrink: 0;
+}
+
+.problem-list__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.problem-list h3 {
+  color: $color-white;
+  font-size: 1.05rem;
+  margin-bottom: 0.3em;
+}
+
+.problem-list p {
+  font-size: $fs-small;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+// Orientations (page formations)
+.subsection-title {
+  margin-top: $spacing-xl;
+  margin-bottom: $spacing-sm;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+.subsection-title:first-child {
+  margin-top: 0;
+}
+
+.digital-axes {
+  display: grid;
+  gap: $spacing-md;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.digital-axis {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+}
+
+.digital-axis__head {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+}
+
+.digital-axis__head h4 {
+  font-size: 1.02rem;
+}
+
+.digital-axis__head h4 span {
+  display: block;
+  font-size: $fs-small;
+  font-weight: 600;
+  color: $color-muted;
+}
+
+.digital-axis__list {
+  display: grid;
+  gap: $spacing-xs;
+}
+
+.digital-axis__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  font-size: $fs-small;
+  color: $color-dark;
+}
+
+.digital-axis__list li::before {
+  content: '✓';
+  color: $color-primary-dark;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.benefit-grid {
+  display: grid;
+  gap: $spacing-sm;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.benefit-tile {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $spacing-md;
+}
+
+.benefit-tile__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-sm;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+  flex-shrink: 0;
+}
+
+.benefit-tile__icon--accent {
+  background: $color-ray-yellow-soft;
+  color: $color-dark;
+}
+
+.benefit-tile__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.benefit-tile p {
+  font-weight: 700;
+  color: $color-dark;
+  font-size: $fs-small;
+}
+
+// Legal pages
+.legal-content {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.legal-content h2 {
+  margin-top: $spacing-lg;
+  margin-bottom: $spacing-xs;
+}
+
+.legal-content p {
+  margin-bottom: $spacing-sm;
+}
+
+.legal-content ul {
+  margin: 0 0 $spacing-sm $spacing-md;
+  list-style: disc;
+}

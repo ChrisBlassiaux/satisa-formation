@@ -1,0 +1,702 @@
+@use 'variables' as *;
+
+// Boutons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  padding: 0.85em 1.6em;
+  border-radius: $radius-md;
+  font-weight: 700;
+  font-size: $fs-small;
+  white-space: nowrap;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  border: 1.5px solid transparent;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn--dark {
+  background: $color-dark;
+  color: $color-white;
+
+  &:hover {
+    background: $color-teal-dark;
+  }
+}
+
+.btn--primary {
+  background: $color-mint;
+  color: $color-dark;
+
+  &:hover {
+    background: $color-primary;
+    color: $color-dark;
+  }
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: $color-border;
+  color: $color-dark;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary-dark;
+  }
+}
+
+.btn--block {
+  width: 100%;
+}
+
+// Tags / pills
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  border-radius: $radius-sm;
+  font-size: $fs-small;
+  font-weight: 700;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  color: $color-dark;
+}
+
+.tag--active {
+  background: $color-primary;
+  color: $color-white;
+  border-color: $color-primary;
+}
+
+// Cards
+.card {
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  height: 100%;
+}
+
+.card__tag {
+  align-self: flex-start;
+  margin-bottom: $spacing-xs;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+}
+
+.card h3 {
+  font-size: 1.15rem;
+}
+
+.card p {
+  font-size: $fs-small;
+  flex-grow: 1;
+}
+
+.card--service {
+  justify-content: space-between;
+}
+
+.card--service h3 {
+  margin-bottom: $spacing-xs;
+}
+
+.card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-sm;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.card__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.card__icon--accent {
+  background: $color-ray-yellow-soft;
+  color: $color-dark;
+}
+
+// Panneaux de bénéfices (accueil)
+.benefit-panels {
+  align-items: stretch;
+}
+
+.benefit-panel {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  border-top: 4px solid $color-primary;
+  padding: $spacing-lg;
+}
+
+.benefit-panel--formations {
+  border-top-color: $color-teal-dark;
+}
+
+.benefit-panel__title {
+  color: $color-primary-dark;
+}
+
+.benefit-panel--formations .benefit-panel__title {
+  color: $color-teal-dark;
+}
+
+.benefit-panel__list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  flex-grow: 1;
+}
+
+.benefit-row {
+  display: flex;
+  gap: $spacing-sm;
+  align-items: flex-start;
+}
+
+.benefit-row__icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-sm;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.benefit-panel--formations .benefit-row__icon {
+  background: $color-primary;
+  color: $color-white;
+}
+
+.benefit-row h4 {
+  font-size: 1rem;
+  margin-bottom: 0.3em;
+}
+
+.benefit-row p {
+  font-size: $fs-small;
+  color: $color-muted;
+}
+
+.benefit-panel > .btn {
+  align-self: flex-start;
+}
+
+// Citation
+.quote {
+  margin-top: $spacing-md;
+  border-left: 3px solid $color-primary;
+  padding-left: $spacing-sm;
+  font-style: italic;
+  color: $color-dark;
+}
+
+.quote cite {
+  display: block;
+  margin-top: $spacing-xs;
+  font-style: normal;
+  font-size: $fs-small;
+  font-weight: 700;
+  color: $color-muted;
+}
+
+// FAQ accordéon
+.faq-item {
+  border-bottom: 1px solid $color-border;
+}
+
+.faq-item__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  padding: $spacing-sm 0;
+  text-align: left;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.faq-item__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.faq-item__icon::before,
+.faq-item__icon::after {
+  content: '';
+  position: absolute;
+  background: $color-dark;
+  top: 50%;
+  left: 50%;
+  transition: transform 0.2s ease;
+}
+
+.faq-item__icon::before {
+  width: 14px;
+  height: 2px;
+  transform: translate(-50%, -50%);
+}
+
+.faq-item__icon::after {
+  width: 2px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+}
+
+.faq-item[open] .faq-item__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+
+.faq-item__answer {
+  padding-bottom: $spacing-sm;
+  font-size: $fs-small;
+  max-width: 65ch;
+}
+
+// Liste d'offres (pages de service)
+.offer-card__subtitle {
+  color: $color-muted;
+  font-size: $fs-small;
+  font-weight: 600;
+  margin-top: 0.2em;
+}
+
+// Accordéon d'offres (pages certification et formations)
+.offer-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.offer-row {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.offer-row.is-open {
+  border-color: $color-primary;
+  box-shadow: 0 10px 24px rgba(0, 39, 48, 0.07);
+}
+
+.offer-row-pair {
+  display: grid;
+  gap: $spacing-sm;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: stretch;
+  }
+}
+
+.offer-row__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.offer-row__header:hover {
+  background: rgba(21, 180, 162, 0.06);
+}
+
+.offer-row__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.offer-row__name-row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.offer-row__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.offer-row__name {
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.offer-row__meta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+}
+
+.offer-row__highlight {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: $spacing-sm;
+  margin-bottom: $spacing-sm;
+  padding: 0.45em 0.9em;
+  border-radius: $radius-sm;
+  background: $color-ray-yellow-soft;
+  color: $color-dark;
+  font-size: $fs-small;
+  font-weight: 700;
+}
+
+.offer-row__price {
+  font-weight: 700;
+  color: $color-teal-dark;
+  white-space: nowrap;
+  padding: 0.35em 0.8em;
+  border-radius: $radius-sm;
+  background: $color-mint-light;
+}
+
+.offer-row__chevron {
+  color: $color-muted;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.offer-row__header[aria-expanded='true'] .offer-row__chevron {
+  transform: rotate(180deg);
+}
+
+.offer-row__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0 $spacing-md $spacing-md;
+}
+
+.offer-row__body[hidden] {
+  display: none;
+}
+
+.offer-row__body > .btn {
+  margin-top: auto;
+}
+
+// Formule card (contenu réutilisé dans .offer-row__body)
+.pricing-card__payment-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: $color-dark;
+  margin-top: $spacing-md;
+  margin-bottom: $spacing-xs;
+}
+
+.pricing-card__payment-options {
+  display: grid;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-md;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.payment-option {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  padding: 0.6em 0.75em;
+  transition: border-color 0.15s ease;
+}
+
+.payment-option:hover {
+  border-color: $color-primary;
+}
+
+.payment-option__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+}
+
+.payment-option__icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.payment-option__label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: $color-muted;
+  margin-bottom: 0.15em;
+}
+
+.payment-option__price {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.payment-option__detail {
+  font-size: 0.72rem;
+  color: $color-muted;
+  margin-top: 0.15em;
+  line-height: 1.35;
+}
+
+.pricing-card__deliverables {
+  display: grid;
+  gap: $spacing-xs;
+  margin: $spacing-md 0;
+}
+
+.pricing-card__deliverables li {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  font-size: $fs-small;
+  color: $color-dark;
+}
+
+.pricing-card__deliverables li::before {
+  content: '✓';
+  color: $color-primary-dark;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.pricing-card__note {
+  font-size: 0.8rem;
+  color: $color-muted;
+  margin-top: $spacing-sm;
+  margin-bottom: $spacing-md;
+}
+
+// Blog card
+.post-card {
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: $color-white;
+}
+
+.post-card__thumb {
+  aspect-ratio: 16 / 10;
+  background: $gradient-primary;
+}
+
+.post-card__body {
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.post-card__meta {
+  display: flex;
+  gap: $spacing-sm;
+  font-size: 0.8rem;
+  color: $color-muted;
+}
+
+.post-card__title {
+  font-size: 1.1rem;
+}
+
+// Placeholder image (photo Chris à intégrer)
+.photo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: $color-surface;
+  border: 1px dashed $color-border;
+  border-radius: $radius-md;
+  color: $color-muted;
+  font-size: $fs-small;
+  min-height: 280px;
+  padding: $spacing-md;
+}
+
+.photo-placeholder--round {
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  min-height: 0;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+// Author signature (article de blog)
+.author-signature {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $color-surface;
+}
+
+.author-signature__name {
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.author-signature__link {
+  font-size: $fs-small;
+  color: $color-primary-dark;
+  font-weight: 600;
+}
+
+// Formulaire
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  margin-bottom: $spacing-sm;
+}
+
+.form-field label {
+  font-size: $fs-small;
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  padding: 0.75em 1em;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-white;
+  font-size: $fs-body;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: 2px solid $color-primary;
+  outline-offset: 1px;
+}
+
+.form-row {
+  display: grid;
+  gap: $spacing-sm;
+
+  @include from($bp-tablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Bloc CTA plein
+.cta-banner {
+  background: $color-dark;
+  color: $color-white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  align-items: flex-start;
+
+  @include from($bp-tablet) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.cta-banner p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.cta-banner__actions {
+  flex-shrink: 0;
+}
+
+// Contact channel cards (page rendez-vous)
+.contact-channel {
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.contact-channel--whatsapp {
+  background: $color-teal-dark;
+  color: $color-white;
+  border-color: transparent;
+}
+
+.contact-stack {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.contact-stack .contact-channel {
+  height: auto;
+}
+
+.contact-channel--whatsapp p {
+  color: rgba(255, 255, 255, 0.75);
+}
