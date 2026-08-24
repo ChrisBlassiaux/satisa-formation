@@ -1,9 +1,10 @@
 import { config, fields, collection } from "@keystatic/core";
 
 export default config({
-  storage: {
-    kind: "local",
-  },
+  storage:
+    process.env.NODE_ENV === "development"
+      ? { kind: "local" }
+      : { kind: "github", repo: "ChrisBlassiaux/satisa-formation" },
   collections: {
     posts: collection({
       label: "Articles du blog",
