@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
+import { getAllPosts, CATEGORY_LABELS, formatPostDate } from "@/lib/posts";
 
 const ORGANIZATION_JSON_LD = {
   "@context": "https://schema.org",
@@ -16,31 +17,9 @@ const ORGANIZATION_JSON_LD = {
   areaServed: "FR",
 };
 
-const BLOG_PREVIEW = [
-  {
-    href: "/blog/erreurs-projet-rncp",
-    category: "Certification RNCP/RS",
-    date: "2026-06-10",
-    dateLabel: "10 juin 2026",
-    title: "Les erreurs qui font échouer un projet de certification RNCP",
-  },
-  {
-    href: "/blog/digitaliser-formation-par-ou-commencer",
-    category: "Formations & digital",
-    date: "2026-05-22",
-    dateLabel: "22 mai 2026",
-    title: "Digitaliser sa formation : par où commencer ?",
-  },
-  {
-    href: "/blog/cpf-rncp-rs-difference",
-    category: "Certification RNCP/RS",
-    date: "2026-04-15",
-    dateLabel: "15 avril 2026",
-    title: "RNCP ou RS : quelle certification pour votre offre ?",
-  },
-];
+export default async function HomePage() {
+  const latestPosts = (await getAllPosts()).slice(0, 3);
 
-export default function HomePage() {
   return (
     <>
       <script
@@ -315,14 +294,14 @@ export default function HomePage() {
             <h2>Nos derniers articles</h2>
           </div>
           <div className="grid grid--3">
-            {BLOG_PREVIEW.map((post) => (
-              <Link key={post.href} className="post-card" href={post.href}>
+            {latestPosts.map((post) => (
+              <Link key={post.slug} className="post-card" href={`${ROUTES.blog}/${post.slug}`}>
                 <div className="post-card__thumb"></div>
                 <div className="post-card__body">
                   <div className="post-card__meta">
-                    <span>{post.category}</span>
+                    <span>{CATEGORY_LABELS[post.category]}</span>
                     <span>·</span>
-                    <time dateTime={post.date}>{post.dateLabel}</time>
+                    <time dateTime={post.date}>{formatPostDate(post.date)}</time>
                   </div>
                   <h3 className="post-card__title">{post.title}</h3>
                 </div>
