@@ -98,7 +98,7 @@ export default function HomePage() {
                   niveau 6. Dépôt prévu fin 2026.
                 </p>
                 <a className="proof-card__client" href="https://sleep-learning-center.fr/" target="_blank" rel="noopener">
-                  <Image className="proof-card__client-logo" src="/images/logo/logo-slc.webp" alt="" width={37} height={16} />
+                  <Image className="proof-card__client-logo" src="/images/logo/logo-slc.webp" alt="" width={37} height={16} priority unoptimized />
                   Sleep Learning Center
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                     <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -115,7 +115,7 @@ export default function HomePage() {
                   Full Stack ».
                 </p>
                 <a className="proof-card__client" href="https://cloud-campus.fr/" target="_blank" rel="noopener">
-                  <Image className="proof-card__client-logo" src="/images/logo/logo-cloud-campus.webp" alt="" width={16} height={16} />
+                  <Image className="proof-card__client-logo" src="/images/logo/logo-cloud-campus.webp" alt="" width={16} height={16} priority />
                   Cloud Campus
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                     <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
