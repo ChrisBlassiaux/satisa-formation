@@ -24,7 +24,7 @@ export default function FloatingCta() {
 
   return (
     <Link href={ROUTES.contact} className="btn btn--dark floating-cta">
-      Prendre un rdv
+      Prendre contact
     </Link>
   );
 }

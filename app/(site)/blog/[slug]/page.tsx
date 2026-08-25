@@ -99,8 +99,8 @@ export default async function BlogPostPage({
       <section className="section--flush-top">
         <div className="container article-body">
           <div className="author-signature">
-            <div className="photo-placeholder photo-placeholder--round" role="img" aria-label="Photo de Chris Blassiaux">
-              CB
+            <div className="author-signature__avatar">
+              <Image src="/images/photos/profil-chris.webp" alt="" width={56} height={56} />
             </div>
             <div>
               <p className="author-signature__name">Chris Blassiaux</p>
