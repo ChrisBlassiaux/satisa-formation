@@ -47,9 +47,9 @@ export default function AboutPage() {
             <p className="eyebrow">À propos</p>
             <h1>Je fais le lien entre la certification et la pédagogie, parce que l&apos;une ne va pas sans l&apos;autre.</h1>
             <p className="hero-page__subtitle">
-              Fondateur de Satisa Formation, j&apos;accompagne les organismes de formation et certificateurs qui
-              veulent que leur expertise soit reconnue, et que leurs formations soient à la hauteur de cette
-              reconnaissance.
+              Fondateur de Satisa Formation. Ingénieur de certification et pédagogique, je travaille avec les
+              organismes de formation qui veulent déposer une certification RNCP/RS ou structurer leurs
+              formations, sans multiplier les interlocuteurs.
             </p>
           </div>
         </div>
@@ -64,24 +64,23 @@ export default function AboutPage() {
           <div className="article-body about-story">
             <p>
               Mon parcours mêle deux univers qui, sur le marché, restent presque toujours séparés :
-              l&apos;ingénierie pédagogique et le développement web. J&apos;ai construit ma pratique sur le
-              terrain, au contact direct des organismes de formation, de leurs formateurs et de leurs contraintes
-              réelles : des programmes à structurer, des contenus à rendre engageants, des outils numériques à
-              faire fonctionner sans complexifier le quotidien des équipes.
+              l&apos;ingénierie pédagogique et l&apos;ingénierie de certification. J&apos;ai construit ma pratique
+              sur le terrain, au contact direct des organismes de formation, de leurs formateurs et de leurs
+              contraintes réelles : des programmes à structurer, des contenus à rendre engageants, des outils
+              numériques à intégrer sans complexifier le quotidien des équipes.
             </p>
             <p>
               C&apos;est cette double pratique qui m&apos;a naturellement conduit vers l&apos;ingénierie de
               certification. Construire un référentiel RNCP ou RS, ce n&apos;est pas seulement remplir un dossier
               administratif : c&apos;est concevoir un métier, le traduire en compétences évaluables, puis en
-              formation qui tient debout. Peu de consultants réglementaires maîtrisent cette partie pédagogique,
-              et peu d&apos;ingénieurs pédagogiques maîtrisent la mécanique de la certification.
+              formation qui tient debout. Ma compétence technique en développement web et digital learning me
+              permet d&apos;aller jusqu&apos;au bout de cette logique : du référentiel jusqu&apos;à la formation
+              digitalisée, sans rupture ni interlocuteur supplémentaire.
             </p>
             <p>
               Ma mission la plus structurante à ce jour : accompagner un centre de formation spécialisé dans le
-              secteur de la santé sur l&apos;ensemble de son projet de certification RNCP, du diagnostic de
-              faisabilité jusqu&apos;au dépôt prévu fin 2026. Ce projet illustre exactement ce que j&apos;ai voulu
-              construire avec Satisa Formation : une continuité rare entre référentiel, formation et
-              digitalisation.
+              secteur de la santé sur l&apos;ensemble de son projet de certification RNCP, du dépôt du dossier
+              jusqu&apos;à la conception des programmes et des évaluations.
             </p>
           </div>
         </div>
@@ -101,7 +100,8 @@ export default function AboutPage() {
                 <h3 className="timeline__title">Développeur web &amp; web designer UX/UI</h3>
                 <p className="timeline__text">
                   Conception d&apos;interfaces web : de la maquette UX/UI à l&apos;intégration front-end, pour des
-                  sites et applications sur mesure.
+                  sites et applications sur mesure. Une base technique qui se retrouve aujourd&apos;hui dans
+                  chaque module e-learning conçu sur mesure, là où les outils auteurs ne suffisent plus.
                 </p>
               </div>
             </li>
@@ -113,7 +113,9 @@ export default function AboutPage() {
                 <h3 className="timeline__title">Formateur en développement web et web design</h3>
                 <p className="timeline__text">
                   Animation de formations en développement web et web design, en présentiel comme à distance, pour
-                  des organismes de formation et des entreprises.
+                  des organismes de formation et des entreprises. Enseigner dans des organismes de formation,
+                  c&apos;est comprendre de l&apos;intérieur ce que vivent les formateurs, les apprenants et les
+                  équipes pédagogiques au quotidien.
                 </p>
                 <p className="timeline__text">
                   <strong>J&apos;ai travaillé avec ces organismes de formation</strong>
@@ -141,12 +143,11 @@ export default function AboutPage() {
               <div className="timeline__marker" aria-hidden="true"></div>
               <div className="timeline__content">
                 <p className="timeline__date">2024</p>
-                <h3 className="timeline__title">Titre professionnel FPA - CCP1</h3>
-                <ul className="timeline__list">
-                  <li>Élaborer la progression pédagogique d&apos;une formation multimodale à partir d&apos;une demande</li>
-                  <li>Concevoir un scénario pédagogique et d&apos;accompagnement en intégrant la multimodalité</li>
-                  <li>Concevoir des activités d&apos;apprentissage et d&apos;évaluation en intégrant la multimodalité</li>
-                </ul>
+                <h3 className="timeline__title">Lancement de Satisa Formation - Ingénierie pédagogique et digital learning</h3>
+                <p className="timeline__text">
+                  Création de Satisa Formation pour accompagner les organismes de formation dans la conception
+                  pédagogique et la digitalisation de leurs formations professionnelles.
+                </p>
               </div>
             </li>
 
@@ -168,11 +169,34 @@ export default function AboutPage() {
             <li className="timeline__item">
               <div className="timeline__marker" aria-hidden="true"></div>
               <div className="timeline__content">
-                <p className="timeline__date">2025 - 2026</p>
-                <h3 className="timeline__title">Ingénierie de certification</h3>
+                <p className="timeline__date">2024</p>
+                <h3 className="timeline__title">Titre professionnel FPA - CCP1</h3>
                 <p className="timeline__text">
-                  Lancement de Satisa Formation et accompagnement des organismes de formation et certificateurs
-                  sur leurs projets de certification RNCP/RS.
+                  Fort de plusieurs années de pratique en ingénierie pédagogique, j&apos;ai voulu officialiser ces
+                  compétences par une certification reconnue. Le CCP1 du titre FPA valide ma maîtrise de la
+                  conception de parcours multimodaux, de la scénarisation pédagogique et de la conception
+                  d&apos;activités d&apos;apprentissage et d&apos;évaluation.
+                </p>
+                <p className="timeline__text">
+                  <strong>Compétences validées :</strong>
+                </p>
+                <ul className="timeline__list">
+                  <li>Élaborer la progression pédagogique d&apos;une formation multimodale à partir d&apos;une demande</li>
+                  <li>Concevoir un scénario pédagogique et d&apos;accompagnement en intégrant la multimodalité</li>
+                  <li>Concevoir des activités d&apos;apprentissage et d&apos;évaluation en intégrant la multimodalité</li>
+                </ul>
+              </div>
+            </li>
+
+            <li className="timeline__item">
+              <div className="timeline__marker" aria-hidden="true"></div>
+              <div className="timeline__content">
+                <p className="timeline__date">2025</p>
+                <h3 className="timeline__title">Satisa Formation - Évolution vers l&apos;ingénierie de certification RNCP/RS</h3>
+                <p className="timeline__text">
+                  Évolution de Satisa Formation vers l&apos;ingénierie de certification. Accompagnement des
+                  organismes de formation sur leurs projets de dépôt et de renouvellement de certification
+                  RNCP/RS auprès de France Compétences.
                 </p>
               </div>
             </li>
@@ -221,15 +245,12 @@ export default function AboutPage() {
           <div className="article-body">
             <p>
               Satisa Formation est né d&apos;un constat simple : sur le marché de l&apos;accompagnement RNCP/RS,
-              les prestataires s&apos;arrêtent au dépôt administratif. Aucun ne propose la continuité entre
-              référentiel, formation et digitalisation, alors que c&apos;est précisément ce qui fait
-              qu&apos;une certification fonctionne dans la durée.
+              la continuité entre référentiel, formation et digitalisation n&apos;existe pas. Pourtant, c&apos;est
+              précisément ce qui fait qu&apos;une certification fonctionne dans la durée.
             </p>
             <p>
-              Satisa se différencie sur deux points : la pédagogie intégrée dans la certification, et la
-              transparence tarifaire, dans un secteur où la quasi-totalité des consultants n&apos;affiche aucun
-              prix public. L&apos;objectif n&apos;est pas de vendre une méthodologie, mais de prendre en charge
-              le chantier, avec un interlocuteur unique du premier au dernier livrable.
+              L&apos;objectif n&apos;est pas de vendre une méthodologie, mais de prendre en charge le chantier,
+              avec un interlocuteur unique du premier au dernier livrable.
             </p>
           </div>
         </div>
