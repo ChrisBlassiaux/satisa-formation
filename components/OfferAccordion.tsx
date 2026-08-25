@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+const PAIR_BREAKPOINT = "(min-width: 768px)";
+
 export default function OfferAccordion({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -20,23 +22,56 @@ export default function OfferAccordion({ children }: { children: React.ReactNode
       }
     }
 
+    function setExpanded(btn: HTMLButtonElement, expanding: boolean) {
+      btn.setAttribute("aria-expanded", expanding ? "true" : "false");
+      const bodyId = btn.getAttribute("aria-controls");
+      const body = bodyId ? document.getElementById(bodyId) : null;
+      if (body) body.hidden = !expanding;
+      syncRowState(btn);
+    }
+
     function handleClick(this: HTMLButtonElement) {
+      const pairsLinked = window.matchMedia(PAIR_BREAKPOINT).matches;
       const pairKey = this.getAttribute("data-pair");
-      const group = pairKey
-        ? Array.from(
-            container!.querySelectorAll<HTMLButtonElement>(
-              `.offer-row__header[data-pair="${pairKey}"]`
-            )
-          )
-        : [this];
       const expanding = this.getAttribute("aria-expanded") !== "true";
 
-      group.forEach((btn) => {
-        btn.setAttribute("aria-expanded", expanding ? "true" : "false");
-        const bodyId = btn.getAttribute("aria-controls");
-        const body = bodyId ? document.getElementById(bodyId) : null;
-        if (body) body.hidden = !expanding;
-        syncRowState(btn);
+      if (pairKey && pairsLinked) {
+        // Side by side: both offers of the pair open and close together.
+        const group = Array.from(
+          container!.querySelectorAll<HTMLButtonElement>(
+            `.offer-row__header[data-pair="${pairKey}"]`
+          )
+        );
+        group.forEach((btn) => setExpanded(btn, expanding));
+        return;
+      }
+
+      if (pairKey && !pairsLinked && expanding) {
+        // Stacked on mobile: opening one closes its pair-mate so only one shows at a time.
+        const siblings = Array.from(
+          container!.querySelectorAll<HTMLButtonElement>(
+            `.offer-row__header[data-pair="${pairKey}"]`
+          )
+        ).filter((btn) => btn !== this);
+        siblings.forEach((btn) => setExpanded(btn, false));
+      }
+
+      setExpanded(this, expanding);
+    }
+
+    // Below the breakpoint where paired offers sit side by side, they stack in a
+    // single column: only the first row of each pair should start open so two
+    // offers can't both be expanded at once on mobile.
+    if (!window.matchMedia(PAIR_BREAKPOINT).matches) {
+      const seenPairs = new Set<string>();
+      headers.forEach((header) => {
+        const pairKey = header.getAttribute("data-pair");
+        if (!pairKey) return;
+        if (seenPairs.has(pairKey)) {
+          setExpanded(header, false);
+        } else {
+          seenPairs.add(pairKey);
+        }
       });
     }
 

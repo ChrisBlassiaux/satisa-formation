@@ -16,3 +16,11 @@
     display: none;
   }
 }
+
+.floating-cta--back-to-top {
+  display: none;
+
+  @include from($bp-tablet) {
+    display: inline-flex;
+  }
+}

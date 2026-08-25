@@ -204,7 +204,7 @@
 }
 
 .benefit-panel > .btn {
-  align-self: flex-start;
+  align-self: center;
 }
 
 // Citation
@@ -333,6 +333,14 @@
   padding: $spacing-sm $spacing-md;
   text-align: left;
   transition: background 0.15s ease;
+
+  @media (max-width: $bp-tablet - 1px) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    column-gap: $spacing-sm;
+    row-gap: $spacing-xs;
+  }
 }
 
 .offer-row__header:hover {
@@ -407,6 +415,29 @@
 
 .offer-row__header[aria-expanded='true'] .offer-row__chevron {
   transform: rotate(180deg);
+}
+
+@media (max-width: $bp-tablet - 1px) {
+  .offer-row__title {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .offer-row__meta {
+    display: contents;
+  }
+
+  .offer-row__price {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+  }
+
+  .offer-row__chevron {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
 }
 
 .offer-row__body {

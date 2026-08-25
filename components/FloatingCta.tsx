@@ -16,7 +16,7 @@ export default function FloatingCta() {
 
   if (isContactPage) {
     return (
-      <a href="#main" className="btn btn--dark floating-cta">
+      <a href="#main" className="btn btn--dark floating-cta floating-cta--back-to-top">
         Retour en haut
       </a>
     );

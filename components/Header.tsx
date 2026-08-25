@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,13 +10,17 @@ export default function Header() {
   const pathname = usePathname();
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
+  useEffect(() => {
+    setIsMobileNavOpen(false);
+  }, [pathname]);
+
   const isActive = (href: string) => pathname === href;
 
   return (
     <header className="site-header">
       <div className="container site-header__inner">
         <Link href={ROUTES.home} className="site-header__logo" aria-label="Satisa Formation, accueil">
-          <Image src="/images/logo/logo-satisa.svg" alt="Satisa Formation" width={150} height={42} priority />
+          <Image src="/images/logo/logo-satisa-flat.png" alt="Satisa Formation" width={1408} height={648} priority />
         </Link>
         <nav className="nav" aria-label="Navigation principale">
           <ul className="nav__list">

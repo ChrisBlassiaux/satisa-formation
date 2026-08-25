@@ -13,7 +13,11 @@
 }
 
 .about-photo--compact {
-  max-width: 82%;
+  max-width: 100%;
+
+  @include from($bp-tablet) {
+    max-width: 82%;
+  }
 }
 
 .about-story p + p {
