@@ -99,6 +99,10 @@
   margin-top: $spacing-sm;
 }
 
+.timeline__logos + .timeline__text {
+  margin-top: $spacing-sm;
+}
+
 .timeline__list {
   display: grid;
   gap: $spacing-xs;
@@ -197,6 +201,18 @@
 .article-body {
   max-width: 760px;
   margin-inline: auto;
+}
+
+.article-cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: $radius-md;
+  overflow: hidden;
+  margin-bottom: $spacing-md;
+}
+
+.article-cover img {
+  object-fit: cover;
 }
 
 .article-body h2 {

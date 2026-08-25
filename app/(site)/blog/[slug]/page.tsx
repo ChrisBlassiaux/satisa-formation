@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import Markdoc from "@markdoc/markdoc";
@@ -75,6 +76,22 @@ export default async function BlogPostPage({
         </div>
       </section>
 
+      {post.coverImage && (
+        <section className="section--flush-top">
+          <div className="container article-body">
+            <div className="article-cover">
+              <Image
+                src={post.coverImage}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 100vw, 720px"
+                priority
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="section--flush-top">
         <div className="container article-body">{contentHtml}</div>
       </section>
@@ -102,7 +119,17 @@ export default async function BlogPostPage({
             <div className="grid grid--3">
               {suggestedPosts.map((suggested) => (
                 <Link key={suggested.slug} className="post-card" href={`${ROUTES.blog}/${suggested.slug}`}>
-                  <div className="post-card__thumb"></div>
+                  <div className="post-card__thumb">
+                    {suggested.coverImage && (
+                      <Image
+                        src={suggested.coverImage}
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="post-card__thumb-img"
+                      />
+                    )}
+                  </div>
                   <div className="post-card__body">
                     <div className="post-card__meta">
                       <span>{CATEGORY_LABELS[suggested.category]}</span>

@@ -536,8 +536,14 @@
 }
 
 .post-card__thumb {
+  position: relative;
   aspect-ratio: 16 / 10;
   background: $gradient-primary;
+  overflow: hidden;
+}
+
+.post-card__thumb-img {
+  object-fit: cover;
 }
 
 .post-card__body {

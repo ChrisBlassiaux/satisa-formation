@@ -31,6 +31,12 @@ export default config({
           description: 'Ex. "5 min de lecture"',
           defaultValue: "5 min de lecture",
         }),
+        coverImage: fields.image({
+          label: "Image de couverture",
+          description: "Format recommandé : 16:10 (ex. 1200x750px). Optionnel.",
+          directory: "public/images/blog",
+          publicPath: "/images/blog/",
+        }),
         excerpt: fields.text({
           label: "Description (SEO)",
           multiline: true,

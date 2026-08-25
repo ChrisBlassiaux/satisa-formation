@@ -296,7 +296,17 @@ export default async function HomePage() {
           <div className="grid grid--3">
             {latestPosts.map((post) => (
               <Link key={post.slug} className="post-card" href={`${ROUTES.blog}/${post.slug}`}>
-                <div className="post-card__thumb"></div>
+                <div className="post-card__thumb">
+                  {post.coverImage && (
+                    <Image
+                      src={post.coverImage}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="post-card__thumb-img"
+                    />
+                  )}
+                </div>
                 <div className="post-card__body">
                   <div className="post-card__meta">
                     <span>{CATEGORY_LABELS[post.category]}</span>

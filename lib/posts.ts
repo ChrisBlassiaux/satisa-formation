@@ -15,6 +15,7 @@ export type PostSummary = {
   date: string;
   readingTime: string;
   excerpt: string;
+  coverImage: string | null;
 };
 
 export async function getAllPosts(): Promise<PostSummary[]> {
@@ -27,6 +28,7 @@ export async function getAllPosts(): Promise<PostSummary[]> {
       date: entry.date ?? "",
       readingTime: entry.readingTime ?? "",
       excerpt: entry.excerpt ?? "",
+      coverImage: entry.coverImage,
     }))
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }

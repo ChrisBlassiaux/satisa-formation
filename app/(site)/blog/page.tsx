@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import { getAllPosts, CATEGORY_LABELS, formatPostDate } from "@/lib/posts";
@@ -46,7 +47,17 @@ export default async function BlogIndexPage() {
                   data-category={post.category}
                   href={`${ROUTES.blog}/${post.slug}`}
                 >
-                  <div className="post-card__thumb"></div>
+                  <div className="post-card__thumb">
+                    {post.coverImage && (
+                      <Image
+                        src={post.coverImage}
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="post-card__thumb-img"
+                      />
+                    )}
+                  </div>
                   <div className="post-card__body">
                     <div className="post-card__meta">
                       <span>{CATEGORY_LABELS[post.category]}</span>
