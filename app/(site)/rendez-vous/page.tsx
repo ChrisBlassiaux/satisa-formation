@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CalBookingButton from "@/components/CalBookingButton";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Prendre un rendez-vous",
@@ -30,36 +31,7 @@ export default function ContactPage() {
             <div className="contact-channel">
               <h3>Nous écrire</h3>
               <p>Décrivez votre projet, nous revenons vers vous sous 48h.</p>
-              {/* TODO: brancher ce formulaire sur l'API route SMTP (étape "formulaire de contact" à venir) */}
-              <form action="mailto:chris@satisa.fr" method="post" encType="text/plain">
-                <div className="form-row">
-                  <div className="form-field">
-                    <label htmlFor="firstname">Prénom</label>
-                    <input type="text" id="firstname" name="prenom" required />
-                  </div>
-                  <div className="form-field">
-                    <label htmlFor="lastname">Nom</label>
-                    <input type="text" id="lastname" name="nom" required />
-                  </div>
-                </div>
-                <div className="form-field">
-                  <label htmlFor="email">Email</label>
-                  <input type="email" id="email" name="email" required />
-                </div>
-                <div className="form-field">
-                  <label htmlFor="project-type">Type de projet</label>
-                  <select id="project-type" name="type_projet">
-                    <option value="certification">Certification RNCP/RS</option>
-                    <option value="formations">Formations et digital</option>
-                    <option value="autre">Autre</option>
-                  </select>
-                </div>
-                <div className="form-field">
-                  <label htmlFor="message">Message</label>
-                  <textarea id="message" name="message" rows={4} required></textarea>
-                </div>
-                <button type="submit" className="btn btn--dark btn--block">Envoyer le message</button>
-              </form>
+              <ContactForm />
             </div>
 
             <div className="contact-stack">

@@ -695,6 +695,31 @@
   }
 }
 
+.form-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-success {
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+  font-weight: 600;
+}
+
+.form-error {
+  margin-bottom: $spacing-sm;
+  color: #b3261e;
+  font-size: $fs-small;
+  font-weight: 600;
+}
+
 // Bloc CTA plein
 .cta-banner {
   background: $color-dark;
