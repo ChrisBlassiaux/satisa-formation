@@ -15,43 +15,37 @@ export default function LegalMentionsPage() {
       <div className="container legal-content">
         <h1>Mentions légales</h1>
 
-        <h2>Éditeur du site</h2>
         <p>
-          Satisa Formation
+          Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans
+          l&apos;économie numérique, il est précisé aux utilisateurs du site Satisa Formation l&apos;identité des
+          différents intervenants dans le cadre de sa réalisation et de son suivi.
+        </p>
+
+        <h2>Édition du site</h2>
+        <p>
+          Le présent site, accessible à l&apos;URL satisa-formation.fr (le « Site »), est édité par : Christopher
+          Blassiaux, auto-entrepreneur, de nationalité française, né le 30/12/1998.
           <br />
-          [Statut juridique à compléter - ex. Entreprise Individuelle]
-          <br />
-          SIRET : [à compléter]
-          <br />
-          Adresse : [à compléter]
-          <br />
-          Email : chris@satisa.fr
-          <br />
-          Directeur de la publication : Chris Blassiaux
+          Domicilié au 41 rue Jacquemars Giélée, 59800 Lille.
         </p>
 
         <h2>Hébergement</h2>
         <p>
-          [Nom de l&apos;hébergeur à compléter]
+          Le Site est hébergé par la société Vercel Inc., située au 340 Pine Street, Suite 900, San Francisco, CA
+          94104, États-Unis.
+        </p>
+
+        <h2>Directeur de publication</h2>
+        <p>Le Directeur de la publication du Site est Christopher Blassiaux.</p>
+
+        <h2>Nous contacter</h2>
+        <p>
+          Par téléphone : +33 7 83 45 67 53
           <br />
-          [Adresse de l&apos;hébergeur à compléter]
+          Par email : chris@satisa.fr
+          <br />
+          Par courrier : 41 rue Jacquemars Giélée, 59800 Lille
         </p>
-
-        <h2>Propriété intellectuelle</h2>
-        <p>
-          L&apos;ensemble des contenus présents sur ce site (textes, visuels, logo) est la propriété de Satisa
-          Formation, sauf mention contraire. Toute reproduction sans autorisation préalable est interdite.
-        </p>
-
-        <h2>Responsabilité</h2>
-        <p>
-          Satisa Formation s&apos;efforce de fournir des informations aussi précises que possible sur ce site.
-          Elle ne pourra être tenue responsable des omissions, inexactitudes ou carences dans la mise à jour,
-          qu&apos;elles soient de son fait ou du fait de tiers.
-        </p>
-
-        <h2>Contact</h2>
-        <p>Pour toute question relative à ces mentions légales, contactez-nous à l&apos;adresse chris@satisa.fr.</p>
       </div>
     </section>
   );
