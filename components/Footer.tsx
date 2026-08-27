@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container">
         <div className="site-footer__grid">
           <div className="site-footer__brand">
-            <Image src="/images/logo/logo-satisa-light.png" alt="Satisa Formation" width={1400} height={658} />
+            <Image src="/images/logo/logo-satisa-blanc.svg" alt="Satisa Formation" width={330} height={152} />
             <p>Ingénierie de certification RNCP/RS et ingénierie pédagogique et digitale pour les organismes de formation.</p>
           </div>
           <div className="site-footer__col">
