@@ -47,7 +47,7 @@ export default function AboutPage() {
             <p className="eyebrow">À propos</p>
             <h1>Je fais le lien entre la certification et la pédagogie, parce que l&apos;une ne va pas sans l&apos;autre.</h1>
             <p className="hero-page__subtitle">
-              Fondateur de Satisa Formation. Ingénieur de certification RNCP et pédagogique en freelance, je
+              Fondateur de Satisa Formation. Ingénieur de certification et pédagogique en freelance, je
               travaille avec les organismes de formation qui veulent déposer une certification RNCP/RS ou
               structurer leurs formations, sans multiplier les interlocuteurs.
             </p>
