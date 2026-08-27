@@ -8,7 +8,7 @@ import PaymentOptions from "@/components/PaymentOptions";
 export const metadata: Metadata = {
   title: "Déposer une certification RNCP/RS",
   description:
-    "Diagnostic de faisabilité, certification guidée ou pilotée, ingénieur de certification intégré : les formules Satisa pour déposer votre certification RNCP ou RS.",
+    "Accompagnement au dépôt RNCP ou RS auprès de France Compétences, partout en France : diagnostic de faisabilité, référentiel de compétences, certification guidée ou pilotée. Un consultant RNCP/RS qui pilote le dépôt de votre dossier de certification, pas seulement un guide méthodologique.",
   alternates: {
     canonical: "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs",
   },
@@ -18,6 +18,14 @@ const FAQ_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
+    {
+      "@type": "Question",
+      name: "Comment déposer un dossier RNCP ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Le dépôt d'un dossier RNCP suit un parcours en plusieurs étapes : diagnostic de faisabilité, construction du référentiel de compétences, constitution d'une cohorte pilote, rédaction du dossier puis dépôt et suivi auprès de France Compétences. Satisa vous accompagne sur tout ou partie de ce parcours, selon la formule choisie.",
+      },
+    },
     {
       "@type": "Question",
       name: "Combien de temps dure un projet de certification RNCP ?",
@@ -233,7 +241,7 @@ export default function CertificationPage() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Le problème</p>
-            <h2>Ce que vivent les organismes sans certification</h2>
+            <h2>Ce que vivent les organismes de formation sans certification RNCP</h2>
           </div>
           <ul className="problem-list">
             <li>
@@ -295,7 +303,7 @@ export default function CertificationPage() {
                 </svg>
               </span>
               <h3>La pédagogie intégrée à la certification</h3>
-              <p>Chris est ingénieur pédagogique avant d&apos;être consultant certification. Le référentiel qu&apos;il construit avec vous est pensé pour être formé, pas seulement pour être déposé.</p>
+              <p>Chris est ingénieur pédagogique avant d&apos;être consultant RNCP/RS. Le référentiel de compétences qu&apos;il construit avec vous est pensé pour être formé, pas seulement pour être déposé.</p>
             </div>
             <div className="card">
               <span className="card__icon" aria-hidden="true">
@@ -328,6 +336,13 @@ export default function CertificationPage() {
             <h2>Le processus RNCP en détail</h2>
           </div>
           <div>
+            <details className="faq-item">
+              <summary className="faq-item__question">
+                Comment déposer un dossier RNCP ?
+                <span className="faq-item__icon" aria-hidden="true"></span>
+              </summary>
+              <p className="faq-item__answer">Le dépôt d&apos;un dossier RNCP suit un parcours en plusieurs étapes : diagnostic de faisabilité, construction du référentiel de compétences, constitution d&apos;une cohorte pilote, rédaction du dossier puis dépôt et suivi auprès de France Compétences. Satisa vous accompagne sur tout ou partie de ce parcours, selon la formule choisie.</p>
+            </details>
             <details className="faq-item">
               <summary className="faq-item__question">
                 Combien de temps dure un projet de certification RNCP ?

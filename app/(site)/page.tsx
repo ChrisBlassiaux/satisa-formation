@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import { getAllPosts, CATEGORY_LABELS, formatPostDate } from "@/lib/posts";
+
+export const metadata: Metadata = {
+  title: "Ingénieur de certification RNCP/RS et pédagogique - Satisa Formation",
+  description:
+    "Satisa Formation : ingénieur de certification RNCP freelance et ingénierie pédagogique pour organismes de formation. Accompagnement au dépôt RNCP/RS et conception de formation certifiante conforme Qualiopi.",
+  alternates: {
+    canonical: "https://www.satisa-formation.fr/",
+  },
+};
 
 const ORGANIZATION_JSON_LD = {
   "@context": "https://schema.org",
@@ -49,7 +59,7 @@ export default async function HomePage() {
             <div className="hero__intro">
               <p className="eyebrow">Certification RNCP/RS &amp; ingénierie pédagogique</p>
               <h1>
-                Construisez une certification qui tient la route,{" "}
+                Construisez une certification RNCP/RS qui tient la route,{" "}
                 <span className="accent">et des formations qui rayonnent.</span>
               </h1>
               <p className="hero__subtitle">
@@ -139,9 +149,9 @@ export default async function HomePage() {
                 <span className="tag card__tag">Certification</span>
                 <h3>Ingénierie de certification RNCP/RS</h3>
                 <p>
-                  Du diagnostic de faisabilité au suivi post-dépôt : référentiel, cohorte pilote, dossier France
-                  Compétences. Un chef de projet certification qui prend le chantier en main, pas seulement un
-                  guide méthodologique.
+                  Du diagnostic de faisabilité au suivi post-dépôt : référentiel de compétences, cohorte pilote,
+                  dossier France Compétences. Un chef de projet certification qui prend le chantier en main, pas
+                  seulement un consultant RNCP/RS ou un guide méthodologique.
                 </p>
               </div>
               <Link href={ROUTES.certification} className="btn btn--primary">
@@ -153,9 +163,9 @@ export default async function HomePage() {
                 <span className="tag card__tag">Formations &amp; digital</span>
                 <h3>Ingénierie pédagogique et digitalisation</h3>
                 <p>
-                  Conception de formations alignées sur votre référentiel, création de contenus, digitalisation
-                  blended et e-learning. Pour des parcours structurés, conformes Qualiopi, et engageants pour vos
-                  apprenants.
+                  Conception de formation certifiante alignée sur votre référentiel, création de contenus
+                  pédagogiques, digitalisation blended et e-learning. Pour des parcours structurés, conformes
+                  Qualiopi, et engageants pour vos apprenants.
                 </p>
               </div>
               <Link href={ROUTES.formations} className="btn btn--primary">
@@ -173,7 +183,7 @@ export default async function HomePage() {
           </div>
           <div>
             <p className="eyebrow">À propos</p>
-            <h2>Chris Blassiaux, ingénieur de certification et pédagogique</h2>
+            <h2>Chris Blassiaux, ingénieur de certification RNCP freelance et pédagogique</h2>
             <blockquote className="quote">
               « La qualité du service pédagogique est cruciale, car elle a un impact direct sur la satisfaction des
               étudiants et, par conséquent, sur la réputation et la croissance de l&apos;établissement. »
@@ -191,7 +201,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="section-head section-head--center">
             <p className="eyebrow">Pourquoi Satisa</p>
-            <h2>Ce que ça change pour votre organisme</h2>
+            <h2>Ce que ça change pour votre organisme de formation</h2>
           </div>
           <div className="grid grid--2 benefit-panels">
             <div className="benefit-panel benefit-panel--certification">

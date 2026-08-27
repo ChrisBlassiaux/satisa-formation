@@ -7,7 +7,7 @@ import OfferRowChevron from "@/components/OfferRowChevron";
 export const metadata: Metadata = {
   title: "Concevoir et digitaliser vos formations",
   description:
-    "Conception de formation, création de contenus, digitalisation blended et e-learning, maintenance pédagogique : les formules Satisa pour structurer et digitaliser vos parcours.",
+    "Ingénieur pédagogique freelance pour organismes de formation : conception de programme conforme Qualiopi, création de contenus pédagogiques, digitalisation e-learning et intégration LMS (Moodle, Digiforma). Maintenance pédagogique incluse.",
   alternates: {
     canonical: "https://www.satisa-formation.fr/concevoir-digitaliser-vos-formations",
   },
@@ -23,8 +23,9 @@ export default function FormationsPage() {
             <h1>Vous avez le contenu. Il manque la structure et le digital.</h1>
             <p className="hero-page__subtitle">
               Vos formateurs savent enseigner, mais personne dans votre équipe ne sait structurer une progression
-              pédagogique ni produire du e-learning de qualité. Satisa conçoit et digitalise vos formations, du
-              programme conforme Qualiopi jusqu&apos;au déploiement sur votre LMS.
+              pédagogique ni produire du e-learning de qualité. Ingénieur pédagogique freelance pour organismes de
+              formation, Satisa conçoit et digitalise vos formations, du programme conforme Qualiopi jusqu&apos;au
+              déploiement sur votre LMS.
             </p>
           </div>
           <div className="hero-page__visual" aria-hidden="true">
@@ -226,7 +227,7 @@ export default function FormationsPage() {
             </div>
           </div>
 
-          <h3 className="subsection-title">Ce que ça change pour votre organisme</h3>
+          <h3 className="subsection-title">Ce que ça change pour votre organisme de formation</h3>
           <div className="benefit-grid">
             <div className="benefit-tile">
               <span className="benefit-tile__icon" aria-hidden="true">
