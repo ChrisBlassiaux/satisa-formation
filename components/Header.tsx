@@ -20,7 +20,7 @@ export default function Header() {
     <header className="site-header">
       <div className="container site-header__inner">
         <Link href={ROUTES.home} className="site-header__logo" aria-label="Satisa Formation, accueil">
-          <Image src="/images/logo/logo-satisa-flat.png" alt="Satisa Formation" width={1408} height={648} priority />
+          <Image src="/images/logo/logo-satisa-flat.png" alt="Satisa Formation" width={1400} height={658} priority />
         </Link>
         <nav className="nav" aria-label="Navigation principale">
           <ul className="nav__list">
