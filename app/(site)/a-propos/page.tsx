@@ -73,7 +73,7 @@ export default function AboutPage() {
               C&apos;est cette double pratique qui m&apos;a naturellement conduit vers l&apos;ingénierie de
               certification. Construire un référentiel RNCP ou RS, ce n&apos;est pas seulement remplir un dossier
               administratif : c&apos;est concevoir un métier, le traduire en compétences évaluables, puis en
-              formation qui tient debout. Ma compétence technique en développement web et digital learning me
+              formation qui fonctionne vraiment sur le terrain. Ma compétence technique en développement web et digital learning me
               permet d&apos;aller jusqu&apos;au bout de cette logique : du référentiel jusqu&apos;à la formation
               digitalisée, sans rupture ni interlocuteur supplémentaire.
             </p>
@@ -155,7 +155,7 @@ export default function AboutPage() {
               <div className="timeline__marker" aria-hidden="true"></div>
               <div className="timeline__content">
                 <p className="timeline__date">Depuis janvier 2024</p>
-                <h3 className="timeline__title">Responsable et ingénieur pédagogique - Cloud Campus</h3>
+                <h3 className="timeline__title">Responsable et ingénieur pédagogique freelance - Cloud Campus</h3>
                 <p className="timeline__text">
                   Pilotage de l&apos;ingénierie pédagogique, de la conception pédagogique et du digital learning
                   au sein de l&apos;organisme.

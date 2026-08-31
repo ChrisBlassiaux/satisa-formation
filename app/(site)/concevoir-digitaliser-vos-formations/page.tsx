@@ -20,11 +20,10 @@ export default function FormationsPage() {
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Ingénierie pédagogique &amp; digital</p>
-            <h1>Vous avez le contenu. Il manque la structure et le digital.</h1>
+            <h1>Vous avez le contenu. Il manque la structure pédagogique et la digitalisation.</h1>
             <p className="hero-page__subtitle">
-              Vos formateurs savent enseigner, mais personne dans votre équipe ne sait structurer une progression
-              pédagogique ni produire du e-learning de qualité. Ingénieur pédagogique freelance pour organismes de
-              formation, Satisa conçoit et digitalise vos formations, du programme conforme Qualiopi jusqu&apos;au
+              Votre équipe a les compétences, mais concevoir et digitaliser des formations en parallèle de la
+              délivrance, c&apos;est une charge supplémentaire que Satisa peut absorber. Du programme jusqu&apos;au
               déploiement sur votre LMS.
             </p>
           </div>
@@ -159,8 +158,8 @@ export default function FormationsPage() {
       <section className="problem-section">
         <div className="container">
           <div className="section-head">
-            <p className="eyebrow">Nos orientations</p>
-            <h2>Concevoir et digitaliser : deux leviers complémentaires</h2>
+            <p className="eyebrow">Conception ou digitalisation ?</p>
+            <h2>Concevoir et digitaliser vos formations : deux leviers complémentaires</h2>
           </div>
 
           <ul className="problem-list problem-list--2col">
@@ -186,7 +185,7 @@ export default function FormationsPage() {
               </span>
               <div>
                 <h3>Digitalisation des formations</h3>
-                <p>Transformer vos contenus en parcours blended ou 100&nbsp;% e-learning, déployés sur votre plateforme pédagogique.</p>
+                <p>Transformer vos contenus en parcours blended learning ou 100&nbsp;% e-learning, avec intégration LMS (Moodle, Digiforma, 360Learning...).</p>
               </div>
             </li>
           </ul>

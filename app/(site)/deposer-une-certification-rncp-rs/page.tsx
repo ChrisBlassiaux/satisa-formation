@@ -57,11 +57,12 @@ export default function CertificationPage() {
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Ingénierie de certification RNCP/RS</p>
-            <h1>Vous formez déjà. Il est temps que ça se voie sur France Compétences.</h1>
+            <h1>Vous formez déjà. Il est temps d&apos;être reconnu RNCP ou RS par France Compétences.</h1>
             <p className="hero-page__subtitle">
-              Vous formez des professionnels depuis des années, mais sans certification enregistrée, vous restez
-              hors CPF et dépendant des financements publics. Le chantier RNCP/RS est complexe et personne, en
-              interne, n&apos;a le temps de le piloter. C&apos;est exactement ce que fait Satisa.
+              Vous formez des professionnels depuis des années, mais sans certification enregistrée auprès de
+              France Compétences, votre expertise reste non reconnue officiellement. Le projet RNCP/RS est
+              complexe et personne en interne n&apos;a le temps de le piloter. C&apos;est exactement ce que fait
+              Satisa.
             </p>
           </div>
           <div className="hero-page__visual" aria-hidden="true">
@@ -241,7 +242,7 @@ export default function CertificationPage() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Le problème</p>
-            <h2>Ce que vivent les organismes de formation sans certification RNCP</h2>
+            <h2>Ce que vivent les organismes de formation sans certification RNCP ou RS</h2>
           </div>
           <ul className="problem-list">
             <li>
@@ -268,8 +269,8 @@ export default function CertificationPage() {
                 </svg>
               </span>
               <div>
-                <h3>Dépendance aux financements publics</h3>
-                <p>Sans reconnaissance France Compétences, vous restez tributaire de financements moins stables et moins volumineux.</p>
+                <h3>Aucun titre reconnu pour vos apprenants</h3>
+                <p>Vos formations sont solides, mais sans certification RNCP ou RS, vos apprenants ne repartent avec aucun titre reconnu à valoriser sur leur CV ou auprès d&apos;un employeur.</p>
               </div>
             </li>
             <li>
@@ -280,7 +281,7 @@ export default function CertificationPage() {
                 </svg>
               </span>
               <div>
-                <h3>Un chantier complexe, sans ressources internes</h3>
+                <h3>Un projet complexe, sans ressources internes</h3>
                 <p>Référentiel, cohorte pilote, dossier administratif : personne en interne n&apos;a le temps ni l&apos;expertise pour piloter ce projet en plus de son activité.</p>
               </div>
             </li>
@@ -303,7 +304,7 @@ export default function CertificationPage() {
                 </svg>
               </span>
               <h3>La pédagogie intégrée à la certification</h3>
-              <p>Chris est ingénieur pédagogique avant d&apos;être consultant RNCP/RS. Le référentiel de compétences qu&apos;il construit avec vous est pensé pour être formé, pas seulement pour être déposé.</p>
+              <p>Ingénieur pédagogique avant d&apos;être ingénieur de certification : le référentiel de compétences construit avec vous est pensé pour être formé, pas seulement pour être déposé.</p>
             </div>
             <div className="card">
               <span className="card__icon" aria-hidden="true">
@@ -313,7 +314,7 @@ export default function CertificationPage() {
                 </svg>
               </span>
               <h3>Un chef de projet, ou un guide</h3>
-              <p>Selon la formule choisie, Satisa pilote réellement le chantier : rétroplanning, rédaction, coordination avec votre référent métier, jusqu&apos;à la décision finale.</p>
+              <p>Selon la formule choisie, Satisa prend en charge tout ou une partie du projet : rétroplanning, rédaction, coordination avec votre référent métier, jusqu&apos;à la décision finale.</p>
             </div>
             <div className="card">
               <span className="card__icon card__icon--accent" aria-hidden="true">
@@ -322,8 +323,8 @@ export default function CertificationPage() {
                   <circle cx="12" cy="12" r="3" />
                 </svg>
               </span>
-              <h3>Transparence tarifaire</h3>
-              <p>Chez Satisa, chaque formule a un prix clair, affiché dès la première page, sans devis à demander en amont.</p>
+              <h3>Tarifs clairs et affichés</h3>
+              <p>Nos formules de certification RNCP/RS ont un prix défini, visible directement sur le site. Pas de devis préalable pour connaître le budget.</p>
             </div>
           </div>
         </div>
@@ -333,7 +334,7 @@ export default function CertificationPage() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Questions fréquentes</p>
-            <h2>Le processus RNCP en détail</h2>
+            <h2>Le processus RNCP/RS en détail</h2>
           </div>
           <div>
             <details className="faq-item">

@@ -63,9 +63,10 @@ export default async function HomePage() {
                 <span className="accent">et des formations qui rayonnent.</span>
               </h1>
               <p className="hero__subtitle">
-                Chris Blassiaux accompagne les organismes de formation et certificateurs sur tout le cycle :
-                référentiel de certification, ingénierie pédagogique, digitalisation. Une seule expertise, la
-                continuité en plus.
+                Satisa Formation accompagne les organismes de formation dans l&apos;ingénierie de certification
+                RNCP/RS et l&apos;ingénierie pédagogique : référentiel de compétences, accompagnement au dépôt
+                France Compétences, conception de formation certifiante, digitalisation e-learning. Une seule
+                expertise, la continuité en plus.
               </p>
               <div className="hero__actions">
                 <Link href={ROUTES.certification} className="btn btn--dark">
@@ -139,8 +140,8 @@ export default async function HomePage() {
           <div className="section-head">
             <p className="eyebrow">Nos deux expertises</p>
             <h2>
-              Un chantier de certification, une digitalisation de formations : parfois les deux, toujours la même
-              exigence.
+              Un projet de certification RNCP/RS ou de conception de formation présentiel et e-learning : toujours
+              la même exigence.
             </h2>
           </div>
           <div className="grid grid--2">
@@ -149,9 +150,9 @@ export default async function HomePage() {
                 <span className="tag card__tag">Certification</span>
                 <h3>Ingénierie de certification RNCP/RS</h3>
                 <p>
-                  Du diagnostic de faisabilité au suivi post-dépôt : référentiel de compétences, cohorte pilote,
-                  dossier France Compétences. Un chef de projet certification qui prend le chantier en main, pas
-                  seulement un consultant RNCP/RS ou un guide méthodologique.
+                  Accompagnement au dépôt RNCP/RS de A à Z auprès de France Compétences : référentiel de
+                  compétences, cohorte pilote, dépôt du dossier. Guidé ou piloté, selon votre niveau
+                  d&apos;autonomie.
                 </p>
               </div>
               <Link href={ROUTES.certification} className="btn btn--primary">
@@ -183,7 +184,7 @@ export default async function HomePage() {
           </div>
           <div>
             <p className="eyebrow">À propos</p>
-            <h2>Chris Blassiaux, ingénieur de certification RNCP freelance et pédagogique</h2>
+            <h2>Chris Blassiaux, ingénieur de certification et pédagogique</h2>
             <blockquote className="quote">
               « La qualité du service pédagogique est cruciale, car elle a un impact direct sur la satisfaction des
               étudiants et, par conséquent, sur la réputation et la croissance de l&apos;établissement. »
@@ -201,7 +202,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="section-head section-head--center">
             <p className="eyebrow">Pourquoi Satisa</p>
-            <h2>Ce que ça change pour votre organisme de formation</h2>
+            <h2>Les bénéfices concrets pour votre organisme de formation</h2>
           </div>
           <div className="grid grid--2 benefit-panels">
             <div className="benefit-panel benefit-panel--certification">
@@ -227,8 +228,8 @@ export default async function HomePage() {
                     </svg>
                   </span>
                   <div>
-                    <h4>Un chef de projet dédié</h4>
-                    <p>Vous n&apos;avez personne en interne pour piloter le chantier ? Chris prend le projet en main, à vos côtés.</p>
+                    <h4>Un niveau d&apos;intervention adapté à vos ressources</h4>
+                    <p>Guidé ou piloté, Satisa s&apos;implique à 100% dans votre projet. C&apos;est le mode de fonctionnement qui s&apos;adapte à votre organisation, pas l&apos;engagement.</p>
                   </div>
                 </div>
                 <div className="benefit-row">
@@ -239,8 +240,8 @@ export default async function HomePage() {
                     </svg>
                   </span>
                   <div>
-                    <h4>Une pédagogie qui tient</h4>
-                    <p>Un référentiel construit par un ingénieur pédagogique, pas seulement par un consultant réglementaire.</p>
+                    <h4>Un référentiel pensé pour être formé</h4>
+                    <p>Parce que l&apos;ingénierie pédagogique et l&apos;ingénierie de certification ne font qu&apos;un ici, votre référentiel est pensé pour être formé, pas seulement déposé.</p>
                   </div>
                 </div>
               </div>
@@ -274,7 +275,7 @@ export default async function HomePage() {
                   </span>
                   <div>
                     <h4>Une digitalisation sans y laisser vos équipes</h4>
-                    <p>Blended learning, e-learning, déploiement LMS : nous produisons, vos formateurs se concentrent sur l&apos;animation.</p>
+                    <p>Blended learning, e-learning, déploiement LMS : nous produisons, vos formateurs se concentrent sur l&apos;animation et l&apos;accompagnement.</p>
                   </div>
                 </div>
                 <div className="benefit-row">
@@ -336,7 +337,7 @@ export default async function HomePage() {
           <div className="cta-banner">
             <div>
               <h2>Parlons de votre projet</h2>
-              <p>Un échange de 30 minutes, sans engagement, pour cadrer votre besoin et voir si Satisa est la bonne réponse.</p>
+              <p>30 minutes pour cadrer votre besoin, sans engagement.</p>
             </div>
             <div className="cta-banner__actions">
               <Link href={ROUTES.contact} className="btn btn--primary">
