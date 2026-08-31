@@ -219,7 +219,7 @@ export default function AboutPage() {
               </p>
               <ul>
                 <li>Un référentiel pensé pour être formé, pas seulement déposé</li>
-                <li>Un pilotage réel du chantier, pas une simple méthodologie</li>
+                <li>Un pilotage réel du projet, pas une simple méthodologie</li>
                 <li>Une connaissance fine des attentes de France Compétences</li>
               </ul>
             </div>
@@ -249,7 +249,7 @@ export default function AboutPage() {
               précisément ce qui fait qu&apos;une certification fonctionne dans la durée.
             </p>
             <p>
-              L&apos;objectif n&apos;est pas de vendre une méthodologie, mais de prendre en charge le chantier,
+              L&apos;objectif n&apos;est pas de vendre une méthodologie, mais de prendre en charge le projet,
               avec un interlocuteur unique du premier au dernier livrable.
             </p>
           </div>
