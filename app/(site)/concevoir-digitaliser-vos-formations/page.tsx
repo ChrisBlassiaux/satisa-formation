@@ -115,7 +115,7 @@ export default function FormationsPage() {
 
           <OfferAccordion>
             <div className="offer-row">
-              <button type="button" className="offer-row__header" aria-expanded="true" aria-controls="offer-body-6">
+              <button type="button" className="offer-row__header" aria-expanded="false" aria-controls="offer-body-6">
                 <span className="offer-row__title">
                   <span className="offer-row__name-row">
                     <span className="offer-row__index" aria-hidden="true">6</span>
@@ -127,7 +127,7 @@ export default function FormationsPage() {
                   <OfferRowChevron />
                 </span>
               </button>
-              <div className="offer-row__body" id="offer-body-6">
+              <div className="offer-row__body" id="offer-body-6" hidden>
                 <ul className="pricing-card__deliverables">
                   <li>Analyse de la demande, du référentiel et du public cible</li>
                   <li>Progression pédagogique (objectifs dérivés du référentiel)</li>

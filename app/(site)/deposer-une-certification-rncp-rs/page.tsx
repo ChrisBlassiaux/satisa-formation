@@ -137,7 +137,7 @@ export default function CertificationPage() {
 
             <div className="offer-row-pair">
               <div className="offer-row">
-                <button type="button" className="offer-row__header" data-pair="23" aria-expanded="true" aria-controls="offer-body-2">
+                <button type="button" className="offer-row__header" data-pair="23" aria-expanded="false" aria-controls="offer-body-2">
                   <span className="offer-row__title">
                     <span className="offer-row__name-row">
                       <span className="offer-row__index" aria-hidden="true">2</span>
@@ -150,7 +150,7 @@ export default function CertificationPage() {
                     <OfferRowChevron />
                   </span>
                 </button>
-                <div className="offer-row__body" id="offer-body-2">
+                <div className="offer-row__body" id="offer-body-2" hidden>
                   <ul className="pricing-card__deliverables">
                     <li>Rétroplanning partagé, vous pilotez l&apos;avancement</li>
                     <li>Trames et modèles de documents fournis</li>
@@ -172,7 +172,7 @@ export default function CertificationPage() {
               </div>
 
               <div className="offer-row">
-                <button type="button" className="offer-row__header" data-pair="23" aria-expanded="true" aria-controls="offer-body-3">
+                <button type="button" className="offer-row__header" data-pair="23" aria-expanded="false" aria-controls="offer-body-3">
                   <span className="offer-row__title">
                     <span className="offer-row__name-row">
                       <span className="offer-row__index" aria-hidden="true">3</span>
@@ -185,7 +185,7 @@ export default function CertificationPage() {
                     <OfferRowChevron />
                   </span>
                 </button>
-                <div className="offer-row__body" id="offer-body-3">
+                <div className="offer-row__body" id="offer-body-3" hidden>
                   <ul className="pricing-card__deliverables">
                     <li>Rétroplanning partagé, nous pilotons l&apos;avancement</li>
                     <li>Analyse du métier et mapping des compétences avec votre référent métier</li>
