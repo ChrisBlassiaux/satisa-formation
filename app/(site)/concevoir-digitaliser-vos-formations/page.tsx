@@ -4,18 +4,85 @@ import { ROUTES } from "@/lib/routes";
 import OfferAccordion from "@/components/OfferAccordion";
 import OfferRowChevron from "@/components/OfferRowChevron";
 
+const TITLE = "Accompagnement à la conception de parcours de formation - Satisa Formation";
+const DESCRIPTION =
+  "Conception de parcours de formation conforme Qualiopi, création de contenus pédagogiques, digitalisation e-learning et intégration LMS.";
+
 export const metadata: Metadata = {
-  title: "Concevoir et digitaliser vos formations",
-  description:
-    "Ingénieur pédagogique freelance pour organismes de formation : conception de programme conforme Qualiopi, création de contenus pédagogiques, digitalisation e-learning et intégration LMS (Moodle, Digiforma). Maintenance pédagogique incluse.",
+  title: "Accompagnement à la conception de parcours de formation",
+  description: DESCRIPTION,
   alternates: {
     canonical: "https://www.satisa-formation.fr/concevoir-digitaliser-vos-formations",
   },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "https://www.satisa-formation.fr/concevoir-digitaliser-vos-formations",
+    siteName: "Satisa Formation",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+};
+
+const FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Combien de temps prend la digitalisation d'une formation ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Comptez 4 à 8 semaines pour un module e-learning standard, selon le volume de contenu et le niveau d'interactivité souhaité. Le diagnostic initial affine cette estimation.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Est-ce compatible avec mon LMS actuel ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Les modules sont produits au format SCORM 1.2, compatible avec la grande majorité des LMS (Moodle, Digiforma, Teachizy, 360Learning, et bien d'autres). Le diagnostic vérifie la compatibilité avec votre outil.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Puis-je faire du sur-mesure plutôt que des outils auteurs classiques ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Oui, en plus des outils auteurs (Articulate, iSpring), Satisa développe aussi des modules sur-mesure en HTML/CSS/JS pour des besoins spécifiques d'interactivité ou de charte graphique.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Faut-il déjà avoir un programme de formation structuré ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Non. Si votre contenu n'est pas encore structuré, la formule Conception de formation pose les bases (progression, programme conforme Qualiopi) avant toute digitalisation.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "La maintenance pédagogique est-elle obligatoire ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Non, elle est optionnelle. Elle est utile si vos contenus évoluent régulièrement ou si vous ouvrez de nouvelles cohortes nécessitant un suivi pédagogique continu.",
+      },
+    },
+  ],
 };
 
 export default function FormationsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
+      />
       <section className="hero-page hero-page--formations">
         <div className="container hero-page__layout">
           <div>

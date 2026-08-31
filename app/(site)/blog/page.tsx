@@ -12,6 +12,21 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.satisa-formation.fr/blog",
   },
+  openGraph: {
+    title: "Blog - Satisa Formation",
+    description:
+      "Certification RNCP/RS, ingénierie pédagogique et digitalisation : les articles de Satisa Formation pour les organismes de formation et certificateurs.",
+    url: "https://www.satisa-formation.fr/blog",
+    siteName: "Satisa Formation",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog - Satisa Formation",
+    description:
+      "Certification RNCP/RS, ingénierie pédagogique et digitalisation : les articles de Satisa Formation pour les organismes de formation et certificateurs.",
+  },
 };
 
 export default async function BlogIndexPage() {

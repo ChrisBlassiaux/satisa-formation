@@ -5,12 +5,28 @@ import { ROUTES } from "@/lib/routes";
 import RevealTimeline from "@/components/RevealTimeline";
 import TimelineLogoBadge from "@/components/TimelineLogoBadge";
 
+const TITLE = "Consultant RNCP/RS et ingénieur pédagogique - Satisa Formation";
+const DESCRIPTION =
+  "Ingénieur de certification RNCP/RS et ingénieur pédagogique pour organismes de formation. Consultant RNCP RS.";
+
 export const metadata: Metadata = {
-  title: "À propos",
-  description:
-    "Chris Blassiaux, ingénieur de certification RNCP freelance et ingénieur pédagogique, fondateur de Satisa Formation. Une double compétence au service des organismes de formation.",
+  title: "Consultant RNCP/RS et ingénieur pédagogique",
+  description: DESCRIPTION,
   alternates: {
     canonical: "https://www.satisa-formation.fr/a-propos",
+  },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "https://www.satisa-formation.fr/a-propos",
+    siteName: "Satisa Formation",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
   },
 };
 

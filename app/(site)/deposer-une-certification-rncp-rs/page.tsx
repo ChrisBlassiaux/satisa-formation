@@ -5,12 +5,28 @@ import OfferAccordion from "@/components/OfferAccordion";
 import OfferRowChevron from "@/components/OfferRowChevron";
 import PaymentOptions from "@/components/PaymentOptions";
 
+const TITLE = "Accompagnement au dépôt de certification RNCP/RS - Satisa Formation";
+const DESCRIPTION =
+  "Faites reconnaître votre expertise RNCP ou RS auprès de France Compétences. Diagnostic, référentiel, dépôt de dossier.";
+
 export const metadata: Metadata = {
-  title: "Déposer une certification RNCP/RS",
-  description:
-    "Accompagnement au dépôt RNCP ou RS auprès de France Compétences, partout en France : diagnostic de faisabilité, référentiel de compétences, certification guidée ou pilotée. Un consultant RNCP/RS qui pilote le dépôt de votre dossier de certification, pas seulement un guide méthodologique.",
+  title: "Accompagnement au dépôt de certification RNCP/RS",
+  description: DESCRIPTION,
   alternates: {
     canonical: "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs",
+  },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs",
+    siteName: "Satisa Formation",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
   },
 };
 
@@ -40,6 +56,14 @@ const FAQ_JSON_LD = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "Le RNCP certifie un métier complet avec un bloc de compétences structuré, tandis que le RS certifie une compétence ou une pratique professionnelle plus ciblée. Le choix dépend de votre positionnement et de vos financements visés.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Comment enregistrer une certification RNCP ou RS ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "C'est le terme officiel employé par France Compétences pour désigner le dépôt d'un dossier au RNCP ou au Répertoire Spécifique : le processus est identique à celui décrit ci-dessus.",
       },
     },
   ],
@@ -357,6 +381,13 @@ export default function CertificationPage() {
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
               <p className="faq-item__answer">Le RNCP certifie un métier complet, structuré en blocs de compétences. Le RS certifie une compétence ou une pratique professionnelle plus ciblée. Le choix dépend de votre positionnement et des financements visés.</p>
+            </details>
+            <details className="faq-item">
+              <summary className="faq-item__question">
+                Comment enregistrer une certification RNCP ou RS ?
+                <span className="faq-item__icon" aria-hidden="true"></span>
+              </summary>
+              <p className="faq-item__answer">C&apos;est le terme officiel employé par France Compétences pour désigner le dépôt d&apos;un dossier au RNCP ou au Répertoire Spécifique : le processus est identique à celui décrit ci-dessus.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">

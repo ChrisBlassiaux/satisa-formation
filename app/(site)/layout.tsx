@@ -19,6 +19,14 @@ export const metadata: Metadata = {
   },
   description:
     "Satisa Formation accompagne les organismes de formation et certificateurs sur la certification RNCP/RS et l'ingénierie pédagogique et digitale, du référentiel jusqu'au déploiement.",
+  openGraph: {
+    siteName: "Satisa Formation",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -4,12 +4,28 @@ import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import { getAllPosts, CATEGORY_LABELS, formatPostDate } from "@/lib/posts";
 
+const TITLE = "Certification RNCP/RS & ingénierie pédagogique - Satisa Formation";
+const DESCRIPTION =
+  "Faites reconnaître vos formations, structurez et digitalisez vos programmes. Certification RNCP/RS et ingénierie pédagogique pour organismes de formation.";
+
 export const metadata: Metadata = {
-  title: "Ingénieur de certification RNCP/RS et pédagogique - Satisa Formation",
-  description:
-    "Satisa Formation : ingénieur de certification RNCP freelance et ingénierie pédagogique pour organismes de formation. Accompagnement au dépôt RNCP/RS et conception de formation certifiante conforme Qualiopi.",
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
   alternates: {
     canonical: "https://www.satisa-formation.fr/",
+  },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "https://www.satisa-formation.fr/",
+    siteName: "Satisa Formation",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
   },
 };
 

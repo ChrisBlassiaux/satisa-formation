@@ -27,6 +27,19 @@ export async function generateMetadata({
     alternates: {
       canonical: `https://www.satisa-formation.fr/blog/${slug}`,
     },
+    openGraph: {
+      title: `${post.title} - Satisa Formation`,
+      description: post.excerpt,
+      url: `https://www.satisa-formation.fr/blog/${slug}`,
+      siteName: "Satisa Formation",
+      locale: "fr_FR",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} - Satisa Formation`,
+      description: post.excerpt,
+    },
   };
 }
 
