@@ -454,6 +454,50 @@
   margin-bottom: $spacing-sm;
 }
 
+// 404 page
+.notfound-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.notfound-hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.notfound-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: none;
+
+  @include from($bp-tablet) {
+    display: block;
+  }
+}
+
+.notfound-bg__item {
+  position: absolute;
+  font-weight: 800;
+  color: $color-mint;
+  opacity: 0.18;
+  user-select: none;
+  animation-name: notfound-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes notfound-float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(var(--notfound-rotate, 0deg));
+  }
+  50% {
+    transform: translate(12px, -18px) rotate(var(--notfound-rotate, 0deg));
+  }
+}
+
 .legal-content ul {
   margin: 0 0 $spacing-sm $spacing-md;
   list-style: disc;
