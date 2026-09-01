@@ -35,13 +35,15 @@ export default async function BlogIndexPage() {
   return (
     <>
       <section>
-        <div className="container section-head">
-          <p className="eyebrow">Le blog</p>
-          <h1>Certification et digitalisation, expliquées sans jargon</h1>
-          <p className="hero-page__subtitle">
-            Des articles pratiques pour les organismes de formation et certificateurs qui avancent sur leur projet
-            RNCP/RS ou leur digitalisation pédagogique.
-          </p>
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Le blog</p>
+            <h1>Certification et digitalisation, expliquées sans jargon</h1>
+            <p className="hero-page__subtitle" style={{ marginTop: "1rem" }}>
+              Des articles pratiques pour les organismes de formation et certificateurs qui avancent sur leur projet
+              RNCP/RS ou leur digitalisation pédagogique.
+            </p>
+          </div>
         </div>
       </section>
 
