@@ -232,7 +232,7 @@ export default async function HomePage() {
                     </svg>
                   </span>
                   <div>
-                    <h4>Accès au financement CPF</h4>
+                    <h4>Éligible au CPF</h4>
                     <p>Une certification RNCP ou RS enregistrée ouvre l&apos;accès au CPF et aux financements associés.</p>
                   </div>
                 </div>
@@ -244,8 +244,8 @@ export default async function HomePage() {
                     </svg>
                   </span>
                   <div>
-                    <h4>Un niveau d&apos;intervention adapté à vos ressources</h4>
-                    <p>Guidé ou piloté, Satisa s&apos;implique à 100% dans votre projet. C&apos;est le mode de fonctionnement qui s&apos;adapte à votre organisation, pas l&apos;engagement.</p>
+                    <h4>Vous devenez indépendant</h4>
+                    <p>Vous n&apos;êtes plus dépendant d&apos;un organisme tiers pour certifier vos apprenants : votre propre certification vous rend autonome.</p>
                   </div>
                 </div>
                 <div className="benefit-row">
@@ -256,8 +256,8 @@ export default async function HomePage() {
                     </svg>
                   </span>
                   <div>
-                    <h4>Un référentiel pensé pour être formé</h4>
-                    <p>Parce que l&apos;ingénierie pédagogique et l&apos;ingénierie de certification ne font qu&apos;un ici, votre référentiel est pensé pour être formé, pas seulement déposé.</p>
+                    <h4>Touchez plus d&apos;apprenants</h4>
+                    <p>Une certification reconnue élargit votre audience : les apprenants recherchent des formations qui débouchent sur un titre reconnu.</p>
                   </div>
                 </div>
               </div>

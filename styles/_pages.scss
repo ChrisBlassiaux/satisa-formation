@@ -433,10 +433,15 @@
   height: 22px;
 }
 
-.benefit-tile p {
+.benefit-tile__title {
   font-weight: 700;
   color: $color-dark;
   font-size: $fs-small;
+}
+
+.benefit-tile__text {
+  font-size: $fs-small;
+  color: $color-muted;
 }
 
 // Legal pages

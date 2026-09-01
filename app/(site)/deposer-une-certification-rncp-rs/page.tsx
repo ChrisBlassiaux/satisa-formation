@@ -337,7 +337,7 @@ export default function CertificationPage() {
                   <polygon points="15.5 8.5 13.2 13.2 8.5 15.5 10.8 10.8 15.5 8.5" />
                 </svg>
               </span>
-              <h3>Un chef de projet, ou un guide</h3>
+              <h3>Un accompagnement qui s&apos;adapte à votre équipe</h3>
               <p>Selon la formule choisie, Satisa prend en charge tout ou une partie du projet : rétroplanning, rédaction, coordination avec votre référent métier, jusqu&apos;à la décision finale.</p>
             </div>
             <div className="card">

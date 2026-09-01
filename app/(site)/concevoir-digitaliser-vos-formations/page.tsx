@@ -304,7 +304,8 @@ export default function FormationsPage() {
                   <path d="M14.7 14.3c2.7.5 4.3 2.7 4.3 5.7" />
                 </svg>
               </span>
-              <p>Attirez plus d&apos;apprenants</p>
+              <p className="benefit-tile__title">Attirez plus d&apos;apprenants</p>
+              <p className="benefit-tile__text">Une offre accessible à distance élargit votre audience au-delà de votre zone géographique.</p>
             </div>
             <div className="benefit-tile">
               <span className="benefit-tile__icon benefit-tile__icon--accent" aria-hidden="true">
@@ -315,7 +316,8 @@ export default function FormationsPage() {
                   <path d="M19 20v-4h-4" />
                 </svg>
               </span>
-              <p>Modernisez vos formations</p>
+              <p className="benefit-tile__title">Modernisez vos formations</p>
+              <p className="benefit-tile__text">Des contenus interactifs et à jour, à la hauteur des attentes de vos apprenants.</p>
             </div>
             <div className="benefit-tile">
               <span className="benefit-tile__icon" aria-hidden="true">
@@ -323,7 +325,8 @@ export default function FormationsPage() {
                   <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
                 </svg>
               </span>
-              <p>Proposez une expérience engageante et flexible</p>
+              <p className="benefit-tile__title">Proposez une expérience engageante et flexible</p>
+              <p className="benefit-tile__text">Apprentissage à son rythme, sur tout appareil, avec un suivi de la progression.</p>
             </div>
             <div className="benefit-tile">
               <span className="benefit-tile__icon benefit-tile__icon--accent" aria-hidden="true">
@@ -332,7 +335,8 @@ export default function FormationsPage() {
                   <path d="M15 6h6v6" />
                 </svg>
               </span>
-              <p>Nouvelles sources de revenus</p>
+              <p className="benefit-tile__title">Nouvelles sources de revenus</p>
+              <p className="benefit-tile__text">Vendez vos modules en ligne ou proposez des formules hybrides à plus forte marge.</p>
             </div>
           </div>
         </div>
