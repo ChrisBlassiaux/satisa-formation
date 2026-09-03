@@ -23,10 +23,16 @@ const ICONS = {
   ),
 };
 
-export default function PaymentOptions({ options }: { options: PaymentOption[] }) {
+export default function PaymentOptions({
+  options,
+  title = "Options de paiement",
+}: {
+  options: PaymentOption[];
+  title?: string;
+}) {
   return (
     <>
-      <p className="pricing-card__payment-title">Options de paiement</p>
+      <p className="pricing-card__payment-title">{title}</p>
       <div className="pricing-card__payment-options">
         {options.map((option) => (
           <div className="payment-option" key={option.label}>

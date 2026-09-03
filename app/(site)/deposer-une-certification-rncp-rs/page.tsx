@@ -146,7 +146,11 @@ export default function CertificationPage() {
                     <span className="offer-card__subtitle">Vous produisez, nous vous guidons</span>
                   </span>
                   <span className="offer-row__meta">
-                    <span className="offer-row__price">5 000 € HT</span>
+                    <span className="offer-row__price offer-row__price--dual">
+                      <span className="offer-row__price-item" data-label="RS">4 000 €</span>
+                      <span className="offer-row__price-sep">–</span>
+                      <span className="offer-row__price-item" data-label="RNCP">5 000 € HT</span>
+                    </span>
                     <OfferRowChevron />
                   </span>
                 </button>
@@ -162,9 +166,17 @@ export default function CertificationPage() {
                   </ul>
                   <p className="pricing-card__note">Votre référent métier : responsable pédagogique, ingénieur pédagogique ou formateur.</p>
                   <PaymentOptions
+                    title="RNCP"
                     options={[
                       { icon: "check", label: "Paiement unique", price: "5 000 € HT" },
                       { icon: "calendar", label: "Paiement échelonné", price: "3 000 €", detail: "à la signature + 500 €/mois pendant 4 mois" },
+                    ]}
+                  />
+                  <PaymentOptions
+                    title="RS"
+                    options={[
+                      { icon: "check", label: "Paiement unique", price: "4 000 € HT" },
+                      { icon: "calendar", label: "Paiement échelonné", price: "2 400 €", detail: "à la signature + 400 €/mois pendant 4 mois" },
                     ]}
                   />
                   <Link href={ROUTES.contact} className="btn btn--primary btn--block">Prendre un rendez-vous</Link>
@@ -181,7 +193,11 @@ export default function CertificationPage() {
                     <span className="offer-card__subtitle">Nous produisons, vous validez</span>
                   </span>
                   <span className="offer-row__meta">
-                    <span className="offer-row__price">10 000 € HT</span>
+                    <span className="offer-row__price offer-row__price--dual">
+                      <span className="offer-row__price-item" data-label="RS">8 000 €</span>
+                      <span className="offer-row__price-sep">–</span>
+                      <span className="offer-row__price-item" data-label="RNCP">10 000 € HT</span>
+                    </span>
                     <OfferRowChevron />
                   </span>
                 </button>
@@ -198,9 +214,17 @@ export default function CertificationPage() {
                   </ul>
                   <p className="pricing-card__note">Votre référent métier : responsable pédagogique, ingénieur pédagogique ou formateur.</p>
                   <PaymentOptions
+                    title="RNCP"
                     options={[
                       { icon: "check", label: "Paiement unique", price: "10 000 € HT" },
                       { icon: "calendar", label: "Paiement échelonné", price: "4 000 €", detail: "à la signature + 1 000 €/mois pendant 6 mois" },
+                    ]}
+                  />
+                  <PaymentOptions
+                    title="RS"
+                    options={[
+                      { icon: "check", label: "Paiement unique", price: "8 000 € HT" },
+                      { icon: "calendar", label: "Paiement échelonné", price: "3 200 €", detail: "à la signature + 800 €/mois pendant 6 mois" },
                     ]}
                   />
                   <Link href={ROUTES.contact} className="btn btn--primary btn--block">Prendre un rendez-vous</Link>

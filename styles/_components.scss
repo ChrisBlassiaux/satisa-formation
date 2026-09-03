@@ -407,6 +407,33 @@
   background: $color-mint-light;
 }
 
+.offer-row__price--dual {
+  padding-top: 1.4em;
+}
+
+.offer-row__price-item {
+  position: relative;
+}
+
+.offer-row__price-item::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -1.15em;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.55em;
+  font-weight: 600;
+  opacity: 0.65;
+  white-space: nowrap;
+}
+
+.offer-row__price-sep {
+  margin: 0 0.25em;
+  opacity: 0.5;
+  font-weight: 400;
+}
+
 .offer-row__chevron {
   color: $color-muted;
   flex-shrink: 0;
@@ -460,7 +487,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   color: $color-dark;
-  margin-top: $spacing-md;
+  margin-top: $spacing-xs;
   margin-bottom: $spacing-xs;
 }
 
