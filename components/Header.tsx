@@ -25,7 +25,7 @@ export default function Header() {
         <nav className="nav" aria-label="Navigation principale">
           <ul className="nav__list">
             {MAIN_NAV_LINKS.map((link) => (
-              <li key={link.href}>
+              <li key={link.href} className={"children" in link ? "nav__item--has-submenu" : undefined}>
                 <Link
                   className="nav__link"
                   href={link.href}
@@ -33,6 +33,21 @@ export default function Header() {
                 >
                   {link.label}
                 </Link>
+                {"children" in link && (
+                  <ul className="nav__submenu">
+                    {link.children.map((child) => (
+                      <li key={child.href}>
+                        <Link
+                          className="nav__submenu-link"
+                          href={child.href}
+                          aria-current={isActive(child.href) ? "page" : undefined}
+                        >
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>
@@ -57,9 +72,17 @@ export default function Header() {
         aria-label="Navigation mobile"
       >
         {MAIN_NAV_LINKS.map((link) => (
-          <Link key={link.href} className="mobile-nav__link" href={link.href}>
-            {link.label}
-          </Link>
+          <div key={link.href}>
+            <Link className="mobile-nav__link" href={link.href}>
+              {link.label}
+            </Link>
+            {"children" in link &&
+              link.children.map((child) => (
+                <Link key={child.href} className="mobile-nav__link mobile-nav__link--child" href={child.href}>
+                  {child.label}
+                </Link>
+              ))}
+          </div>
         ))}
         <Link className="mobile-nav__link" href={ROUTES.blog}>
           Blog

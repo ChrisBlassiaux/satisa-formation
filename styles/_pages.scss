@@ -1,5 +1,56 @@
 @use 'variables' as *;
 
+// Page pilier certification (comparatif RNCP/RS)
+.compare-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.compare-facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: $spacing-xs $spacing-sm;
+  font-size: $fs-small;
+}
+
+.compare-facts dt {
+  color: $color-muted;
+}
+
+.compare-facts dd {
+  font-weight: 600;
+}
+
+.decision-row {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding-block: $spacing-md;
+  border-top: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: 1px solid $color-border;
+  }
+
+  @include from($bp-tablet) {
+    flex-direction: row;
+    align-items: baseline;
+    gap: $spacing-md;
+  }
+}
+
+.decision-row__who {
+  font-weight: 700;
+  font-size: $fs-small;
+  color: $color-primary-dark;
+  flex-shrink: 0;
+
+  @include from($bp-tablet) {
+    min-width: 200px;
+  }
+}
+
 // À propos
 .about-photo {
   border-radius: $radius-lg;
