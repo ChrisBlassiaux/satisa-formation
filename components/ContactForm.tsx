@@ -4,9 +4,23 @@ import { useState, type FormEvent } from "react";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
+const REQUEST_OPTIONS: Record<string, { value: string; label: string }[]> = {
+  certification: [
+    { value: "depot_rncp", label: "Dépôt RNCP" },
+    { value: "depot_rs", label: "Dépôt RS" },
+    { value: "autre", label: "Autres" },
+  ],
+  formations: [
+    { value: "conception", label: "Conception de formation" },
+    { value: "digitalisation", label: "Digitalisation de formation" },
+    { value: "autre", label: "Autres" },
+  ],
+};
+
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [projectType, setProjectType] = useState("certification");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -23,8 +37,10 @@ export default function ContactForm() {
         body: JSON.stringify({
           firstName: data.get("prenom"),
           lastName: data.get("nom"),
+          structureName: data.get("structure"),
           email: data.get("email"),
           projectType: data.get("type_projet"),
+          request: data.get("demande"),
           message: data.get("message"),
           website: data.get("website"),
         }),
@@ -61,15 +77,33 @@ export default function ContactForm() {
         </div>
       </div>
       <div className="form-field">
+        <label htmlFor="structure">Nom de structure</label>
+        <input type="text" id="structure" name="structure" />
+      </div>
+      <div className="form-field">
         <label htmlFor="email">Email</label>
         <input type="email" id="email" name="email" required />
       </div>
       <div className="form-field">
         <label htmlFor="project-type">Type de projet</label>
-        <select id="project-type" name="type_projet">
-          <option value="certification">Certification RNCP/RS</option>
-          <option value="formations">Formations et digital</option>
-          <option value="autre">Autre</option>
+        <select
+          id="project-type"
+          name="type_projet"
+          value={projectType}
+          onChange={(event) => setProjectType(event.target.value)}
+        >
+          <option value="certification">Ingénierie RNCP/RS</option>
+          <option value="formations">Ingénierie pédagogique et digitale</option>
+        </select>
+      </div>
+      <div className="form-field">
+        <label htmlFor="request">Votre demande</label>
+        <select id="request" name="demande">
+          {REQUEST_OPTIONS[projectType].map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
       </div>
       <div className="form-field">

@@ -2,9 +2,21 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 const PROJECT_TYPE_LABELS: Record<string, string> = {
-  certification: "Certification RNCP/RS",
-  formations: "Formations et digital",
-  autre: "Autre",
+  certification: "Ingénierie RNCP/RS",
+  formations: "Ingénierie pédagogique et digitale",
+};
+
+const REQUEST_LABELS: Record<string, Record<string, string>> = {
+  certification: {
+    depot_rncp: "Dépôt RNCP",
+    depot_rs: "Dépôt RS",
+    autre: "Autres",
+  },
+  formations: {
+    conception: "Conception de formation",
+    digitalisation: "Digitalisation de formation",
+    autre: "Autres",
+  },
 };
 
 function escapeHtml(value: string) {
@@ -22,7 +34,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
   }
 
-  const { firstName, lastName, email, projectType, message, website } = body as Record<string, string>;
+  const { firstName, lastName, structureName, email, projectType, request: demande, message, website } =
+    body as Record<string, string>;
 
   // Honeypot: a real visitor never fills this hidden field.
   if (website) {
@@ -52,6 +65,8 @@ export async function POST(request: Request) {
   });
 
   const projectLabel = PROJECT_TYPE_LABELS[projectType] ?? "Non précisé";
+  const requestLabel = REQUEST_LABELS[projectType]?.[demande] ?? "Non précisé";
+  const structureLine = structureName ? `Structure : ${structureName}\n` : "";
 
   try {
     await transporter.sendMail({
@@ -59,11 +74,13 @@ export async function POST(request: Request) {
       to: smtpUser,
       replyTo: email,
       subject: `Nouveau message du site - ${firstName} ${lastName}`,
-      text: `Nom : ${firstName} ${lastName}\nEmail : ${email}\nType de projet : ${projectLabel}\n\n${message}`,
+      text: `Nom : ${firstName} ${lastName}\n${structureLine}Email : ${email}\nType de projet : ${projectLabel}\nDemande : ${requestLabel}\n\n${message}`,
       html: `
         <p><strong>Nom :</strong> ${escapeHtml(firstName)} ${escapeHtml(lastName)}</p>
+        ${structureName ? `<p><strong>Structure :</strong> ${escapeHtml(structureName)}</p>` : ""}
         <p><strong>Email :</strong> ${escapeHtml(email)}</p>
         <p><strong>Type de projet :</strong> ${escapeHtml(projectLabel)}</p>
+        <p><strong>Demande :</strong> ${escapeHtml(requestLabel)}</p>
         <p><strong>Message :</strong></p>
         <p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
       `,
