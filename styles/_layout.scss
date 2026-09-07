@@ -73,6 +73,9 @@
   min-width: 180px;
   margin-top: $spacing-xs;
   padding: $spacing-xs;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
   background: $color-white;
   border: 1px solid $color-border;
   border-radius: $radius-sm;
@@ -88,6 +91,13 @@
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+// Forced shut immediately on click, overriding a lingering :hover while the
+// cursor hasn't moved off the link yet — cleared again on the next route change.
+.nav__submenu--force-closed {
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
 .nav__submenu-link {

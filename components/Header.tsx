@@ -9,6 +9,7 @@ import { MAIN_NAV_LINKS, ROUTES } from "@/lib/routes";
 export default function Header() {
   const pathname = usePathname();
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [submenuForceClosed, setSubmenuForceClosed] = useState(false);
 
   useEffect(() => {
     setIsMobileNavOpen(false);
@@ -18,6 +19,21 @@ export default function Header() {
       document.activeElement.blur();
     }
   }, [pathname]);
+
+  useEffect(() => {
+    if (submenuForceClosed) {
+      const timer = window.setTimeout(() => setSubmenuForceClosed(false), 1200);
+      return () => window.clearTimeout(timer);
+    }
+  }, [submenuForceClosed, pathname]);
+
+  function closeSubmenu() {
+    setSubmenuForceClosed(true);
+  }
+
+  function rearmSubmenu() {
+    setSubmenuForceClosed(false);
+  }
 
   const isActive = (href: string) => pathname === href;
 
@@ -30,7 +46,11 @@ export default function Header() {
         <nav className="nav" aria-label="Navigation principale">
           <ul className="nav__list">
             {MAIN_NAV_LINKS.map((link) => (
-              <li key={link.href} className={"children" in link ? "nav__item--has-submenu" : undefined}>
+              <li
+                key={link.href}
+                className={"children" in link ? "nav__item--has-submenu" : undefined}
+                onMouseLeave={"children" in link ? rearmSubmenu : undefined}
+              >
                 <Link
                   className="nav__link"
                   href={link.href}
@@ -39,13 +59,14 @@ export default function Header() {
                   {link.label}
                 </Link>
                 {"children" in link && (
-                  <ul className="nav__submenu">
+                  <ul className={`nav__submenu${submenuForceClosed ? " nav__submenu--force-closed" : ""}`}>
                     {link.children.map((child) => (
                       <li key={child.href}>
                         <Link
                           className="nav__submenu-link"
                           href={child.href}
                           aria-current={isActive(child.href) ? "page" : undefined}
+                          onClick={closeSubmenu}
                         >
                           {child.label}
                         </Link>
