@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 
-const TITLE = "Accompagnement au dépôt de certification RNCP/RS - Satisa Formation";
+const TITLE = "RNCP ou RS : quelle certification choisir ? - Satisa Formation";
 const DESCRIPTION =
-  "Faites reconnaître votre expertise RNCP ou RS auprès de France Compétences. Diagnostic, référentiel, dépôt de dossier.";
+  "RNCP ou RS ? Comparez les deux répertoires France Compétences et trouvez le bon choix pour votre organisme de formation. Diagnostic dès 700 € HT.";
 
 export const metadata: Metadata = {
-  title: "Accompagnement au dépôt de certification RNCP/RS",
+  title: "RNCP ou RS : quelle certification choisir ?",
   description: DESCRIPTION,
   alternates: {
     canonical: "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs",
