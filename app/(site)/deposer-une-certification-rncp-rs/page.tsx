@@ -57,10 +57,10 @@ const FAQ_JSON_LD = {
     },
     {
       "@type": "Question",
-      name: "Comment enregistrer une certification RNCP ou RS ?",
+      name: "Faut-il déjà avoir des apprenants formés pour déposer un dossier RNCP/RS ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "C'est le terme officiel employé par France Compétences pour désigner le dépôt d'un dossier au RNCP ou au Répertoire Spécifique : chaque parcours est détaillé sur sa page dédiée.",
+        text: "Oui, dans les deux cas. France Compétences exige des données réelles sur au moins deux promotions d'apprenants déjà formés, pour vérifier leur insertion professionnelle avant d'accepter le dossier. Une exception existe pour les métiers émergents. C'est justement l'objet du diagnostic de faisabilité que de vérifier où en est votre projet sur ce point.",
       },
     },
   ],
@@ -148,7 +148,7 @@ export default function CertificationPage() {
                   <dt>Certifie</dt>
                   <dd>Une compétence ciblée</dd>
                   <dt>Durée moyenne</dt>
-                  <dd>8 à 14 mois</dd>
+                  <dd>6 à 12 mois</dd>
                   <dt>Adapté si</dt>
                   <dd>Vous formez sur une pratique précise</dd>
                 </dl>
@@ -184,6 +184,13 @@ export default function CertificationPage() {
               <p>
                 le diagnostic de faisabilité (700 € HT) tranche la question avec vous, avant tout engagement sur
                 une formule de dépôt.
+              </p>
+            </div>
+            <div className="decision-row">
+              <span className="decision-row__who" style={{ color: "#4a6b70" }}>Vous doutez de votre éligibilité</span>
+              <p>
+                cohorte pilote, activité déjà exercée, référentiel construit : certains critères sont à réunir
+                avant de déposer, quel que soit le répertoire visé.
               </p>
             </div>
           </div>
@@ -312,10 +319,10 @@ export default function CertificationPage() {
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
-                Comment enregistrer une certification RNCP ou RS ?
+                Faut-il déjà avoir des apprenants formés pour déposer un dossier RNCP/RS ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">C&apos;est le terme officiel employé par France Compétences pour désigner le dépôt d&apos;un dossier au RNCP ou au Répertoire Spécifique : chaque parcours est détaillé sur sa page dédiée.</p>
+              <p className="faq-item__answer">Oui, dans les deux cas. France Compétences exige des données réelles sur au moins deux promotions d&apos;apprenants déjà formés, pour vérifier leur insertion professionnelle avant d&apos;accepter le dossier. Une exception existe pour les métiers émergents. C&apos;est justement l&apos;objet du diagnostic de faisabilité que de vérifier où en est votre projet sur ce point.</p>
             </details>
           </div>
           <div style={{ marginTop: "2rem" }}>

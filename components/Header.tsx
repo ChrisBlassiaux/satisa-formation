@@ -12,6 +12,11 @@ export default function Header() {
 
   useEffect(() => {
     setIsMobileNavOpen(false);
+    // Client-side navigation keeps focus on the clicked link, which keeps a
+    // :focus-within submenu open even after the page has changed.
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
   }, [pathname]);
 
   const isActive = (href: string) => pathname === href;

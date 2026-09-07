@@ -47,7 +47,7 @@ const FAQ_JSON_LD = {
       name: "Combien de temps dure un projet de certification RS ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre cohorte pilote.",
+        text: "Comptez en moyenne 6 à 12 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre cohorte pilote.",
       },
     },
     {
@@ -296,7 +296,7 @@ export default function CertificationRsPage() {
                 Combien de temps dure un projet de certification RS ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre cohorte pilote.</p>
+              <p className="faq-item__answer">Comptez en moyenne 6 à 12 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre cohorte pilote.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
