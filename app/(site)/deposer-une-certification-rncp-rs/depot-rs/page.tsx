@@ -85,12 +85,36 @@ const FAQ_JSON_LD = {
   ],
 };
 
+const BREADCRUMB_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.satisa-formation.fr/" },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Déposer une certification RNCP/RS",
+      item: "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Dépôt RS",
+      item: "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs/depot-rs",
+    },
+  ],
+};
+
 export default function CertificationRsPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }}
       />
 
       <section className="hero-page hero-page--certification">
@@ -326,6 +350,17 @@ export default function CertificationRsPage() {
               </summary>
               <p className="faq-item__answer">Oui, les formules 2 et 3 proposent chacune une option de paiement échelonné sur plusieurs mois, détaillée dans chaque formule ci-dessus.</p>
             </details>
+          </div>
+          <div style={{ marginTop: "2rem" }}>
+            <p style={{ fontWeight: 700, color: "#002730" }}>
+              Vous hésitez encore entre RNCP et RS ?
+            </p>
+            <p style={{ marginTop: "0.5rem" }}>
+              →{" "}
+              <Link href={ROUTES.certification} style={{ fontStyle: "italic", textDecoration: "underline" }}>
+                Consultez notre comparatif RNCP vs RS
+              </Link>
+            </p>
           </div>
         </div>
       </section>

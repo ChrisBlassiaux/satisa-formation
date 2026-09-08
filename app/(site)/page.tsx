@@ -327,7 +327,7 @@ export default async function HomePage() {
                   {post.coverImage && (
                     <Image
                       src={post.coverImage}
-                      alt=""
+                      alt={post.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="post-card__thumb-img"

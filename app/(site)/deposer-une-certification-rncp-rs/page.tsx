@@ -66,12 +66,30 @@ const FAQ_JSON_LD = {
   ],
 };
 
+const BREADCRUMB_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.satisa-formation.fr/" },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Déposer une certification RNCP/RS",
+      item: "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs",
+    },
+  ],
+};
+
 export default function CertificationPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }}
       />
 
       <section className="hero-page hero-page--certification">

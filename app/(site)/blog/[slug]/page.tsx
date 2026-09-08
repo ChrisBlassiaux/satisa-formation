@@ -34,11 +34,13 @@ export async function generateMetadata({
       siteName: "Satisa Formation",
       locale: "fr_FR",
       type: "article",
+      images: post.coverImage ? [post.coverImage] : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title: `${post.title} - Satisa Formation`,
       description: post.excerpt,
+      images: post.coverImage ? [post.coverImage] : undefined,
     },
   };
 }
@@ -70,11 +72,25 @@ export default async function BlogPostPage({
     publisher: { "@type": "Organization", name: "Satisa Formation" },
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.satisa-formation.fr/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.satisa-formation.fr/blog" },
+      { "@type": "ListItem", position: 3, name: post.title, item: `https://www.satisa-formation.fr/blog/${slug}` },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <section>
@@ -95,7 +111,7 @@ export default async function BlogPostPage({
             <div className="article-cover">
               <Image
                 src={post.coverImage}
-                alt=""
+                alt={post.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 720px"
                 priority
@@ -136,7 +152,7 @@ export default async function BlogPostPage({
                     {suggested.coverImage && (
                       <Image
                         src={suggested.coverImage}
-                        alt=""
+                        alt={suggested.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="post-card__thumb-img"

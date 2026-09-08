@@ -4,12 +4,12 @@ import { ROUTES } from "@/lib/routes";
 import OfferAccordion from "@/components/OfferAccordion";
 import OfferRowChevron from "@/components/OfferRowChevron";
 
-const TITLE = "Accompagnement à la conception de parcours de formation - Satisa Formation";
+const TITLE = "Ingénierie pédagogique et digitalisation - Satisa Formation";
 const DESCRIPTION =
   "Conception de parcours de formation conforme Qualiopi, création de contenus pédagogiques, digitalisation e-learning et intégration LMS.";
 
 export const metadata: Metadata = {
-  title: "Accompagnement à la conception de parcours de formation",
+  title: "Ingénierie pédagogique et digitalisation",
   description: DESCRIPTION,
   alternates: {
     canonical: "https://www.satisa-formation.fr/concevoir-digitaliser-vos-formations",
