@@ -336,11 +336,13 @@
 .article-body h2 {
   margin-top: $spacing-lg;
   margin-bottom: $spacing-sm;
+  scroll-margin-top: 96px;
 }
 
 .article-body h3 {
   margin-top: $spacing-md;
   margin-bottom: $spacing-xs;
+  scroll-margin-top: 96px;
 }
 
 .article-body p {
@@ -361,6 +363,7 @@
 .article-body a {
   color: $color-link;
   text-decoration: underline;
+  overflow-wrap: anywhere;
 }
 
 .article-body a:hover {
@@ -368,9 +371,12 @@
 }
 
 .article-body table {
+  display: block;
   width: 100%;
   margin-bottom: $spacing-sm;
   border-collapse: collapse;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .article-body th,
