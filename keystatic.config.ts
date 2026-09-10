@@ -1,4 +1,5 @@
 import { config, fields, collection } from "@keystatic/core";
+import { wrapper } from "@keystatic/core/content-components";
 
 export default config({
   storage:
@@ -37,7 +38,23 @@ export default config({
           multiline: true,
           validation: { isRequired: true },
         }),
-        content: fields.markdoc({ label: "Contenu de l'article" }),
+        content: fields.markdoc({
+          label: "Contenu de l'article",
+          options: {
+            image: {
+              directory: "public/images/blog",
+              publicPath: "/images/blog/",
+            },
+          },
+          components: {
+            "faq-item": wrapper({
+              label: "Question FAQ",
+              schema: {
+                question: fields.text({ label: "Question", validation: { isRequired: true } }),
+              },
+            }),
+          },
+        }),
       },
     }),
   },
