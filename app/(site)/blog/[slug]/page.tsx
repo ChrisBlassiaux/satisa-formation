@@ -39,6 +39,18 @@ const MARKDOC_CONFIG: Config = {
         return new Tag(`h${node.attributes["level"]}`, { ...attributes, id }, children);
       },
     },
+    image: {
+      render: "img",
+      attributes: {
+        src: { type: String, required: true },
+        alt: { type: String },
+        title: { type: String },
+      },
+      transform(node, config) {
+        const attributes = node.transformAttributes(config);
+        return new Tag("img", { ...attributes, loading: "lazy", decoding: "async" }, []);
+      },
+    },
   },
   tags: {
     "faq-item": {
