@@ -305,6 +305,13 @@
   gap: $spacing-md;
 }
 
+// Grid items default to min-width: auto, which lets their content's
+// min-content size force the implicit column wider than the grid container
+// (and off the edge of the viewport on mobile, before grid--2/--3 kick in).
+.grid > * {
+  min-width: 0;
+}
+
 .grid--2 {
   @include from($bp-tablet) {
     grid-template-columns: repeat(2, 1fr);
