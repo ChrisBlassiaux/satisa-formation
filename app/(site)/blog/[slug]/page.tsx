@@ -3,9 +3,80 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-import Markdoc from "@markdoc/markdoc";
+import Markdoc, { Tag, type Config } from "@markdoc/markdoc";
 import { ROUTES } from "@/lib/routes";
-import { getAllPosts, getPost, getPostSlugs, CATEGORY_LABELS, formatPostDate } from "@/lib/posts";
+import { getAllPosts, getPost, getPostSlugs, CATEGORY_LABELS, formatPostDate, computeReadingTime } from "@/lib/posts";
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function extractText(node: unknown): string {
+  if (typeof node === "string") return node;
+  if (Array.isArray(node)) return node.map(extractText).join("");
+  if (Tag.isTag(node)) return extractText(node.children);
+  return "";
+}
+
+// Lets articles author FAQ entries as {% faq-item question="..." %}...{% /faq-item %},
+// rendered as the same <details>/<summary> accordion used on the offer pages.
+const MARKDOC_CONFIG: Config = {
+  nodes: {
+    heading: {
+      children: ["inline"],
+      attributes: {
+        level: { type: Number, render: false, required: true },
+      },
+      transform(node, config) {
+        const attributes = node.transformAttributes(config);
+        const children = node.transformChildren(config);
+        const id = slugify(extractText(children));
+        return new Tag(`h${node.attributes["level"]}`, { ...attributes, id }, children);
+      },
+    },
+  },
+  tags: {
+    "faq-item": {
+      render: "details",
+      attributes: {
+        question: { type: String, required: true },
+      },
+      children: ["paragraph", "list", "heading", "hr"],
+      transform(node, config) {
+        const { question } = node.transformAttributes(config);
+        return new Tag("details", { className: "faq-item" }, [
+          new Tag("summary", { className: "faq-item__question" }, [
+            question,
+            new Tag("span", { className: "faq-item__icon", "aria-hidden": "true" }, []),
+          ]),
+          new Tag("div", { className: "faq-item__answer" }, node.transformChildren(config)),
+        ]);
+      },
+    },
+  },
+};
+
+type TocItem = { id: string; text: string; level: number };
+
+function collectToc(tag: unknown): TocItem[] {
+  if (!Tag.isTag(tag)) return [];
+  const items: TocItem[] = [];
+  for (const child of tag.children) {
+    if (Tag.isTag(child) && (child.name === "h2" || child.name === "h3")) {
+      items.push({
+        id: String(child.attributes.id ?? ""),
+        text: extractText(child.children),
+        level: Number(child.name[1]),
+      });
+    }
+  }
+  return items;
+}
 
 export async function generateStaticParams() {
   const slugs = await getPostSlugs();
@@ -57,8 +128,10 @@ export default async function BlogPostPage({
   const postDate = post.date ?? "";
 
   const { node } = await post.content();
-  const renderable = Markdoc.transform(node);
+  const renderable = Markdoc.transform(node, MARKDOC_CONFIG);
   const contentHtml = Markdoc.renderers.react(renderable, React);
+  const tocItems = collectToc(renderable);
+  const readingTime = computeReadingTime(node);
 
   const allPosts = await getAllPosts();
   const suggestedPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 2);
@@ -100,7 +173,7 @@ export default async function BlogPostPage({
           <p className="post-card__meta">
             <time dateTime={postDate}>{formatPostDate(postDate)}</time>
             <span>·</span>
-            <span>{post.readingTime}</span>
+            <span>{readingTime}</span>
           </p>
         </div>
       </section>
@@ -122,7 +195,21 @@ export default async function BlogPostPage({
       )}
 
       <section className="section--flush-top">
-        <div className="container article-body">{contentHtml}</div>
+        <div className="container article-layout">
+          {tocItems.length > 1 && (
+            <aside className="article-toc">
+              <p className="article-toc__title">Sommaire</p>
+              <ul>
+                {tocItems.map((item) => (
+                  <li key={item.id} className={item.level === 3 ? "article-toc__item--sub" : undefined}>
+                    <a href={`#${item.id}`}>{item.text}</a>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          )}
+          <div className="article-body">{contentHtml}</div>
+        </div>
       </section>
 
       <section className="section--flush-top">

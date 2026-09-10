@@ -245,7 +245,7 @@
 
 // Blog article
 .article-header {
-  max-width: 760px;
+  max-width: 960px;
   margin-inline: auto;
 }
 
@@ -256,6 +256,69 @@
 .article-body {
   max-width: 760px;
   margin-inline: auto;
+}
+
+.article-layout {
+  max-width: 1120px;
+  margin-inline: auto;
+
+  @include from($bp-desktop) {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-2xl;
+  }
+}
+
+.article-layout .article-body {
+  max-width: none;
+  margin-inline: 0;
+  min-width: 0;
+  flex: 1;
+}
+
+.article-toc {
+  display: none;
+
+  @include from($bp-desktop) {
+    display: block;
+    width: 260px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 88px;
+  }
+}
+
+.article-toc__title {
+  font-size: $fs-small;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $color-muted;
+  margin-bottom: $spacing-xs;
+}
+
+.article-toc ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border-left: 2px solid $color-border;
+}
+
+.article-toc li {
+  padding-left: $spacing-xs;
+}
+
+.article-toc a {
+  font-size: $fs-small;
+  color: $color-dark;
+}
+
+.article-toc a:hover {
+  color: $color-primary-dark;
+}
+
+.article-toc__item--sub {
+  padding-left: $spacing-md;
 }
 
 .article-cover {
@@ -293,6 +356,33 @@
 
 .article-body li {
   margin-bottom: 0.4em;
+}
+
+.article-body a {
+  color: $color-link;
+  text-decoration: underline;
+}
+
+.article-body a:hover {
+  text-decoration: none;
+}
+
+.article-body table {
+  width: 100%;
+  margin-bottom: $spacing-sm;
+  border-collapse: collapse;
+}
+
+.article-body th,
+.article-body td {
+  padding: $spacing-xs;
+  border: 1px solid $color-border;
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-body th {
+  background: $color-surface;
 }
 
 // Blog filters

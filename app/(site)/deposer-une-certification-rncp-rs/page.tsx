@@ -350,10 +350,10 @@ export default function CertificationPage() {
             <p style={{ marginTop: "0.5rem" }}>
               →{" "}
               <Link
-                href={`${ROUTES.blog}/cpf-rncp-rs-difference`}
+                href={`${ROUTES.blog}/rncp-ou-rs-guide-complet`}
                 style={{ fontStyle: "italic", textDecoration: "underline" }}
               >
-                RNCP ou RS : quelle certification pour votre offre ?
+                RNCP ou RS : comment choisir en 2026 (budget, délais, financement)
               </Link>
             </p>
           </div>

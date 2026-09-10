@@ -8,5 +8,9 @@ export function proxy() {
 }
 
 export const config = {
-  matcher: ["/blog/erreurs-projet-rncp", "/blog/digitaliser-formation-par-ou-commencer"],
+  matcher: [
+    "/blog/erreurs-projet-rncp",
+    "/blog/digitaliser-formation-par-ou-commencer",
+    "/blog/cpf-rncp-rs-difference",
+  ],
 };
