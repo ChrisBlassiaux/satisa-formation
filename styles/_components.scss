@@ -646,49 +646,63 @@
   flex-shrink: 0;
 }
 
-// Auto-scrolling photo panel (page À propos)
-.photo-marquee {
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, $color-dark 5%, $color-dark 95%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, $color-dark 5%, $color-dark 95%, transparent);
-}
-
-.photo-marquee__track {
+// Photo carousel with dot pagination (page À propos)
+.photo-carousel {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: $spacing-md;
-  width: max-content;
-  animation: photo-marquee-scroll 24s linear infinite;
 }
 
-.photo-marquee__item {
+.photo-carousel__viewport {
   position: relative;
-  flex-shrink: 0;
-  width: 220px;
+  width: 100%;
+  max-width: 320px;
   aspect-ratio: 3 / 4;
   border-radius: $radius-md;
   overflow: hidden;
 
   @include from($bp-tablet) {
-    width: 300px;
+    max-width: 420px;
   }
 }
 
-.photo-marquee__item img {
+.photo-carousel__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.photo-carousel__slide.is-active {
+  opacity: 1;
+}
+
+.photo-carousel__slide img {
   object-fit: cover;
 }
 
-@keyframes photo-marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+.photo-carousel__dots {
+  display: flex;
+  gap: $spacing-xs;
+}
+
+.photo-carousel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $color-border;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.photo-carousel__dot.is-active {
+  background: $color-primary;
+  transform: scale(1.2);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .photo-marquee__track {
-    animation: none;
+  .photo-carousel__slide {
+    transition: none;
   }
 }
 

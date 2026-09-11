@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import RevealTimeline from "@/components/RevealTimeline";
 import TimelineLogoBadge from "@/components/TimelineLogoBadge";
+import PhotoCarousel from "@/components/PhotoCarousel";
 
 const TITLE = "Consultant RNCP/RS et ingénieur pédagogique - Satisa Formation";
 const DESCRIPTION =
@@ -273,21 +274,20 @@ export default function AboutPage() {
       </section>
 
       <section>
-        <div className="photo-marquee">
-          <div className="photo-marquee__track" aria-hidden="true">
-            {[
-              "/images/photos/chris-bureau.webp",
-              "/images/photos/chris-terrasse-1.webp",
-              "/images/photos/chris-terrasse-2.webp",
-              "/images/photos/chris-bureau.webp",
-              "/images/photos/chris-terrasse-1.webp",
-              "/images/photos/chris-terrasse-2.webp",
-            ].map((src, index) => (
-              <div className="photo-marquee__item" key={index}>
-                <Image src={src} alt="" fill sizes="300px" />
-              </div>
-            ))}
-          </div>
+        <div className="container">
+          <PhotoCarousel
+            photos={[
+              { src: "/images/photos/chris-bureau.webp", alt: "Chris Blassiaux au travail sur son bureau" },
+              {
+                src: "/images/photos/chris-terrasse-1.webp",
+                alt: "Chris Blassiaux qui travaille sur son ordinateur portable en terrasse",
+              },
+              {
+                src: "/images/photos/chris-terrasse-2.webp",
+                alt: "Chris Blassiaux souriant, en terrasse avec son ordinateur portable",
+              },
+            ]}
+          />
         </div>
       </section>
 
