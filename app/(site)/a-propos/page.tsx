@@ -273,16 +273,20 @@ export default function AboutPage() {
       </section>
 
       <section>
-        <div className="container">
-          <div
-            className="photo-placeholder"
-            role="img"
-            aria-label="Photo secondaire de Chris en contexte de travail à intégrer (optionnelle)"
-            style={{ minHeight: "320px" }}
-          >
-            Photo secondaire de Chris en contexte de travail
-            <br />
-            (optionnelle, à intégrer si disponible)
+        <div className="photo-marquee">
+          <div className="photo-marquee__track" aria-hidden="true">
+            {[
+              "/images/photos/chris-bureau.webp",
+              "/images/photos/chris-terrasse-1.webp",
+              "/images/photos/chris-terrasse-2.webp",
+              "/images/photos/chris-bureau.webp",
+              "/images/photos/chris-terrasse-1.webp",
+              "/images/photos/chris-terrasse-2.webp",
+            ].map((src, index) => (
+              <div className="photo-marquee__item" key={index}>
+                <Image src={src} alt="" fill sizes="300px" />
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -117,7 +117,7 @@ export default function CertificationRncpPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }}
       />
 
-      <section className="hero-page hero-page--certification">
+      <section className="hero-page hero-page--certification hero-page--wide-h1">
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Ingénierie de certification RNCP</p>

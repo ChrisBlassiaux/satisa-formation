@@ -225,6 +225,10 @@
   margin-bottom: $spacing-sm;
 }
 
+.hero-page--wide-h1 h1 {
+  max-width: none;
+}
+
 .hero-page__subtitle {
   max-width: 60ch;
   font-size: 1.05rem;

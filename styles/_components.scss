@@ -646,6 +646,52 @@
   flex-shrink: 0;
 }
 
+// Auto-scrolling photo panel (page À propos)
+.photo-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, $color-dark 5%, $color-dark 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, $color-dark 5%, $color-dark 95%, transparent);
+}
+
+.photo-marquee__track {
+  display: flex;
+  gap: $spacing-md;
+  width: max-content;
+  animation: photo-marquee-scroll 24s linear infinite;
+}
+
+.photo-marquee__item {
+  position: relative;
+  flex-shrink: 0;
+  width: 220px;
+  aspect-ratio: 3 / 4;
+  border-radius: $radius-md;
+  overflow: hidden;
+
+  @include from($bp-tablet) {
+    width: 300px;
+  }
+}
+
+.photo-marquee__item img {
+  object-fit: cover;
+}
+
+@keyframes photo-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-marquee__track {
+    animation: none;
+  }
+}
+
 // Author signature (article de blog)
 .author-signature {
   display: flex;
