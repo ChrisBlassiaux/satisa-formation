@@ -706,6 +706,24 @@
   }
 }
 
+.photo-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-sm;
+  width: 100%;
+}
+
+.photo-panel__item {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.photo-panel__item img {
+  object-fit: cover;
+}
+
 // Author signature (article de blog)
 .author-signature {
   display: flex;

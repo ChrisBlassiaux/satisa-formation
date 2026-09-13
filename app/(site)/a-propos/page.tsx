@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import RevealTimeline from "@/components/RevealTimeline";
 import TimelineLogoBadge from "@/components/TimelineLogoBadge";
-import PhotoCarousel from "@/components/PhotoCarousel";
+import PhotoPanel from "@/components/PhotoPanel";
 
 const TITLE = "Consultant RNCP/RS et ingénieur pédagogique - Satisa Formation";
 const DESCRIPTION =
@@ -275,7 +275,7 @@ export default function AboutPage() {
 
       <section>
         <div className="container">
-          <PhotoCarousel
+          <PhotoPanel
             photos={[
               { src: "/images/photos/chris-bureau.webp", alt: "Chris Blassiaux au travail sur son bureau" },
               {
