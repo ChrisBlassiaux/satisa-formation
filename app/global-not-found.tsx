@@ -86,7 +86,7 @@ export default function GlobalNotFound() {
               >
                 <div className="hero__actions" style={{ justifyContent: "center" }}>
                   <Link href={ROUTES.certification} className="btn btn--outline">
-                    Déposer une certification
+                    Déposer ma certification
                   </Link>
                   <Link href={ROUTES.formations} className="btn btn--outline">
                     Concevoir mes formations

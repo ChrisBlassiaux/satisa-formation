@@ -86,7 +86,7 @@ export default async function HomePage() {
               </p>
               <div className="hero__actions">
                 <Link href={ROUTES.certification} className="btn btn--dark">
-                  Déposer une certification
+                  Déposer ma certification
                 </Link>
                 <Link href={ROUTES.formations} className="btn btn--outline">
                   Concevoir mes formations
