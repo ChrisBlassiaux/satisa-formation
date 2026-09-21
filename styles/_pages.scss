@@ -398,6 +398,12 @@
   background: $color-surface;
 }
 
+.article-body th:first-child,
+.article-body td:first-child {
+  width: 160px;
+  min-width: 160px;
+}
+
 // Blog filters
 .blog-filters {
   display: flex;
