@@ -356,6 +356,16 @@ export default function CertificationPage() {
                 RNCP ou RS : comment choisir en 2026 (budget, délais, financement)
               </Link>
             </p>
+            <p style={{ marginTop: "0.5rem" }}>
+              →{" "}
+              <Link
+                href={`${ROUTES.blog}/organisme-certificateur-ou-organisme-de-formation-quelle-difference-et-qui-peut-certifier-une-formation-rncp-ou-rs`}
+                style={{ fontStyle: "italic", textDecoration: "underline" }}
+              >
+                Organisme certificateur ou organisme de formation : quelle différence et qui peut certifier une
+                formation RNCP ou RS ?
+              </Link>
+            </p>
           </div>
         </div>
       </section>
