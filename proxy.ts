@@ -12,5 +12,6 @@ export const config = {
     "/blog/erreurs-projet-rncp",
     "/blog/digitaliser-formation-par-ou-commencer",
     "/blog/cpf-rncp-rs-difference",
+    "/blog/organisme-certificateur-ou-organisme-de-formation-quelle-difference-et-qui-peut-certifier-une-formation-rncp-ou-rs",
   ],
 };
