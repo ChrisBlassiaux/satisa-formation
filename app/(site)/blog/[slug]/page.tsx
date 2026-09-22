@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-import Markdoc, { Tag, type Config } from "@markdoc/markdoc";
+import Markdoc, { Tag, type Config, type RenderableTreeNode } from "@markdoc/markdoc";
 import { ROUTES } from "@/lib/routes";
 import { getAllPosts, getPost, getPostSlugs, CATEGORY_LABELS, formatPostDate, computeReadingTime } from "@/lib/posts";
 
@@ -73,6 +73,52 @@ const MARKDOC_CONFIG: Config = {
   },
 };
 
+// Falls back to turning a plain "**Question ?**" + answer paragraph(s)
+// pattern under an "FAQ" heading into the same accordion the {% faq-item %}
+// tag produces. Content editors writing through Keystatic's rich-text
+// editor don't reliably keep the custom tag syntax on re-save, so the
+// accordion must also work without it.
+function isBoldOnlyParagraph(node: RenderableTreeNode): boolean {
+  if (!Tag.isTag(node) || node.name !== "p") return false;
+  const kids = node.children.filter((c) => !(typeof c === "string" && c.trim() === ""));
+  return kids.length === 1 && Tag.isTag(kids[0]) && kids[0].name === "strong";
+}
+
+function autoWrapFaqSection(tag: RenderableTreeNode): RenderableTreeNode {
+  if (!Tag.isTag(tag)) return tag;
+  const faqHeadingIndex = tag.children.findIndex(
+    (c) => Tag.isTag(c) && /^h[2-6]$/.test(c.name) && extractText(c.children).trim().toLowerCase() === "faq"
+  );
+  if (faqHeadingIndex === -1) return tag;
+
+  const before = tag.children.slice(0, faqHeadingIndex + 1);
+  const rest = tag.children.slice(faqHeadingIndex + 1);
+
+  const items: RenderableTreeNode[] = [];
+  let i = 0;
+  while (i < rest.length && isBoldOnlyParagraph(rest[i])) {
+    const question = extractText((rest[i] as Tag).children);
+    i++;
+    const answer: RenderableTreeNode[] = [];
+    while (i < rest.length && Tag.isTag(rest[i]) && (rest[i] as Tag).name === "p" && !isBoldOnlyParagraph(rest[i])) {
+      answer.push(rest[i]);
+      i++;
+    }
+    items.push(
+      new Tag("details", { className: "faq-item" }, [
+        new Tag("summary", { className: "faq-item__question" }, [
+          question,
+          new Tag("span", { className: "faq-item__icon", "aria-hidden": "true" }, []),
+        ]),
+        new Tag("div", { className: "faq-item__answer" }, answer),
+      ])
+    );
+  }
+
+  if (items.length === 0) return tag;
+  return new Tag(tag.name, tag.attributes, [...before, ...items, ...rest.slice(i)]);
+}
+
 type TocItem = { id: string; text: string; level: number };
 
 function collectToc(tag: unknown): TocItem[] {
@@ -140,7 +186,7 @@ export default async function BlogPostPage({
   const postDate = post.date ?? "";
 
   const { node } = await post.content();
-  const renderable = Markdoc.transform(node, MARKDOC_CONFIG);
+  const renderable = autoWrapFaqSection(Markdoc.transform(node, MARKDOC_CONFIG));
   const contentHtml = Markdoc.renderers.react(renderable, React);
   const tocItems = collectToc(renderable);
   const readingTime = computeReadingTime(node);
