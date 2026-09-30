@@ -253,13 +253,21 @@ export default function CertificationPage() {
             <li>
               <span className="problem-list__icon" aria-hidden="true">
                 <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="50" cy="50" r="14" />
-                  <path d="M50 22v10M50 68v10M78 50h-10M22 50h10M69 31l-7 7M38 62l-7 7M69 69l-7-7M38 38l-7-7" />
+                  <circle cx="38" cy="60" r="22" />
+                  <circle cx="38" cy="60" r="13" />
+                  <circle cx="64" cy="38" r="22" />
+                  <circle cx="64" cy="38" r="13" />
+                  <text x="38" y="67" textAnchor="middle" fontSize="18" fontWeight="700" stroke="none" fill="currentColor" fontFamily="sans-serif">
+                    €
+                  </text>
+                  <text x="64" y="45" textAnchor="middle" fontSize="18" fontWeight="700" stroke="none" fill="currentColor" fontFamily="sans-serif">
+                    €
+                  </text>
                 </svg>
               </span>
               <div>
-                <h3>Un choix difficile à trancher seul</h3>
-                <p>RNCP ou RS : le mauvais choix coûte du temps et remet le dossier en question en cours de route.</p>
+                <h3>Une redevance récurrente à verser</h3>
+                <p>Sans votre propre certification, vous versez une redevance au certificateur à chaque candidat, un coût qui pèse sur votre marge et disparaît dès que vous déposez la vôtre.</p>
               </div>
             </li>
           </ul>
