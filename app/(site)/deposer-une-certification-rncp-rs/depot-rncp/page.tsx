@@ -129,7 +129,7 @@ export default function CertificationRncpPage() {
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Certification RNCP</p>
-            <h1>Vous formez déjà un métier complet. Il est temps de déposer votre certification RNCP auprès de France Compétences.</h1>
+            <h1>Déposez votre certification RNCP auprès de France Compétences</h1>
             <p className="hero-page__subtitle">
               Sans dépôt de certification RNCP enregistrée auprès de France Compétences, votre expertise reste non
               reconnue officiellement et vos apprenants n&apos;ont accès ni au CPF ni à une certification
