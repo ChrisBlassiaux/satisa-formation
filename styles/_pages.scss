@@ -416,7 +416,7 @@
   cursor: pointer;
 }
 
-// Problem section (page certification)
+// Problem section (page certification) — legacy, kept in case other pages still reference it
 .problem-section {
   background: $color-dark;
 }
@@ -480,6 +480,107 @@
 .problem-list p {
   font-size: $fs-small;
   color: rgba(255, 255, 255, 0.7);
+}
+
+// Profile cards (page certification — "Dans quelle situation êtes-vous ?")
+.profile-cards {
+  display: grid;
+  gap: $spacing-md;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+  }
+}
+
+.profile-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  height: 100%;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+}
+
+.profile-card--featured {
+  border: 2px solid $color-primary;
+  background: $color-mint-light;
+}
+
+.profile-card__badge {
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  padding: 0.3em 0.9em;
+  border-radius: $radius-sm;
+  background: $color-primary;
+  color: $color-white;
+  font-size: $fs-small;
+  font-weight: 700;
+}
+
+.profile-card__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $color-surface;
+  color: $color-dark;
+  font-weight: 700;
+}
+
+.profile-card--featured .profile-card__number {
+  background: $color-white;
+}
+
+.profile-card h3 {
+  font-size: 1.1rem;
+}
+
+.profile-card > p {
+  font-size: $fs-small;
+  color: $color-muted;
+}
+
+.profile-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  flex-grow: 1;
+}
+
+.profile-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  font-size: $fs-small;
+  color: $color-dark;
+}
+
+.profile-card__mark {
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.profile-card__list--negative .profile-card__mark {
+  color: $color-muted;
+}
+
+.profile-card__list--positive .profile-card__mark {
+  color: $color-primary-dark;
+}
+
+.profile-card__satisa {
+  min-height: 5.5rem;
+  padding-top: $spacing-sm;
+  border-top: 1px solid $color-border;
+  font-size: $fs-small;
+  color: $color-primary-dark;
 }
 
 // Orientations (page formations)

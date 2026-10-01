@@ -215,62 +215,101 @@ export default function CertificationPage() {
         </div>
       </section>
 
-      <section className="problem-section">
+      <section>
         <div className="container">
           <div className="section-head">
-            <p className="eyebrow">Le problème</p>
-            <h2>Ce que vivent les organismes de formation sans certification enregistrée</h2>
+            <p className="eyebrow">Votre situation</p>
+            <h2>Dans quelle situation êtes-vous ?</h2>
           </div>
-          <ul className="problem-list">
-            <li>
-              <span className="problem-list__icon" aria-hidden="true">
-                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="30" y="46" width="40" height="32" rx="4" />
-                  <path d="M38 46V34a12 12 0 0 1 24 0v12" />
-                  <circle cx="50" cy="60" r="3.5" />
-                  <path d="M50 64v6" />
-                </svg>
-              </span>
-              <div>
-                <h3>Pas d&apos;accès au CPF</h3>
-                <p>Vos apprenants ne peuvent pas mobiliser leur compte formation, ce qui ferme une part importante du marché.</p>
+          <div className="profile-cards">
+            <div className="profile-card">
+              <span className="profile-card__number">1</span>
+              <h3>Vous formez sans certification enregistrée</h3>
+              <p>
+                Vous animez des formations sur votre expertise, vos apprenants progressent, mais ils repartent avec
+                une attestation de formation, pas une certification reconnue. Le CPF vous est fermé, et une partie
+                de votre marché aussi.
+              </p>
+              <ul className="profile-card__list profile-card__list--negative">
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  L&apos;accès au CPF fermé pour vos apprenants
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  La reconnaissance officielle de votre expertise absente
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  Des candidats qui préfèrent un concurrent certifié
+                </li>
+              </ul>
+              <div className="profile-card__satisa">
+                On construit votre dossier de certification RNCP ou RS, jusqu&apos;à la décision de France
+                Compétences.
               </div>
-            </li>
-            <li>
-              <span className="problem-list__icon" aria-hidden="true">
-                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 42l28-16 28 16" />
-                  <path d="M26 42v30M40 42v30M60 42v30M74 42v30" />
-                  <path d="M20 78h60" />
-                  <path d="M18 42h64" />
-                </svg>
-              </span>
-              <div>
-                <h3>Aucun titre reconnu pour vos apprenants</h3>
-                <p>Vos formations sont solides, mais sans certification RNCP ou RS, vos apprenants ne repartent avec aucun titre reconnu à valoriser sur leur CV ou auprès d&apos;un employeur.</p>
+            </div>
+
+            <div className="profile-card">
+              <span className="profile-card__number">2</span>
+              <h3>Vous êtes organisme habilité sur une certification tierce</h3>
+              <p>
+                Vous formez sur une certification qui appartient à un autre organisme. Vous versez une redevance
+                pour chaque candidat. Vous dépendez d&apos;un certificateur qui peut modifier le référentiel, ne
+                pas renouveler la certification, ou retirer votre habilitation.
+              </p>
+              <ul className="profile-card__list profile-card__list--negative">
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  Une marge rognée pour chaque candidat (400 à 600 € de redevance en moyenne)
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  Votre indépendance et toute exclusivité sur votre positionnement perdues
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  Un actif que vous ne possédez pas et ne pourrez jamais valoriser
+                </li>
+              </ul>
+              <div className="profile-card__satisa">
+                On vous accompagne pour déposer votre propre certification et ne plus dépendre d&apos;un tiers.
               </div>
-            </li>
-            <li>
-              <span className="problem-list__icon" aria-hidden="true">
-                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="38" cy="60" r="22" />
-                  <circle cx="38" cy="60" r="13" />
-                  <circle cx="64" cy="38" r="22" />
-                  <circle cx="64" cy="38" r="13" />
-                  <text x="38" y="67" textAnchor="middle" fontSize="18" fontWeight="700" stroke="none" fill="currentColor" fontFamily="sans-serif">
-                    €
-                  </text>
-                  <text x="64" y="45" textAnchor="middle" fontSize="18" fontWeight="700" stroke="none" fill="currentColor" fontFamily="sans-serif">
-                    €
-                  </text>
-                </svg>
-              </span>
-              <div>
-                <h3>Une redevance récurrente à verser</h3>
-                <p>Sans votre propre certification, vous versez une redevance au certificateur à chaque candidat, un coût qui pèse sur votre marge et disparaît dès que vous déposez la vôtre.</p>
+            </div>
+
+            <div className="profile-card profile-card--featured">
+              <span className="profile-card__badge">Objectif</span>
+              <span className="profile-card__number">3</span>
+              <h3>Vous êtes certificateur</h3>
+              <p>
+                Vous possédez votre propre certification RNCP ou RS. Vos apprenants accèdent au CPF, vous encaissez
+                une redevance pour chaque candidat formé dans votre réseau d&apos;organismes habilités, et votre
+                référentiel vous appartient. C&apos;est le profil le plus solide commercialement.
+              </p>
+              <ul className="profile-card__list profile-card__list--positive">
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✓</span>
+                  Accès au CPF ouvert pour vos apprenants
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✓</span>
+                  Une redevance encaissée pour chaque candidat de votre réseau
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✓</span>
+                  Un actif qui vous appartient et valorise votre structure
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✓</span>
+                  La possibilité de déposer d&apos;autres certifications pour élargir votre offre
+                </li>
+              </ul>
+              <div className="profile-card__satisa">
+                On vous accompagne pour déposer une nouvelle certification ou piloter le renouvellement de
+                l&apos;existante.
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </section>
 
