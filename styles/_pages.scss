@@ -404,6 +404,14 @@
   min-width: 160px;
 }
 
+// Two-column tables (e.g. a "signs for" / "signs against" comparison) read
+// better split evenly than with the label-column width meant for 3+ column
+// tables above.
+.article-body table:has(tr td:nth-child(2):last-child) th,
+.article-body table:has(tr td:nth-child(2):last-child) td {
+  width: 50%;
+}
+
 // Blog filters
 .blog-filters {
   display: flex;
