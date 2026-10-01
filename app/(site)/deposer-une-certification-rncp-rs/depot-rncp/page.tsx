@@ -336,7 +336,15 @@ export default function CertificationRncpPage() {
                 Dois-je avoir déjà formé des apprenants avant de déposer ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants qui ont suivi le parcours, des données d&apos;insertion professionnelle et des témoignages de l&apos;utilité du titre. Dans la pratique, une cohorte pilote bien documentée peut suffire. Le nombre de promotions nécessaires dépend de la qualité et de la représentativité des données collectées.</p>
+              <p className="faq-item__answer">
+                Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants qui ont suivi le parcours, des données d&apos;insertion professionnelle et des témoignages de l&apos;utilité du titre. Dans la pratique, une cohorte pilote bien documentée peut suffire. Le nombre de promotions nécessaires dépend de la qualité et de la représentativité des données collectées.{" "}
+                <Link
+                  href={`${ROUTES.blog}/suis-je-eligible-au-rncp-criteres-d-eligibilite-et-conditions-2026`}
+                  style={{ fontStyle: "italic", textDecoration: "underline" }}
+                >
+                  Découvrez tous les critères d&apos;éligibilité au RNCP.
+                </Link>
+              </p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
@@ -366,6 +374,20 @@ export default function CertificationRncpPage() {
               </summary>
               <p className="faq-item__answer">Oui, les formules 2 et 3 proposent chacune une option de paiement échelonné sur plusieurs mois, détaillée dans chaque formule ci-dessus.</p>
             </details>
+          </div>
+          <div style={{ marginTop: "2rem" }}>
+            <p style={{ fontWeight: 700, color: "#002730" }}>
+              Pour aller plus loin, consultez notre article de blog associé :
+            </p>
+            <p style={{ marginTop: "0.5rem" }}>
+              →{" "}
+              <Link
+                href={`${ROUTES.blog}/suis-je-eligible-au-rncp-criteres-d-eligibilite-et-conditions-2026`}
+                style={{ fontStyle: "italic", textDecoration: "underline" }}
+              >
+                Suis-je éligible au RNCP ? Critères d&apos;éligibilité et conditions 2026
+              </Link>
+            </p>
           </div>
           <div style={{ marginTop: "2rem" }}>
             <p style={{ fontWeight: 700, color: "#002730" }}>

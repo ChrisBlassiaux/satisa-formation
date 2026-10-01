@@ -387,7 +387,15 @@ export default function CertificationPage() {
                 Faut-il déjà avoir des apprenants formés pour déposer un dossier RNCP/RS ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Oui, dans les deux cas. France Compétences exige des données réelles sur au moins deux promotions d&apos;apprenants déjà formés, pour vérifier leur insertion professionnelle avant d&apos;accepter le dossier. Une exception existe pour les métiers émergents. C&apos;est justement l&apos;objet du diagnostic de faisabilité que de vérifier où en est votre projet sur ce point.</p>
+              <p className="faq-item__answer">
+                Oui, dans les deux cas. France Compétences exige des données réelles sur au moins deux promotions d&apos;apprenants déjà formés, pour vérifier leur insertion professionnelle avant d&apos;accepter le dossier. Une exception existe pour les métiers émergents. C&apos;est justement l&apos;objet du diagnostic de faisabilité que de vérifier où en est votre projet sur ce point.{" "}
+                <Link
+                  href={`${ROUTES.blog}/suis-je-eligible-au-rncp-criteres-d-eligibilite-et-conditions-2026`}
+                  style={{ fontStyle: "italic", textDecoration: "underline" }}
+                >
+                  Découvrez tous les critères d&apos;éligibilité au RNCP.
+                </Link>
+              </p>
             </details>
           </div>
           <div style={{ marginTop: "2rem" }}>
