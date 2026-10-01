@@ -225,7 +225,7 @@ export default function CertificationPage() {
             <div className="profile-card">
               <span className="profile-card__number">1</span>
               <h3>Vous formez sans certification enregistrée</h3>
-              <p>
+              <p className="profile-card__description">
                 Vous animez des formations sur votre expertise, vos apprenants progressent, mais ils repartent avec
                 une attestation de formation, pas une certification reconnue. Le CPF vous est fermé, et une partie
                 de votre marché aussi.
@@ -253,7 +253,7 @@ export default function CertificationPage() {
             <div className="profile-card">
               <span className="profile-card__number">2</span>
               <h3>Vous êtes organisme habilité sur une certification tierce</h3>
-              <p>
+              <p className="profile-card__description">
                 Vous formez sur une certification qui appartient à un autre organisme. Vous versez une redevance
                 pour chaque candidat. Vous dépendez d&apos;un certificateur qui peut modifier le référentiel, ne
                 pas renouveler la certification, ou retirer votre habilitation.
@@ -281,7 +281,7 @@ export default function CertificationPage() {
               <span className="profile-card__badge">Objectif</span>
               <span className="profile-card__number">3</span>
               <h3>Vous êtes certificateur</h3>
-              <p>
+              <p className="profile-card__description">
                 Vous possédez votre propre certification RNCP ou RS. Vos apprenants accèdent au CPF, vous encaissez
                 une redevance pour chaque candidat formé dans votre réseau d&apos;organismes habilités, et votre
                 référentiel vous appartient. C&apos;est le profil le plus solide commercialement.

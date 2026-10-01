@@ -522,7 +522,7 @@
   color: $color-white;
 }
 
-.profile-card--featured > p {
+.profile-card--featured .profile-card__description {
   color: $color-white;
 }
 
@@ -558,7 +558,7 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: $color-surface;
+  background: $color-mint-light;
   color: $color-dark;
   font-weight: 700;
 }
@@ -571,7 +571,7 @@
   font-size: 1.1rem;
 }
 
-.profile-card > p {
+.profile-card__description {
   font-size: $fs-small;
   color: $color-muted;
 }
