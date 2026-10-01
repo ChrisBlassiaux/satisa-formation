@@ -514,8 +514,29 @@
 }
 
 .profile-card--featured {
-  border: 2px solid $color-primary;
-  background: $color-mint-light;
+  border: 1px solid transparent;
+  background: $color-dark;
+}
+
+.profile-card--featured h3 {
+  color: $color-white;
+}
+
+.profile-card--featured > p {
+  color: $color-white;
+}
+
+.profile-card--featured .profile-card__list li {
+  color: $color-white;
+}
+
+.profile-card--featured .profile-card__list--positive .profile-card__mark {
+  color: $color-mint;
+}
+
+.profile-card--featured .profile-card__satisa {
+  border-top-color: $color-teal-dark;
+  color: $color-mint;
 }
 
 .profile-card__badge {
