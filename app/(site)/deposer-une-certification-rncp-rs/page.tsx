@@ -44,15 +44,15 @@ const FAQ_JSON_LD = {
       name: "Peut-on déposer les deux pour le même organisme ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Oui. Beaucoup d'organismes construisent d'abord une certification RS sur une compétence phare, puis un RNCP une fois la structure et la cohorte pilote consolidées.",
+        text: "Oui, tout à fait. Ce sont deux projets distincts et indépendants. Un RS ne se transforme pas en RNCP : ce sont deux certifications avec des niveaux d'exigence et des finalités différentes. Un organisme peut très bien détenir les deux, chacune couvrant des compétences ou des publics différents.",
       },
     },
     {
       "@type": "Question",
-      name: "Et si je ne sais toujours pas lequel choisir ?",
+      name: "Comment choisir entre RNCP et RS si j'hésite encore ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "C'est le rôle du diagnostic de faisabilité : en 700 € HT, on qualifie votre projet, votre référentiel potentiel et on tranche avec vous entre RNCP et RS avant tout engagement plus large.",
+        text: "C'est précisément l'objet du diagnostic de faisabilité. En un échange structuré, on analyse votre activité, votre public cible et vos objectifs pour vous orienter vers la certification la plus adaptée à votre projet, avant tout engagement plus large.",
       },
     },
     {
@@ -95,7 +95,7 @@ export default function CertificationPage() {
       <section className="hero-page hero-page--certification">
         <div className="container hero-page__layout">
           <div>
-            <p className="eyebrow">Ingénierie de certification RNCP/RS</p>
+            <p className="eyebrow">Certification RNCP/RS</p>
             <h1>RNCP ou RS : quelle certification fait avancer votre organisme ?</h1>
             <p className="hero-page__subtitle">
               Les deux répertoires ouvrent l&apos;accès au CPF et à la reconnaissance France Compétences, mais ne
@@ -130,14 +130,14 @@ export default function CertificationPage() {
             <p className="eyebrow">Comparatif</p>
             <h2>Deux répertoires, deux logiques</h2>
             <p className="hero-page__subtitle">
-              Le RNCP certifie un métier complet. Le RS certifie une compétence ou une pratique ciblée. Le bon
-              choix dépend de ce que vos apprenants font une fois formés.
+              La certification RNCP certifie un métier complet. La certification RS certifie une compétence ou
+              une pratique ciblée. Le bon choix dépend de ce que vos apprenants font une fois formés.
             </p>
           </div>
           <div className="grid grid--2">
             <div className="card card--service">
               <div className="compare-card__body">
-                <span className="tag card__tag">Répertoire national</span>
+                <span className="tag card__tag">Répertoire national des certifications professionnelles</span>
                 <h3>RNCP</h3>
                 <p>
                   Certifie un métier complet, structuré en blocs de compétences. Pour les organismes qui forment
@@ -200,15 +200,15 @@ export default function CertificationPage() {
             <div className="decision-row">
               <span className="decision-row__who" style={{ color: "#4a6b70" }}>Vous hésitez encore</span>
               <p>
-                le diagnostic de faisabilité (700 € HT) tranche la question avec vous, avant tout engagement sur
-                une formule de dépôt.
+                le diagnostic de faisabilité tranche la question avec vous, avant tout engagement sur une
+                formule de dépôt.
               </p>
             </div>
             <div className="decision-row">
               <span className="decision-row__who" style={{ color: "#4a6b70" }}>Vous doutez de votre éligibilité</span>
               <p>
-                cohorte pilote, activité déjà exercée, référentiel construit : certains critères sont à réunir
-                avant de déposer, quel que soit le répertoire visé.
+                une à deux promotions déjà formées, activité déjà exercée, référentiel construit : certains
+                critères sont à réunir avant de déposer, quel que soit le répertoire visé.
               </p>
             </div>
           </div>
@@ -373,14 +373,14 @@ export default function CertificationPage() {
                 Peut-on déposer les deux pour le même organisme ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Oui. Beaucoup d&apos;organismes construisent d&apos;abord une certification RS sur une compétence phare, puis un RNCP une fois la structure et la cohorte pilote consolidées.</p>
+              <p className="faq-item__answer">Oui, tout à fait. Ce sont deux projets distincts et indépendants. Un RS ne se transforme pas en RNCP : ce sont deux certifications avec des niveaux d&apos;exigence et des finalités différentes. Un organisme peut très bien détenir les deux, chacune couvrant des compétences ou des publics différents.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
-                Et si je ne sais toujours pas lequel choisir ?
+                Comment choisir entre RNCP et RS si j&apos;hésite encore ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">C&apos;est le rôle du diagnostic de faisabilité : en 700 € HT, on qualifie votre projet, votre référentiel potentiel et on tranche avec vous entre RNCP et RS avant tout engagement plus large.</p>
+              <p className="faq-item__answer">C&apos;est précisément l&apos;objet du diagnostic de faisabilité. En un échange structuré, on analyse votre activité, votre public cible et vos objectifs pour vous orienter vers la certification la plus adaptée à votre projet, avant tout engagement plus large.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">

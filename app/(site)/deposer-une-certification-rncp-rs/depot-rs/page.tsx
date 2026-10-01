@@ -55,7 +55,7 @@ const FAQ_JSON_LD = {
       name: "Dois-je avoir déjà formé des apprenants avant de déposer un dossier RS ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Oui, comme pour le RNCP, une cohorte pilote ayant suivi votre formation est nécessaire pour démontrer la pertinence du référentiel et collecter les données d'insertion attendues par France Compétences.",
+        text: "Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants ayant suivi le parcours et des données démontrant la maîtrise de la compétence visée. Les exigences du RS sont différentes de celles du RNCP : les données d'insertion professionnelle sont moins centrales, l'accent étant mis sur la démonstration de la compétence certifiée. Une cohorte pilote bien documentée peut suffire selon la qualité des preuves apportées.",
       },
     },
     {
@@ -63,7 +63,15 @@ const FAQ_JSON_LD = {
       name: "Que se passe-t-il si France Compétences refuse le dossier ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Un refus donne lieu à des observations précises. Le suivi inclus dans les formules 2 et 3 couvre l'analyse de ces retours et l'ajustement du dossier en vue d'un nouveau dépôt.",
+        text: "Un refus donne lieu à des observations précises de France Compétences. Les formules 2 et 3 incluent le suivi jusqu'à la décision finale et l'analyse des retours reçus. Si le projet RS reste viable malgré le refus, un nouveau dépôt peut être envisagé et fera l'objet d'un accompagnement distinct. Si le refus est lié à une compétence insuffisamment différenciée ou à un manque de besoin réel sur le marché, la viabilité du projet doit être reconsidérée en amont.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Combien coûte un dépôt RS ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Le dépôt auprès de France Compétences est gratuit. Ce qui représente un coût réel, c'est le temps : celui de vos équipes internes mobilisées sur le projet (référent métier, direction, formateurs) et celui de l'accompagnement externe pour construire un dossier solide. Rédiger un référentiel de compétence, constituer les preuves de la maîtrise de cette compétence et rassembler l'ensemble des documents représente plusieurs mois de travail. C'est cette charge que Satisa prend en charge, en tout ou en partie selon la formule choisie, à partir de 4 000€ HT.",
       },
     },
     {
@@ -120,12 +128,13 @@ export default function CertificationRsPage() {
       <section className="hero-page hero-page--certification">
         <div className="container hero-page__layout">
           <div>
-            <p className="eyebrow">Ingénierie de certification RS</p>
-            <h1>Vous formez déjà une compétence ciblée. Il est temps d&apos;être reconnu RS par France Compétences.</h1>
+            <p className="eyebrow">Certification RS</p>
+            <h1>Vous formez déjà une compétence ciblée. Il est temps de déposer votre certification au Répertoire Spécifique (RS) de France Compétences.</h1>
             <p className="hero-page__subtitle">
-              Sans certification RS enregistrée auprès de France Compétences, votre expertise reste non reconnue
-              officiellement et vos apprenants n&apos;ont accès ni au CPF ni à un titre valorisable. Satisa pilote
-              le projet à vos côtés, du référentiel jusqu&apos;à la décision finale.
+              Sans dépôt de certification RS enregistrée auprès de France Compétences, votre expertise reste non
+              reconnue officiellement et vos apprenants n&apos;ont accès ni au CPF ni à une certification
+              valorisable. Satisa pilote votre enregistrement RS à vos côtés, du référentiel jusqu&apos;à la
+              décision finale.
             </p>
           </div>
           <div className="hero-page__visual" aria-hidden="true">
@@ -327,14 +336,21 @@ export default function CertificationRsPage() {
                 Dois-je avoir déjà formé des apprenants avant de déposer un dossier RS ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Oui, comme pour le RNCP, une cohorte pilote ayant suivi votre formation est nécessaire pour démontrer la pertinence du référentiel et collecter les données d&apos;insertion attendues par France Compétences.</p>
+              <p className="faq-item__answer">Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants ayant suivi le parcours et des données démontrant la maîtrise de la compétence visée. Les exigences du RS sont différentes de celles du RNCP : les données d&apos;insertion professionnelle sont moins centrales, l&apos;accent étant mis sur la démonstration de la compétence certifiée. Une cohorte pilote bien documentée peut suffire selon la qualité des preuves apportées.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
                 Que se passe-t-il si France Compétences refuse le dossier ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Un refus donne lieu à des observations précises. Le suivi inclus dans les formules 2 et 3 couvre l&apos;analyse de ces retours et l&apos;ajustement du dossier en vue d&apos;un nouveau dépôt.</p>
+              <p className="faq-item__answer">Un refus donne lieu à des observations précises de France Compétences. Les formules 2 et 3 incluent le suivi jusqu&apos;à la décision finale et l&apos;analyse des retours reçus. Si le projet RS reste viable malgré le refus, un nouveau dépôt peut être envisagé et fera l&apos;objet d&apos;un accompagnement distinct. Si le refus est lié à une compétence insuffisamment différenciée ou à un manque de besoin réel sur le marché, la viabilité du projet doit être reconsidérée en amont.</p>
+            </details>
+            <details className="faq-item">
+              <summary className="faq-item__question">
+                Combien coûte un dépôt RS ?
+                <span className="faq-item__icon" aria-hidden="true"></span>
+              </summary>
+              <p className="faq-item__answer">Le dépôt auprès de France Compétences est gratuit. Ce qui représente un coût réel, c&apos;est le temps : celui de vos équipes internes mobilisées sur le projet (référent métier, direction, formateurs) et celui de l&apos;accompagnement externe pour construire un dossier solide. Rédiger un référentiel de compétence, constituer les preuves de la maîtrise de cette compétence et rassembler l&apos;ensemble des documents représente plusieurs mois de travail. C&apos;est cette charge que Satisa prend en charge, en tout ou en partie selon la formule choisie, à partir de 4 000€ HT.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">

@@ -47,7 +47,7 @@ const FAQ_JSON_LD = {
       name: "Combien de temps dure un projet de certification RNCP ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre cohorte pilote.",
+        text: "Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre cohorte pilote.",
       },
     },
     {
@@ -55,7 +55,7 @@ const FAQ_JSON_LD = {
       name: "Dois-je avoir déjà formé des apprenants avant de déposer ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Oui, une cohorte pilote ayant suivi votre formation est nécessaire pour démontrer la pertinence du référentiel et collecter les données d'insertion attendues par France Compétences.",
+        text: "Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants qui ont suivi le parcours, des données d'insertion professionnelle et des témoignages de l'utilité du titre. Dans la pratique, une cohorte pilote bien documentée peut suffire. Le nombre de promotions nécessaires dépend de la qualité et de la représentativité des données collectées.",
       },
     },
     {
@@ -63,7 +63,15 @@ const FAQ_JSON_LD = {
       name: "Que se passe-t-il si France Compétences refuse le dossier ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Un refus donne lieu à des observations précises. Le suivi inclus dans les formules 2 et 3 couvre l'analyse de ces retours et l'ajustement du dossier en vue d'un nouveau dépôt.",
+        text: "Un refus donne lieu à des observations précises de France Compétences. Quand le dossier est mal construit mais le projet viable, le suivi inclus dans les formules 2 et 3 couvre l'analyse de ces retours et l'ajustement en vue d'un nouveau dépôt. Si le refus est lié à un manque de besoin réel sur le marché, aucun accompagnement ne peut rendre le projet recevable.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Combien coûte un dépôt RNCP ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Le dépôt auprès de France Compétences est gratuit. Ce qui représente un coût réel, c'est le temps : celui de vos équipes internes mobilisées sur le projet (référent métier, direction, formateurs) et celui de l'accompagnement externe pour construire un dossier solide. Rédiger un référentiel, piloter une cohorte pilote, collecter les données d'insertion et constituer l'ensemble des documents représente plusieurs mois de travail. C'est cette charge que Satisa prend en charge, en tout ou en partie selon la formule choisie, à partir de 5 000€ HT.",
       },
     },
     {
@@ -120,12 +128,13 @@ export default function CertificationRncpPage() {
       <section className="hero-page hero-page--certification hero-page--wide-h1">
         <div className="container hero-page__layout">
           <div>
-            <p className="eyebrow">Ingénierie de certification RNCP</p>
-            <h1>Vous formez déjà un métier complet. Il est temps d&apos;être reconnu RNCP par France Compétences.</h1>
+            <p className="eyebrow">Certification RNCP</p>
+            <h1>Vous formez déjà un métier complet. Il est temps de déposer votre certification RNCP auprès de France Compétences.</h1>
             <p className="hero-page__subtitle">
-              Sans certification RNCP enregistrée auprès de France Compétences, votre expertise reste non reconnue
-              officiellement et vos apprenants n&apos;ont accès ni au CPF ni à un titre valorisable. Satisa pilote
-              le projet à vos côtés, du référentiel jusqu&apos;à la décision finale.
+              Sans dépôt de certification RNCP enregistrée auprès de France Compétences, votre expertise reste non
+              reconnue officiellement et vos apprenants n&apos;ont accès ni au CPF ni à une certification
+              valorisable. Satisa pilote votre enregistrement RNCP à vos côtés, du référentiel jusqu&apos;à la
+              décision finale.
             </p>
           </div>
           <div className="hero-page__visual" aria-hidden="true">
@@ -320,21 +329,28 @@ export default function CertificationRncpPage() {
                 Combien de temps dure un projet de certification RNCP ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre cohorte pilote.</p>
+              <p className="faq-item__answer">Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre cohorte pilote.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
                 Dois-je avoir déjà formé des apprenants avant de déposer ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Oui, une cohorte pilote ayant suivi votre formation est nécessaire pour démontrer la pertinence du référentiel et collecter les données d&apos;insertion attendues par France Compétences.</p>
+              <p className="faq-item__answer">Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants qui ont suivi le parcours, des données d&apos;insertion professionnelle et des témoignages de l&apos;utilité du titre. Dans la pratique, une cohorte pilote bien documentée peut suffire. Le nombre de promotions nécessaires dépend de la qualité et de la représentativité des données collectées.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
                 Que se passe-t-il si France Compétences refuse le dossier ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Un refus donne lieu à des observations précises. Le suivi inclus dans les formules 2 et 3 couvre l&apos;analyse de ces retours et l&apos;ajustement du dossier en vue d&apos;un nouveau dépôt.</p>
+              <p className="faq-item__answer">Un refus donne lieu à des observations précises de France Compétences. Quand le dossier est mal construit mais le projet viable, le suivi inclus dans les formules 2 et 3 couvre l&apos;analyse de ces retours et l&apos;ajustement en vue d&apos;un nouveau dépôt. Si le refus est lié à un manque de besoin réel sur le marché, aucun accompagnement ne peut rendre le projet recevable.</p>
+            </details>
+            <details className="faq-item">
+              <summary className="faq-item__question">
+                Combien coûte un dépôt RNCP ?
+                <span className="faq-item__icon" aria-hidden="true"></span>
+              </summary>
+              <p className="faq-item__answer">Le dépôt auprès de France Compétences est gratuit. Ce qui représente un coût réel, c&apos;est le temps : celui de vos équipes internes mobilisées sur le projet (référent métier, direction, formateurs) et celui de l&apos;accompagnement externe pour construire un dossier solide. Rédiger un référentiel, piloter une cohorte pilote, collecter les données d&apos;insertion et constituer l&apos;ensemble des documents représente plusieurs mois de travail. C&apos;est cette charge que Satisa prend en charge, en tout ou en partie selon la formule choisie, à partir de 5 000€ HT.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
