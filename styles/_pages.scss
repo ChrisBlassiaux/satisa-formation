@@ -345,6 +345,12 @@
   scroll-margin-top: 96px;
 }
 
+// Keystatic saves headings as "## **Titre**", which wraps the text in <strong>
+// and bumps it to 900. Headings must keep the site-wide heading weight.
+.article-body :is(h2, h3, h4, h5, h6) :is(strong, b) {
+  font-weight: inherit;
+}
+
 .article-body p {
   margin-bottom: $spacing-sm;
   color: $color-dark;
