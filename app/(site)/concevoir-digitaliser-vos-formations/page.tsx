@@ -212,8 +212,7 @@ export default function FormationsPage() {
                 <p className="pricing-card__note">Engagement de 3 mois minimum.</p>
                 <ul className="pricing-card__deliverables">
                   <li>Mise à jour des contenus</li>
-                  <li>Nouveaux modules</li>
-                  <li>Suivi pédagogique des cohortes</li>
+                  <li>Maintenance et paramétrage du LMS</li>
                 </ul>
                 <Link href={ROUTES.contact} className="btn btn--primary btn--block">Prendre un rendez-vous</Link>
               </div>
