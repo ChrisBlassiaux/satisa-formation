@@ -410,12 +410,21 @@
   min-width: 160px;
 }
 
-// Two-column tables (e.g. a "signs for" / "signs against" comparison) read
-// better split evenly than with the label-column width meant for 3+ column
-// tables above.
-.article-body table:has(tr td:nth-child(2):last-child) th,
-.article-body table:has(tr td:nth-child(2):last-child) td {
+// Tables with 2 to 4 columns are split into equal columns; the fixed
+// first-column width above only remains for wider tables.
+.article-body table:has(tr td:nth-child(2):last-child) :is(th, td) {
   width: 50%;
+  min-width: 0;
+}
+
+.article-body table:has(tr td:nth-child(3):last-child) :is(th, td) {
+  width: 33.333%;
+  min-width: 0;
+}
+
+.article-body table:has(tr td:nth-child(4):last-child) :is(th, td) {
+  width: 25%;
+  min-width: 0;
 }
 
 // Blog filters
