@@ -30,6 +30,7 @@ export type PostSummary = {
   title: string;
   category: string;
   date: string;
+  updatedDate: string | null;
   readingTime: string;
   excerpt: string;
   coverImage: string | null;
@@ -45,6 +46,7 @@ export async function getAllPosts(): Promise<PostSummary[]> {
         title: entry.title,
         category: entry.category,
         date: entry.date ?? "",
+        updatedDate: entry.updatedDate ?? null,
         readingTime: computeReadingTime(node),
         excerpt: entry.excerpt ?? "",
         coverImage: entry.coverImage,

@@ -336,7 +336,15 @@ export default function CertificationRsPage() {
                 Dois-je avoir déjà formé des apprenants avant de déposer un dossier RS ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants ayant suivi le parcours et des données démontrant la maîtrise de la compétence visée. Les exigences du RS sont différentes de celles du RNCP : les données d&apos;insertion professionnelle sont moins centrales, l&apos;accent étant mis sur la démonstration de la compétence certifiée. Une cohorte pilote bien documentée peut suffire selon la qualité des preuves apportées.</p>
+              <p className="faq-item__answer">
+                Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants ayant suivi le parcours et des données démontrant la maîtrise de la compétence visée. Les exigences du RS sont différentes de celles du RNCP : les données d&apos;insertion professionnelle sont moins centrales, l&apos;accent étant mis sur la démonstration de la compétence certifiée. Une cohorte pilote bien documentée peut suffire selon la qualité des preuves apportées.{" "}
+                <Link
+                  href={`${ROUTES.blog}/certification-rncp-suis-je-eligible-au-rs-criteres-de-certification-au-repertoire-specifique`}
+                  style={{ fontStyle: "italic", textDecoration: "underline" }}
+                >
+                  Découvrez tous les critères d&apos;éligibilité au RS.
+                </Link>
+              </p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
@@ -366,6 +374,20 @@ export default function CertificationRsPage() {
               </summary>
               <p className="faq-item__answer">Oui, les formules 2 et 3 proposent chacune une option de paiement échelonné sur plusieurs mois, détaillée dans chaque formule ci-dessus.</p>
             </details>
+          </div>
+          <div style={{ marginTop: "2rem" }}>
+            <p style={{ fontWeight: 700, color: "#002730" }}>
+              Pour aller plus loin, consultez notre article de blog associé :
+            </p>
+            <p style={{ marginTop: "0.5rem" }}>
+              →{" "}
+              <Link
+                href={`${ROUTES.blog}/certification-rncp-suis-je-eligible-au-rs-criteres-de-certification-au-repertoire-specifique`}
+                style={{ fontStyle: "italic", textDecoration: "underline" }}
+              >
+                Suis-je éligible au RS ? Critères d&apos;éligibilité et conditions 2026
+              </Link>
+            </p>
           </div>
           <div style={{ marginTop: "2rem" }}>
             <p style={{ fontWeight: 700, color: "#002730" }}>

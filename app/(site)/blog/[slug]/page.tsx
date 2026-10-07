@@ -119,6 +119,33 @@ function autoWrapFaqSection(tag: RenderableTreeNode): RenderableTreeNode {
   return new Tag(tag.name, tag.attributes, [...before, ...items, ...rest.slice(i)]);
 }
 
+const SITE_URL = "https://www.satisa-formation.fr";
+
+type FaqEntry = { question: string; answer: string };
+
+// Reads the FAQ accordions (explicit {% faq-item %} tags or the auto-wrapped
+// plain "**Question ?**" pattern) so the same content feeds the FAQPage JSON-LD.
+function collectFaqEntries(tag: unknown): FaqEntry[] {
+  if (!Tag.isTag(tag)) return [];
+  if (tag.name === "details" && tag.attributes.className === "faq-item") {
+    const summary = tag.children.find((c) => Tag.isTag(c) && c.name === "summary");
+    const body = tag.children.find((c) => Tag.isTag(c) && c.name === "div");
+    if (!Tag.isTag(summary) || !Tag.isTag(body)) return [];
+    const question = extractText(summary.children).replace(/\s+/g, " ").trim();
+    const answer = body.children
+      .map((block) =>
+        Tag.isTag(block) && (block.name === "ul" || block.name === "ol")
+          ? block.children.map(extractText).join(" ")
+          : extractText(block)
+      )
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
+    return question && answer ? [{ question, answer }] : [];
+  }
+  return tag.children.flatMap(collectFaqEntries);
+}
+
 type TocItem = { id: string; text: string; level: number };
 
 function collectToc(tag: unknown): TocItem[] {
@@ -196,13 +223,36 @@ export default async function BlogPostPage({
   const allPosts = await getAllPosts();
   const suggestedPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 2);
 
+  const faqEntries = collectFaqEntries(renderable);
+  const faqJsonLd =
+    faqEntries.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqEntries.map(({ question, answer }) => ({
+            "@type": "Question",
+            name: question,
+            acceptedAnswer: { "@type": "Answer", text: answer },
+          })),
+        }
+      : null;
+
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
+    description: post.excerpt,
+    image: post.coverImage ? [`${SITE_URL}${post.coverImage}`] : undefined,
     datePublished: postDate,
-    author: { "@type": "Person", name: "Chris Blassiaux" },
-    publisher: { "@type": "Organization", name: "Satisa Formation" },
+    dateModified: post.updatedDate || postDate,
+    mainEntityOfPage: `${SITE_URL}${ROUTES.blog}/${slug}`,
+    author: { "@type": "Person", name: "Chris Blassiaux", url: `${SITE_URL}${ROUTES.about}` },
+    publisher: {
+      "@type": "Organization",
+      name: "Satisa Formation",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/images/logo/logo-satisa-noir.svg` },
+    },
   };
 
   const breadcrumbJsonLd = {
@@ -225,6 +275,12 @@ export default async function BlogPostPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
 
       <section>
         <div className="container article-header">

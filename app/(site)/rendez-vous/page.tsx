@@ -3,14 +3,14 @@ import CalBookingButton from "@/components/CalBookingButton";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Prendre rendez-vous : consultant RNCP/RS",
   description:
     "Écrivez-nous, réservez un créneau ou contactez-nous sur WhatsApp. Un échange sans engagement pour parler de votre projet de certification ou de formation.",
   alternates: {
     canonical: "https://www.satisa-formation.fr/rendez-vous",
   },
   openGraph: {
-    title: "Contact - Satisa Formation",
+    title: "Prendre rendez-vous : consultant RNCP/RS - Satisa Formation",
     description:
       "Écrivez-nous, réservez un créneau ou contactez-nous sur WhatsApp. Un échange sans engagement pour parler de votre projet de certification ou de formation.",
     url: "https://www.satisa-formation.fr/rendez-vous",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact - Satisa Formation",
+    title: "Prendre rendez-vous : consultant RNCP/RS - Satisa Formation",
     description:
       "Écrivez-nous, réservez un créneau ou contactez-nous sur WhatsApp. Un échange sans engagement pour parler de votre projet de certification ou de formation.",
   },

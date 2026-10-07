@@ -40,6 +40,7 @@ const ORGANIZATION_JSON_LD = {
     "@type": "Person",
     name: "Chris Blassiaux",
   },
+  logo: "https://www.satisa-formation.fr/images/logo/logo-satisa-noir.svg",
   areaServed: "FR",
 };
 

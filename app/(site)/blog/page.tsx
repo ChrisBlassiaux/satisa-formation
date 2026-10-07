@@ -6,14 +6,14 @@ import { getAllPosts, CATEGORY_LABELS, formatPostDate } from "@/lib/posts";
 import BlogFilters from "@/components/BlogFilters";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Blog certification RNCP/RS et ingénierie pédagogique",
   description:
     "Certification RNCP/RS, ingénierie pédagogique et digitalisation : les articles de Satisa Formation pour les organismes de formation et certificateurs.",
   alternates: {
     canonical: "https://www.satisa-formation.fr/blog",
   },
   openGraph: {
-    title: "Blog - Satisa Formation",
+    title: "Blog certification RNCP/RS et ingénierie pédagogique - Satisa Formation",
     description:
       "Certification RNCP/RS, ingénierie pédagogique et digitalisation : les articles de Satisa Formation pour les organismes de formation et certificateurs.",
     url: "https://www.satisa-formation.fr/blog",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog - Satisa Formation",
+    title: "Blog certification RNCP/RS et ingénierie pédagogique - Satisa Formation",
     description:
       "Certification RNCP/RS, ingénierie pédagogique et digitalisation : les articles de Satisa Formation pour les organismes de formation et certificateurs.",
   },

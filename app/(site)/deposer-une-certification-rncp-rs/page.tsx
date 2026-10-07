@@ -4,7 +4,7 @@ import { ROUTES } from "@/lib/routes";
 
 const TITLE = "RNCP ou RS : quelle certification choisir ? - Satisa Formation";
 const DESCRIPTION =
-  "RNCP ou RS ? Comparez les deux répertoires France Compétences et trouvez le bon choix pour votre organisme de formation. Diagnostic dès 700 € HT.";
+  "RNCP ou RS ? Comparez les deux répertoires France Compétences et trouvez le bon choix pour votre organisme de formation.";
 
 export const metadata: Metadata = {
   title: "RNCP ou RS : quelle certification choisir ?",

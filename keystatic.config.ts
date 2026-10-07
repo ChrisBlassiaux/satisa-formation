@@ -32,6 +32,11 @@ export default config({
           defaultValue: { kind: "today" },
           validation: { isRequired: true },
         }),
+        updatedDate: fields.date({
+          label: "Date de mise à jour",
+          description:
+            "Optionnel. À renseigner quand l'article est modifié sur le fond : elle alimente les données structurées et le sitemap pour Google. Laissez vide si l'article n'a pas été mis à jour.",
+        }),
         coverImage: fields.image({
           label: "Image de couverture",
           description: "Format recommandé : 16:10 (ex. 1200x750px). Optionnel.",
