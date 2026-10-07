@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ROUTES } from "@/lib/routes";
+import { ROUTES, LINKEDIN_URL } from "@/lib/routes";
 import RevealTimeline from "@/components/RevealTimeline";
 import TimelineLogoBadge from "@/components/TimelineLogoBadge";
 import PhotoPanel from "@/components/PhotoPanel";
@@ -36,6 +36,7 @@ const PERSON_JSON_LD = {
   "@type": "Person",
   name: "Chris Blassiaux",
   jobTitle: "Ingénieur de certification et pédagogique",
+  sameAs: [LINKEDIN_URL],
   worksFor: {
     "@type": "Organization",
     name: "Satisa Formation",

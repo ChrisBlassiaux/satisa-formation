@@ -760,6 +760,50 @@
   font-weight: 600;
 }
 
+// Lien réseau social (icône seule)
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  color: $color-dark;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background: $color-primary;
+    border-color: $color-primary;
+    color: $color-white;
+  }
+}
+
+.author-signature__social {
+  margin-left: auto;
+}
+
+.article-body .social-link {
+  color: $color-dark;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-white;
+  }
+}
+
+.social-link--footer {
+  margin-top: $spacing-sm;
+  border-color: rgba(255, 255, 255, 0.25);
+  color: $color-white;
+}
+
 // Formulaire
 .form-field {
   display: flex;

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ROUTES } from "@/lib/routes";
+import { ROUTES, LINKEDIN_URL } from "@/lib/routes";
+import LinkedInIcon from "@/components/LinkedInIcon";
 
 export default function Footer() {
   return (
@@ -28,9 +29,21 @@ export default function Footer() {
           </div>
           <div className="site-footer__col site-footer__contact">
             <h3>Contact</h3>
-            <p>chris@satisa.fr</p>
+            <p>
+              <a href="mailto:chris@satisa.fr">chris@satisa.fr</a>
+            </p>
             <a href="https://wa.me/33783456753" className="btn btn--primary" target="_blank" rel="noopener">
               Discuter sur WhatsApp
+            </a>
+            <a
+              href={LINKEDIN_URL}
+              className="social-link social-link--footer"
+              target="_blank"
+              rel="noopener noreferrer me"
+              aria-label="Chris Blassiaux sur LinkedIn"
+              title="LinkedIn"
+            >
+              <LinkedInIcon />
             </a>
           </div>
         </div>

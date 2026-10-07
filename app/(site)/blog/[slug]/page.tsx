@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import Markdoc, { Tag, type Config, type RenderableTreeNode } from "@markdoc/markdoc";
-import { ROUTES } from "@/lib/routes";
+import { ROUTES, LINKEDIN_URL } from "@/lib/routes";
+import LinkedInIcon from "@/components/LinkedInIcon";
 import { getAllPosts, getPost, getPostSlugs, CATEGORY_LABELS, formatPostDate, computeReadingTime } from "@/lib/posts";
 
 function slugify(text: string): string {
@@ -246,7 +247,12 @@ export default async function BlogPostPage({
     datePublished: postDate,
     dateModified: post.updatedDate || postDate,
     mainEntityOfPage: `${SITE_URL}${ROUTES.blog}/${slug}`,
-    author: { "@type": "Person", name: "Chris Blassiaux", url: `${SITE_URL}${ROUTES.about}` },
+    author: {
+      "@type": "Person",
+      name: "Chris Blassiaux",
+      url: `${SITE_URL}${ROUTES.about}`,
+      sameAs: [LINKEDIN_URL],
+    },
     publisher: {
       "@type": "Organization",
       name: "Satisa Formation",
@@ -338,6 +344,16 @@ export default async function BlogPostPage({
               <p className="author-signature__name">Chris Blassiaux</p>
               <Link className="author-signature__link" href={ROUTES.about}>Découvrir son parcours</Link>
             </div>
+            <a
+              href={LINKEDIN_URL}
+              className="social-link author-signature__social"
+              target="_blank"
+              rel="noopener noreferrer me"
+              aria-label="Chris Blassiaux sur LinkedIn"
+              title="LinkedIn"
+            >
+              <LinkedInIcon />
+            </a>
           </div>
         </div>
       </section>

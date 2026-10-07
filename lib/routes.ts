@@ -24,3 +24,5 @@ export const MAIN_NAV_LINKS = [
   { href: ROUTES.formations, label: "Concevoir et digitaliser vos formations" },
   { href: ROUTES.about, label: "À propos" },
 ] as const;
+
+export const LINKEDIN_URL = "https://www.linkedin.com/in/christopher-blassiaux-802891198/";

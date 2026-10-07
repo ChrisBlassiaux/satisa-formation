@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ROUTES } from "@/lib/routes";
+import { ROUTES, LINKEDIN_URL } from "@/lib/routes";
 import { getAllPosts, CATEGORY_LABELS, formatPostDate } from "@/lib/posts";
 
 const TITLE = "Certification RNCP/RS & ingénierie pédagogique - Satisa Formation";
@@ -39,6 +39,7 @@ const ORGANIZATION_JSON_LD = {
   founder: {
     "@type": "Person",
     name: "Chris Blassiaux",
+    sameAs: [LINKEDIN_URL],
   },
   logo: "https://www.satisa-formation.fr/images/logo/logo-satisa-noir.svg",
   areaServed: "FR",
@@ -130,7 +131,7 @@ export default async function HomePage() {
                 </a>
               </div>
               <div className="hero__stats">
-                <a className="hero__stat" href="https://www.linkedin.com/in/christopher-blassiaux-802891198/" target="_blank" rel="noopener">
+                <a className="hero__stat" href={LINKEDIN_URL} target="_blank" rel="noopener">
                   <svg className="hero__stat-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                     <path d="M10 1.6l2.35 4.76 5.25.77-3.8 3.7.9 5.23L10 13.5l-4.7 2.46.9-5.23-3.8-3.7 5.25-.77L10 1.6z" fill="#FECC01" />
                   </svg>
