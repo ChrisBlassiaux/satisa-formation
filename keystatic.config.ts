@@ -14,6 +14,11 @@ export default config({
       format: { contentField: "content" },
       schema: {
         title: fields.slug({ name: { label: "Titre", validation: { isRequired: true } } }),
+        seoTitle: fields.text({
+          label: "Titre SEO (balise title)",
+          description:
+            "Optionnel. Titre affiché sur Google, 55-60 caractères maximum (« - Satisa Formation » est ajouté automatiquement). Laissez vide pour reprendre le Titre.",
+        }),
         category: fields.select({
           label: "Catégorie",
           options: [

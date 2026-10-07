@@ -150,14 +150,16 @@ export async function generateMetadata({
   const post = await getPost(slug).catch(() => null);
   if (!post) return {};
 
+  const metaTitle = post.seoTitle || post.title;
+
   return {
-    title: post.title,
+    title: metaTitle,
     description: post.excerpt,
     alternates: {
       canonical: `https://www.satisa-formation.fr/blog/${slug}`,
     },
     openGraph: {
-      title: `${post.title} - Satisa Formation`,
+      title: `${metaTitle} - Satisa Formation`,
       description: post.excerpt,
       url: `https://www.satisa-formation.fr/blog/${slug}`,
       siteName: "Satisa Formation",
@@ -167,7 +169,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} - Satisa Formation`,
+      title: `${metaTitle} - Satisa Formation`,
       description: post.excerpt,
       images: post.coverImage ? [post.coverImage] : undefined,
     },
