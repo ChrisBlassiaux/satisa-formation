@@ -44,20 +44,20 @@ export default function ContactPage() {
         <div className="container">
           <div className="grid grid--2" style={{ alignItems: "stretch" }}>
             <div className="contact-channel">
-              <h3>Nous écrire</h3>
+              <h2 className="contact-channel__title">Nous écrire</h2>
               <p>Décrivez votre projet, nous revenons vers vous sous 48h.</p>
               <ContactForm />
             </div>
 
             <div className="contact-stack">
               <div className="contact-channel">
-                <h3>Prendre rendez-vous</h3>
+                <h2 className="contact-channel__title">Prendre rendez-vous</h2>
                 <p>Réservez directement un créneau de 30 minutes dans l&apos;agenda.</p>
                 <CalBookingButton />
               </div>
 
               <div className="contact-channel contact-channel--whatsapp">
-                <h3>Réponse rapide</h3>
+                <h2 className="contact-channel__title">Réponse rapide</h2>
                 <p>Une question simple ? Écrivez directement sur WhatsApp, réponse rapide garantie.</p>
                 <a href="https://wa.me/33783456753" className="btn btn--primary btn--block" target="_blank" rel="noopener">
                   Discuter sur WhatsApp

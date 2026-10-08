@@ -67,9 +67,9 @@
 }
 
 .tag--active {
-  background: $color-primary;
+  background: $color-primary-dark;
   color: $color-white;
-  border-color: $color-primary;
+  border-color: $color-primary-dark;
 }
 
 // Cards
@@ -904,6 +904,10 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-sm;
+}
+
+.contact-channel__title {
+  font-size: $fs-h3;
 }
 
 .contact-channel--whatsapp {
