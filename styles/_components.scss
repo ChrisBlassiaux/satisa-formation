@@ -804,6 +804,14 @@
   color: $color-white;
 }
 
+// Même menthe que le bouton WhatsApp au survol, logo foncé (contraste 10.6)
+.site-footer .site-footer__col a.social-link--footer:hover,
+.site-footer .site-footer__col a.social-link--footer:focus-visible {
+  background: $color-mint;
+  border-color: $color-mint;
+  color: $color-dark;
+}
+
 // Formulaire
 .form-field {
   display: flex;
