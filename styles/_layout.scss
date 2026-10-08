@@ -295,6 +295,10 @@
   }
 }
 
+.site-footer__bottom p {
+  color: inherit;
+}
+
 .site-footer__legal {
   display: flex;
   flex-wrap: wrap;

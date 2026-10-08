@@ -10,6 +10,8 @@ $gradient-primary: linear-gradient(135deg, #176862, #138f82, #15b8a6);
 // Teintes dérivées (tints/shades) pour surfaces et états
 $color-mint-light: #d4f3f0;
 $color-primary-dark: #0f8a7c;
+// Variante du vert pour le texte courant : contraste >= 4.5 sur blanc et sur $color-mint-light
+$color-primary-text: #0b7165;
 $color-ink: $color-dark;
 $color-muted: #4a6b70;
 $color-border: rgba(0, 39, 48, 0.12);

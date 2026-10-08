@@ -106,7 +106,7 @@ export default async function HomePage() {
                   niveau 6. Dépôt prévu fin 2026.
                 </p>
                 <a className="proof-card__client" href="https://sleep-learning-center.fr/" target="_blank" rel="noopener">
-                  <Image className="proof-card__client-logo" src="/images/logo/logo-slc.webp" alt="" width={37} height={16} priority unoptimized />
+                  <Image className="proof-card__client-logo" src="/images/logo/logo-slc.webp" alt="" width={37} height={16} priority />
                   Sleep Learning Center
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                     <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -331,7 +331,7 @@ export default async function HomePage() {
                       src={post.coverImage}
                       alt={post.title}
                       fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 380px"
                       className="post-card__thumb-img"
                     />
                   )}
