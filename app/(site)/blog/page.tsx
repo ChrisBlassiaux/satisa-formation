@@ -57,7 +57,7 @@ export default async function BlogIndexPage() {
             </div>
 
             <div className="grid grid--3">
-              {posts.map((post) => (
+              {posts.map((post, index) => (
                 <Link
                   key={post.slug}
                   className="post-card"
@@ -70,7 +70,8 @@ export default async function BlogIndexPage() {
                         src={post.coverImage}
                         alt={post.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
+                        priority={index === 0}
+                        sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1280px) 33vw, 380px"
                         className="post-card__thumb-img"
                       />
                     )}

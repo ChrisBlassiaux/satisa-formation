@@ -373,7 +373,7 @@ export default async function BlogPostPage({
                         src={suggested.coverImage}
                         alt={suggested.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
+                        sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1280px) 33vw, 380px"
                         className="post-card__thumb-img"
                       />
                     )}

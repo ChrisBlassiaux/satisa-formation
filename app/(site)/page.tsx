@@ -347,6 +347,11 @@ export default async function HomePage() {
               </Link>
             ))}
           </div>
+          <div className="text-center" style={{ marginTop: "2rem" }}>
+            <Link href={ROUTES.blog} className="btn btn--dark">
+              Voir tous les articles
+            </Link>
+          </div>
         </div>
       </section>
 
