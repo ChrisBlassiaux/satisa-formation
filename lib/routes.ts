@@ -4,6 +4,8 @@ export const ROUTES = {
   certificationRncp: "/deposer-une-certification-rncp-rs/depot-rncp",
   certificationRs: "/deposer-une-certification-rncp-rs/depot-rs",
   formations: "/concevoir-digitaliser-vos-formations",
+  formationsConception: "/concevoir-digitaliser-vos-formations/conception-pedagogique",
+  formationsDigitalisation: "/concevoir-digitaliser-vos-formations/digitalisation-formation",
   about: "/a-propos",
   blog: "/blog",
   contact: "/rendez-vous",
@@ -21,7 +23,14 @@ export const MAIN_NAV_LINKS = [
       { href: ROUTES.certificationRs, label: "Dépôt RS" },
     ],
   },
-  { href: ROUTES.formations, label: "Concevoir et digitaliser vos formations" },
+  {
+    href: ROUTES.formations,
+    label: "Concevoir et digitaliser vos formations",
+    children: [
+      { href: ROUTES.formationsConception, label: "Conception pédagogique" },
+      { href: ROUTES.formationsDigitalisation, label: "Digitalisation" },
+    ],
+  },
   { href: ROUTES.about, label: "À propos" },
 ] as const;
 

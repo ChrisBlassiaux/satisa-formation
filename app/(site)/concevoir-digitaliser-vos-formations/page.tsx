@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
-import OfferAccordion from "@/components/OfferAccordion";
-import OfferRowChevron from "@/components/OfferRowChevron";
+import { FAQ_FORMATIONS, breadcrumbJsonLd, faqJsonLd } from "@/lib/formations";
+import FaqList from "@/components/FaqList";
 
 const TITLE = "Ingénierie pédagogique et digitalisation - Satisa Formation";
 const DESCRIPTION =
@@ -29,60 +29,15 @@ export const metadata: Metadata = {
   },
 };
 
-const FAQ_JSON_LD = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Combien de temps prend la digitalisation d'une formation ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Comptez 4 à 8 semaines pour un module e-learning standard, selon le volume de contenu et le niveau d'interactivité souhaité. Le diagnostic initial affine cette estimation.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Est-ce compatible avec mon LMS actuel ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Les modules sont produits au format SCORM 1.2, compatible avec la grande majorité des LMS (Moodle, Digiforma, Teachizy, 360Learning, et bien d'autres). Le diagnostic vérifie la compatibilité avec votre outil.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Puis-je faire du sur-mesure plutôt que des outils auteurs classiques ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Oui, en plus des outils auteurs (Articulate, iSpring), Satisa développe aussi des modules sur-mesure en HTML/CSS/JS pour des besoins spécifiques d'interactivité ou de charte graphique.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Faut-il déjà avoir un programme de formation structuré ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Non. Si votre contenu n'est pas encore structuré, la formule Conception de formation pose les bases (progression, programme conforme Qualiopi) avant toute digitalisation.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "La maintenance pédagogique est-elle obligatoire ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Non, elle est optionnelle. Elle est utile si vos contenus évoluent régulièrement ou si vous ouvrez de nouvelles cohortes nécessitant un suivi pédagogique continu.",
-      },
-    },
-  ],
-};
+const BREADCRUMB_JSON_LD = breadcrumbJsonLd([
+  { name: "Concevoir et digitaliser vos formations", path: ROUTES.formations },
+]);
 
 export default function FormationsPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(FAQ_FORMATIONS)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }} />
       <section className="hero-page hero-page--formations">
         <div className="container hero-page__layout">
           <div>
@@ -93,6 +48,14 @@ export default function FormationsPage() {
               délivrance, c&apos;est une charge supplémentaire que Satisa peut absorber. Du programme jusqu&apos;au
               déploiement sur votre LMS.
             </p>
+            <div className="hero__actions" style={{ marginTop: "1.5rem" }}>
+              <Link href={ROUTES.formationsConception} className="btn btn--dark">
+                Conception pédagogique
+              </Link>
+              <Link href={ROUTES.formationsDigitalisation} className="btn btn--outline">
+                Digitalisation
+              </Link>
+            </div>
           </div>
           <div className="hero-page__visual" aria-hidden="true">
             <div className="hero-page__visual-shape">
@@ -103,121 +66,6 @@ export default function FormationsPage() {
               </svg>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="container">
-          <div className="section-head">
-            <p className="eyebrow">Nos formules</p>
-            <h2>Choisissez la formule adaptée à votre projet</h2>
-          </div>
-
-          <OfferAccordion>
-            <div className="offer-row">
-              <button type="button" className="offer-row__header" aria-expanded="false" aria-controls="offer-body-6">
-                <span className="offer-row__title">
-                  <span className="offer-row__name-row">
-                    <span className="offer-row__index" aria-hidden="true">6</span>
-                    <span className="offer-row__name">Conception de formation</span>
-                  </span>
-                </span>
-                <span className="offer-row__meta">
-                  <span className="offer-row__price">2 500 € HT</span>
-                  <OfferRowChevron />
-                </span>
-              </button>
-              <div className="offer-row__body" id="offer-body-6" hidden>
-                <ul className="pricing-card__deliverables">
-                  <li>Analyse de la demande, du référentiel et du public cible</li>
-                  <li>Progression pédagogique (objectifs dérivés du référentiel)</li>
-                  <li>Programme de formation conforme Qualiopi</li>
-                  <li>Scénario pédagogique et d&apos;accompagnement, séquencement et volumétrie horaire</li>
-                </ul>
-                <p className="pricing-card__note">
-                  Alignement avec le référentiel de la certification visée (RNCP, RS ou référentiel interne), de
-                  l&apos;analyse des compétences jusqu&apos;aux modalités d&apos;évaluation certificative.
-                </p>
-                <Link href={ROUTES.contact} className="btn btn--primary btn--block">Prendre un rendez-vous</Link>
-              </div>
-            </div>
-
-            <div className="offer-row">
-              <button type="button" className="offer-row__header" aria-expanded="false" aria-controls="offer-body-7">
-                <span className="offer-row__title">
-                  <span className="offer-row__name-row">
-                    <span className="offer-row__index" aria-hidden="true">7</span>
-                    <span className="offer-row__name">Création de contenus de formation</span>
-                  </span>
-                </span>
-                <span className="offer-row__meta">
-                  <span className="offer-row__price">Sur devis</span>
-                  <OfferRowChevron />
-                </span>
-              </button>
-              <div className="offer-row__body" id="offer-body-7" hidden>
-                <ul className="pricing-card__deliverables">
-                  <li>Supports de présentation (diapositives, fiches, guide formateur)</li>
-                  <li>Activités d&apos;apprentissage (exercices pratiques et mises en situation)</li>
-                  <li>Évaluations formatives, sommatives et certificatives</li>
-                </ul>
-                <Link href={ROUTES.contact} className="btn btn--primary btn--block">Discutons de votre projet</Link>
-              </div>
-            </div>
-
-            <div className="offer-row">
-              <button type="button" className="offer-row__header" aria-expanded="false" aria-controls="offer-body-8">
-                <span className="offer-row__title">
-                  <span className="offer-row__name-row">
-                    <span className="offer-row__index" aria-hidden="true">8</span>
-                    <span className="offer-row__name">Digitalisation</span>
-                  </span>
-                </span>
-                <span className="offer-row__meta">
-                  <span className="offer-row__price">Sur devis</span>
-                  <OfferRowChevron />
-                </span>
-              </button>
-              <div className="offer-row__body" id="offer-body-8" hidden>
-                <p className="pricing-card__note">
-                  Diagnostic inclus. Modalités couvertes : e-learning, blended learning. Outils : Moodle, Digiforma,
-                  Teachizy, 360Learning, outils auteurs (Articulate Rise, Storyline, iSpring), HTML/CSS/JS
-                  sur-mesure, SCORM 1.2.
-                </p>
-                <ul className="pricing-card__deliverables">
-                  <li>Diagnostic et cadrage du projet</li>
-                  <li>Scénarisation et conception digitale</li>
-                  <li>Production des modules</li>
-                  <li>Déploiement technique sur le LMS</li>
-                  <li>Tests et accompagnement des équipes</li>
-                </ul>
-                <Link href={ROUTES.contact} className="btn btn--primary btn--block">Discutons de votre projet</Link>
-              </div>
-            </div>
-
-            <div className="offer-row">
-              <button type="button" className="offer-row__header" aria-expanded="false" aria-controls="offer-body-9">
-                <span className="offer-row__title">
-                  <span className="offer-row__name-row">
-                    <span className="offer-row__index" aria-hidden="true">9</span>
-                    <span className="offer-row__name">Maintenance pédagogique mensuelle</span>
-                  </span>
-                </span>
-                <span className="offer-row__meta">
-                  <span className="offer-row__price">800 € HT/mois</span>
-                  <OfferRowChevron />
-                </span>
-              </button>
-              <div className="offer-row__body" id="offer-body-9" hidden>
-                <p className="pricing-card__note">Engagement de 3 mois minimum.</p>
-                <ul className="pricing-card__deliverables">
-                  <li>Mise à jour des contenus</li>
-                  <li>Maintenance et paramétrage du LMS</li>
-                </ul>
-                <Link href={ROUTES.contact} className="btn btn--primary btn--block">Prendre un rendez-vous</Link>
-              </div>
-            </div>
-          </OfferAccordion>
         </div>
       </section>
 
@@ -240,6 +88,9 @@ export default function FormationsPage() {
               <div>
                 <h3>Conception des formations</h3>
                 <p>Structurer votre contenu en un programme pédagogique cohérent et conforme Qualiopi : objectifs, progression, supports et évaluations.</p>
+                <Link href={ROUTES.formationsConception} className="problem-list__link">
+                  Découvrir la conception pédagogique →
+                </Link>
               </div>
             </li>
             <li>
@@ -252,6 +103,9 @@ export default function FormationsPage() {
               <div>
                 <h3>Digitalisation des formations</h3>
                 <p>Transformer vos contenus en parcours blended learning ou 100&nbsp;% e-learning, avec intégration LMS (Moodle, Digiforma, 360Learning...).</p>
+                <Link href={ROUTES.formationsDigitalisation} className="problem-list__link">
+                  Découvrir la digitalisation →
+                </Link>
               </div>
             </li>
           </ul>
@@ -345,45 +199,9 @@ export default function FormationsPage() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Questions fréquentes</p>
-            <h2>Délais, compatibilité, sur-mesure</h2>
+            <h2>Concevoir et digitaliser : vos questions</h2>
           </div>
-          <div>
-            <details className="faq-item">
-              <summary className="faq-item__question">
-                Combien de temps prend la digitalisation d&apos;une formation ?
-                <span className="faq-item__icon" aria-hidden="true"></span>
-              </summary>
-              <p className="faq-item__answer">Comptez 4 à 8 semaines pour un module e-learning standard, selon le volume de contenu et le niveau d&apos;interactivité souhaité. Le diagnostic initial affine cette estimation.</p>
-            </details>
-            <details className="faq-item">
-              <summary className="faq-item__question">
-                Est-ce compatible avec mon LMS actuel ?
-                <span className="faq-item__icon" aria-hidden="true"></span>
-              </summary>
-              <p className="faq-item__answer">Les modules sont produits au format SCORM 1.2, compatible avec la grande majorité des LMS (Moodle, Digiforma, Teachizy, 360Learning, et bien d&apos;autres). Le diagnostic vérifie la compatibilité avec votre outil.</p>
-            </details>
-            <details className="faq-item">
-              <summary className="faq-item__question">
-                Puis-je faire du sur-mesure plutôt que des outils auteurs classiques ?
-                <span className="faq-item__icon" aria-hidden="true"></span>
-              </summary>
-              <p className="faq-item__answer">Oui, en plus des outils auteurs (Articulate, iSpring), Satisa développe aussi des modules sur-mesure en HTML/CSS/JS pour des besoins spécifiques d&apos;interactivité ou de charte graphique.</p>
-            </details>
-            <details className="faq-item">
-              <summary className="faq-item__question">
-                Faut-il déjà avoir un programme de formation structuré ?
-                <span className="faq-item__icon" aria-hidden="true"></span>
-              </summary>
-              <p className="faq-item__answer">Non. Si votre contenu n&apos;est pas encore structuré, la formule Conception de formation pose les bases (progression, programme conforme Qualiopi) avant toute digitalisation.</p>
-            </details>
-            <details className="faq-item">
-              <summary className="faq-item__question">
-                La maintenance pédagogique est-elle obligatoire ?
-                <span className="faq-item__icon" aria-hidden="true"></span>
-              </summary>
-              <p className="faq-item__answer">Non, elle est optionnelle. Elle est utile si vos contenus évoluent régulièrement ou si vous ouvrez de nouvelles cohortes nécessitant un suivi pédagogique continu.</p>
-            </details>
-          </div>
+          <FaqList items={FAQ_FORMATIONS} />
         </div>
       </section>
 

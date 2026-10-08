@@ -749,6 +749,235 @@
   color: $color-muted;
 }
 
+// Digitalisation page (page formations)
+.digital-band {
+  background: $color-dark;
+  color: $color-white;
+}
+
+.digital-band h2,
+.digital-band h3 {
+  color: $color-white;
+}
+
+.digital-band .eyebrow {
+  color: $color-mint;
+}
+
+.digital-band p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.digital-band .section-head {
+  max-width: 720px;
+}
+
+.roadmap-title {
+  margin-bottom: $spacing-md;
+  font-size: 1.1rem;
+}
+
+.roadmap {
+  display: grid;
+  gap: 0;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-lg $spacing-md;
+  }
+}
+
+.roadmap__step {
+  position: relative;
+  padding: 0 0 $spacing-md 3.25rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 44px;
+    bottom: 4px;
+    left: 19px;
+    width: 2px;
+    background: rgba(151, 225, 220, 0.35);
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+
+  @include from($bp-tablet) {
+    padding: 3.25rem 0 0;
+
+    &::after {
+      top: 19px;
+      bottom: auto;
+      left: 48px;
+      right: calc(-#{$spacing-md} + 8px);
+      width: auto;
+      height: 2px;
+    }
+
+    &:nth-child(4n)::after {
+      display: none;
+    }
+  }
+}
+
+.roadmap__num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: $color-mint;
+  color: $color-dark;
+  font-weight: 700;
+}
+
+.roadmap__title {
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+  color: $color-white;
+}
+
+.digital-band .roadmap__title {
+  color: $color-white;
+}
+
+.roadmap__text {
+  font-size: $fs-small;
+}
+
+.roadmap-note {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-sm;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: $fs-small;
+}
+
+.digital-features {
+  display: grid;
+  gap: $spacing-sm;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.digital-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-left: 4px solid $color-primary;
+  border-radius: $radius-md;
+  background: $color-white;
+}
+
+.digital-feature__title {
+  margin-top: $spacing-xs;
+  font-size: 1rem;
+}
+
+.digital-feature__text {
+  font-size: $fs-small;
+}
+
+.digital-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.digital-chips .tag {
+  padding: 0.2em 0.7em;
+  font-size: 0.75rem;
+}
+
+// Formula cards (pages conception / digitalisation)
+.formula-cards {
+  display: grid;
+  gap: $spacing-md;
+  align-items: stretch;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.formula-cards--2 {
+  @include from($bp-desktop) {
+    max-width: 880px;
+    margin-inline: auto;
+  }
+}
+
+.formula-cards--3 {
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.formula-card {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding: $spacing-lg;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+}
+
+.formula-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xs;
+}
+
+.formula-card__name {
+  font-size: 1.1rem;
+}
+
+.formula-card .pricing-card__deliverables {
+  margin: $spacing-xs 0;
+}
+
+.formula-card__note {
+  margin: $spacing-xs 0;
+}
+
+.formula-card__cta {
+  margin-top: auto;
+}
+
+.problem-list__link {
+  display: inline-block;
+  margin-top: $spacing-xs;
+  font-size: $fs-small;
+  font-weight: 600;
+  color: $color-mint;
+  text-decoration: underline;
+}
+
+.problem-list__link:hover {
+  text-decoration: none;
+}
+
+
 // Legal pages
 .legal-content {
   max-width: 760px;

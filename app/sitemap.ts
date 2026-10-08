@@ -13,6 +13,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}${ROUTES.certificationRncp}`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}${ROUTES.certificationRs}`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}${ROUTES.formations}`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}${ROUTES.formationsConception}`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}${ROUTES.formationsDigitalisation}`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}${ROUTES.about}`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}${ROUTES.blog}`, changeFrequency: "weekly", priority: 0.6 },
     { url: `${BASE_URL}${ROUTES.contact}`, changeFrequency: "monthly", priority: 0.6 },
