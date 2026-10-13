@@ -55,7 +55,7 @@ export default function AboutPage() {
         <div className="container hero-page--split">
           <div className="about-photo">
             <Image
-              src="/images/photos/profil-chris-apropos.webp"
+              src="/images/photos/profil-chris-apropos-2.webp"
               alt="Chris Blassiaux, fondateur de Satisa Formation"
               width={500}
               height={500}
