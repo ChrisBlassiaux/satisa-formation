@@ -338,7 +338,7 @@ export default async function BlogPostPage({
         <div className="container article-body">
           <div className="author-signature">
             <div className="author-signature__avatar">
-              <Image src="/images/photos/profil-chris.webp" alt="" width={56} height={56} />
+              <Image src="/images/photos/profil-chris-apropos.webp" alt="" width={56} height={56} />
             </div>
             <div>
               <p className="author-signature__name">Chris Blassiaux</p>
