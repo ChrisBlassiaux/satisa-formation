@@ -305,6 +305,7 @@ export default async function BlogPostPage({
           <div className="container article-body">
             <div className="article-cover">
               <Image
+                quality={90}
                 src={post.coverImage}
                 alt={post.title}
                 fill
@@ -370,6 +371,7 @@ export default async function BlogPostPage({
                   <div className="post-card__thumb">
                     {suggested.coverImage && (
                       <Image
+                        quality={90}
                         src={suggested.coverImage}
                         alt={suggested.title}
                         fill

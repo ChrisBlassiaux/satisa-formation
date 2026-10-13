@@ -328,6 +328,7 @@ export default async function HomePage() {
                 <div className="post-card__thumb">
                   {post.coverImage && (
                     <Image
+                      quality={90}
                       src={post.coverImage}
                       alt={post.title}
                       fill

@@ -67,6 +67,7 @@ export default async function BlogIndexPage() {
                   <div className="post-card__thumb">
                     {post.coverImage && (
                       <Image
+                        quality={90}
                         src={post.coverImage}
                         alt={post.title}
                         fill
