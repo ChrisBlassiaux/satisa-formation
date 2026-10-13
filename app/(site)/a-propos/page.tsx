@@ -280,14 +280,17 @@ export default function AboutPage() {
         <div className="container">
           <PhotoPanel
             photos={[
-              { src: "/images/photos/chris-bureau.webp", alt: "Chris Blassiaux au travail sur son bureau" },
               {
-                src: "/images/photos/chris-terrasse-1.webp",
-                alt: "Chris Blassiaux qui travaille sur son ordinateur portable en terrasse",
+                src: "/images/photos/chris-travail-table-1.webp",
+                alt: "Chris Blassiaux souriant, à sa table de travail avec son ordinateur portable",
               },
               {
-                src: "/images/photos/chris-terrasse-2.webp",
-                alt: "Chris Blassiaux souriant, en terrasse avec son ordinateur portable",
+                src: "/images/photos/chris-bureau-ecrans.webp",
+                alt: "Chris Blassiaux de profil à son bureau, devant deux écrans affichant le site Satisa Formation",
+              },
+              {
+                src: "/images/photos/chris-travail-table-2.webp",
+                alt: "Chris Blassiaux en pleine discussion devant son ordinateur portable",
               },
             ]}
           />
