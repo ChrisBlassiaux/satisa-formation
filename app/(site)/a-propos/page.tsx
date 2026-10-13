@@ -59,6 +59,7 @@ export default function AboutPage() {
               alt="Chris Blassiaux, fondateur de Satisa Formation"
               width={500}
               height={500}
+              quality={90}
               priority
               sizes="(max-width: 768px) calc(100vw - 32px), 500px"
             />
