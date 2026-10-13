@@ -7,7 +7,7 @@ import PaymentOptions from "@/components/PaymentOptions";
 
 const TITLE = "Accompagnement au dépôt RS - Satisa Formation";
 const DESCRIPTION =
-  "Accompagnement au dépôt d'une certification RS auprès de France Compétences : diagnostic, référentiel ciblé, cohorte pilote, dépôt du dossier.";
+  "Accompagnement au dépôt RS : je vous aide à enregistrer votre certification au Répertoire spécifique, du diagnostic au dossier. Tarifs fixes.";
 
 export const metadata: Metadata = {
   title: "Accompagnement au dépôt RS",
@@ -167,7 +167,7 @@ export default function CertificationRsPage() {
                   </span>
                 </span>
                 <span className="offer-row__meta">
-                  <span className="offer-row__price">700 € HT</span>
+                  <span className="offer-row__price" data-nosnippet>700 € HT</span>
                   <OfferRowChevron />
                 </span>
               </button>
@@ -194,7 +194,7 @@ export default function CertificationRsPage() {
                     <span className="offer-card__subtitle">Vous produisez, nous vous guidons</span>
                   </span>
                   <span className="offer-row__meta">
-                    <span className="offer-row__price">4 000 € HT</span>
+                    <span className="offer-row__price" data-nosnippet>4 000 € HT</span>
                     <OfferRowChevron />
                   </span>
                 </button>
@@ -229,7 +229,7 @@ export default function CertificationRsPage() {
                     <span className="offer-card__subtitle">Nous produisons, vous validez</span>
                   </span>
                   <span className="offer-row__meta">
-                    <span className="offer-row__price">8 000 € HT</span>
+                    <span className="offer-row__price" data-nosnippet>8 000 € HT</span>
                     <OfferRowChevron />
                   </span>
                 </button>
@@ -265,7 +265,7 @@ export default function CertificationRsPage() {
                   </span>
                 </span>
                 <span className="offer-row__meta">
-                  <span className="offer-row__price">500 € HT/jour</span>
+                  <span className="offer-row__price" data-nosnippet>500 € HT/jour</span>
                   <OfferRowChevron />
                 </span>
               </button>
@@ -290,7 +290,7 @@ export default function CertificationRsPage() {
                   </span>
                 </span>
                 <span className="offer-row__meta">
-                  <span className="offer-row__price">500 € HT/mois</span>
+                  <span className="offer-row__price" data-nosnippet>500 € HT/mois</span>
                   <OfferRowChevron />
                 </span>
               </button>

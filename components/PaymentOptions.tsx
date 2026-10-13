@@ -41,7 +41,7 @@ export default function PaymentOptions({
             </span>
             <div>
               <p className="payment-option__label">{option.label}</p>
-              <p className="payment-option__price">{option.price}</p>
+              <p className="payment-option__price" data-nosnippet>{option.price}</p>
               {option.detail ? <p className="payment-option__detail">{option.detail}</p> : null}
             </div>
           </div>

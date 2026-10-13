@@ -7,7 +7,7 @@ import PaymentOptions from "@/components/PaymentOptions";
 
 const TITLE = "Accompagnement au dépôt RNCP - Satisa Formation";
 const DESCRIPTION =
-  "Accompagnement au dépôt d'une certification RNCP auprès de France Compétences : diagnostic, référentiel, cohorte pilote, dépôt du dossier.";
+  "Accompagnement au dépôt RNCP : je vous aide à enregistrer votre certification auprès de France Compétences, du diagnostic au dossier. Tarifs fixes.";
 
 export const metadata: Metadata = {
   title: "Accompagnement au dépôt RNCP",
@@ -167,7 +167,7 @@ export default function CertificationRncpPage() {
                   </span>
                 </span>
                 <span className="offer-row__meta">
-                  <span className="offer-row__price">700 € HT</span>
+                  <span className="offer-row__price" data-nosnippet>700 € HT</span>
                   <OfferRowChevron />
                 </span>
               </button>
@@ -194,7 +194,7 @@ export default function CertificationRncpPage() {
                     <span className="offer-card__subtitle">Vous produisez, nous vous guidons</span>
                   </span>
                   <span className="offer-row__meta">
-                    <span className="offer-row__price">5 000 € HT</span>
+                    <span className="offer-row__price" data-nosnippet>5 000 € HT</span>
                     <OfferRowChevron />
                   </span>
                 </button>
@@ -229,7 +229,7 @@ export default function CertificationRncpPage() {
                     <span className="offer-card__subtitle">Nous produisons, vous validez</span>
                   </span>
                   <span className="offer-row__meta">
-                    <span className="offer-row__price">10 000 € HT</span>
+                    <span className="offer-row__price" data-nosnippet>10 000 € HT</span>
                     <OfferRowChevron />
                   </span>
                 </button>
@@ -265,7 +265,7 @@ export default function CertificationRncpPage() {
                   </span>
                 </span>
                 <span className="offer-row__meta">
-                  <span className="offer-row__price">500 € HT/jour</span>
+                  <span className="offer-row__price" data-nosnippet>500 € HT/jour</span>
                   <OfferRowChevron />
                 </span>
               </button>
@@ -290,7 +290,7 @@ export default function CertificationRncpPage() {
                   </span>
                 </span>
                 <span className="offer-row__meta">
-                  <span className="offer-row__price">500 € HT/mois</span>
+                  <span className="offer-row__price" data-nosnippet>500 € HT/mois</span>
                   <OfferRowChevron />
                 </span>
               </button>
