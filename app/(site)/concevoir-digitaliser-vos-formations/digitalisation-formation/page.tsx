@@ -34,16 +34,6 @@ const BREADCRUMB_JSON_LD = breadcrumbJsonLd([
   { name: "Digitalisation", path: ROUTES.formationsDigitalisation },
 ]);
 
-const ROADMAP_STEPS = [
-  { title: "Rendez-vous de cadrage", text: "On définit vos objectifs, votre public et le périmètre du projet." },
-  { title: "Diagnostic et cadrage", text: "Analyse de vos contenus et de votre LMS, validation du plan de production." },
-  { title: "Scénarisation et conception digitale", text: "Scénario pédagogique digital et maquettes validés avec vous." },
-  { title: "Production des modules", text: "Vidéos, audios, exercices et évaluations interactifs, module par module." },
-  { title: "Intégration et paramétrage sur le LMS", text: "Déploiement des modules et réglage des parcours, des accès et du suivi." },
-  { title: "Tests et validation", text: "Recette complète avec vous avant l'ouverture aux apprenants." },
-  { title: "Accompagnement et première session", text: "Prise en main par vos équipes et appui au lancement." },
-];
-
 const TOOL_CHIPS = ["Articulate Rise", "Storyline", "iSpring", "SCORM 1.2", "HTML/CSS/JS"];
 
 const DIGITAL_FEATURES = [
@@ -181,22 +171,6 @@ export default function DigitalisationPage() {
               </ul>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="digital-band">
-        <div className="container">
-          <h2 className="roadmap-title">Du rendez-vous de cadrage à la première session</h2>
-          <ol className="roadmap">
-            {ROADMAP_STEPS.map((step, index) => (
-              <li key={step.title} className="roadmap__step">
-                <span className="roadmap__num" aria-hidden="true">{index + 1}</span>
-                <p className="roadmap__title">{step.title}</p>
-                <p className="roadmap__text">{step.text}</p>
-              </li>
-            ))}
-          </ol>
-          <p className="roadmap-note">Délai indicatif : 4 à 8 semaines pour un module e-learning standard.</p>
         </div>
       </section>
 

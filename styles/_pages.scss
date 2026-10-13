@@ -441,19 +441,7 @@
 
 // Problem section (page certification) — legacy, kept in case other pages still reference it
 .problem-section {
-  background: $color-dark;
-}
-
-.problem-section .eyebrow {
-  color: $color-mint;
-}
-
-.problem-section .eyebrow::before {
-  background: $color-mint;
-}
-
-.problem-section h2 {
-  color: $color-white;
+  background: $color-white;
 }
 
 .problem-list {
@@ -484,8 +472,8 @@
   width: 52px;
   height: 52px;
   border-radius: $radius-md;
-  background: rgba(255, 255, 255, 0.08);
-  color: $color-mint;
+  background: $color-mint-light;
+  color: $color-primary-dark;
   flex-shrink: 0;
 }
 
@@ -495,14 +483,14 @@
 }
 
 .problem-list h3 {
-  color: $color-white;
+  color: $color-dark;
   font-size: 1.05rem;
   margin-bottom: 0.3em;
 }
 
 .problem-list p {
   font-size: $fs-small;
-  color: rgba(255, 255, 255, 0.7);
+  color: $color-muted;
 }
 
 // Profile cards (page certification — "Dans quelle situation êtes-vous ?")
@@ -1004,7 +992,7 @@
   margin-top: $spacing-xs;
   font-size: $fs-small;
   font-weight: 600;
-  color: $color-mint;
+  color: $color-primary-dark;
   text-decoration: underline;
 }
 
