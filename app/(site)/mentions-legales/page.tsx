@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Mentions légales",
   description: "Mentions légales du site Satisa Formation.",
-  robots: { index: false, follow: true },
   alternates: {
     canonical: "https://www.satisa-formation.fr/mentions-legales",
   },

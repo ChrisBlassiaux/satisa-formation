@@ -75,7 +75,7 @@ export default function ConceptionPage() {
           <div className="formula-cards formula-cards--3">
             <FormulaCard formula={FORMULAS.conception} />
             <FormulaCard formula={FORMULAS.contenus} />
-            <FormulaCard formula={FORMULAS.maintenance} />
+            <FormulaCard formula={FORMULAS.maintenance} featured badge="Maintenance" />
           </div>
         </div>
       </section>

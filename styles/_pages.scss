@@ -662,11 +662,11 @@
   margin-bottom: $spacing-sm;
 }
 
-.digital-axis__head h4 {
+.digital-axis__head h3 {
   font-size: 1.02rem;
 }
 
-.digital-axis__head h4 span {
+.digital-axis__head h3 span {
   display: block;
   font-size: $fs-small;
   font-weight: 600;
@@ -939,6 +939,41 @@
   background: $color-white;
 }
 
+.formula-card {
+  position: relative;
+}
+
+.formula-card--featured {
+  border-color: transparent;
+  background: $color-mint;
+}
+
+.formula-card--featured .formula-card__head {
+  margin-top: $spacing-lg;
+}
+
+.formula-card--featured .offer-row__price {
+  background: $color-white;
+}
+
+.formula-card--featured .pricing-card__note,
+.formula-card--featured .pricing-card__deliverables li,
+.formula-card--featured .pricing-card__deliverables li::before {
+  color: $color-dark;
+}
+
+.formula-card__badge {
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  padding: 0.3em 0.9em;
+  border-radius: $radius-sm;
+  background: $color-dark;
+  color: $color-white;
+  font-size: $fs-small;
+  font-weight: 700;
+}
+
 .formula-card__head {
   display: flex;
   flex-wrap: wrap;
@@ -977,6 +1012,62 @@
   text-decoration: none;
 }
 
+
+// Deux services côte à côte (page mère formations)
+.service-compare {
+  display: grid;
+  gap: $spacing-md;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+  }
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  padding: $spacing-lg;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+}
+
+.service-card__title {
+  margin-top: $spacing-xs;
+  font-size: 1.25rem;
+}
+
+.service-card__label {
+  margin-top: $spacing-sm;
+  font-size: $fs-small;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-primary-dark;
+}
+
+.service-card__when {
+  color: $color-dark;
+}
+
+.service-card__list {
+  margin: 0;
+}
+
+.service-card__link {
+  margin-top: auto;
+  padding-top: $spacing-sm;
+  color: $color-primary-dark;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.service-card__link:hover {
+  text-decoration: none;
+}
 
 // Legal pages
 .legal-content {

@@ -33,6 +33,46 @@ const BREADCRUMB_JSON_LD = breadcrumbJsonLd([
   { name: "Concevoir et digitaliser vos formations", path: ROUTES.formations },
 ]);
 
+const SERVICES = [
+  {
+    title: "Conception pédagogique",
+    icon: (
+      <>
+        <path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z" />
+        <path d="M7 10.5V16c0 1.1 2.2 3 5 3s5-1.9 5-3v-5.5" />
+        <path d="M21 7.5v6" />
+      </>
+    ),
+    when: "Votre contenu n'est pas encore structuré, ou votre formation doit s'aligner sur un référentiel (RNCP, RS ou interne).",
+    deliverables: [
+      "Analyse de la demande, du référentiel et du public cible",
+      "Progression pédagogique (objectifs dérivés du référentiel)",
+      "Programme de formation conforme Qualiopi",
+      "Supports, activités d'apprentissage et évaluations",
+    ],
+    href: ROUTES.formationsConception,
+    cta: "Découvrir la conception pédagogique",
+  },
+  {
+    title: "Digitalisation",
+    icon: (
+      <>
+        <rect x="3" y="4" width="18" height="13" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+      </>
+    ),
+    when: "Votre programme existe déjà et vous voulez le proposer en blended learning ou en 100 % e-learning.",
+    deliverables: [
+      "Scénarisation et conception digitale",
+      "Production des modules : vidéos, audios, exercices et évaluations interactifs",
+      "Déploiement et paramétrage sur votre LMS (Moodle, Digiforma, Teachizy, 360Learning)",
+      "Tests et accompagnement des équipes",
+    ],
+    href: ROUTES.formationsDigitalisation,
+    cta: "Découvrir la digitalisation",
+  },
+];
+
 export default function FormationsPage() {
   return (
     <>
@@ -112,40 +152,40 @@ export default function FormationsPage() {
         </div>
       </section>
 
+      <section className="section-tinted">
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Deux services, deux besoins</p>
+            <h2>Ce que chacun apporte à votre organisme de formation</h2>
+          </div>
+          <div className="service-compare">
+            {SERVICES.map((service) => (
+              <article key={service.title} className="service-card">
+                <span className="benefit-tile__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    {service.icon}
+                  </svg>
+                </span>
+                <h3 className="service-card__title">{service.title}</h3>
+                <p className="service-card__label">Quand</p>
+                <p className="service-card__when">{service.when}</p>
+                <p className="service-card__label">Ce que vous obtenez</p>
+                <ul className="pricing-card__deliverables service-card__list">
+                  {service.deliverables.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <Link href={service.href} className="service-card__link">
+                  {service.cta} →
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section>
         <div className="container">
-          <h3 className="subsection-title">Les deux axes de digitalisation</h3>
-          <div className="digital-axes">
-            <div className="digital-axis">
-              <div className="digital-axis__head">
-                <span className="offer-row__index" aria-hidden="true">1</span>
-                <h4>
-                  Présentiel &amp; télé-présentiel augmenté <span>(Blended Learning)</span>
-                </h4>
-              </div>
-              <ul className="digital-axis__list">
-                <li>Enrichissez vos cours en salle ou en visio avec du contenu complémentaire en ligne</li>
-                <li>Plateforme pédagogique disponible en parallèle de la formation</li>
-                <li>Supports, vidéos, quiz, exercices pour approfondir les notions</li>
-                <li>Plus de temps en présentiel pour la pratique et les échanges</li>
-              </ul>
-            </div>
-            <div className="digital-axis">
-              <div className="digital-axis__head">
-                <span className="offer-row__index" aria-hidden="true">2</span>
-                <h4>
-                  Distanciel <span>(E-learning)</span>
-                </h4>
-              </div>
-              <ul className="digital-axis__list">
-                <li>Transformez une partie ou l&apos;ensemble de vos formations en modules accessibles 100&nbsp;% à distance</li>
-                <li>Capsules vidéos interactives, quiz et exercices auto-corrigés</li>
-                <li>Suivi de progression et validation des acquis</li>
-                <li>Accessibles à tout moment, sur tout appareil</li>
-              </ul>
-            </div>
-          </div>
-
           <h3 className="subsection-title">Ce que ça change pour votre organisme de formation</h3>
           <div className="benefit-grid">
             <div className="benefit-tile">

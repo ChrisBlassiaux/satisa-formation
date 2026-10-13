@@ -143,7 +143,43 @@ export default function DigitalisationPage() {
           </div>
           <div className="formula-cards formula-cards--2">
             <FormulaCard formula={FORMULAS.digitalisation} />
-            <FormulaCard formula={FORMULAS.maintenance} />
+            <FormulaCard formula={FORMULAS.maintenance} featured badge="Maintenance" />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <h2 className="subsection-title">Les deux axes de digitalisation</h2>
+          <div className="digital-axes">
+            <div className="digital-axis">
+              <div className="digital-axis__head">
+                <span className="offer-row__index" aria-hidden="true">1</span>
+                <h3>
+                  Présentiel &amp; télé-présentiel augmenté <span>(Blended Learning)</span>
+                </h3>
+              </div>
+              <ul className="digital-axis__list">
+                <li>Enrichissez vos cours en salle ou en visio avec du contenu complémentaire en ligne</li>
+                <li>Plateforme pédagogique disponible en parallèle de la formation</li>
+                <li>Supports, vidéos, quiz, exercices pour approfondir les notions</li>
+                <li>Plus de temps en présentiel pour la pratique et les échanges</li>
+              </ul>
+            </div>
+            <div className="digital-axis">
+              <div className="digital-axis__head">
+                <span className="offer-row__index" aria-hidden="true">2</span>
+                <h3>
+                  Distanciel <span>(E-learning)</span>
+                </h3>
+              </div>
+              <ul className="digital-axis__list">
+                <li>Transformez une partie ou l&apos;ensemble de vos formations en modules accessibles 100&nbsp;% à distance</li>
+                <li>Capsules vidéos interactives, quiz et exercices auto-corrigés</li>
+                <li>Suivi de progression et validation des acquis</li>
+                <li>Accessibles à tout moment, sur tout appareil</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
