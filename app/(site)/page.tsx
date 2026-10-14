@@ -198,7 +198,7 @@ export default async function HomePage() {
       <section>
         <div className="container grid grid--2" style={{ alignItems: "center" }}>
           <div className="about-photo about-photo--compact">
-            <Image src="/images/photos/profil-chris-accueil-v3.webp" alt="Chris Blassiaux, fondateur de Satisa Formation" width={500} height={500} quality={100} />
+            <Image src="/images/photos/profil-chris-accueil-v3.webp" alt="Chris Blassiaux, fondateur de Satisa Formation" width={500} height={500} unoptimized />
           </div>
           <div>
             <p className="eyebrow">À propos</p>
