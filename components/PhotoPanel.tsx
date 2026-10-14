@@ -12,6 +12,7 @@ export default function PhotoPanel({ photos }: { photos: Photo[] }) {
             alt={photo.alt}
             fill
             quality={100}
+            unoptimized
             sizes="(max-width: 768px) 33vw, 380px"
             style={photo.position ? { objectPosition: photo.position } : undefined}
           />
