@@ -67,11 +67,11 @@ export default async function BlogIndexPage() {
                   <div className="post-card__thumb">
                     {post.coverImage && (
                       <Image
-                        quality={90}
                         src={post.coverImage}
                         alt={post.title}
                         fill
-                        priority={index === 0}
+                        preload={index === 0}
+                        fetchPriority={index === 0 ? "high" : undefined}
                         sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1280px) 33vw, 380px"
                         className="post-card__thumb-img"
                       />

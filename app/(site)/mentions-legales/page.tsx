@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Mentions légales",
-  description: "Mentions légales du site Satisa Formation.",
+  description:
+    "Mentions légales de Satisa Formation : éditeur du site, hébergeur, directeur de publication et moyens de contact.",
+  openGraph: {
+    title: "Mentions légales - Satisa Formation",
+    description:
+      "Mentions légales de Satisa Formation : éditeur du site, hébergeur, directeur de publication et moyens de contact.",
+    url: "https://www.satisa-formation.fr/mentions-legales",
+  },
   alternates: {
     canonical: "https://www.satisa-formation.fr/mentions-legales",
   },

@@ -6,6 +6,7 @@ import * as React from "react";
 import Markdoc, { Tag, type Config, type RenderableTreeNode } from "@markdoc/markdoc";
 import { ROUTES, LINKEDIN_URL } from "@/lib/routes";
 import LinkedInIcon from "@/components/LinkedInIcon";
+import { addImageDimensions, promoteTableHeaders } from "@/lib/markdoc-enhance";
 import { getAllPosts, getPost, getPostSlugs, CATEGORY_LABELS, formatPostDate, computeReadingTime } from "@/lib/posts";
 
 function slugify(text: string): string {
@@ -216,7 +217,7 @@ export default async function BlogPostPage({
   const postDate = post.date ?? "";
 
   const { node } = await post.content();
-  const renderable = autoWrapFaqSection(Markdoc.transform(node, MARKDOC_CONFIG));
+  const renderable = await addImageDimensions(promoteTableHeaders(autoWrapFaqSection(Markdoc.transform(node, MARKDOC_CONFIG))));
   const contentHtml = Markdoc.renderers.react(renderable, React);
   const tocItems = collectToc(renderable);
   const readingTime = computeReadingTime(node);
@@ -310,7 +311,8 @@ export default async function BlogPostPage({
                 alt={post.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 720px"
-                priority
+                preload
+                fetchPriority="high"
               />
             </div>
           </div>
@@ -371,7 +373,6 @@ export default async function BlogPostPage({
                   <div className="post-card__thumb">
                     {suggested.coverImage && (
                       <Image
-                        quality={90}
                         src={suggested.coverImage}
                         alt={suggested.title}
                         fill

@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
-  description: "Politique de confidentialité du site Satisa Formation.",
+  description:
+    "Politique de confidentialité de Satisa Formation : données collectées, finalités, cookies et outils tiers, durée de conservation et exercice de vos droits.",
+  openGraph: {
+    title: "Politique de confidentialité - Satisa Formation",
+    description:
+      "Politique de confidentialité de Satisa Formation : données collectées, finalités, cookies et outils tiers, durée de conservation et exercice de vos droits.",
+    url: "https://www.satisa-formation.fr/politique-confidentialite",
+  },
   alternates: {
     canonical: "https://www.satisa-formation.fr/politique-confidentialite",
   },

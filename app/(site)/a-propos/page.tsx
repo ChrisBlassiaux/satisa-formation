@@ -60,7 +60,8 @@ export default function AboutPage() {
               width={500}
               height={500}
               quality={90}
-              priority
+              preload
+              fetchPriority="high"
               sizes="(max-width: 768px) calc(100vw - 32px), 500px"
             />
           </div>
