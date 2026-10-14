@@ -282,16 +282,16 @@ export default function AboutPage() {
           <PhotoPanel
             photos={[
               {
-                src: "/images/photos/chris-table-sourire.webp",
+                src: "/images/photos/chris-table-sourire-hd.webp",
                 alt: "Chris Blassiaux souriant, à sa table de travail avec son ordinateur portable",
                 position: "50% 40%",
               },
               {
-                src: "/images/photos/chris-bureau-deux-ecrans.webp",
+                src: "/images/photos/chris-bureau-deux-ecrans-hd.webp",
                 alt: "Chris Blassiaux de profil à son bureau, devant deux écrans affichant le site Satisa Formation",
               },
               {
-                src: "/images/photos/chris-table-discussion.webp",
+                src: "/images/photos/chris-table-discussion-hd.webp",
                 alt: "Chris Blassiaux en pleine discussion devant son ordinateur portable",
                 position: "50% 40%",
               },
