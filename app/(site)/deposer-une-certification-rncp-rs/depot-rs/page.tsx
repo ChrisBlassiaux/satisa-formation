@@ -4,6 +4,7 @@ import { ROUTES } from "@/lib/routes";
 import OfferAccordion from "@/components/OfferAccordion";
 import OfferRowChevron from "@/components/OfferRowChevron";
 import PaymentOptions from "@/components/PaymentOptions";
+import DiagnosticFaisabilite from "@/components/DiagnosticFaisabilite";
 
 const TITLE = "Accompagnement au dépôt RS - Satisa Formation";
 const DESCRIPTION =
@@ -172,13 +173,7 @@ export default function CertificationRsPage() {
                 </span>
               </button>
               <div className="offer-row__body" id="offer-body-1" hidden>
-                <span className="offer-row__highlight">Déductible de toute mission signée dans les 60 jours suivants</span>
-                <ul className="pricing-card__deliverables">
-                  <li>Analyse du projet</li>
-                  <li>Étude de faisabilité</li>
-                  <li>Rapport avec recommandations et plan d&apos;action</li>
-                  <li>Entretien de restitution</li>
-                </ul>
+                <DiagnosticFaisabilite />
                 <Link href={ROUTES.contact} className="btn btn--primary btn--block">Prendre un rendez-vous</Link>
               </div>
             </div>

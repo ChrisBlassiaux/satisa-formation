@@ -398,6 +398,36 @@
   font-weight: 700;
 }
 
+.offer-row__lead {
+  margin-top: $spacing-sm;
+  color: $color-dark;
+}
+
+.offer-row__label {
+  margin-top: $spacing-md;
+  font-size: $fs-small;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-primary-dark;
+}
+
+.offer-row__label + .pricing-card__deliverables {
+  margin-top: $spacing-xs;
+}
+
+.pricing-card__deliverables + .offer-row__label {
+  margin-top: 0;
+}
+
+.offer-row__facts {
+  display: grid;
+  gap: $spacing-xs;
+  margin: 0;
+  font-size: $fs-small;
+  color: $color-dark;
+}
+
 .offer-row__price {
   font-weight: 700;
   color: $color-teal-dark;
