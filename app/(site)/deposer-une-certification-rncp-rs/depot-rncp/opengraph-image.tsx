@@ -7,6 +7,6 @@ export const contentType = OG_CONTENT_TYPE;
 export default async function Image() {
   return renderOgImage(
     "Accompagnement au dépôt RNCP",
-    "Diagnostic, référentiel, cohorte pilote, dépôt du dossier auprès de France Compétences."
+    "Diagnostic, référentiel, promotion de titulaires, dépôt du dossier auprès de France Compétences."
   );
 }

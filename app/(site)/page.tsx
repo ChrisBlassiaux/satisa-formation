@@ -169,7 +169,7 @@ export default async function HomePage() {
                 <h3>Ingénierie de certification RNCP/RS</h3>
                 <p>
                   Accompagnement au dépôt RNCP/RS de A à Z auprès de France Compétences : référentiel de
-                  compétences, cohorte pilote, dépôt du dossier. Guidé ou piloté, selon votre niveau
+                  compétences, promotion de titulaires, dépôt du dossier. Guidé ou piloté, selon votre niveau
                   d&apos;autonomie.
                 </p>
               </div>

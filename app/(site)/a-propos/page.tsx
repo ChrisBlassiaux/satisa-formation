@@ -236,7 +236,7 @@ export default function AboutPage() {
             <div className="competence-block">
               <h3>Ingénierie de certification</h3>
               <p>
-                Analyse métier, mapping des compétences, rédaction du référentiel, pilotage de la cohorte pilote,
+                Analyse métier, mapping des compétences, rédaction du référentiel, pilotage de la promotion de titulaires,
                 dépôt et suivi du dossier France Compétences.
               </p>
               <ul>

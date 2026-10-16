@@ -40,7 +40,7 @@ const FAQ_JSON_LD = {
       name: "Comment déposer un dossier RNCP ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Le dépôt d'un dossier RNCP suit un parcours en plusieurs étapes : diagnostic de faisabilité, construction du référentiel de compétences, constitution d'une cohorte pilote, rédaction du dossier puis dépôt et suivi auprès de France Compétences. Satisa vous accompagne sur tout ou partie de ce parcours, selon la formule choisie.",
+        text: "Le dépôt d'un dossier RNCP suit un parcours en plusieurs étapes : diagnostic de faisabilité, construction du référentiel de compétences, constitution d'une promotion de titulaires, rédaction du dossier puis dépôt et suivi auprès de France Compétences. Satisa vous accompagne sur tout ou partie de ce parcours, selon la formule choisie.",
       },
     },
     {
@@ -48,7 +48,7 @@ const FAQ_JSON_LD = {
       name: "Combien de temps dure un projet de certification RNCP ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre cohorte pilote.",
+        text: "Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre promotion de titulaires.",
       },
     },
     {
@@ -56,7 +56,7 @@ const FAQ_JSON_LD = {
       name: "Dois-je avoir déjà formé des apprenants avant de déposer ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants qui ont suivi le parcours, des données d'insertion professionnelle et des témoignages de l'utilité du titre. Dans la pratique, une cohorte pilote bien documentée peut suffire. Le nombre de promotions nécessaires dépend de la qualité et de la représentativité des données collectées.",
+        text: "Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants qui ont suivi le parcours, des données d'insertion professionnelle et des témoignages de l'utilité du titre. Dans la pratique, une promotion de titulaires bien documentée peut suffire. Le nombre de promotions nécessaires dépend de la qualité et de la représentativité des données collectées.",
       },
     },
     {
@@ -72,7 +72,7 @@ const FAQ_JSON_LD = {
       name: "Combien coûte un dépôt RNCP ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Le dépôt auprès de France Compétences est gratuit. Ce qui représente un coût réel, c'est le temps : celui de vos équipes internes mobilisées sur le projet (référent métier, direction, formateurs) et celui de l'accompagnement externe pour construire un dossier solide. Rédiger un référentiel, piloter une cohorte pilote, collecter les données d'insertion et constituer l'ensemble des documents représente plusieurs mois de travail. C'est cette charge que Satisa prend en charge, en tout ou en partie selon la formule choisie, à partir de 5 000€ HT.",
+        text: "Le dépôt auprès de France Compétences est gratuit. Ce qui représente un coût réel, c'est le temps : celui de vos équipes internes mobilisées sur le projet (référent métier, direction, formateurs) et celui de l'accompagnement externe pour construire un dossier solide. Rédiger un référentiel, piloter une promotion de titulaires, collecter les données d'insertion et constituer l'ensemble des documents représente plusieurs mois de travail. C'est cette charge que Satisa prend en charge, en tout ou en partie selon la formule choisie, à partir de 5 000€ HT.",
       },
     },
     {
@@ -197,7 +197,7 @@ export default function CertificationRncpPage() {
                   <ul className="pricing-card__deliverables">
                     <li>Rétroplanning partagé, vous pilotez l&apos;avancement</li>
                     <li>Trames et modèles de documents fournis</li>
-                    <li>Assistance à la rédaction de l&apos;ensemble des livrables</li>
+                    <li>Assistance à la rédaction de l&apos;ensemble des livrables : étude d&apos;opportunité, référentiel et documents du dossier</li>
                     <li>Relectures et corrections à chaque étape clé</li>
                     <li>Coordination avec votre référent métier</li>
                     <li>Assistance au dépôt du dossier sur le site de France Compétences</li>
@@ -231,10 +231,11 @@ export default function CertificationRncpPage() {
                 <div className="offer-row__body" id="offer-body-3" hidden>
                   <ul className="pricing-card__deliverables">
                     <li>Rétroplanning partagé, nous pilotons l&apos;avancement</li>
+                    <li>Rédaction de l&apos;étude d&apos;opportunité</li>
                     <li>Analyse du métier et mapping des compétences avec votre référent métier</li>
                     <li>Rédaction intégrale du référentiel</li>
                     <li>Rédaction de l&apos;ensemble des documents du dossier</li>
-                    <li>Pilotage opérationnel de la cohorte pilote (recrutement, stages, collecte des données d&apos;insertion)</li>
+                    <li>Pilotage opérationnel de la promotion de titulaires (recrutement, stages, collecte des données d&apos;insertion)</li>
                     <li>Pilotage opérationnel de la collecte des courriers de témoignages et de soutien</li>
                     <li>Assistance au dépôt du dossier sur le site de France Compétences</li>
                     <li>Suivi jusqu&apos;à la décision finale de France Compétences</li>
@@ -317,14 +318,14 @@ export default function CertificationRncpPage() {
                 Comment déposer un dossier RNCP ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Le dépôt d&apos;un dossier RNCP suit un parcours en plusieurs étapes : diagnostic de faisabilité, construction du référentiel de compétences, constitution d&apos;une cohorte pilote, rédaction du dossier puis dépôt et suivi auprès de France Compétences. Satisa vous accompagne sur tout ou partie de ce parcours, selon la formule choisie.</p>
+              <p className="faq-item__answer">Le dépôt d&apos;un dossier RNCP suit un parcours en plusieurs étapes : diagnostic de faisabilité, construction du référentiel de compétences, constitution d&apos;une promotion de titulaires, rédaction du dossier puis dépôt et suivi auprès de France Compétences. Satisa vous accompagne sur tout ou partie de ce parcours, selon la formule choisie.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
                 Combien de temps dure un projet de certification RNCP ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre cohorte pilote.</p>
+              <p className="faq-item__answer">Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre promotion de titulaires.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
@@ -332,7 +333,7 @@ export default function CertificationRncpPage() {
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
               <p className="faq-item__answer">
-                Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants qui ont suivi le parcours, des données d&apos;insertion professionnelle et des témoignages de l&apos;utilité du titre. Dans la pratique, une cohorte pilote bien documentée peut suffire. Le nombre de promotions nécessaires dépend de la qualité et de la représentativité des données collectées.{" "}
+                Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants qui ont suivi le parcours, des données d&apos;insertion professionnelle et des témoignages de l&apos;utilité du titre. Dans la pratique, une promotion de titulaires bien documentée peut suffire. Le nombre de promotions nécessaires dépend de la qualité et de la représentativité des données collectées.{" "}
                 <Link
                   href={`${ROUTES.blog}/suis-je-eligible-au-rncp-criteres-d-eligibilite-et-conditions-2026`}
                   style={{ fontStyle: "italic", textDecoration: "underline" }}
@@ -353,7 +354,7 @@ export default function CertificationRncpPage() {
                 Combien coûte un dépôt RNCP ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Le dépôt auprès de France Compétences est gratuit. Ce qui représente un coût réel, c&apos;est le temps : celui de vos équipes internes mobilisées sur le projet (référent métier, direction, formateurs) et celui de l&apos;accompagnement externe pour construire un dossier solide. Rédiger un référentiel, piloter une cohorte pilote, collecter les données d&apos;insertion et constituer l&apos;ensemble des documents représente plusieurs mois de travail. C&apos;est cette charge que Satisa prend en charge, en tout ou en partie selon la formule choisie, à partir de 5 000€ HT.</p>
+              <p className="faq-item__answer">Le dépôt auprès de France Compétences est gratuit. Ce qui représente un coût réel, c&apos;est le temps : celui de vos équipes internes mobilisées sur le projet (référent métier, direction, formateurs) et celui de l&apos;accompagnement externe pour construire un dossier solide. Rédiger un référentiel, piloter une promotion de titulaires, collecter les données d&apos;insertion et constituer l&apos;ensemble des documents représente plusieurs mois de travail. C&apos;est cette charge que Satisa prend en charge, en tout ou en partie selon la formule choisie, à partir de 5 000€ HT.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">

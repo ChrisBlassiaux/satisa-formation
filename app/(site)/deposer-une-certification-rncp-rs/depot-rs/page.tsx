@@ -40,7 +40,7 @@ const FAQ_JSON_LD = {
       name: "Comment déposer un dossier RS ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Le dépôt d'un dossier RS suit un parcours similaire au RNCP, mais plus resserré : diagnostic de faisabilité, construction du référentiel de compétences ciblé sur la pratique visée, constitution d'une cohorte pilote, rédaction du dossier puis dépôt et suivi auprès de France Compétences. Satisa vous accompagne sur tout ou partie de ce parcours, selon la formule choisie.",
+        text: "Le dépôt d'un dossier RS suit un parcours similaire au RNCP, mais plus resserré : diagnostic de faisabilité, construction du référentiel de compétences ciblé sur la pratique visée, constitution d'une promotion de titulaires, rédaction du dossier puis dépôt et suivi auprès de France Compétences. Satisa vous accompagne sur tout ou partie de ce parcours, selon la formule choisie.",
       },
     },
     {
@@ -48,7 +48,7 @@ const FAQ_JSON_LD = {
       name: "Combien de temps dure un projet de certification RS ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Comptez en moyenne 6 à 12 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre cohorte pilote.",
+        text: "Comptez en moyenne 6 à 12 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre promotion de titulaires.",
       },
     },
     {
@@ -56,7 +56,7 @@ const FAQ_JSON_LD = {
       name: "Dois-je avoir déjà formé des apprenants avant de déposer un dossier RS ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants ayant suivi le parcours et des données démontrant la maîtrise de la compétence visée. Les exigences du RS sont différentes de celles du RNCP : les données d'insertion professionnelle sont moins centrales, l'accent étant mis sur la démonstration de la compétence certifiée. Une cohorte pilote bien documentée peut suffire selon la qualité des preuves apportées.",
+        text: "Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants ayant suivi le parcours et des données démontrant la maîtrise de la compétence visée. Les exigences du RS sont différentes de celles du RNCP : les données d'insertion professionnelle sont moins centrales, l'accent étant mis sur la démonstration de la compétence certifiée. Une promotion de titulaires bien documentée peut suffire selon la qualité des preuves apportées.",
       },
     },
     {
@@ -197,7 +197,7 @@ export default function CertificationRsPage() {
                   <ul className="pricing-card__deliverables">
                     <li>Rétroplanning partagé, vous pilotez l&apos;avancement</li>
                     <li>Trames et modèles de documents fournis</li>
-                    <li>Assistance à la rédaction de l&apos;ensemble des livrables</li>
+                    <li>Assistance à la rédaction de l&apos;ensemble des livrables : étude d&apos;opportunité, référentiel et documents du dossier</li>
                     <li>Relectures et corrections à chaque étape clé</li>
                     <li>Coordination avec votre référent métier</li>
                     <li>Assistance au dépôt du dossier sur le site de France Compétences</li>
@@ -231,10 +231,11 @@ export default function CertificationRsPage() {
                 <div className="offer-row__body" id="offer-body-3" hidden>
                   <ul className="pricing-card__deliverables">
                     <li>Rétroplanning partagé, nous pilotons l&apos;avancement</li>
+                    <li>Rédaction de l&apos;étude d&apos;opportunité</li>
                     <li>Analyse du métier et mapping des compétences avec votre référent métier</li>
                     <li>Rédaction intégrale du référentiel</li>
                     <li>Rédaction de l&apos;ensemble des documents du dossier</li>
-                    <li>Pilotage opérationnel de la cohorte pilote (recrutement, stages, collecte des données d&apos;insertion)</li>
+                    <li>Pilotage opérationnel de la promotion de titulaires (recrutement, stages, collecte des données d&apos;insertion)</li>
                     <li>Pilotage opérationnel de la collecte des courriers de témoignages et de soutien</li>
                     <li>Assistance au dépôt du dossier sur le site de France Compétences</li>
                     <li>Suivi jusqu&apos;à la décision finale de France Compétences</li>
@@ -317,14 +318,14 @@ export default function CertificationRsPage() {
                 Comment déposer un dossier RS ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Le dépôt d&apos;un dossier RS suit un parcours similaire au RNCP, mais plus resserré : diagnostic de faisabilité, construction du référentiel de compétences ciblé sur la pratique visée, constitution d&apos;une cohorte pilote, rédaction du dossier puis dépôt et suivi auprès de France Compétences. Satisa vous accompagne sur tout ou partie de ce parcours, selon la formule choisie.</p>
+              <p className="faq-item__answer">Le dépôt d&apos;un dossier RS suit un parcours similaire au RNCP, mais plus resserré : diagnostic de faisabilité, construction du référentiel de compétences ciblé sur la pratique visée, constitution d&apos;une promotion de titulaires, rédaction du dossier puis dépôt et suivi auprès de France Compétences. Satisa vous accompagne sur tout ou partie de ce parcours, selon la formule choisie.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
                 Combien de temps dure un projet de certification RS ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Comptez en moyenne 6 à 12 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre cohorte pilote.</p>
+              <p className="faq-item__answer">Comptez en moyenne 6 à 12 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre promotion de titulaires.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
@@ -332,7 +333,7 @@ export default function CertificationRsPage() {
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
               <p className="faq-item__answer">
-                Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants ayant suivi le parcours et des données démontrant la maîtrise de la compétence visée. Les exigences du RS sont différentes de celles du RNCP : les données d&apos;insertion professionnelle sont moins centrales, l&apos;accent étant mis sur la démonstration de la compétence certifiée. Une cohorte pilote bien documentée peut suffire selon la qualité des preuves apportées.{" "}
+                Oui. France Compétences attend des preuves concrètes que la formation fonctionne : des apprenants ayant suivi le parcours et des données démontrant la maîtrise de la compétence visée. Les exigences du RS sont différentes de celles du RNCP : les données d&apos;insertion professionnelle sont moins centrales, l&apos;accent étant mis sur la démonstration de la compétence certifiée. Une promotion de titulaires bien documentée peut suffire selon la qualité des preuves apportées.{" "}
                 <Link
                   href={`${ROUTES.blog}/certification-rncp-suis-je-eligible-au-rs-criteres-de-certification-au-repertoire-specifique`}
                   style={{ fontStyle: "italic", textDecoration: "underline" }}
