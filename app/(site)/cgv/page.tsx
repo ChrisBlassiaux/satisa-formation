@@ -89,47 +89,47 @@ export default function CgvPage() {
         <p>Le Prestataire propose les formules suivantes. Leur contenu détaillé et leur prix figurent sur le site et dans le devis.</p>
         <ul>
           <li>
-            <strong>Formule 1 — Diagnostic de faisabilité</strong> : analyse de la faisabilité du projet de
+            <strong>Formule 1 - Diagnostic de faisabilité</strong> : analyse de la faisabilité du projet de
             certification, remise d&apos;un verdict argumenté avec recommandations, et entretien de restitution.
           </li>
           <li>
-            <strong>Formule 2 — Certification guidée</strong> : le Client produit, le Prestataire le guide
+            <strong>Formule 2 - Certification guidée</strong> : le Client produit, le Prestataire le guide
             (rétroplanning partagé, trames et modèles, assistance à la rédaction des livrables, relectures et
             corrections, coordination avec le référent métier, assistance au dépôt du dossier sur le site de France
             Compétences, suivi jusqu&apos;à la décision finale).
           </li>
           <li>
-            <strong>Formule 3 — Certification pilotée</strong> : le Prestataire produit, le Client valide
+            <strong>Formule 3 - Certification pilotée</strong> : le Prestataire produit, le Client valide
             (rétroplanning, analyse du métier et mapping des compétences, rédaction intégrale du référentiel et des
             documents du dossier, pilotage opérationnel de la promotion de titulaires et de la collecte des courriers de
             témoignages et de soutien, assistance au dépôt, suivi jusqu&apos;à la décision finale).
           </li>
           <li>
-            <strong>Formule 4 — Ingénieur de certification intégré</strong> : intégration d&apos;un ingénieur de
+            <strong>Formule 4 - Ingénieur de certification intégré</strong> : intégration d&apos;un ingénieur de
             certification freelance dans l&apos;équipe du Client, à la journée, en distanciel.
           </li>
           <li>
-            <strong>Formule 5 — Responsable de certification externalisé</strong> : suivi mensuel d&apos;une
+            <strong>Formule 5 - Responsable de certification externalisé</strong> : suivi mensuel d&apos;une
             certification déjà enregistrée (réunion mensuelle, veille réglementaire ciblée, mise à jour des documents
             opérationnels, service questions-réponses, audit de conformité annuel).
           </li>
           <li>
-            <strong>Formule 6 — Conception de formation</strong> : analyse de la demande, du référentiel et du
+            <strong>Formule 6 - Conception de formation</strong> : analyse de la demande, du référentiel et du
             public cible, progression pédagogique, programme de formation conforme aux exigences du référentiel
             Qualiopi, scénario pédagogique, séquencement et volumétrie horaire, alignement avec le référentiel de la
             certification visée.
           </li>
           <li>
-            <strong>Formule 7 — Création de contenus de formation</strong> : supports de présentation, activités
+            <strong>Formule 7 - Création de contenus de formation</strong> : supports de présentation, activités
             d&apos;apprentissage, évaluations formatives, sommatives et certificatives.
           </li>
           <li>
-            <strong>Formule 8 — Digitalisation</strong> : diagnostic et cadrage, scénarisation et conception
+            <strong>Formule 8 - Digitalisation</strong> : diagnostic et cadrage, scénarisation et conception
             digitale, production des modules (e-learning, blended learning), déploiement technique sur le LMS, tests
             et accompagnement des équipes.
           </li>
           <li>
-            <strong>Formule 9 — Maintenance pédagogique mensuelle</strong> : mise à jour des contenus, maintenance
+            <strong>Formule 9 - Maintenance pédagogique mensuelle</strong> : mise à jour des contenus, maintenance
             et paramétrage du LMS.
           </li>
         </ul>
@@ -369,7 +369,7 @@ export default function CgvPage() {
 
         <h2>12. Abonnements et prestations récurrentes</h2>
         <p>
-          <strong>Formule 5 — Responsable de certification externalisé.</strong> Cette formule s&apos;adresse aux
+          <strong>Formule 5 - Responsable de certification externalisé.</strong> Cette formule s&apos;adresse aux
           certifications déjà enregistrées. Elle est facturée mensuellement à terme à échoir, sans durée minimale
           d&apos;engagement, et comprend une réunion mensuelle de suivi, une veille réglementaire ciblée, la mise à jour
           des documents opérationnels, un service questions-réponses avec réponse
@@ -378,7 +378,7 @@ export default function CgvPage() {
           préavis, la résiliation prenant effet à la fin du mois en cours.
         </p>
         <p>
-          <strong>Formule 9 — Maintenance pédagogique mensuelle.</strong> Cette formule comprend la mise à jour des
+          <strong>Formule 9 - Maintenance pédagogique mensuelle.</strong> Cette formule comprend la mise à jour des
           contenus et la maintenance et le paramétrage du LMS, dans la limite d&apos;un volume raisonnable correspondant
           à l&apos;abonnement. Elle est facturée mensuellement à terme à échoir. Elle est conclue pour un engagement
           initial de 3 mois, puis reconduite tacitement par périodes d&apos;un mois. Passé l&apos;engagement initial, chaque
