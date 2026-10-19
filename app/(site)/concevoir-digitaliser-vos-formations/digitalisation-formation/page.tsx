@@ -4,6 +4,7 @@ import { ROUTES } from "@/lib/routes";
 import { FAQ_DIGITALISATION, FORMULAS, breadcrumbJsonLd, faqJsonLd } from "@/lib/formations";
 import FaqList from "@/components/FaqList";
 import FormulaCard from "@/components/FormulaCard";
+import DigitalCapabilities from "@/components/DigitalCapabilities";
 
 const TITLE = "Digitalisation de formation : e-learning et LMS - Satisa Formation";
 const DESCRIPTION =
@@ -173,6 +174,8 @@ export default function DigitalisationPage() {
           </div>
         </div>
       </section>
+
+      <DigitalCapabilities />
 
       <section>
         <div className="container">

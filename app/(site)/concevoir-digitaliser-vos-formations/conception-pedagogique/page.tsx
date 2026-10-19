@@ -4,6 +4,7 @@ import { ROUTES } from "@/lib/routes";
 import { FAQ_CONCEPTION, FORMULAS, breadcrumbJsonLd, faqJsonLd } from "@/lib/formations";
 import FaqList from "@/components/FaqList";
 import FormulaCard from "@/components/FormulaCard";
+import DesignScope from "@/components/DesignScope";
 
 const TITLE = "Conception de formation conforme Qualiopi - Satisa Formation";
 const DESCRIPTION =
@@ -79,6 +80,8 @@ export default function ConceptionPage() {
           </div>
         </div>
       </section>
+
+      <DesignScope />
 
       <section>
         <div className="container">

@@ -1281,3 +1281,267 @@
     margin-top: $spacing-xs;
   }
 }
+
+// Digitalisation : ce que nous pouvons construire (formule, modalité, durée, options)
+.digital-build__lead {
+  max-width: 720px;
+  margin-top: $spacing-sm;
+}
+
+.digital-build {
+  display: grid;
+  gap: $spacing-lg;
+}
+
+.digital-build__label {
+  margin: 0 0 $spacing-sm;
+  font-size: $fs-small;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-primary-dark;
+}
+
+.digital-build__formula {
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  background: $color-mint;
+  color: $color-dark;
+
+  @include from($bp-tablet) {
+    padding: $spacing-lg;
+  }
+
+  .digital-build__label {
+    color: $color-dark;
+  }
+
+  h3 {
+    margin-bottom: $spacing-md;
+    font-size: 1.35rem;
+    color: $color-dark;
+  }
+}
+
+.digital-build__checks {
+  display: grid;
+  gap: $spacing-xs $spacing-lg;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  li {
+    display: flex;
+    gap: $spacing-xs;
+    font-weight: 600;
+  }
+
+  li::before {
+    content: '✓';
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+}
+
+.digital-build__tiles {
+  display: grid;
+  gap: $spacing-sm;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.digital-build__tiles--3 {
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+  }
+}
+
+.digital-build__tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+
+  strong {
+    font-size: 1.05rem;
+    color: $color-dark;
+  }
+
+  span {
+    font-size: $fs-small;
+    color: $color-muted;
+  }
+}
+
+.digital-build__tile--duration {
+  border-left: 4px solid $color-primary;
+}
+
+.digital-build__options {
+  display: grid;
+  gap: $spacing-md;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.digital-build__option-card {
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+
+  @include from($bp-tablet) {
+    padding: $spacing-lg;
+  }
+
+  h3 {
+    margin-bottom: $spacing-sm;
+    font-size: 1.1rem;
+  }
+
+  ul {
+    display: grid;
+    gap: $spacing-sm;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding-top: $spacing-sm;
+    border-top: 1px solid $color-border;
+  }
+
+  li:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  strong {
+    color: $color-dark;
+  }
+
+  span {
+    font-size: $fs-small;
+    color: $color-muted;
+  }
+}
+
+.digital-build__skill {
+  padding: $spacing-md $spacing-lg;
+  border-radius: $radius-lg;
+  background: $color-dark;
+  color: $color-white;
+
+  .digital-build__label {
+    margin-bottom: 0.25rem;
+    color: $color-mint;
+  }
+
+  p:last-child {
+    margin: 0;
+    color: $color-white;
+  }
+}
+
+// Conception : ce que comprend le service (formules 6 et 7)
+.design-scope {
+  display: grid;
+  gap: $spacing-md;
+
+  @include from($bp-tablet) {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: start;
+    gap: $spacing-lg;
+  }
+}
+
+.design-scope__block {
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+
+  @include from($bp-tablet) {
+    padding: $spacing-lg;
+  }
+
+  h3 {
+    margin: $spacing-xs 0;
+    font-size: 1.3rem;
+  }
+}
+
+.design-scope__tag {
+  display: inline-block;
+  padding: 0.2em 0.8em;
+  border-radius: $radius-sm;
+  background: $color-mint-light;
+  color: $color-primary-dark;
+  font-size: $fs-small;
+  font-weight: 700;
+}
+
+.design-scope__intro {
+  margin: 0 0 $spacing-md;
+  color: $color-muted;
+}
+
+.design-scope__list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: scope;
+
+  li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: $spacing-sm 0 $spacing-sm 2.75rem;
+    border-top: 1px solid $color-border;
+    counter-increment: scope;
+  }
+
+  li::before {
+    content: counter(scope);
+    position: absolute;
+    top: $spacing-sm;
+    left: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: $color-dark;
+    color: $color-white;
+    font-size: $fs-small;
+    font-weight: 700;
+  }
+
+  strong {
+    color: $color-dark;
+  }
+
+  span {
+    font-size: $fs-small;
+    color: $color-muted;
+  }
+}
