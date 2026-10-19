@@ -147,7 +147,7 @@ export default function CertificationPage() {
                   <dt>Certifie</dt>
                   <dd>Un métier, en blocs de compétences</dd>
                   <dt>Durée moyenne</dt>
-                  <dd>8 à 14 mois</dd>
+                  <dd>12 à 24 mois</dd>
                   <dt>Adapté si</dt>
                   <dd>Vous formez sur un poste entier</dd>
                 </dl>
@@ -166,7 +166,7 @@ export default function CertificationPage() {
                   <dt>Certifie</dt>
                   <dd>Une compétence ciblée</dd>
                   <dt>Durée moyenne</dt>
-                  <dd>6 à 12 mois</dd>
+                  <dd>12 à 18 mois</dd>
                   <dt>Adapté si</dt>
                   <dd>Vous formez sur une pratique précise</dd>
                 </dl>

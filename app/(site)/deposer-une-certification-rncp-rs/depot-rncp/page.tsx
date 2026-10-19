@@ -49,7 +49,7 @@ const FAQ_JSON_LD = {
       name: "Combien de temps dure un projet de certification RNCP ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre promotion de titulaires.",
+        text: "Comptez en moyenne 12 à 24 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre promotion de titulaires.",
       },
     },
     {
@@ -356,7 +356,7 @@ export default function CertificationRncpPage() {
                 Combien de temps dure un projet de certification RNCP ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Comptez en moyenne 8 à 14 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre promotion de titulaires.</p>
+              <p className="faq-item__answer">Comptez en moyenne 12 à 24 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre promotion de titulaires.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
