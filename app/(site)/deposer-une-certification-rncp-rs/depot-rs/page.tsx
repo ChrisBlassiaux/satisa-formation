@@ -5,6 +5,7 @@ import OfferAccordion from "@/components/OfferAccordion";
 import OfferRowChevron from "@/components/OfferRowChevron";
 import PaymentOptions from "@/components/PaymentOptions";
 import DiagnosticFaisabilite from "@/components/DiagnosticFaisabilite";
+import DepotProcess from "@/components/DepotProcess";
 
 const TITLE = "Accompagnement au dépôt RS - Satisa Formation";
 const DESCRIPTION =
@@ -305,6 +306,36 @@ export default function CertificationRsPage() {
           </OfferAccordion>
         </div>
       </section>
+
+      <DepotProcess
+        title="Comment se déroule l’accompagnement au dépôt RS"
+        intro="Une certification au Répertoire spécifique atteste des compétences complémentaires à un métier : une spécialisation, des compétences transversales ou une activité professionnelle autonome. Depuis octobre 2025, les exigences d’enregistrement au RS se sont fortement renforcées. Voici comment Satisa vous accompagne, du diagnostic jusqu’à la décision."
+        stats={[
+          { value: "6 étapes", label: "du diagnostic de faisabilité à la décision de France Compétences" },
+          { value: "12 à 18 mois", label: "durée évaluée dès le diagnostic, du diagnostic à la décision, selon l’existant actuel" },
+          { value: "0 € de frais de dépôt", label: "le dépôt auprès de France Compétences est gratuit" },
+        ]}
+        steps={[
+          { title: "Diagnostic de faisabilité", text: "Nous vérifions que votre projet relève bien du Répertoire spécifique et qu’il n’entre pas dans les actions exclues, comme la sensibilisation ou la remise à niveau. Vous savez avant tout investissement si votre projet peut aboutir, en combien de temps et à quelles conditions." },
+          { title: "Étude d’opportunité", text: "Nous démontrons que les compétences visées répondent à un besoin professionnel précis et qu’elles complètent un ou plusieurs métiers. L’étude précise aussi le public cible et les prérequis d’accès à votre certification." },
+          { title: "Référentiels de compétences et d’évaluation", text: "Avec votre référent métier, nous identifions les compétences à certifier et les situations professionnelles dans lesquelles elles s’exercent. Nous construisons ensuite votre référentiel de compétences et votre référentiel d’évaluation." },
+          { title: "Première promotion de titulaires", text: "Vous formez et évaluez vos apprenants selon ces référentiels. Nous organisons la collecte des données montrant ce que la certification apporte au parcours professionnel de vos titulaires." },
+          { title: "Constitution et dépôt du dossier", text: "Nous rédigeons ou relisons l’ensemble des pièces selon votre formule, puis déposons le dossier sur la plateforme de France Compétences." },
+          { title: "Instruction et décision", text: "Nous vous accompagnons dans la réponse à toutes les demandes de l’instructeur, jusqu’à la décision de France Compétences. Nous analysons ensuite le résultat avec vous." },
+        ]}
+        audience={[
+          "Les organismes de formation qui forment à une compétence spécifique, complémentaire à un métier, et souhaitent la faire certifier au RS",
+          "Les organismes dont le projet de certification RS est engagé, mais bloqué faute de référentiels structurés ou de dossier solide",
+          "Les équipes pédagogiques qui n’ont pas le temps de piloter seules un projet de plusieurs mois",
+        ]}
+        limits={
+          <>
+            La décision appartient à France Compétences. Nous ne garantissons pas l’enregistrement : le diagnostic de faisabilité sert justement à ne lancer que les projets viables. Si votre projet vise un métier complet, découvrez notre{" "}
+            <Link href={ROUTES.certificationRncp}>accompagnement au dépôt RNCP</Link>.
+          </>
+        }
+      />
+
 
       <section>
         <div className="container">

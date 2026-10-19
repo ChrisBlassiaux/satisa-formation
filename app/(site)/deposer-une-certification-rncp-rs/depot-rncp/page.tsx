@@ -5,6 +5,7 @@ import OfferAccordion from "@/components/OfferAccordion";
 import OfferRowChevron from "@/components/OfferRowChevron";
 import PaymentOptions from "@/components/PaymentOptions";
 import DiagnosticFaisabilite from "@/components/DiagnosticFaisabilite";
+import DepotProcess from "@/components/DepotProcess";
 
 const TITLE = "Accompagnement au dépôt RNCP - Satisa Formation";
 const DESCRIPTION =
@@ -305,6 +306,36 @@ export default function CertificationRncpPage() {
           </OfferAccordion>
         </div>
       </section>
+
+      <DepotProcess
+        title="Comment se déroule l’accompagnement au dépôt RNCP"
+        intro="Une certification RNCP atteste qu’une personne maîtrise un métier. Pour l’enregistrer, France Compétences attend la preuve que ce métier répond à un besoin réel, que vos référentiels sont solides et que vos titulaires s’insèrent dans les emplois visés. Voici comment Satisa vous accompagne, du diagnostic jusqu’à la décision."
+        stats={[
+          { value: "6 étapes", label: "du diagnostic de faisabilité à la décision de France Compétences" },
+          { value: "12 à 24 mois", label: "durée évaluée dès le diagnostic, du diagnostic à la décision, selon l’existant actuel" },
+          { value: "0 € de frais de dépôt", label: "le dépôt auprès de France Compétences est gratuit" },
+        ]}
+        steps={[
+          { title: "Diagnostic de faisabilité", text: "Nous vérifions que votre projet vise bien un métier complet, relevant du RNCP, et qu’un niveau de qualification est défendable. Vous savez avant tout investissement si votre projet peut aboutir, en combien de temps et à quelles conditions." },
+          { title: "Étude d’opportunité", text: "Nous démontrons que le métier visé répond à un besoin du marché du travail, à partir de sources fiables et, le cas échéant, de courriers de soutien et témoignages. C’est le premier critère examiné par France Compétences : sans besoin démontré, pas d’enregistrement." },
+          { title: "Référentiels d’activités, de compétences et d’évaluation", text: "Avec votre référent métier, nous analysons les situations de travail et définissons les emplois visés. Nous construisons ensuite les trois référentiels de votre certification, découpés en blocs de compétences." },
+          { title: "Première promotion de titulaires", text: "Vous formez et évaluez vos apprenants selon ces référentiels. Nous organisons la collecte des données sur l’insertion de vos titulaires dans les emplois visés, élément central de l’examen de votre dossier." },
+          { title: "Constitution et dépôt du dossier", text: "Nous rédigeons ou relisons l’ensemble des pièces selon votre formule, puis déposons ensemble le dossier sur la plateforme de France Compétences." },
+          { title: "Instruction et décision", text: "Nous vous accompagnons dans la réponse à toutes les demandes de l’instructeur, jusqu’à la décision de France Compétences. Nous analysons ensuite le résultat avec vous." },
+        ]}
+        audience={[
+          "Les organismes de formation qui préparent déjà à un métier et souhaitent faire reconnaître leur parcours par une certification RNCP",
+          "Les organismes dont le projet de certification est engagé, mais bloqué faute de référentiels structurés ou de dossier solide",
+          "Les équipes pédagogiques qui n’ont pas le temps de piloter seules un projet de plusieurs mois",
+        ]}
+        limits={
+          <>
+            La décision appartient à France Compétences, qui peut aussi modifier le niveau de qualification, l’intitulé ou la durée d’enregistrement demandés. Nous ne garantissons pas l’enregistrement : le diagnostic de faisabilité sert justement à ne lancer que les projets viables. Si votre projet vise une compétence complémentaire plutôt qu’un métier complet, découvrez notre{" "}
+            <Link href={ROUTES.certificationRs}>accompagnement au dépôt RS</Link>.
+          </>
+        }
+      />
+
 
       <section>
         <div className="container">
