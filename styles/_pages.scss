@@ -1130,7 +1130,7 @@
 .depot-stats {
   display: grid;
   gap: $spacing-sm;
-  margin: 0 0 $spacing-lg;
+  margin: 0 0 $spacing-xl;
   padding: 0;
   list-style: none;
 
@@ -1143,69 +1143,156 @@
 .depot-stats__item {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: $spacing-sm $spacing-md;
-  border-radius: $radius-lg;
-  background: $color-mint;
-  color: $color-dark;
-
-  @include from($bp-tablet) {
-    padding: $spacing-md $spacing-lg;
-  }
-}
-
-.depot-stats__value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.depot-stats__label {
-  font-size: $fs-small;
-}
-
-.depot-steps {
-  margin: 0 0 $spacing-lg;
-  padding: 0 $spacing-md;
-  list-style: none;
+  gap: 0.35rem;
+  padding: $spacing-md;
   border: 1px solid $color-border;
   border-radius: $radius-lg;
   background: $color-white;
 }
 
-.depot-steps__item {
-  position: relative;
-  padding: $spacing-md 0 $spacing-md 3.25rem;
+.depot-stats__value {
+  font-size: clamp(1.75rem, 1.2vw + 1.4rem, 2.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: $color-primary-dark;
+}
 
-  & + & {
-    border-top: 1px solid $color-border;
+.depot-stats__label {
+  font-size: $fs-small;
+  color: $color-muted;
+}
+
+// Timeline : un trait continu relie les pastilles, les phases sont de simples étiquettes
+.depot-steps {
+  --depot-step-pad: #{$spacing-sm};
+  --depot-phase-h: 2.25rem;
+  margin: 0 0 $spacing-lg;
+  padding: 0;
+  list-style: none;
+
+  @include from($bp-tablet) {
+    --depot-step-pad: #{$spacing-md};
+  }
+}
+
+.depot-steps__item {
+  --depot-offset: 0rem;
+  --depot-circle-y: calc(var(--depot-step-pad) + var(--depot-offset) + 18px);
+  position: relative;
+  padding: calc(var(--depot-step-pad) + var(--depot-offset)) 0 var(--depot-step-pad) 3.25rem;
+
+  &--phase {
+    --depot-offset: var(--depot-phase-h);
+  }
+
+  // Trait sur toute la hauteur de l'étape, rogné au centre des pastilles aux extrémités
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 17px;
+    width: 2px;
+    background: rgba($color-primary-dark, 0.45);
+  }
+
+  &:first-child::before {
+    top: var(--depot-circle-y);
+  }
+
+  &:last-child::before {
+    bottom: auto;
+    height: var(--depot-circle-y);
   }
 
   @include from($bp-tablet) {
     display: grid;
-    grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-    gap: $spacing-lg;
+    grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+    gap: $spacing-md;
     align-items: start;
-    padding: $spacing-lg 0 $spacing-lg 3.5rem;
+    padding-left: 3.5rem;
+  }
+}
+
+.depot-steps__phase {
+  position: absolute;
+  top: var(--depot-step-pad);
+  left: 3.25rem;
+  margin: 0;
+  font-size: $fs-small;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-primary-dark;
+
+  @include from($bp-tablet) {
+    left: 3.5rem;
   }
 }
 
 .depot-steps__num {
   position: absolute;
-  top: $spacing-md;
+  top: calc(var(--depot-step-pad) + var(--depot-offset));
   left: 0;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: $color-dark;
+  background: $color-primary-dark;
+  box-shadow: 0 0 0 4px $color-mint-light;
   color: $color-white;
   font-weight: 700;
+}
 
-  @include from($bp-tablet) {
-    top: $spacing-lg;
+// Animation A : chaque étape apparaît en montant légèrement. CSS pur, l'état de base est l'état final
+@keyframes depot-reveal {
+  from {
+    opacity: 0.15;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes depot-dot-fill {
+  from {
+    transform: scale(0.6);
+    background: $color-mint-light;
+    color: $color-primary-dark;
+  }
+  to {
+    transform: scale(1);
+    background: $color-primary-dark;
+    color: $color-white;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    // Une seule timeline par étape : l'animation démarre quand l'étape est déjà bien dans l'écran
+    .depot-steps__item {
+      view-timeline: --depot-step block;
+    }
+
+    .depot-steps__phase,
+    .depot-steps__title,
+    .depot-steps__text {
+      animation: depot-reveal linear both;
+      animation-timeline: --depot-step;
+      animation-range: cover 8% cover 30%;
+    }
+
+    .depot-steps__num {
+      border: 2px solid $color-primary-dark;
+      animation: depot-dot-fill linear both;
+      animation-timeline: --depot-step;
+      animation-range: cover 8% cover 30%;
+    }
   }
 }
 
@@ -1238,6 +1325,10 @@
   border-radius: $radius-lg;
   background: $color-white;
 
+  @include from($bp-tablet) {
+    padding: $spacing-lg;
+  }
+
   p {
     margin: 0;
   }
@@ -1253,13 +1344,34 @@
   }
 }
 
-@include from($bp-tablet) {
-  .depot-steps {
-    padding: 0 $spacing-lg;
+// Mise en garde : carte sombre pour contraster avec la carte "À qui s'adresse"
+.depot-info__card--limits {
+  border-color: $color-dark;
+  background: $color-dark;
+  color: rgba($color-white, 0.88);
+
+  p {
+    color: inherit;
   }
 
-  .depot-info__card {
-    padding: $spacing-lg;
+  .depot-info__label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: $color-mint;
+
+    &::before {
+      content: "";
+      flex: none;
+      width: 1.35rem;
+      height: 1.35rem;
+      background: $color-mint;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 11v6'/%3E%3Cpath d='M12 7.5h.01'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+  }
+
+  a {
+    color: $color-mint;
   }
 }
 
@@ -1274,11 +1386,27 @@
 
 .depot-info__list {
   margin: 0;
-  padding-left: 1.1rem;
-  list-style: disc;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 1.75rem;
+  }
 
   li + li {
     margin-top: $spacing-xs;
+  }
+
+  li::before {
+    content: "";
+    position: absolute;
+    top: 0.2em;
+    left: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    background: $color-primary-dark;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
   }
 }
 

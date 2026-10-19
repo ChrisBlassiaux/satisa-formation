@@ -313,7 +313,7 @@ export default function CertificationRncpPage() {
         stats={[
           { value: "6 étapes", label: "du diagnostic de faisabilité à la décision de France Compétences" },
           { value: "12 à 24 mois", label: "durée évaluée dès le diagnostic, du diagnostic à la décision, selon l’existant actuel" },
-          { value: "0 € de frais de dépôt", label: "le dépôt auprès de France Compétences est gratuit" },
+          { value: "0 €", label: "de frais de dépôt : le dépôt auprès de France Compétences est gratuit" },
         ]}
         steps={[
           { title: "Diagnostic de faisabilité", text: "Nous vérifions que votre projet vise bien un métier complet, relevant du RNCP, et qu’un niveau de qualification est défendable. Vous savez avant tout investissement si votre projet peut aboutir, en combien de temps et à quelles conditions." },

@@ -313,7 +313,7 @@ export default function CertificationRsPage() {
         stats={[
           { value: "6 étapes", label: "du diagnostic de faisabilité à la décision de France Compétences" },
           { value: "12 à 18 mois", label: "durée évaluée dès le diagnostic, du diagnostic à la décision, selon l’existant actuel" },
-          { value: "0 € de frais de dépôt", label: "le dépôt auprès de France Compétences est gratuit" },
+          { value: "0 €", label: "de frais de dépôt : le dépôt auprès de France Compétences est gratuit" },
         ]}
         steps={[
           { title: "Diagnostic de faisabilité", text: "Nous vérifions que votre projet relève bien du Répertoire spécifique et qu’il n’entre pas dans les actions exclues, comme la sensibilisation ou la remise à niveau. Vous savez avant tout investissement si votre projet peut aboutir, en combien de temps et à quelles conditions." },
