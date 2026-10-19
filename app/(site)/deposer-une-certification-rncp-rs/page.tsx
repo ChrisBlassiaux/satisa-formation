@@ -52,7 +52,7 @@ const FAQ_JSON_LD = {
       name: "Comment choisir entre RNCP et RS si j'hésite encore ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "C'est précisément l'objet du diagnostic de faisabilité. En un échange structuré, on analyse votre activité, votre public cible et vos objectifs pour vous orienter vers la certification la plus adaptée à votre projet, avant tout engagement plus large.",
+        text: "C'est précisément l'objet du diagnostic de faisabilité. En environ un mois, il analyse votre projet (besoin en compétences, offre de certifications existante, état de vos promotions et de vos données, dispositif de formation, conformité, modèle économique) et vous remet un verdict argumenté avec le répertoire recommandé, RNCP ou RS, avant tout engagement plus large.",
       },
     },
     {
@@ -380,7 +380,7 @@ export default function CertificationPage() {
                 Comment choisir entre RNCP et RS si j&apos;hésite encore ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">C&apos;est précisément l&apos;objet du diagnostic de faisabilité. En un échange structuré, on analyse votre activité, votre public cible et vos objectifs pour vous orienter vers la certification la plus adaptée à votre projet, avant tout engagement plus large.</p>
+              <p className="faq-item__answer">C&apos;est précisément l&apos;objet du diagnostic de faisabilité. En environ un mois, il analyse votre projet (besoin en compétences, offre de certifications existante, état de vos promotions et de vos données, dispositif de formation, conformité, modèle économique) et vous remet un verdict argumenté avec le répertoire recommandé, RNCP ou RS, avant tout engagement plus large.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
