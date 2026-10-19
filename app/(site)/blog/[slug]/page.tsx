@@ -86,35 +86,63 @@ function isBoldOnlyParagraph(node: RenderableTreeNode): boolean {
   return kids.length === 1 && Tag.isTag(kids[0]) && kids[0].name === "strong";
 }
 
+const FAQ_HEADINGS = ["faq", "questions fréquentes", "questions frequentes", "foire aux questions"];
+
+function headingLevel(node: RenderableTreeNode): number {
+  return Tag.isTag(node) && /^h[1-6]$/.test(node.name) ? Number(node.name[1]) : 0;
+}
+
+function buildFaqItem(question: string, answer: RenderableTreeNode[]): RenderableTreeNode {
+  return new Tag("details", { className: "faq-item" }, [
+    new Tag("summary", { className: "faq-item__question" }, [
+      question,
+      new Tag("span", { className: "faq-item__icon", "aria-hidden": "true" }, []),
+    ]),
+    new Tag("div", { className: "faq-item__answer" }, answer),
+  ]);
+}
+
+// Accepts two ways of writing the FAQ under a "FAQ" / "Questions fréquentes" heading:
+//   1. "**Question ?**" paragraphs, each followed by its answer paragraph(s);
+//   2. sub-headings (one per question), each followed by its answer (paragraphs, lists...).
 function autoWrapFaqSection(tag: RenderableTreeNode): RenderableTreeNode {
   if (!Tag.isTag(tag)) return tag;
   const faqHeadingIndex = tag.children.findIndex(
-    (c) => Tag.isTag(c) && /^h[2-6]$/.test(c.name) && extractText(c.children).trim().toLowerCase() === "faq"
+    (c) =>
+      headingLevel(c) >= 2 &&
+      FAQ_HEADINGS.includes(extractText((c as Tag).children).trim().toLowerCase().replace(/\s+/g, " "))
   );
   if (faqHeadingIndex === -1) return tag;
 
+  const faqLevel = headingLevel(tag.children[faqHeadingIndex]);
   const before = tag.children.slice(0, faqHeadingIndex + 1);
   const rest = tag.children.slice(faqHeadingIndex + 1);
 
   const items: RenderableTreeNode[] = [];
   let i = 0;
-  while (i < rest.length && isBoldOnlyParagraph(rest[i])) {
-    const question = extractText((rest[i] as Tag).children);
-    i++;
-    const answer: RenderableTreeNode[] = [];
-    while (i < rest.length && Tag.isTag(rest[i]) && (rest[i] as Tag).name === "p" && !isBoldOnlyParagraph(rest[i])) {
-      answer.push(rest[i]);
+
+  if (rest.length > 0 && headingLevel(rest[0]) > faqLevel) {
+    while (i < rest.length && headingLevel(rest[i]) > faqLevel) {
+      const question = extractText((rest[i] as Tag).children).replace(/\s+/g, " ").trim();
       i++;
+      const answer: RenderableTreeNode[] = [];
+      while (i < rest.length && headingLevel(rest[i]) === 0) {
+        answer.push(rest[i]);
+        i++;
+      }
+      items.push(buildFaqItem(question, answer));
     }
-    items.push(
-      new Tag("details", { className: "faq-item" }, [
-        new Tag("summary", { className: "faq-item__question" }, [
-          question,
-          new Tag("span", { className: "faq-item__icon", "aria-hidden": "true" }, []),
-        ]),
-        new Tag("div", { className: "faq-item__answer" }, answer),
-      ])
-    );
+  } else {
+    while (i < rest.length && isBoldOnlyParagraph(rest[i])) {
+      const question = extractText((rest[i] as Tag).children);
+      i++;
+      const answer: RenderableTreeNode[] = [];
+      while (i < rest.length && Tag.isTag(rest[i]) && (rest[i] as Tag).name === "p" && !isBoldOnlyParagraph(rest[i])) {
+        answer.push(rest[i]);
+        i++;
+      }
+      items.push(buildFaqItem(question, answer));
+    }
   }
 
   if (items.length === 0) return tag;
