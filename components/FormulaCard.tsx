@@ -11,16 +11,16 @@ type Props = {
 export default function FormulaCard({ formula, featured = false, badge }: Props) {
   return (
     <article className={`formula-card${featured ? " formula-card--featured" : ""}`}>
-      {featured && badge && <span className="formula-card__badge">{badge}</span>}
+      <div className="formula-card__top">
+        {!featured && (
+          <span className="offer-row__index" aria-hidden="true">
+            {formula.index}
+          </span>
+        )}
+        {featured && badge && <span className="formula-card__badge">{badge}</span>}
+      </div>
       <header className="formula-card__head">
-        <span className="offer-row__name-row">
-          {!featured && (
-            <span className="offer-row__index" aria-hidden="true">
-              {formula.index}
-            </span>
-          )}
-          <h3 className="formula-card__name">{formula.name}</h3>
-        </span>
+        <h3 className="formula-card__name">{formula.name}</h3>
         <span className="offer-row__price">{formula.price}</span>
       </header>
       {formula.noteBefore && <p className="pricing-card__note formula-card__note">{formula.noteBefore}</p>}

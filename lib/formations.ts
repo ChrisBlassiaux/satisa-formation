@@ -34,7 +34,7 @@ export const FORMULAS: Record<"conception" | "contenus" | "digitalisation" | "ma
       "Activités d'apprentissage (exercices pratiques et mises en situation)",
       "Évaluations formatives, sommatives et certificatives",
     ],
-    cta: "Discutons de votre projet",
+    cta: "Prendre un rendez-vous",
   },
   digitalisation: {
     index: 8,
@@ -49,7 +49,7 @@ export const FORMULAS: Record<"conception" | "contenus" | "digitalisation" | "ma
       "Déploiement technique sur le LMS",
       "Tests et accompagnement des équipes",
     ],
-    cta: "Discutons de votre projet",
+    cta: "Prendre un rendez-vous",
   },
   maintenance: {
     index: 9,

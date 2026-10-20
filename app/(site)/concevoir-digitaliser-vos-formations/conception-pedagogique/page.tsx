@@ -4,7 +4,8 @@ import { ROUTES } from "@/lib/routes";
 import { FAQ_CONCEPTION, FORMULAS, breadcrumbJsonLd, faqJsonLd } from "@/lib/formations";
 import FaqList from "@/components/FaqList";
 import FormulaCard from "@/components/FormulaCard";
-import DesignScope from "@/components/DesignScope";
+import LinkArrow from "@/components/LinkArrow";
+import ConceptionSections from "@/components/ConceptionSections";
 
 const TITLE = "Conception de formation conforme Qualiopi - Satisa Formation";
 const DESCRIPTION =
@@ -81,7 +82,7 @@ export default function ConceptionPage() {
         </div>
       </section>
 
-      <DesignScope />
+      <ConceptionSections />
 
       <section>
         <div className="container">
@@ -95,9 +96,8 @@ export default function ConceptionPage() {
               Vous souhaitez aussi digitaliser vos formations ?
             </p>
             <p style={{ marginTop: "0.5rem" }}>
-              →{" "}
               <Link href={ROUTES.formationsDigitalisation} style={{ fontStyle: "italic", textDecoration: "underline" }}>
-                Découvrez notre service de digitalisation
+                Découvrez notre service de digitalisation <LinkArrow />
               </Link>
             </p>
           </div>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import { FAQ_FORMATIONS, breadcrumbJsonLd, faqJsonLd } from "@/lib/formations";
 import FaqList from "@/components/FaqList";
+import LinkArrow from "@/components/LinkArrow";
 
 const TITLE = "Ingénierie pédagogique et digitalisation - Satisa Formation";
 const DESCRIPTION =
@@ -32,46 +33,6 @@ export const metadata: Metadata = {
 const BREADCRUMB_JSON_LD = breadcrumbJsonLd([
   { name: "Concevoir et digitaliser vos formations", path: ROUTES.formations },
 ]);
-
-const SERVICES = [
-  {
-    title: "Conception pédagogique",
-    icon: (
-      <>
-        <path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z" />
-        <path d="M7 10.5V16c0 1.1 2.2 3 5 3s5-1.9 5-3v-5.5" />
-        <path d="M21 7.5v6" />
-      </>
-    ),
-    when: "Votre contenu n'est pas encore structuré, ou votre formation doit s'aligner sur un référentiel (RNCP, RS ou interne).",
-    deliverables: [
-      "Analyse de la demande, du référentiel et du public cible",
-      "Progression pédagogique (objectifs dérivés du référentiel)",
-      "Programme de formation conforme Qualiopi",
-      "Supports, activités d'apprentissage et évaluations",
-    ],
-    href: ROUTES.formationsConception,
-    cta: "Découvrir la conception pédagogique",
-  },
-  {
-    title: "Digitalisation",
-    icon: (
-      <>
-        <rect x="3" y="4" width="18" height="13" rx="2" />
-        <path d="M8 21h8M12 17v4" />
-      </>
-    ),
-    when: "Votre programme existe déjà et vous voulez le proposer en blended learning ou en 100 % e-learning.",
-    deliverables: [
-      "Scénarisation et conception digitale",
-      "Production des modules : vidéos, audios, exercices et évaluations interactifs",
-      "Déploiement et paramétrage sur votre LMS (Moodle, Digiforma, Teachizy, 360Learning)",
-      "Tests et accompagnement des équipes",
-    ],
-    href: ROUTES.formationsDigitalisation,
-    cta: "Découvrir la digitalisation",
-  },
-];
 
 export default function FormationsPage() {
   return (
@@ -129,7 +90,7 @@ export default function FormationsPage() {
                 <h3>Conception des formations</h3>
                 <p>Structurer votre contenu en un programme pédagogique cohérent et conforme Qualiopi : objectifs, progression, supports et évaluations.</p>
                 <Link href={ROUTES.formationsConception} className="problem-list__link">
-                  Découvrir la conception pédagogique →
+                  Découvrir la conception pédagogique <LinkArrow />
                 </Link>
               </div>
             </li>
@@ -144,43 +105,11 @@ export default function FormationsPage() {
                 <h3>Digitalisation des formations</h3>
                 <p>Transformer vos contenus en parcours blended learning ou 100&nbsp;% e-learning, avec intégration LMS (Moodle, Digiforma, 360Learning...).</p>
                 <Link href={ROUTES.formationsDigitalisation} className="problem-list__link">
-                  Découvrir la digitalisation →
+                  Découvrir la digitalisation <LinkArrow />
                 </Link>
               </div>
             </li>
           </ul>
-        </div>
-      </section>
-
-      <section className="section-tinted">
-        <div className="container">
-          <div className="section-head">
-            <p className="eyebrow">Deux services, deux besoins</p>
-            <h2>Ce que chacun apporte à votre organisme de formation</h2>
-          </div>
-          <div className="service-compare">
-            {SERVICES.map((service) => (
-              <article key={service.title} className="service-card">
-                <span className="benefit-tile__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    {service.icon}
-                  </svg>
-                </span>
-                <h3 className="service-card__title">{service.title}</h3>
-                <p className="service-card__label">Quand</p>
-                <p className="service-card__when">{service.when}</p>
-                <p className="service-card__label">Ce que vous obtenez</p>
-                <ul className="pricing-card__deliverables service-card__list">
-                  {service.deliverables.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <Link href={service.href} className="service-card__link">
-                  {service.cta} →
-                </Link>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 

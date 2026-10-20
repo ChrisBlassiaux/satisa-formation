@@ -921,7 +921,7 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-xs;
-  padding: $spacing-lg;
+  padding: $spacing-md;
   border: 1px solid $color-border;
   border-radius: $radius-lg;
   background: $color-white;
@@ -936,10 +936,6 @@
   background: $color-mint;
 }
 
-.formula-card--featured .formula-card__head {
-  margin-top: $spacing-lg;
-}
-
 .formula-card--featured .offer-row__price {
   background: $color-white;
 }
@@ -950,6 +946,23 @@
   color: $color-dark;
 }
 
+// Première ligne de chaque carte : numéro à gauche, badge à droite. Même hauteur partout, donc tous les titres sont alignés.
+.formula-card__top {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+}
+
+// Numéro de la formule : même taille et même style que les cartes « Dans quelle situation êtes-vous ? » (page certification).
+.formula-card__top .offer-row__index {
+  width: 36px;
+  height: 36px;
+  background: $color-mint-light;
+  color: $color-dark;
+  font-size: 1rem;
+}
+
+// Badge dans le coin haut droit, comme le badge « Objectif » de la page certification.
 .formula-card__badge {
   position: absolute;
   top: $spacing-md;
@@ -965,7 +978,7 @@
 .formula-card__head {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: $spacing-sm;
   margin-bottom: $spacing-xs;
@@ -1000,62 +1013,6 @@
   text-decoration: none;
 }
 
-
-// Deux services côte à côte (page mère formations)
-.service-compare {
-  display: grid;
-  gap: $spacing-md;
-
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: $spacing-lg;
-  }
-}
-
-.service-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: $spacing-xs;
-  padding: $spacing-lg;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  background: $color-white;
-}
-
-.service-card__title {
-  margin-top: $spacing-xs;
-  font-size: 1.25rem;
-}
-
-.service-card__label {
-  margin-top: $spacing-sm;
-  font-size: $fs-small;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: $color-primary-dark;
-}
-
-.service-card__when {
-  color: $color-dark;
-}
-
-.service-card__list {
-  margin: 0;
-}
-
-.service-card__link {
-  margin-top: auto;
-  padding-top: $spacing-sm;
-  color: $color-primary-dark;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.service-card__link:hover {
-  text-decoration: none;
-}
 
 // Legal pages
 .legal-content {
@@ -1410,266 +1367,176 @@
   }
 }
 
-// Digitalisation : ce que nous pouvons construire (formule, modalité, durée, options)
-.digital-build__lead {
+.link-arrow {
+  display: inline-block;
+  margin-left: 0.3em;
+  vertical-align: -0.1em;
+  transition: transform 0.2s ease;
+}
+
+a:hover .link-arrow {
+  transform: translateX(3px);
+}
+
+// Conception : chaîne d'alignement, livrables, conformité Qualiopi
+.align-chain__lead {
   max-width: 720px;
   margin-top: $spacing-sm;
 }
 
-.digital-build {
+.align-chain {
   display: grid;
   gap: $spacing-lg;
-}
-
-.digital-build__label {
-  margin: 0 0 $spacing-sm;
-  font-size: $fs-small;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: $color-primary-dark;
-}
-
-.digital-build__formula {
-  padding: $spacing-md;
-  border-radius: $radius-lg;
-  background: $color-mint;
-  color: $color-dark;
-
-  @include from($bp-tablet) {
-    padding: $spacing-lg;
-  }
-
-  .digital-build__label {
-    color: $color-dark;
-  }
-
-  h3 {
-    margin-bottom: $spacing-md;
-    font-size: 1.35rem;
-    color: $color-dark;
-  }
-}
-
-.digital-build__checks {
-  display: grid;
-  gap: $spacing-xs $spacing-lg;
   margin: 0;
   padding: 0;
   list-style: none;
 
   @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  li {
-    display: flex;
-    gap: $spacing-xs;
-    font-weight: 600;
-  }
-
-  li::before {
-    content: '✓';
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-}
-
-.digital-build__tiles {
-  display: grid;
-  gap: $spacing-sm;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.digital-build__tiles--3 {
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: $spacing-md;
   }
 }
 
-.digital-build__tile {
+.align-chain__step {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: $spacing-xs;
   padding: $spacing-md;
   border: 1px solid $color-border;
   border-radius: $radius-lg;
   background: $color-white;
 
-  strong {
-    font-size: 1.05rem;
-    color: $color-dark;
-  }
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid $color-primary-dark;
+    border-bottom: 2px solid $color-primary-dark;
+    left: 50%;
+    bottom: calc(-#{$spacing-lg} / 2 - 6px);
+    margin-left: -5px;
+    transform: rotate(45deg);
 
-  span {
-    font-size: $fs-small;
-    color: $color-muted;
+    @include from($bp-tablet) {
+      top: 50%;
+      right: calc(-#{$spacing-md} / 2 - 5.5px);
+      bottom: auto;
+      left: auto;
+      margin: -5px 0 0;
+      transform: rotate(-45deg);
+    }
   }
 }
 
-.digital-build__tile--duration {
-  border-left: 4px solid $color-primary;
+.align-chain__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: $color-dark;
+  color: $color-white;
+  font-weight: 700;
 }
 
-.digital-build__options {
+.align-chain__label {
+  margin: $spacing-xs 0 0;
+  font-size: 1.1rem;
+}
+
+.align-chain__text {
+  margin: 0;
+  font-size: $fs-small;
+  color: $color-muted;
+}
+
+.deliverable-files {
   display: grid;
   gap: $spacing-md;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
   @include from($bp-tablet) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.digital-build__option-card {
-  padding: $spacing-md;
+.deliverable-file {
+  position: relative;
+  padding: $spacing-md $spacing-md $spacing-md $spacing-lg;
   border: 1px solid $color-border;
+  border-left: 6px solid $color-primary;
   border-radius: $radius-lg;
   background: $color-white;
 
-  @include from($bp-tablet) {
-    padding: $spacing-lg;
-  }
-
   h3 {
-    margin-bottom: $spacing-sm;
+    margin: 0 0 0.25rem;
     font-size: 1.1rem;
   }
 
-  ul {
-    display: grid;
-    gap: $spacing-sm;
+  p {
     margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  li {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    padding-top: $spacing-sm;
-    border-top: 1px solid $color-border;
-  }
-
-  li:first-child {
-    padding-top: 0;
-    border-top: 0;
-  }
-
-  strong {
-    color: $color-dark;
-  }
-
-  span {
     font-size: $fs-small;
     color: $color-muted;
   }
 }
 
-.digital-build__skill {
-  padding: $spacing-md $spacing-lg;
-  border-radius: $radius-lg;
-  background: $color-dark;
-  color: $color-white;
-
-  .digital-build__label {
-    margin-bottom: 0.25rem;
-    color: $color-mint;
-  }
-
-  p:last-child {
-    margin: 0;
-    color: $color-white;
-  }
-}
-
-// Conception : ce que comprend le service (formules 6 et 7)
-.design-scope {
-  display: grid;
-  gap: $spacing-md;
-
-  @include from($bp-tablet) {
-    grid-template-columns: 1.4fr 1fr;
-    align-items: start;
-    gap: $spacing-lg;
-  }
-}
-
-.design-scope__block {
-  padding: $spacing-md;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  background: $color-white;
-
-  @include from($bp-tablet) {
-    padding: $spacing-lg;
-  }
-
-  h3 {
-    margin: $spacing-xs 0;
-    font-size: 1.3rem;
-  }
-}
-
-.design-scope__tag {
+.deliverable-file__format {
   display: inline-block;
-  padding: 0.2em 0.8em;
+  margin-bottom: $spacing-xs;
+  padding: 0.15em 0.7em;
   border-radius: $radius-sm;
   background: $color-mint-light;
   color: $color-primary-dark;
-  font-size: $fs-small;
+  font-size: 0.75rem;
   font-weight: 700;
 }
 
-.design-scope__intro {
-  margin: 0 0 $spacing-md;
+.qualiopi-rows {
+  display: grid;
+  gap: 0;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+  overflow: hidden;
+}
+
+.qualiopi-row {
+  display: grid;
+  gap: 0.25rem;
+  padding: $spacing-md;
+
+  & + & {
+    border-top: 1px solid $color-border;
+  }
+
+  @include from($bp-tablet) {
+    grid-template-columns: minmax(0, 320px) 1fr;
+    gap: $spacing-lg;
+    padding: $spacing-md $spacing-lg;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.qualiopi-row__need {
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.qualiopi-row__done {
   color: $color-muted;
 }
 
-.design-scope__list {
-  display: grid;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: scope;
-
-  li {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    padding: $spacing-sm 0 $spacing-sm 2.75rem;
-    border-top: 1px solid $color-border;
-    counter-increment: scope;
-  }
-
-  li::before {
-    content: counter(scope);
-    position: absolute;
-    top: $spacing-sm;
-    left: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: $color-dark;
-    color: $color-white;
-    font-size: $fs-small;
-    font-weight: 700;
-  }
-
-  strong {
-    color: $color-dark;
-  }
-
-  span {
-    font-size: $fs-small;
-    color: $color-muted;
-  }
+.qualiopi-note {
+  max-width: 760px;
+  margin: $spacing-md 0 0;
+  font-size: $fs-small;
+  color: $color-muted;
 }

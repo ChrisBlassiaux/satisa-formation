@@ -4,7 +4,7 @@ import { ROUTES } from "@/lib/routes";
 import { FAQ_DIGITALISATION, FORMULAS, breadcrumbJsonLd, faqJsonLd } from "@/lib/formations";
 import FaqList from "@/components/FaqList";
 import FormulaCard from "@/components/FormulaCard";
-import DigitalCapabilities from "@/components/DigitalCapabilities";
+import LinkArrow from "@/components/LinkArrow";
 
 const TITLE = "Digitalisation de formation : e-learning et LMS - Satisa Formation";
 const DESCRIPTION =
@@ -108,7 +108,7 @@ export default function DigitalisationPage() {
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Digitalisation des formations</p>
-            <h1>Digitalisez vos formations : e-learning, SCORM et intégration LMS</h1>
+            <h1>Digitalisez vos formations : e-learning et intégration LMS</h1>
             <p className="hero-page__subtitle">
               De votre contenu à la première session : on conçoit, produit et déploie vos formations digitales
               (e-learning ou blended learning) sur votre LMS.
@@ -175,8 +175,6 @@ export default function DigitalisationPage() {
         </div>
       </section>
 
-      <DigitalCapabilities />
-
       <section>
         <div className="container">
           <div className="section-head">
@@ -221,9 +219,8 @@ export default function DigitalisationPage() {
               Votre contenu n&apos;est pas encore structuré ?
             </p>
             <p style={{ marginTop: "0.5rem" }}>
-              →{" "}
               <Link href={ROUTES.formationsConception} style={{ fontStyle: "italic", textDecoration: "underline" }}>
-                Découvrez notre service de conception pédagogique
+                Découvrez notre service de conception pédagogique <LinkArrow />
               </Link>
             </p>
           </div>
