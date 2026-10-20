@@ -66,7 +66,7 @@ const DIGITAL_FEATURES = [
     icon: <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 5l-4 14" />,
   },
   {
-    title: "Exclusivité des modules",
+    title: "Exclusivité des contenus",
     text: "Les modules créés pour vous sont à vous : ils ne sont pas réutilisés pour d'autres clients.",
     icon: (
       <>
