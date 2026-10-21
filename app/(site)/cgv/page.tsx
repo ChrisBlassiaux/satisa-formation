@@ -3,9 +3,15 @@ import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = {
-  title: "CGV",
-  description: "Conditions générales de vente du site Satisa Formation.",
-  robots: { index: false, follow: true },
+  title: "Conditions générales de vente",
+  description:
+    "Conditions générales de vente de Satisa Formation : prestations, devis, prix, paiement, responsabilité, propriété intellectuelle et protection des données.",
+  openGraph: {
+    title: "Conditions générales de vente - Satisa Formation",
+    description:
+      "Conditions générales de vente de Satisa Formation : prestations, devis, prix, paiement, responsabilité, propriété intellectuelle et protection des données.",
+    url: "https://www.satisa-formation.fr/cgv",
+  },
   alternates: {
     canonical: "https://www.satisa-formation.fr/cgv",
   },

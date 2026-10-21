@@ -16,6 +16,7 @@ const PAGE_LAST_MODIFIED = {
   about: "2026-10-14",
   contact: "2026-10-08",
   legal: "2026-10-14",
+  cgv: "2026-10-20",
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -39,6 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}${ROUTES.contact}`, lastModified: new Date(PAGE_LAST_MODIFIED.contact), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}${ROUTES.legalMentions}`, lastModified: new Date(PAGE_LAST_MODIFIED.legal), changeFrequency: "yearly", priority: 0.3 },
     { url: `${BASE_URL}${ROUTES.privacy}`, lastModified: new Date(PAGE_LAST_MODIFIED.legal), changeFrequency: "yearly", priority: 0.3 },
+    { url: `${BASE_URL}${ROUTES.cgv}`, lastModified: new Date(PAGE_LAST_MODIFIED.cgv), changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
