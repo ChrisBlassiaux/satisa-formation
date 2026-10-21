@@ -1,3 +1,4 @@
+import { PERSON_JSON_LD } from "@/lib/schema";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +9,7 @@ import PhotoPanel from "@/components/PhotoPanel";
 
 const TITLE = "Consultant RNCP/RS et ingénieur pédagogique - Satisa Formation";
 const DESCRIPTION =
-  "Ingénieur de certification RNCP/RS et ingénieur pédagogique pour organismes de formation. Consultant RNCP RS.";
+  "Chris Blassiaux, ingénieur de certification RNCP/RS et ingénieur pédagogique : j’accompagne les organismes de formation du référentiel jusqu’au dépôt.";
 
 export const metadata: Metadata = {
   title: "Consultant RNCP/RS et ingénieur pédagogique",
@@ -28,18 +29,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-  },
-};
-
-const PERSON_JSON_LD = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Chris Blassiaux",
-  jobTitle: "Ingénieur de certification et pédagogique",
-  sameAs: [LINKEDIN_URL],
-  worksFor: {
-    "@type": "Organization",
-    name: "Satisa Formation",
   },
 };
 

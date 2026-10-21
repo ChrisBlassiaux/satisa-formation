@@ -9,7 +9,7 @@ import ConceptionSections from "@/components/ConceptionSections";
 
 const TITLE = "Conception de formation conforme Qualiopi - Satisa Formation";
 const DESCRIPTION =
-  "Conception de programmes de formation conformes Qualiopi, alignés sur votre référentiel RNCP, RS ou interne, et création de contenus : supports, activités, évaluations.";
+  "Conception de formation conforme Qualiopi : programme, scénario pédagogique et contenus alignés sur votre référentiel RNCP, RS ou interne.";
 const URL = "https://www.satisa-formation.fr/concevoir-digitaliser-vos-formations/conception-pedagogique";
 
 export const metadata: Metadata = {

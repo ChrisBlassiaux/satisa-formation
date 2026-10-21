@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
+import RelatedArticles from "@/components/RelatedArticles";
 import OfferAccordion from "@/components/OfferAccordion";
 import OfferRowChevron from "@/components/OfferRowChevron";
 import PaymentOptions from "@/components/PaymentOptions";
 import DiagnosticFaisabilite from "@/components/DiagnosticFaisabilite";
 import DepotProcess from "@/components/DepotProcess";
+import { serviceJsonLd } from "@/lib/schema";
 
 const TITLE = "Accompagnement au dépôt RNCP - Satisa Formation";
 const DESCRIPTION =
@@ -95,6 +97,20 @@ const FAQ_JSON_LD = {
   ],
 };
 
+const SERVICE_JSON_LD = serviceJsonLd({
+  name: "Accompagnement au dépôt RNCP",
+  description:
+    "Accompagnement au dépôt RNCP : diagnostic de faisabilité, étude d'opportunité, référentiels, promotion de titulaires et dossier France Compétences.",
+  url: "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs/depot-rncp",
+  offers: [
+    { name: "Diagnostic de faisabilité", price: 700 },
+    { name: "Certification guidée", price: 5000 },
+    { name: "Certification pilotée", price: 10000 },
+    { name: "Ingénieur de certification intégré", price: 500, unit: "jour" },
+    { name: "Responsable de certification externalisé", price: 500, unit: "mois" },
+  ],
+});
+
 const BREADCRUMB_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -125,6 +141,10 @@ export default function CertificationRncpPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSON_LD) }}
       />
 
       <section className="hero-page hero-page--certification hero-page--wide-h1">
@@ -429,6 +449,8 @@ export default function CertificationRncpPage() {
           </div>
         </div>
       </section>
+
+      <RelatedArticles slugs={["suis-je-eligible-au-rncp-criteres-d-eligibilite-et-conditions-2026", "rncp-ou-rs-guide-complet", "comment-devenir-organisme-habilite-sur-une-certification-rncp-ou-rs"]} />
 
       <section>
         <div className="container">

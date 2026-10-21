@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description:
       "Conditions générales de vente de Satisa Formation : prestations, devis, prix, paiement, responsabilité, propriété intellectuelle et protection des données.",
     url: "https://www.satisa-formation.fr/cgv",
+    siteName: "Satisa Formation",
+    locale: "fr_FR",
+    type: "website",
   },
   alternates: {
     canonical: "https://www.satisa-formation.fr/cgv",

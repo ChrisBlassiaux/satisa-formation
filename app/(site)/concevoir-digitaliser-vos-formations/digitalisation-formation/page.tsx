@@ -8,7 +8,7 @@ import LinkArrow from "@/components/LinkArrow";
 
 const TITLE = "Digitalisation de formation : e-learning et LMS - Satisa Formation";
 const DESCRIPTION =
-  "Digitalisation de vos formations en e-learning ou blended learning : rétroplanning, vidéos, exercices interactifs, SCORM et intégration LMS (Moodle, Digiforma, Teachizy, 360Learning).";
+  "Digitalisation de formation : e-learning, blended learning et intégration LMS (Moodle, Digiforma, Teachizy, 360Learning), avec contenus 100 % uniques.";
 const URL = "https://www.satisa-formation.fr/concevoir-digitaliser-vos-formations/digitalisation-formation";
 
 export const metadata: Metadata = {

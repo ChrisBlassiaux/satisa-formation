@@ -1205,13 +1205,12 @@
 }
 
 // Animation A : chaque étape apparaît en montant légèrement. CSS pur, l'état de base est l'état final
+// Pas de fondu : un texte à faible opacité échoue au contrôle de contraste (accessibilité) tant que l'étape n'a pas défilé à l'écran.
 @keyframes depot-reveal {
   from {
-    opacity: 0.15;
     transform: translateY(28px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -1539,4 +1538,46 @@ a:hover .link-arrow {
   margin: $spacing-md 0 0;
   font-size: $fs-small;
   color: $color-muted;
+}
+
+// Pour aller plus loin : liens vers les articles
+.related-articles {
+  display: grid;
+  gap: $spacing-sm;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $spacing-md;
+  }
+}
+
+.related-articles__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: 100%;
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+  color: $color-dark;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+
+  strong {
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
+
+  span {
+    font-size: $fs-small;
+    color: $color-muted;
+  }
+
+  &:hover {
+    border-color: $color-primary-dark;
+    transform: translateY(-2px);
+  }
 }

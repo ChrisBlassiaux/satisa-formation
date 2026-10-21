@@ -222,13 +222,11 @@ export async function generateMetadata({
       siteName: "Satisa Formation",
       locale: "fr_FR",
       type: "article",
-      images: post.coverImage ? [post.coverImage] : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title: `${metaTitle} - Satisa Formation`,
       description: post.excerpt,
-      images: post.coverImage ? [post.coverImage] : undefined,
     },
   };
 }

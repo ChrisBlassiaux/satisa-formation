@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     description:
       "Politique de confidentialité de Satisa Formation : données collectées, finalités, cookies et outils tiers, durée de conservation et exercice de vos droits.",
     url: "https://www.satisa-formation.fr/politique-confidentialite",
+    siteName: "Satisa Formation",
+    locale: "fr_FR",
+    type: "website",
   },
   alternates: {
     canonical: "https://www.satisa-formation.fr/politique-confidentialite",

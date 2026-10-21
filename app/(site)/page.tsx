@@ -1,3 +1,4 @@
+import { ORGANIZATION_JSON_LD } from "@/lib/schema";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,7 +7,7 @@ import { getAllPosts, CATEGORY_LABELS, formatPostDate } from "@/lib/posts";
 
 const TITLE = "Certification RNCP/RS & ingénierie pédagogique - Satisa Formation";
 const DESCRIPTION =
-  "Faites reconnaître vos formations, structurez et digitalisez vos programmes. Certification RNCP/RS et ingénierie pédagogique pour organismes de formation.";
+  "Faites enregistrer votre certification au RNCP ou au RS, et structurez ou digitalisez vos formations. Consultant indépendant pour organismes de formation.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -27,22 +28,6 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
   },
-};
-
-const ORGANIZATION_JSON_LD = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Satisa Formation",
-  url: "https://www.satisa-formation.fr/",
-  description:
-    "Ingénierie de certification RNCP/RS et ingénierie pédagogique et digitale pour les organismes de formation.",
-  founder: {
-    "@type": "Person",
-    name: "Chris Blassiaux",
-    sameAs: [LINKEDIN_URL],
-  },
-  logo: "https://www.satisa-formation.fr/images/logo/logo-satisa-noir.svg",
-  areaServed: "FR",
 };
 
 export default async function HomePage() {

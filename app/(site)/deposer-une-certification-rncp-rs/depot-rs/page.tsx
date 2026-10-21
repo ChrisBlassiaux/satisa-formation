@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
+import RelatedArticles from "@/components/RelatedArticles";
 import OfferAccordion from "@/components/OfferAccordion";
 import OfferRowChevron from "@/components/OfferRowChevron";
 import PaymentOptions from "@/components/PaymentOptions";
 import DiagnosticFaisabilite from "@/components/DiagnosticFaisabilite";
 import DepotProcess from "@/components/DepotProcess";
+import { serviceJsonLd } from "@/lib/schema";
 
 const TITLE = "Accompagnement au dépôt RS - Satisa Formation";
 const DESCRIPTION =
@@ -95,6 +97,20 @@ const FAQ_JSON_LD = {
   ],
 };
 
+const SERVICE_JSON_LD = serviceJsonLd({
+  name: "Accompagnement au dépôt RS",
+  description:
+    "Accompagnement au dépôt RS : diagnostic de faisabilité, étude d'opportunité, référentiels, promotion de titulaires et dossier France Compétences.",
+  url: "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs/depot-rs",
+  offers: [
+    { name: "Diagnostic de faisabilité", price: 700 },
+    { name: "Certification guidée", price: 4000 },
+    { name: "Certification pilotée", price: 8000 },
+    { name: "Ingénieur de certification intégré", price: 500, unit: "jour" },
+    { name: "Responsable de certification externalisé", price: 500, unit: "mois" },
+  ],
+});
+
 const BREADCRUMB_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -125,6 +141,10 @@ export default function CertificationRsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSON_LD) }}
       />
 
       <section className="hero-page hero-page--certification">
@@ -429,6 +449,8 @@ export default function CertificationRsPage() {
           </div>
         </div>
       </section>
+
+      <RelatedArticles slugs={["certification-rncp-suis-je-eligible-au-rs-criteres-de-certification-au-repertoire-specifique", "passer-d-une-certification-rs-a-un-rncp-est-ce-possible", "rncp-ou-rs-guide-complet"]} />
 
       <section>
         <div className="container">

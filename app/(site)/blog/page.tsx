@@ -8,14 +8,14 @@ import BlogFilters from "@/components/BlogFilters";
 export const metadata: Metadata = {
   title: "Blog certification RNCP/RS et ingénierie pédagogique",
   description:
-    "Certification RNCP/RS, ingénierie pédagogique et digitalisation : les articles de Satisa Formation pour les organismes de formation et certificateurs.",
+    "Guides pratiques sur l’enregistrement RNCP/RS, l’habilitation, les critères d’éligibilité et la conception de formations, pour organismes de formation.",
   alternates: {
     canonical: "https://www.satisa-formation.fr/blog",
   },
   openGraph: {
     title: "Blog certification RNCP/RS et ingénierie pédagogique - Satisa Formation",
     description:
-      "Certification RNCP/RS, ingénierie pédagogique et digitalisation : les articles de Satisa Formation pour les organismes de formation et certificateurs.",
+      "Guides pratiques sur l’enregistrement RNCP/RS, l’habilitation, les critères d’éligibilité et la conception de formations, pour organismes de formation.",
     url: "https://www.satisa-formation.fr/blog",
     siteName: "Satisa Formation",
     locale: "fr_FR",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Blog certification RNCP/RS et ingénierie pédagogique - Satisa Formation",
     description:
-      "Certification RNCP/RS, ingénierie pédagogique et digitalisation : les articles de Satisa Formation pour les organismes de formation et certificateurs.",
+      "Guides pratiques sur l’enregistrement RNCP/RS, l’habilitation, les critères d’éligibilité et la conception de formations, pour organismes de formation.",
   },
 };
 

@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     description:
       "Mentions légales de Satisa Formation : éditeur du site, hébergeur, directeur de publication et moyens de contact.",
     url: "https://www.satisa-formation.fr/mentions-legales",
+    siteName: "Satisa Formation",
+    locale: "fr_FR",
+    type: "website",
   },
   alternates: {
     canonical: "https://www.satisa-formation.fr/mentions-legales",

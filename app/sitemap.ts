@@ -6,14 +6,14 @@ const BASE_URL = "https://www.satisa-formation.fr";
 
 // Last meaningful content change of each static page (update when a page's content changes).
 const PAGE_LAST_MODIFIED = {
-  home: "2026-10-14",
-  certification: "2026-10-07",
-  certificationRncp: "2026-10-13",
-  certificationRs: "2026-10-13",
+  home: "2026-10-21",
+  certification: "2026-10-21",
+  certificationRncp: "2026-10-21",
+  certificationRs: "2026-10-21",
   formations: "2026-10-13",
-  formationsConception: "2026-10-13",
-  formationsDigitalisation: "2026-10-13",
-  about: "2026-10-14",
+  formationsConception: "2026-10-21",
+  formationsDigitalisation: "2026-10-21",
+  about: "2026-10-21",
   contact: "2026-10-08",
   legal: "2026-10-14",
   cgv: "2026-10-20",

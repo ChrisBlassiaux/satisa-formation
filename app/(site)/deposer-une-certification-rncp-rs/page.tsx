@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
+import RelatedArticles from "@/components/RelatedArticles";
 
-const TITLE = "RNCP ou RS : quelle certification choisir ? - Satisa Formation";
+const TITLE = "Déposer une certification RNCP ou RS - Satisa Formation";
 const DESCRIPTION =
-  "RNCP ou RS ? Comparez les deux répertoires France Compétences et trouvez le bon choix pour votre organisme de formation.";
+  "Enregistrer une certification au RNCP ou au RS : choisissez le bon répertoire, puis faites-vous accompagner du diagnostic à la décision de France Compétences.";
 
 export const metadata: Metadata = {
-  title: "RNCP ou RS : quelle certification choisir ?",
+  title: "Déposer une certification RNCP ou RS",
   description: DESCRIPTION,
   alternates: {
     canonical: "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs",
@@ -414,6 +415,8 @@ export default function CertificationPage() {
           </div>
         </div>
       </section>
+
+      <RelatedArticles slugs={["rncp-ou-rs-guide-complet", "organisme-certificateur-ou-organisme-habilite-qui-peut-delivrer-une-certification-rncp-ou-rs", "passer-d-une-certification-rs-a-un-rncp-est-ce-possible"]} />
 
       <section>
         <div className="container">

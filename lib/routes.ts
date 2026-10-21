@@ -35,3 +35,6 @@ export const MAIN_NAV_LINKS = [
 ] as const;
 
 export const LINKEDIN_URL = "https://www.linkedin.com/in/christopher-blassiaux-802891198/";
+
+// URL de la page LinkedIn de l'entreprise Satisa Formation (à renseigner : alimente les données structurées de l'organisation).
+export const LINKEDIN_COMPANY_URL = "";
