@@ -72,7 +72,7 @@ const FAQ_DELAYS: FaqItem = {
 const FAQ_LMS: FaqItem = {
   question: "Est-ce compatible avec mon LMS actuel ?",
   answer:
-    "Les modules sont produits au format SCORM 1.2, compatible avec la grande majorité des LMS (Moodle, Digiforma, Teachizy, 360Learning, et bien d'autres). Le diagnostic vérifie la compatibilité avec votre outil.",
+    "Oui. Nous intégrons et paramétrons vos contenus sur les LMS les plus courants (Moodle, Digiforma, Teachizy, 360Learning) ou sur votre plateforme. Le diagnostic vérifie la compatibilité avec votre outil.",
 };
 
 const FAQ_CUSTOM: FaqItem = {
