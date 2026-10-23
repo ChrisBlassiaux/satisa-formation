@@ -35,7 +35,7 @@ const DELIVERABLES = [
   },
   {
     title: "Les supports et les évaluations",
-    text: "Diapositives, fiches, guide formateur, activités d’apprentissage et évaluations (formule 7).",
+    text: "Diapositives, fiches, guide formateur, activités d’apprentissage et évaluations.",
     format: "Fichiers modifiables",
   },
 ];
@@ -88,7 +88,7 @@ export default function ConceptionSections() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Livrables</p>
-            <h2>Ce que vous recevez</h2>
+            <h2>Ce que nous construisons</h2>
           </div>
           <ul className="deliverable-files">
             {DELIVERABLES.map((item) => (

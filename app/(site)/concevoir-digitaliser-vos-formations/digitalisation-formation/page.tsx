@@ -40,7 +40,7 @@ const TOOL_CHIPS = ["Articulate Rise", "Storyline", "iSpring", "SCORM 1.2", "HTM
 const DIGITAL_FEATURES = [
   {
     title: "Vidéos pédagogiques et audios",
-    text: "Script, conseils au tournage et montage, de l'écriture à la vidéo finale, et pour les contenus audio.",
+    text: "Face caméra : nous rédigeons le script, vous conseillons au tournage et montons vos vidéos. Sans vous filmer : motion design et voix off.",
     icon: (
       <>
         <rect x="3" y="5" width="14" height="14" rx="2" />
@@ -49,8 +49,8 @@ const DIGITAL_FEATURES = [
     ),
   },
   {
-    title: "Exercices et évaluations interactifs et personnalisés",
-    text: "Quiz, mises en situation et évaluations adaptés à votre public et à vos objectifs, avec suivi des résultats.",
+    title: "Exercices et évaluations interactifs sur mesure",
+    text: "Quiz, mises en situation, évaluations : adaptés à votre public, alignés sur vos objectifs, avec suivi des résultats.",
     icon: (
       <>
         <rect x="5" y="4" width="14" height="17" rx="2" />
@@ -67,7 +67,7 @@ const DIGITAL_FEATURES = [
   },
   {
     title: "Exclusivité des contenus",
-    text: "Les modules créés pour vous sont à vous : ils ne sont pas réutilisés pour d'autres clients.",
+    text: "Chaque module est conçu en exclusivité pour vous : le contenu vous appartient.",
     icon: (
       <>
         <rect x="5" y="11" width="14" height="9" rx="2" />
@@ -108,7 +108,9 @@ export default function DigitalisationPage() {
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Digitalisation des formations</p>
-            <h1>Digitalisez vos formations : e-learning et intégration LMS</h1>
+            <h1>
+              Digitalisez vos formations : <span style={{ whiteSpace: "nowrap" }}>e-learning</span> et intégration LMS
+            </h1>
             <p className="hero-page__subtitle">
               De votre contenu à la première session : on conçoit, produit et déploie vos formations digitales
               (e-learning ou blended learning) sur votre LMS.
@@ -170,6 +172,57 @@ export default function DigitalisationPage() {
                 <li>Suivi de progression et validation des acquis</li>
                 <li>Accessibles à tout moment, sur tout appareil</li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <h3 className="subsection-title">Ce que ça change pour votre organisme de formation</h3>
+          <div className="benefit-grid">
+            <div className="benefit-tile">
+              <span className="benefit-tile__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="8" cy="9" r="3" />
+                  <path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                  <circle cx="17" cy="8" r="2.5" />
+                  <path d="M14.7 14.3c2.7.5 4.3 2.7 4.3 5.7" />
+                </svg>
+              </span>
+              <p className="benefit-tile__title">Attirez plus d&apos;apprenants</p>
+              <p className="benefit-tile__text">Une offre accessible à distance élargit votre audience au-delà de votre zone géographique.</p>
+            </div>
+            <div className="benefit-tile">
+              <span className="benefit-tile__icon benefit-tile__icon--accent" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 11a8 8 0 00-14.9-3.5" />
+                  <path d="M4 13a8 8 0 0014.9 3.5" />
+                  <path d="M5 4v4h4" />
+                  <path d="M19 20v-4h-4" />
+                </svg>
+              </span>
+              <p className="benefit-tile__title">Modernisez vos formations</p>
+              <p className="benefit-tile__text">Des contenus interactifs et à jour, à la hauteur des attentes de vos apprenants.</p>
+            </div>
+            <div className="benefit-tile">
+              <span className="benefit-tile__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
+                </svg>
+              </span>
+              <p className="benefit-tile__title">Proposez une expérience engageante et flexible</p>
+              <p className="benefit-tile__text">Apprentissage à son rythme, sur tout appareil, avec un suivi de la progression.</p>
+            </div>
+            <div className="benefit-tile">
+              <span className="benefit-tile__icon benefit-tile__icon--accent" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 17l6-6 4 4 8-8" />
+                  <path d="M15 6h6v6" />
+                </svg>
+              </span>
+              <p className="benefit-tile__title">Nouvelles sources de revenus</p>
+              <p className="benefit-tile__text">Vendez vos modules en ligne ou proposez des formules hybrides à plus forte marge.</p>
             </div>
           </div>
         </div>

@@ -115,57 +115,6 @@ export default function FormationsPage() {
 
       <section>
         <div className="container">
-          <h3 className="subsection-title">Ce que ça change pour votre organisme de formation</h3>
-          <div className="benefit-grid">
-            <div className="benefit-tile">
-              <span className="benefit-tile__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="8" cy="9" r="3" />
-                  <path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
-                  <circle cx="17" cy="8" r="2.5" />
-                  <path d="M14.7 14.3c2.7.5 4.3 2.7 4.3 5.7" />
-                </svg>
-              </span>
-              <p className="benefit-tile__title">Attirez plus d&apos;apprenants</p>
-              <p className="benefit-tile__text">Une offre accessible à distance élargit votre audience au-delà de votre zone géographique.</p>
-            </div>
-            <div className="benefit-tile">
-              <span className="benefit-tile__icon benefit-tile__icon--accent" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 11a8 8 0 00-14.9-3.5" />
-                  <path d="M4 13a8 8 0 0014.9 3.5" />
-                  <path d="M5 4v4h4" />
-                  <path d="M19 20v-4h-4" />
-                </svg>
-              </span>
-              <p className="benefit-tile__title">Modernisez vos formations</p>
-              <p className="benefit-tile__text">Des contenus interactifs et à jour, à la hauteur des attentes de vos apprenants.</p>
-            </div>
-            <div className="benefit-tile">
-              <span className="benefit-tile__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
-                </svg>
-              </span>
-              <p className="benefit-tile__title">Proposez une expérience engageante et flexible</p>
-              <p className="benefit-tile__text">Apprentissage à son rythme, sur tout appareil, avec un suivi de la progression.</p>
-            </div>
-            <div className="benefit-tile">
-              <span className="benefit-tile__icon benefit-tile__icon--accent" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 17l6-6 4 4 8-8" />
-                  <path d="M15 6h6v6" />
-                </svg>
-              </span>
-              <p className="benefit-tile__title">Nouvelles sources de revenus</p>
-              <p className="benefit-tile__text">Vendez vos modules en ligne ou proposez des formules hybrides à plus forte marge.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="container">
           <div className="section-head">
             <p className="eyebrow">Questions fréquentes</p>
             <h2>Concevoir et digitaliser : vos questions</h2>
