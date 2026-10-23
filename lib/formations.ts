@@ -113,7 +113,7 @@ export const FAQ_CONCEPTION: FaqItem[] = [
   {
     question: "Quelle différence entre la conception de formation et la création de contenus ?",
     answer:
-      "La conception de formation (formule 6) pose les bases : analyse de la demande, du référentiel et du public cible, progression pédagogique, programme conforme Qualiopi et scénario pédagogique. La création de contenus (formule 7) produit la matière : supports de présentation, activités d'apprentissage et évaluations formatives, sommatives et certificatives.",
+      "La conception de formation pose les bases : analyse de la demande, du référentiel et du public cible, progression pédagogique, programme conforme Qualiopi et scénario pédagogique. La création de contenus produit la matière : supports de présentation, activités d'apprentissage et évaluations formatives, sommatives et certificatives.",
   },
   {
     question: "Mon programme sera-t-il aligné avec ma certification ?",
