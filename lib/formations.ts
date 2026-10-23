@@ -66,7 +66,7 @@ export type FaqItem = { question: string; answer: string };
 const FAQ_DELAYS: FaqItem = {
   question: "Combien de temps prend la digitalisation d'une formation ?",
   answer:
-    "Comptez 4 à 8 semaines pour un module e-learning standard, selon le volume de contenu et le niveau d'interactivité souhaité. Le diagnostic initial affine cette estimation.",
+    "Le délai dépend du volume de contenu, du niveau d'interactivité et de la rapidité de vos validations. Nous l'établissons avec vous dès le diagnostic, puis nous le suivons étape par étape.",
 };
 
 const FAQ_LMS: FaqItem = {
@@ -128,13 +128,13 @@ export const FAQ_DIGITALISATION: FaqItem[] = [
   {
     question: "Quelles sont les étapes d'un projet de digitalisation ?",
     answer:
-      "Rendez-vous de cadrage, diagnostic et cadrage, scénarisation et conception digitale, production des modules, intégration et paramétrage sur le LMS, tests et validation, puis accompagnement et première session. Comptez 4 à 8 semaines pour un module e-learning standard.",
+      "Rendez-vous de cadrage, diagnostic, scénarisation et conception digitale, production des modules, intégration et paramétrage sur le LMS, tests et validation, puis accompagnement et première session.",
   },
   FAQ_LMS,
   FAQ_CUSTOM,
   {
     question: "Les modules créés m'appartiennent-ils ?",
-    answer: "Oui : les modules créés pour vous sont à vous, ils ne sont pas réutilisés pour d'autres clients.",
+    answer: "Oui. Chaque module est conçu en exclusivité pour vous et le contenu vous appartient.",
   },
   FAQ_MAINTENANCE,
 ];
