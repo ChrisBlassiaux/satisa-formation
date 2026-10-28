@@ -113,18 +113,28 @@ export default function FormationsPage() {
         </div>
       </section>
 
+      <section className="section-tinted">
+        <div className="container">
+          <div className="statement">
+            <p className="statement__text">
+              Concevoir une formation et la digitaliser demande des compétences distinctes de celles qui permettent de
+              la délivrer. Un expert dans son domaine n&apos;est pas nécessairement outillé pour formaliser des
+              objectifs pédagogiques, séquencer un parcours ou produire des contenus e-learning, et lui demander de le
+              faire en plus de son activité, c&apos;est rarement la bonne équation.
+            </p>
+            <p className="statement__emphasis">
+              Si votre organisme n&apos;a pas ces compétences en interne, les externaliser n&apos;est pas un
+              raccourci : c&apos;est le bon chemin.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section>
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Votre situation</p>
             <h2>Dans quelle situation êtes-vous ?</h2>
-            <p className="hero-page__subtitle section-head__lead">
-              Concevoir une formation et la digitaliser demande des compétences distinctes de celles qui permettent de
-              la délivrer. Un expert dans son domaine n&apos;est pas nécessairement outillé pour formaliser des
-              objectifs pédagogiques, séquencer un parcours ou produire des contenus e-learning, et lui demander de le
-              faire en plus de son activité, c&apos;est rarement la bonne équation. Si votre organisme n&apos;a pas ces
-              compétences en interne, les externaliser n&apos;est pas un raccourci : c&apos;est le bon chemin.
-            </p>
           </div>
           <div className="profile-cards">
             <div className="profile-card">
