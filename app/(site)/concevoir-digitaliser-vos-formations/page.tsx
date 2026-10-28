@@ -116,6 +116,98 @@ export default function FormationsPage() {
       <section>
         <div className="container">
           <div className="section-head">
+            <p className="eyebrow">Votre situation</p>
+            <h2>Dans quelle situation êtes-vous ?</h2>
+            <p className="hero-page__subtitle">
+              Concevoir une formation et la digitaliser demande des compétences distinctes de celles qui permettent de
+              la délivrer. Un expert dans son domaine n&apos;est pas nécessairement outillé pour formaliser des
+              objectifs pédagogiques, séquencer un parcours ou produire des contenus e-learning, et lui demander de le
+              faire en plus de son activité, c&apos;est rarement la bonne équation. Si votre organisme n&apos;a pas ces
+              compétences en interne, les externaliser n&apos;est pas un raccourci : c&apos;est le bon chemin.
+            </p>
+          </div>
+          <div className="profile-cards">
+            <div className="profile-card">
+              <span className="profile-card__number">1</span>
+              <h3>Vous avez des contenus, mais pas de programme structuré</h3>
+              <p className="profile-card__description">
+                Vos formateurs maîtrisent leur domaine. Mais les contenus n&apos;ont jamais été formalisés : pas de programme détaillé, pas d&apos;objectifs pédagogiques écrits, pas de progression documentée.
+              </p>
+              <ul className="profile-card__list profile-card__list--negative">
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  Des formations difficilement défendables en audit Qualiopi
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  Une dépendance au formateur qui &laquo;&nbsp;sait&nbsp;&raquo; mais n&apos;a rien écrit
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  Aucun livrable transmissible à un nouveau formateur ou à un client
+                </li>
+              </ul>
+              <div className="profile-card__satisa">
+                On structure vos contenus en un programme pédagogique complet, conforme et réutilisable.
+              </div>
+            </div>
+
+            <div className="profile-card">
+              <span className="profile-card__number">2</span>
+              <h3>Vous voulez digitaliser, mais ne savez pas par où commencer</h3>
+              <p className="profile-card__description">
+                Vos formations existent en présentiel. Passer en e-learning ou blended learning est dans les plans, mais vous ne savez pas ce qui se digitalise, comment, ni avec quel outil.
+              </p>
+              <ul className="profile-card__list profile-card__list--negative">
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  Des contenus qui restent bloqués en présentiel faute de méthode
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  Des tentatives de digitalisation qui donnent des slides PDF en ligne
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✗</span>
+                  Un LMS inutilisé ou sous-exploité
+                </li>
+              </ul>
+              <div className="profile-card__satisa">
+                On cadre le projet, on produit les contenus et on intègre le parcours dans votre LMS.
+              </div>
+            </div>
+
+            <div className="profile-card profile-card--featured">
+              <span className="profile-card__number">3</span>
+              <h3>Vous n&apos;avez ni l&apos;équipe ni le temps en interne</h3>
+              <p className="profile-card__description">
+                Vous savez ce qu&apos;il faut faire. Mais vous n&apos;avez pas d&apos;ingénieur pédagogique en interne, et vos formateurs ont déjà une charge pleine.
+              </p>
+              <ul className="profile-card__list profile-card__list--positive">
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✓</span>
+                  Une conception et une digitalisation entièrement externalisées
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✓</span>
+                  Des livrables prêts à déployer, sans mobiliser vos équipes
+                </li>
+                <li>
+                  <span className="profile-card__mark" aria-hidden="true">✓</span>
+                  Un interlocuteur unique du cadrage jusqu&apos;à la mise en ligne
+                </li>
+              </ul>
+              <div className="profile-card__satisa">
+                On prend en charge l&apos;ensemble, du programme jusqu&apos;au déploiement.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="section-head">
             <p className="eyebrow">Questions fréquentes</p>
             <h2>Concevoir et digitaliser : vos questions</h2>
           </div>

@@ -41,22 +41,10 @@ const DELIVERABLES = [
 ];
 
 const QUALIOPI = [
-  {
-    need: "Analyse du besoin",
-    done: "Analyse de la demande, du référentiel et du public cible.",
-  },
-  {
-    need: "Objectifs opérationnels et évaluables",
-    done: "Objectifs pédagogiques dérivés du référentiel, dans une progression structurée.",
-  },
-  {
-    need: "Contenus et modalités adaptés",
-    done: "Programme, scénario et séquencement construits pour votre public et vos objectifs.",
-  },
-  {
-    need: "Adéquation à la certification visée",
-    done: "Alignement avec le référentiel RNCP, RS ou interne, jusqu’aux modalités d’évaluation certificative.",
-  },
+  "Objectifs formulés de façon opérationnelle et défendable face à un auditeur",
+  "Évaluations traçables et cohérentes avec les objectifs déclarés",
+  "Programme formalisé et transmissible avant le démarrage de la formation",
+  "Analyse du besoin documentée, pas seulement pratiquée",
 ];
 
 export default function ConceptionSections() {
@@ -107,19 +95,29 @@ export default function ConceptionSections() {
           <div className="section-head">
             <p className="eyebrow">Qualiopi</p>
             <h2>Conformité Qualiopi : ce que la conception couvre</h2>
+            <p className="qualiopi-lead">
+              Les livrables produits lors de la conception sont directement exploitables dans le cadre d’un audit
+              Qualiopi. Ils répondent aux points de friction les plus fréquents :
+            </p>
           </div>
-          <div className="qualiopi-rows">
-            {QUALIOPI.map((row) => (
-              <div key={row.need} className="qualiopi-row">
-                <p className="qualiopi-row__need">{row.need}</p>
-                <p className="qualiopi-row__done">{row.done}</p>
-              </div>
+          <ul className="qualiopi-points">
+            {QUALIOPI.map((point) => (
+              <li key={point} className="qualiopi-point">
+                <span className="qualiopi-point__mark" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12.5l4.5 4.5L19 7.5" />
+                  </svg>
+                </span>
+                <p>{point}</p>
+              </li>
             ))}
-          </div>
+          </ul>
+          <p className="qualiopi-alignment">
+            La conception s’aligne sur le référentiel national qualité en vigueur, y compris ses évolutions récentes.
+          </p>
           <p className="qualiopi-note">
-            Le programme et les livrables sont conçus pour répondre aux exigences du référentiel. L’obtention et le
-            maintien de votre certification Qualiopi dépendent de l’audit de votre organisme et de ses propres
-            pratiques.
+            La certification Qualiopi de votre organisme dépend de l’ensemble de vos pratiques et de votre audit. La
+            conception pédagogique en est un levier, pas une garantie.
           </p>
         </div>
       </section>
