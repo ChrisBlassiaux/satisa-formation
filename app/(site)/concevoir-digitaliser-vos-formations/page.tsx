@@ -118,7 +118,7 @@ export default function FormationsPage() {
           <div className="section-head">
             <p className="eyebrow">Votre situation</p>
             <h2>Dans quelle situation êtes-vous ?</h2>
-            <p className="hero-page__subtitle">
+            <p className="hero-page__subtitle section-head__lead">
               Concevoir une formation et la digitaliser demande des compétences distinctes de celles qui permettent de
               la délivrer. Un expert dans son domaine n&apos;est pas nécessairement outillé pour formaliser des
               objectifs pédagogiques, séquencer un parcours ou produire des contenus e-learning, et lui demander de le
