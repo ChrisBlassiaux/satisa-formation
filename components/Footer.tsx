@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ROUTES, LINKEDIN_URL } from "@/lib/routes";
 import LinkedInIcon from "@/components/LinkedInIcon";
+import { CookieSettingsButton } from "@/components/CookieConsent";
 
 export default function Footer() {
   return (
@@ -53,6 +54,7 @@ export default function Footer() {
             <Link href={ROUTES.legalMentions}>Mentions légales</Link>
             <Link href={ROUTES.cgv}>CGV</Link>
             <Link href={ROUTES.privacy}>Politique de confidentialité</Link>
+            <CookieSettingsButton />
           </div>
         </div>
       </div>

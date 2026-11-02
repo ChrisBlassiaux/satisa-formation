@@ -305,8 +305,18 @@
   gap: $spacing-sm;
 }
 
-.site-footer__legal a:hover {
+.site-footer__legal a:hover,
+.site-footer__link-button:hover {
   color: $color-mint;
+}
+
+.site-footer__link-button {
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
 }
 
 // Grids partagées

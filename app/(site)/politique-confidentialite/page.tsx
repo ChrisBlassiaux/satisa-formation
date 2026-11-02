@@ -56,16 +56,17 @@ export default function PrivacyPolicyPage() {
 
         <h2>4. Cookies et outils tiers</h2>
         <p>
-          Le site n&apos;utilise aucun outil de mesure d&apos;audience ni cookie publicitaire ou de suivi.
+          Le site utilise Google Analytics (Google Ireland Limited) pour mesurer son audience : pages vues,
+          provenance des visiteurs, durée de visite. Ces cookies ne sont déposés qu&apos;avec votre consentement,
+          que vous pouvez refuser ou retirer à tout moment via le lien « Gérer les cookies » en bas de page.
+          Votre choix est conservé 6 mois. Les données de mesure sont conservées 14 mois. Elles peuvent être
+          transférées vers les États-Unis, dans le cadre du Data Privacy Framework. Le site n&apos;utilise aucun
+          cookie publicitaire.
         </p>
         <p>
           La prise de rendez-vous en ligne est assurée par le service tiers Cal.com, intégré directement sur la
           page « Prendre un rendez-vous ». Lorsque vous utilisez cet outil, il peut déposer des cookies
           strictement techniques, nécessaires à son fonctionnement.
-        </p>
-        <p>
-          Si des outils de mesure d&apos;audience ou de suivi venaient à être ajoutés au site, un bandeau de
-          consentement serait mis en place conformément à la réglementation applicable.
         </p>
 
         <h2>5. Destinataires des données</h2>

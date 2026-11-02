@@ -26,6 +26,47 @@
   }
 }
 
+.cookie-banner {
+  position: fixed;
+  right: $spacing-sm;
+  bottom: $spacing-sm;
+  left: $spacing-sm;
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  max-width: 640px;
+  padding: $spacing-sm $spacing-md;
+  background: $color-white;
+  color: $color-ink;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow: 0 8px 24px rgba(0, 39, 48, 0.25);
+
+  @include from($bp-tablet) {
+    right: auto;
+    bottom: $spacing-lg;
+    left: $spacing-lg;
+  }
+}
+
+.cookie-banner__text {
+  flex: 1 1 240px;
+  font-size: $fs-small;
+
+  a {
+    color: $color-link;
+    text-decoration: underline;
+  }
+}
+
+.cookie-banner__actions {
+  display: flex;
+  gap: $spacing-xs;
+}
+
 .floating-cta--hidden {
   opacity: 0;
   transform: translateY(8px);
