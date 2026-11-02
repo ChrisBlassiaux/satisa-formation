@@ -78,6 +78,11 @@
   display: grid;
   gap: $spacing-xs;
 
+  .btn {
+    white-space: normal;
+    text-align: center;
+  }
+
   @include from($bp-tablet) {
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
@@ -104,6 +109,7 @@
 
 .cookie-option {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: $spacing-sm;
@@ -111,6 +117,11 @@
   background: $color-surface;
   border: 1px solid $color-border;
   border-radius: $radius-md;
+}
+
+.cookie-option > div {
+  flex: 1 1 12rem;
+  min-width: 0;
 }
 
 .cookie-option__name {

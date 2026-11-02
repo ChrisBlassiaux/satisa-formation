@@ -164,11 +164,11 @@ gtag('config', '${GA_ID}');`}
                   <Link href={ROUTES.privacy}>En savoir plus</Link>
                 </p>
                 <div className="cookie-modal__actions">
-                  <button type="button" className="btn btn--dark" onClick={() => decide("refused")}>
-                    Tout refuser
-                  </button>
                   <button type="button" className="btn btn--dark" onClick={() => decide("accepted")}>
-                    Tout accepter
+                    Accepter et fermer
+                  </button>
+                  <button type="button" className="btn btn--dark" onClick={() => decide("refused")}>
+                    Refuser tout
                   </button>
                 </div>
                 <button
