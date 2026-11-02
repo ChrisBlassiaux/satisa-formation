@@ -129,7 +129,7 @@ export default async function HomePage() {
                     <path d="M10 1.6l2.35 4.76 5.25.77-3.8 3.7.9 5.23L10 13.5l-4.7 2.46.9-5.23-3.8-3.7 5.25-.77L10 1.6z" fill="#FECC01" />
                   </svg>
                   <span>
-                    <strong>25 avis</strong> sur Google
+                    <strong>+20 avis</strong> sur Google
                   </span>
                 </a>
               </div>
