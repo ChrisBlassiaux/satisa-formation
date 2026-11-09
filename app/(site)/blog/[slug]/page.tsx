@@ -193,9 +193,10 @@ function collectToc(tag: unknown): TocItem[] {
   return items;
 }
 
-// Highlights two sections of an article, recognised by their H2 heading so editors keep writing them as
-// plain headings in Keystatic: "L'essentiel à retenir" (a callout at the top) and "Besoin d'un
-// accompagnement…" (the call to action, framed). The FAQ and sources stay in the normal flow of the article.
+// Articles are written in Keystatic, so the two highlighted blocks are recognised by their structure rather
+// than by an exact wording: the "L'essentiel à retenir" summary at the top, and the call to action at the end
+// (the last group of buttons that point to Satisa's offer pages, with its title and intro when it has them).
+// The FAQ and sources stay in the normal flow of the article.
 function headingKey(node: RenderableTreeNode): string {
   return extractText((node as Tag).children)
     .toLowerCase()
@@ -205,28 +206,134 @@ function headingKey(node: RenderableTreeNode): string {
     .trim();
 }
 
+const OFFER_LINK =
+  /^(?:https?:\/\/(?:www\.)?satisa-formation\.fr)?\/(?:deposer-une-certification-rncp-rs|concevoir-digitaliser-vos-formations|rendez-vous)(?:[/?#]|$)/;
+const CTA_TITLE_WORDS = /accompagn|besoin d|rendez-vous|contact/;
+const DEFAULT_CTA_TITLE = "Besoin d'un accompagnement ?";
+
+type ArticleLink = { href: string; text: string };
+
+function collectLinks(node: RenderableTreeNode): ArticleLink[] {
+  if (!Tag.isTag(node)) return [];
+  if (node.name === "a") {
+    return [{ href: String(node.attributes.href ?? ""), text: extractText(node.children).replace(/\s+/g, " ").trim() }];
+  }
+  return node.children.flatMap(collectLinks);
+}
+
+function textOutsideLinks(node: unknown): string {
+  if (typeof node === "string") return node;
+  if (Array.isArray(node)) return node.map(textOutsideLinks).join("");
+  if (!Tag.isTag(node) || node.name === "a") return "";
+  return textOutsideLinks(node.children);
+}
+
+// A "button" is a paragraph, quote or list made only of links to Satisa offer pages.
+function isButtonNode(node: RenderableTreeNode): boolean {
+  if (!Tag.isTag(node) || !["p", "blockquote", "ul", "ol"].includes(node.name)) return false;
+  const links = collectLinks(node);
+  return (
+    links.length > 0 &&
+    links.every((link) => OFFER_LINK.test(link.href)) &&
+    textOutsideLinks(node).replace(/[\s\\]/g, "") === ""
+  );
+}
+
+function isPlainParagraph(node: RenderableTreeNode): boolean {
+  return Tag.isTag(node) && node.name === "p" && !isBoldOnlyParagraph(node);
+}
+
+function wrapKeyPoints(nodes: RenderableTreeNode[]): RenderableTreeNode[] {
+  const out: RenderableTreeNode[] = [];
+  for (let i = 0; i < nodes.length; i++) {
+    const node = nodes[i];
+    const level = headingLevel(node);
+    const key = Tag.isTag(node) ? headingKey(node) : "";
+    const isLabel = Tag.isTag(node) && (level >= 2 || node.name === "p") && key.includes("à retenir") && key.length < 60;
+    if (!isLabel) {
+      out.push(node);
+      continue;
+    }
+
+    // Under a heading the summary runs to the next heading; after a bold label it is the list that follows.
+    const items: RenderableTreeNode[] = [];
+    let j = i + 1;
+    while (
+      j < nodes.length &&
+      (level >= 2
+        ? headingLevel(nodes[j]) === 0 && !(Tag.isTag(nodes[j]) && (nodes[j] as Tag).name === "hr")
+        : Tag.isTag(nodes[j]) && ["ul", "ol"].includes((nodes[j] as Tag).name))
+    ) {
+      items.push(nodes[j]);
+      j++;
+    }
+    const title = extractText((node as Tag).children).replace(/\s+/g, " ").trim();
+    out.push(
+      new Tag("div", { className: "article-key-points" }, [
+        new Tag("p", { className: "article-key-points__title" }, [title]),
+        ...items,
+      ])
+    );
+    i = j - 1;
+  }
+  return out;
+}
+
+function wrapCta(nodes: RenderableTreeNode[]): { nodes: RenderableTreeNode[]; hasCta: boolean } {
+  let last = -1;
+  for (let i = nodes.length - 1; i >= 0; i--) {
+    if (isButtonNode(nodes[i])) {
+      last = i;
+      break;
+    }
+  }
+  if (last === -1) return { nodes, hasCta: false };
+
+  let first = last;
+  while (first > 0 && isButtonNode(nodes[first - 1])) first--;
+
+  // The intro paragraphs and title belong to the call to action only when the title speaks of support;
+  // otherwise the paragraphs above are the conclusion of the article and stay where they are.
+  let k = first - 1;
+  const intro: RenderableTreeNode[] = [];
+  while (k >= 0 && isPlainParagraph(nodes[k])) {
+    intro.unshift(nodes[k]);
+    k--;
+  }
+  const titleNode = k >= 0 ? nodes[k] : null;
+  const hasTitle =
+    titleNode !== null &&
+    (headingLevel(titleNode) >= 2 || isBoldOnlyParagraph(titleNode)) &&
+    CTA_TITLE_WORDS.test(headingKey(titleNode));
+
+  const links: ArticleLink[] = [];
+  for (const node of nodes.slice(first, last + 1)) {
+    for (const link of collectLinks(node)) {
+      if (!links.some((existing) => existing.href === link.href)) links.push(link);
+    }
+  }
+
+  const title = hasTitle
+    ? extractText((titleNode as Tag).children).replace(/\s+/g, " ").trim()
+    : DEFAULT_CTA_TITLE;
+  const box = new Tag("div", { className: "article-cta" }, [
+    new Tag("h2", {}, [title]),
+    ...(hasTitle ? intro : []),
+    new Tag(
+      "div",
+      { className: "article-cta__actions" },
+      links.map((link) => new Tag("a", { href: link.href, className: "article-cta__button" }, [link.text]))
+    ),
+  ]);
+
+  const start = hasTitle ? k : first;
+  return { nodes: [...nodes.slice(0, start), box, ...nodes.slice(last + 1)], hasCta: true };
+}
+
 function highlightSections(tag: RenderableTreeNode): { body: RenderableTreeNode; hasCta: boolean } {
   if (!Tag.isTag(tag)) return { body: tag, hasCta: false };
-
-  const sections: { heading: Tag | null; nodes: RenderableTreeNode[] }[] = [{ heading: null, nodes: [] }];
-  for (const child of tag.children) {
-    if (headingLevel(child) === 2) sections.push({ heading: child as Tag, nodes: [child] });
-    else sections[sections.length - 1].nodes.push(child);
-  }
-
-  let hasCta = false;
-  const bodyNodes: RenderableTreeNode[] = [];
-  for (const section of sections) {
-    const key = section.heading ? headingKey(section.heading) : "";
-    if (key.startsWith("besoin d'un accompagnement")) {
-      hasCta = true;
-      bodyNodes.push(new Tag("div", { className: "article-cta" }, section.nodes));
-    } else if (key.includes("à retenir")) {
-      bodyNodes.push(new Tag("div", { className: "article-key-points" }, section.nodes));
-    } else bodyNodes.push(...section.nodes);
-  }
-
-  return { body: new Tag(tag.name, tag.attributes, bodyNodes), hasCta };
+  const { nodes, hasCta } = wrapCta(wrapKeyPoints(tag.children));
+  return { body: new Tag(tag.name, tag.attributes, nodes), hasCta };
 }
 
 export async function generateStaticParams() {

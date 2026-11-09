@@ -346,9 +346,11 @@
   }
 }
 
-.article-body .article-key-points h2 {
-  margin-top: 0;
+.article-body .article-key-points__title {
+  margin-bottom: $spacing-sm;
   font-size: $fs-h3;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 .article-key-points ul {
@@ -376,15 +378,14 @@
   margin-top: 0;
 }
 
-.article-cta blockquote {
-  margin: 0;
+.article-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-top: $spacing-sm;
 }
 
-.article-body .article-cta blockquote p {
-  margin-bottom: 0;
-}
-
-.article-body .article-cta blockquote a {
+.article-body .article-cta__button {
   display: inline-flex;
   align-items: center;
   padding: 0.85em 1.6em;
@@ -392,7 +393,7 @@
   color: $color-white;
   border-radius: $radius-md;
   font-size: $fs-small;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
   transition: background 0.15s ease;
 
