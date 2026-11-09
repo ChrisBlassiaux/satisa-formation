@@ -279,6 +279,57 @@ function wrapKeyPoints(nodes: RenderableTreeNode[]): RenderableTreeNode[] {
   return out;
 }
 
+// Some articles close with a short section whose paragraph links to an offer page inline ("… découvrez notre
+// page [Concevoir et digitaliser vos formations](…)") instead of ending on a button. That last section, when
+// only the FAQ and sources follow it, becomes the call to action: its title and text stay, the link turns
+// into a button.
+function unlinkOffers(node: RenderableTreeNode): RenderableTreeNode {
+  if (!Tag.isTag(node)) return node;
+  if (node.name === "a" && OFFER_LINK.test(String(node.attributes.href ?? ""))) {
+    return new Tag("span", {}, node.children);
+  }
+  return new Tag(node.name, node.attributes, node.children.map(unlinkOffers));
+}
+
+function wrapClosingSection(nodes: RenderableTreeNode[]): { nodes: RenderableTreeNode[]; hasCta: boolean } {
+  const isTail = (node: RenderableTreeNode) => {
+    const key = headingLevel(node) >= 2 ? headingKey(node) : "";
+    return FAQ_HEADINGS.includes(key) || key === "sources";
+  };
+
+  // The closing heading is the last one that is neither the FAQ nor the sources.
+  let h = nodes.length - 1;
+  while (h >= 0 && !(headingLevel(nodes[h]) >= 2 && !isTail(nodes[h]))) h--;
+  if (h < 0) return { nodes, hasCta: false };
+
+  let end = h + 1;
+  const body: RenderableTreeNode[] = [];
+  while (end < nodes.length && isPlainParagraph(nodes[end])) {
+    body.push(nodes[end]);
+    end++;
+  }
+  const nextIsSeparator =
+    end >= nodes.length ||
+    (Tag.isTag(nodes[end]) && (nodes[end] as Tag).name === "hr") ||
+    headingLevel(nodes[end]) >= 2;
+  const links = body.flatMap(collectLinks).filter((link) => OFFER_LINK.test(link.href));
+  const lastLinks = collectLinks(body[body.length - 1] ?? "").filter((link) => OFFER_LINK.test(link.href));
+  if (body.length === 0 || body.length > 3 || !nextIsSeparator || lastLinks.length === 0) return { nodes, hasCta: false };
+
+  const unique = links.filter((link, i) => links.findIndex((other) => other.href === link.href) === i);
+  const title = extractText((nodes[h] as Tag).children).replace(/\s+/g, " ").trim();
+  const box = new Tag("div", { className: "article-cta" }, [
+    new Tag("h2", {}, [title]),
+    ...body.map(unlinkOffers),
+    new Tag(
+      "div",
+      { className: "article-cta__actions" },
+      unique.map((link) => new Tag("a", { href: link.href, className: "article-cta__button" }, [link.text]))
+    ),
+  ]);
+  return { nodes: [...nodes.slice(0, h), box, ...nodes.slice(end)], hasCta: true };
+}
+
 function wrapCta(nodes: RenderableTreeNode[]): { nodes: RenderableTreeNode[]; hasCta: boolean } {
   let last = -1;
   for (let i = nodes.length - 1; i >= 0; i--) {
@@ -287,7 +338,7 @@ function wrapCta(nodes: RenderableTreeNode[]): { nodes: RenderableTreeNode[]; ha
       break;
     }
   }
-  if (last === -1) return { nodes, hasCta: false };
+  if (last === -1) return wrapClosingSection(nodes);
 
   let first = last;
   while (first > 0 && isButtonNode(nodes[first - 1])) first--;
