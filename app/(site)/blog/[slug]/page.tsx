@@ -193,6 +193,72 @@ function collectToc(tag: unknown): TocItem[] {
   return items;
 }
 
+// Splits an article into its main content and its "bonus" sections, so the content comes first and the
+// call to action, FAQ and sources are grouped in a framed block underneath. Sections are recognised by
+// their H2 heading, so editors keep writing them as plain headings in Keystatic.
+const SOURCES_HEADINGS = ["sources"];
+
+function headingKey(node: RenderableTreeNode): string {
+  return extractText((node as Tag).children)
+    .toLowerCase()
+    .replace(/[’‘]/g, "'")
+    .replace(/[^\p{L}\p{N}\s'?]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+type SplitArticle = {
+  body: RenderableTreeNode;
+  bonus: RenderableTreeNode | null;
+  hasCta: boolean;
+  toc: RenderableTreeNode;
+};
+
+function splitArticle(tag: RenderableTreeNode): SplitArticle {
+  if (!Tag.isTag(tag)) return { body: tag, bonus: null, hasCta: false, toc: tag };
+
+  const sections: { heading: Tag | null; nodes: RenderableTreeNode[] }[] = [{ heading: null, nodes: [] }];
+  for (const child of tag.children) {
+    if (headingLevel(child) === 2) sections.push({ heading: child as Tag, nodes: [child] });
+    else sections[sections.length - 1].nodes.push(child);
+  }
+
+  const bodyNodes: RenderableTreeNode[] = [];
+  const bonus: { cta: RenderableTreeNode[]; faq: RenderableTreeNode[]; sources: RenderableTreeNode[] } = {
+    cta: [],
+    faq: [],
+    sources: [],
+  };
+
+  for (const section of sections) {
+    const key = section.heading ? headingKey(section.heading) : "";
+    if (key.startsWith("besoin d'un accompagnement")) bonus.cta.push(...section.nodes);
+    else if (FAQ_HEADINGS.includes(key)) bonus.faq.push(...section.nodes);
+    else if (SOURCES_HEADINGS.includes(key)) bonus.sources.push(...section.nodes);
+    else if (key.includes("à retenir")) {
+      bodyNodes.push(new Tag("div", { className: "article-key-points" }, section.nodes));
+    } else bodyNodes.push(...section.nodes);
+  }
+
+  const blocks = (
+    [
+      ["cta", bonus.cta],
+      ["faq", bonus.faq],
+      ["sources", bonus.sources],
+    ] as const
+  )
+    .filter(([, nodes]) => nodes.length > 0)
+    .map(([name, nodes]) => new Tag("div", { className: `article-bonus__block article-bonus__block--${name}` }, nodes));
+
+  return {
+    body: new Tag(tag.name, tag.attributes, bodyNodes),
+    bonus: blocks.length > 0 ? new Tag("div", { className: "article-bonus" }, blocks) : null,
+    hasCta: bonus.cta.length > 0,
+    // The summary lists the content and the FAQ / sources, not the call to action.
+    toc: new Tag(tag.name, tag.attributes, [...bodyNodes, ...bonus.faq, ...bonus.sources]),
+  };
+}
+
 export async function generateStaticParams() {
   const slugs = await getPostSlugs();
   return slugs.map((slug) => ({ slug }));
@@ -244,8 +310,10 @@ export default async function BlogPostPage({
 
   const { node } = await post.content();
   const renderable = await addImageDimensions(promoteTableHeaders(autoWrapFaqSection(Markdoc.transform(node, MARKDOC_CONFIG))));
-  const contentHtml = Markdoc.renderers.react(renderable, React);
-  const tocItems = collectToc(renderable);
+  const article = splitArticle(renderable);
+  const contentHtml = Markdoc.renderers.react(article.body, React);
+  const bonusHtml = article.bonus ? Markdoc.renderers.react(article.bonus, React) : null;
+  const tocItems = collectToc(article.toc);
   const readingTime = computeReadingTime(node);
 
   const allPosts = await getAllPosts();
@@ -359,7 +427,10 @@ export default async function BlogPostPage({
               </ul>
             </aside>
           )}
-          <div className="article-body">{contentHtml}</div>
+          <div className="article-body">
+            {contentHtml}
+            {bonusHtml}
+          </div>
         </div>
       </section>
 
@@ -422,6 +493,7 @@ export default async function BlogPostPage({
         </section>
       )}
 
+      {!article.hasCta && (
       <section>
         <div className="container">
           <div className="cta-banner">
@@ -435,6 +507,7 @@ export default async function BlogPostPage({
           </div>
         </div>
       </section>
+      )}
     </>
   );
 }

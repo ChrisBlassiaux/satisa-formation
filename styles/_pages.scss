@@ -333,6 +333,96 @@
   object-fit: cover;
 }
 
+// Encadré « L'essentiel à retenir » : mis en avant en tête d'article.
+.article-key-points {
+  margin: $spacing-md 0;
+  padding: $spacing-md;
+  background: $color-mint-light;
+  border-left: 4px solid $color-primary;
+  border-radius: $radius-md;
+
+  @include from($bp-tablet) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.article-body .article-key-points h2 {
+  margin-top: 0;
+  font-size: $fs-h3;
+}
+
+.article-key-points ul {
+  margin-bottom: 0;
+}
+
+.article-key-points li:last-child {
+  margin-bottom: 0;
+}
+
+// Bonus sous le contenu : accompagnement, FAQ et sources dans un encadré blanc cassé.
+.article-bonus {
+  margin-top: $spacing-xl;
+  padding: $spacing-md;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+
+  @include from($bp-tablet) {
+    padding: $spacing-lg;
+  }
+}
+
+.article-bonus__block + .article-bonus__block {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $color-border;
+}
+
+.article-body .article-bonus__block h2 {
+  margin-top: 0;
+}
+
+.article-bonus__block--cta blockquote {
+  margin: 0;
+}
+
+.article-body .article-bonus__block--cta blockquote p {
+  margin-bottom: 0;
+}
+
+.article-body .article-bonus__block--cta blockquote a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85em 1.6em;
+  background: $color-dark;
+  color: $color-white;
+  border-radius: $radius-md;
+  font-size: $fs-small;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: $color-teal-dark;
+  }
+}
+
+.article-bonus__block--faq .faq-item:last-child {
+  border-bottom: 0;
+}
+
+.article-bonus__block--sources {
+  font-size: $fs-small;
+
+  h2 {
+    font-size: $fs-h3;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+}
+
 .article-body h2 {
   margin-top: $spacing-lg;
   margin-bottom: $spacing-sm;
