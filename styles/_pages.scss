@@ -359,9 +359,9 @@
   margin-bottom: 0;
 }
 
-// Bonus sous le contenu : accompagnement, FAQ et sources dans un encadré blanc cassé.
-.article-bonus {
-  margin-top: $spacing-xl;
+// Appel à l'accompagnement en fin d'article : encadré blanc cassé, mis en avant sur le reste du contenu.
+.article-cta {
+  margin: $spacing-xl 0;
   padding: $spacing-md;
   background: $color-surface;
   border: 1px solid $color-border;
@@ -372,25 +372,19 @@
   }
 }
 
-.article-bonus__block + .article-bonus__block {
-  margin-top: $spacing-lg;
-  padding-top: $spacing-lg;
-  border-top: 1px solid $color-border;
-}
-
-.article-body .article-bonus__block h2 {
+.article-body .article-cta h2 {
   margin-top: 0;
 }
 
-.article-bonus__block--cta blockquote {
+.article-cta blockquote {
   margin: 0;
 }
 
-.article-body .article-bonus__block--cta blockquote p {
+.article-body .article-cta blockquote p {
   margin-bottom: 0;
 }
 
-.article-body .article-bonus__block--cta blockquote a {
+.article-body .article-cta blockquote a {
   display: inline-flex;
   align-items: center;
   padding: 0.85em 1.6em;
@@ -404,22 +398,6 @@
 
   &:hover {
     background: $color-teal-dark;
-  }
-}
-
-.article-bonus__block--faq .faq-item:last-child {
-  border-bottom: 0;
-}
-
-.article-bonus__block--sources {
-  font-size: $fs-small;
-
-  h2 {
-    font-size: $fs-h3;
-  }
-
-  ul {
-    margin-bottom: 0;
   }
 }
 

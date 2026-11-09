@@ -193,11 +193,9 @@ function collectToc(tag: unknown): TocItem[] {
   return items;
 }
 
-// Splits an article into its main content and its "bonus" sections, so the content comes first and the
-// call to action, FAQ and sources are grouped in a framed block underneath. Sections are recognised by
-// their H2 heading, so editors keep writing them as plain headings in Keystatic.
-const SOURCES_HEADINGS = ["sources"];
-
+// Highlights two sections of an article, recognised by their H2 heading so editors keep writing them as
+// plain headings in Keystatic: "L'essentiel à retenir" (a callout at the top) and "Besoin d'un
+// accompagnement…" (the call to action, framed). The FAQ and sources stay in the normal flow of the article.
 function headingKey(node: RenderableTreeNode): string {
   return extractText((node as Tag).children)
     .toLowerCase()
@@ -207,15 +205,8 @@ function headingKey(node: RenderableTreeNode): string {
     .trim();
 }
 
-type SplitArticle = {
-  body: RenderableTreeNode;
-  bonus: RenderableTreeNode | null;
-  hasCta: boolean;
-  toc: RenderableTreeNode;
-};
-
-function splitArticle(tag: RenderableTreeNode): SplitArticle {
-  if (!Tag.isTag(tag)) return { body: tag, bonus: null, hasCta: false, toc: tag };
+function highlightSections(tag: RenderableTreeNode): { body: RenderableTreeNode; hasCta: boolean } {
+  if (!Tag.isTag(tag)) return { body: tag, hasCta: false };
 
   const sections: { heading: Tag | null; nodes: RenderableTreeNode[] }[] = [{ heading: null, nodes: [] }];
   for (const child of tag.children) {
@@ -223,40 +214,19 @@ function splitArticle(tag: RenderableTreeNode): SplitArticle {
     else sections[sections.length - 1].nodes.push(child);
   }
 
+  let hasCta = false;
   const bodyNodes: RenderableTreeNode[] = [];
-  const bonus: { cta: RenderableTreeNode[]; faq: RenderableTreeNode[]; sources: RenderableTreeNode[] } = {
-    cta: [],
-    faq: [],
-    sources: [],
-  };
-
   for (const section of sections) {
     const key = section.heading ? headingKey(section.heading) : "";
-    if (key.startsWith("besoin d'un accompagnement")) bonus.cta.push(...section.nodes);
-    else if (FAQ_HEADINGS.includes(key)) bonus.faq.push(...section.nodes);
-    else if (SOURCES_HEADINGS.includes(key)) bonus.sources.push(...section.nodes);
-    else if (key.includes("à retenir")) {
+    if (key.startsWith("besoin d'un accompagnement")) {
+      hasCta = true;
+      bodyNodes.push(new Tag("div", { className: "article-cta" }, section.nodes));
+    } else if (key.includes("à retenir")) {
       bodyNodes.push(new Tag("div", { className: "article-key-points" }, section.nodes));
     } else bodyNodes.push(...section.nodes);
   }
 
-  const blocks = (
-    [
-      ["cta", bonus.cta],
-      ["faq", bonus.faq],
-      ["sources", bonus.sources],
-    ] as const
-  )
-    .filter(([, nodes]) => nodes.length > 0)
-    .map(([name, nodes]) => new Tag("div", { className: `article-bonus__block article-bonus__block--${name}` }, nodes));
-
-  return {
-    body: new Tag(tag.name, tag.attributes, bodyNodes),
-    bonus: blocks.length > 0 ? new Tag("div", { className: "article-bonus" }, blocks) : null,
-    hasCta: bonus.cta.length > 0,
-    // The summary lists the content and the FAQ / sources, not the call to action.
-    toc: new Tag(tag.name, tag.attributes, [...bodyNodes, ...bonus.faq, ...bonus.sources]),
-  };
+  return { body: new Tag(tag.name, tag.attributes, bodyNodes), hasCta };
 }
 
 export async function generateStaticParams() {
@@ -310,10 +280,9 @@ export default async function BlogPostPage({
 
   const { node } = await post.content();
   const renderable = await addImageDimensions(promoteTableHeaders(autoWrapFaqSection(Markdoc.transform(node, MARKDOC_CONFIG))));
-  const article = splitArticle(renderable);
+  const article = highlightSections(renderable);
   const contentHtml = Markdoc.renderers.react(article.body, React);
-  const bonusHtml = article.bonus ? Markdoc.renderers.react(article.bonus, React) : null;
-  const tocItems = collectToc(article.toc);
+  const tocItems = collectToc(article.body);
   const readingTime = computeReadingTime(node);
 
   const allPosts = await getAllPosts();
@@ -427,10 +396,7 @@ export default async function BlogPostPage({
               </ul>
             </aside>
           )}
-          <div className="article-body">
-            {contentHtml}
-            {bonusHtml}
-          </div>
+          <div className="article-body">{contentHtml}</div>
         </div>
       </section>
 
