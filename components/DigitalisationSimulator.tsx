@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import {
@@ -12,6 +12,7 @@ import {
   determinerFormule,
   erreurEtape,
   euros,
+  normaliser,
   type Answers,
   type YesNo,
 } from "@/lib/simulateur";
@@ -28,6 +29,7 @@ type Draft = {
   duree: string;
   plateforme: "" | YesNo;
   plateformeNom: string;
+  plateformeAutre: string;
   configuree: "" | YesNo;
 };
 
@@ -40,43 +42,51 @@ const EMPTY: Draft = {
   duree: "",
   plateforme: "",
   plateformeNom: "",
+  plateformeAutre: "",
   configuree: "",
 };
 
 // Ne garde que les réponses encore pertinentes (une question masquée ne doit pas peser dans le calcul).
 function toAnswers(d: Draft): Answers {
-  return {
+  return normaliser({
     format: d.format || undefined,
+    duree: d.duree ? Number(d.duree) : undefined,
     heures: d.heures ? Number(d.heures) : undefined,
     pret: d.pret || undefined,
     referent: d.pret === "non" ? d.referent || undefined : undefined,
     sequencee: d.sequencee || undefined,
-    duree: d.sequencee === "non" && d.duree ? Number(d.duree) : undefined,
     plateforme: d.plateforme || undefined,
     plateformeNom: d.plateforme === "oui" ? d.plateformeNom || undefined : undefined,
+    plateformeAutre: d.plateforme === "oui" && d.plateformeNom === "Autre" ? d.plateformeAutre || undefined : undefined,
     configuree: d.plateforme === "oui" ? d.configuree || undefined : undefined,
-  };
+  });
 }
 
 function YesNoChoice({
   name,
   value,
   onChange,
+  labels = { oui: "Oui", non: "Non" },
 }: {
   name: string;
   value: "" | YesNo;
   onChange: (value: YesNo) => void;
+  labels?: Record<YesNo, string>;
 }) {
   return (
     <div className="sim-choices">
       {(["oui", "non"] as const).map((option) => (
         <label key={option} className="sim-choice">
           <input type="radio" name={name} value={option} checked={value === option} onChange={() => onChange(option)} />
-          <span>{option === "oui" ? "Oui" : "Non"}</span>
+          <span>{labels[option]}</span>
         </label>
       ))}
     </div>
   );
+}
+
+function RequiredNote() {
+  return <p className="sim__note sim-required">* Champs obligatoires</p>;
 }
 
 function Question({ label, help, children }: { label: ReactNode; help?: ReactNode; children: ReactNode }) {
@@ -93,6 +103,7 @@ export default function DigitalisationSimulator() {
   const [step, setStep] = useState<Step>(1);
   const [draft, setDraft] = useState<Draft>(EMPTY);
   const [error, setError] = useState("");
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const [contact, setContact] = useState({ prenom: "", nom: "", structure: "", email: "", tel: "", website: "" });
   const [consent, setConsent] = useState(false);
@@ -102,6 +113,11 @@ export default function DigitalisationSimulator() {
   const answers = toAnswers(draft);
   const isComplete = determinerFormule(answers) === "complete";
   const result = step === 4 ? calculer(answers) : null;
+
+  // À l'arrivée sur l'estimation, on amène directement le visiteur sur le haut du résultat.
+  useEffect(() => {
+    if (step === 4) resultRef.current?.scrollIntoView({ block: "start" });
+  }, [step]);
 
   function update(patch: Partial<Draft>) {
     setDraft((current) => ({ ...current, ...patch }));
@@ -175,7 +191,7 @@ export default function DigitalisationSimulator() {
           <div>
             <h4 className="sim__step-title">Votre projet</h4>
             <p className="sim__sub">Une estimation rapide pour vous faire une idée.</p>
-            <Question label="Format de la formation">
+            <Question label="Format de la formation *">
               <div className="sim-choices">
                 {FORMATS.map((format) => (
                   <label key={format} className="sim-choice">
@@ -191,60 +207,9 @@ export default function DigitalisationSimulator() {
                 ))}
               </div>
             </Question>
-            <div className="form-field sim-field">
-              <label htmlFor="sim-heures">Combien d&apos;heures d&apos;e-learning souhaitez-vous ?</label>
-              <input
-                id="sim-heures"
-                type="number"
-                min={1}
-                step={1}
-                inputMode="numeric"
-                placeholder="Ex. : 30"
-                value={draft.heures}
-                onChange={(e) => update({ heures: e.target.value })}
-              />
-            </div>
-          </div>
-        )}
-
-        {step === 2 && (
-          <div>
-            <h4 className="sim__step-title">Vos contenus</h4>
-            <p className="sim__sub">C&apos;est ce qui détermine la formule.</p>
-            <Question
-              label="Vos contenus sont-ils prêts à être mis en ligne tels quels, pour la quasi-totalité de la formation ?"
-              help={
-                <>
-                  <strong>Prêt :</strong> utilisable sans réécriture par un apprenant seul, comme des vidéos finies, un cours
-                  rédigé pour l&apos;apprenant ou un module e-learning existant.
-                  <br />
-                  <strong>Pas prêt :</strong> diaporamas de formateur, notes, guides d&apos;animation, exercices sans corrigé.
-                </>
-              }
-            >
-              <YesNoChoice name="pret" value={draft.pret} onChange={(pret) => update({ pret })} />
-            </Question>
-            {draft.pret === "non" && (
-              <Question
-                label="Une personne de votre équipe qui maîtrise le sujet peut-elle répondre à nos questions sur le contenu ?"
-                help="Un formateur, un professionnel du métier ou un responsable pédagogique, avec un peu de temps à y consacrer. Il répond à nos questions, nous rédigeons."
-              >
-                <YesNoChoice name="referent" value={draft.referent} onChange={(referent) => update({ referent })} />
-              </Question>
-            )}
-          </div>
-        )}
-
-        {step === 3 && (
-          <div>
-            <h4 className="sim__step-title">Votre organisation</h4>
-            <p className="sim__sub">Pour savoir ce dont votre projet a besoin en plus.</p>
-            <Question label="Votre formation est-elle déjà découpée en séquences (durées, activités) ?">
-              <YesNoChoice name="sequencee" value={draft.sequencee} onChange={(sequencee) => update({ sequencee })} />
-            </Question>
-            {draft.sequencee === "non" && (
+            {draft.format && (
               <div className="form-field sim-field">
-                <label htmlFor="sim-duree">Quelle est la durée totale de la formation (en heures) ?</label>
+                <label htmlFor="sim-duree">Quelle est la durée totale de la formation (en heures) ? *</label>
                 <input
                   id="sim-duree"
                   type="number"
@@ -257,35 +222,111 @@ export default function DigitalisationSimulator() {
                 />
               </div>
             )}
-            <Question label="Avez-vous déjà une plateforme e-learning ?">
+            {draft.format === "Blended" && (
+              <div className="form-field sim-field">
+                <label htmlFor="sim-heures">Combien d&apos;heures d&apos;e-learning souhaitez-vous ? (approximativement) *</label>
+                <input
+                  id="sim-heures"
+                  type="number"
+                  min={1}
+                  step={1}
+                  inputMode="numeric"
+                  placeholder="Ex. : 30"
+                  value={draft.heures}
+                  onChange={(e) => update({ heures: e.target.value })}
+                />
+              </div>
+            )}
+            <RequiredNote />
+          </div>
+        )}
+
+        {step === 2 && (
+          <div>
+            <h4 className="sim__step-title">Vos contenus</h4>
+            <p className="sim__sub">C&apos;est ce qui détermine la formule.</p>
+            <Question
+              label="Vos contenus sont-ils prêts à être mis en ligne tels quels, pour la quasi-totalité de la formation ? *"
+              help={
+                <>
+                  <strong>Prêt :</strong> utilisable sans réécriture, comme des vidéos finies, un cours rédigé pour
+                  l&apos;apprenant et/ou des modules e-learning déjà existants.
+                  <br />
+                  <strong>Pas prêt :</strong> diaporamas de formateur, notes, guides d&apos;animation, exercices sans corrigé.
+                </>
+              }
+            >
+              <YesNoChoice
+                name="pret"
+                value={draft.pret}
+                onChange={(pret) => update({ pret })}
+                labels={{ oui: "Prêt", non: "Pas prêt" }}
+              />
+            </Question>
+            {draft.pret === "non" && (
+              <Question
+                label="Une personne de votre équipe qui maîtrise le sujet est-elle disponible pour nous aider sur la rédaction des contenus ? *"
+                help="Un formateur, un professionnel du métier ou un responsable pédagogique, avec un peu de temps à y consacrer. Il remplit notre trame, nous concevons."
+              >
+                <YesNoChoice name="referent" value={draft.referent} onChange={(referent) => update({ referent })} />
+              </Question>
+            )}
+            <RequiredNote />
+          </div>
+        )}
+
+        {step === 3 && (
+          <div>
+            <h4 className="sim__step-title">Votre organisation</h4>
+            <p className="sim__sub">Pour savoir ce dont votre projet a besoin en plus.</p>
+            <Question label="Votre formation est-elle déjà découpée en séquences (durées, activités) ? *">
+              <YesNoChoice name="sequencee" value={draft.sequencee} onChange={(sequencee) => update({ sequencee })} />
+            </Question>
+            <Question label="Avez-vous déjà une plateforme e-learning ? *">
               <YesNoChoice name="plateforme" value={draft.plateforme} onChange={(plateforme) => update({ plateforme })} />
             </Question>
             {draft.plateforme === "oui" && (
               <>
-                <div className="form-field sim-field">
-                  <label htmlFor="sim-plateforme">Laquelle ?</label>
-                  <select
-                    id="sim-plateforme"
-                    value={draft.plateformeNom}
-                    onChange={(e) => update({ plateformeNom: e.target.value })}
-                  >
-                    <option value="">Choisir</option>
-                    {PLATEFORMES.map((p) => (
-                      <option key={p}>{p}</option>
-                    ))}
-                  </select>
+                <div className="form-row">
+                  <div className="form-field sim-field">
+                    <label htmlFor="sim-plateforme">Laquelle ? *</label>
+                    <select
+                      id="sim-plateforme"
+                      value={draft.plateformeNom}
+                      onChange={(e) => update({ plateformeNom: e.target.value })}
+                    >
+                      <option value="">Choisir</option>
+                      {PLATEFORMES.map((p) => (
+                        <option key={p}>{p}</option>
+                      ))}
+                    </select>
+                  </div>
+                  {draft.plateformeNom === "Autre" && (
+                    <div className="form-field sim-field">
+                      <label htmlFor="sim-plateforme-autre">Précisez *</label>
+                      <input
+                        id="sim-plateforme-autre"
+                        type="text"
+                        maxLength={100}
+                        placeholder="Nom de votre plateforme"
+                        value={draft.plateformeAutre}
+                        onChange={(e) => update({ plateformeAutre: e.target.value })}
+                      />
+                    </div>
+                  )}
                 </div>
-                <Question label="Est-elle déjà configurée pour vos formations ?">
+                <Question label="Est-elle déjà configurée pour vos formations ? *">
                   <YesNoChoice name="configuree" value={draft.configuree} onChange={(configuree) => update({ configuree })} />
                 </Question>
               </>
             )}
+            <RequiredNote />
           </div>
         )}
 
         {step === 4 && result && (
           <div aria-live="polite">
-            <div className="sim-result">
+            <div className="sim-result" ref={resultRef}>
               <p className="sim-result__label">Formule recommandée</p>
               <p className="sim-result__formule">{result.formule}</p>
               <p className="sim-result__label">Estimation</p>
@@ -313,14 +354,16 @@ export default function DigitalisationSimulator() {
               au-delà de 20 h appliqué.
             </p>
 
-            <h4 className="sim__h4">Ce qui est inclus</h4>
-            <ul className="pricing-card__deliverables">
+            <details className="sim-included">
+              <summary>Ce qui est inclus dans la formule recommandée</summary>
+              <ul className="pricing-card__deliverables">
               {[...SOCLE, ...SPECIFIQUE[result.cle].inclus, ...result.supplementsInclus.map((s) => `${s} (inclus pour tous vos blocs)`)].map(
                 (item) => (
                   <li key={item}>{item}</li>
                 ),
               )}
-            </ul>
+              </ul>
+            </details>
 
             <div className="sim-contact">
               {sendStatus === "sent" ? (
@@ -328,27 +371,27 @@ export default function DigitalisationSimulator() {
               ) : (
                 <>
                   <h4 className="sim__h4 sim-contact__title">Joindre votre résultat à votre demande</h4>
-                  <p>
+                  <p className="sim-contact__intro">
                     Vous souhaitez être recontacté ? Envoyez-nous votre résultat : nous pourrons vous répondre plus
                     précisément, sans vous reposer les mêmes questions.
                   </p>
                   <div className="form-row">
                     <div className="form-field">
-                      <label htmlFor="sim-prenom">Prénom</label>
+                      <label htmlFor="sim-prenom">Prénom *</label>
                       <input id="sim-prenom" type="text" autoComplete="given-name" value={contact.prenom} onChange={(e) => setContact({ ...contact, prenom: e.target.value })} />
                     </div>
                     <div className="form-field">
-                      <label htmlFor="sim-nom">Nom</label>
+                      <label htmlFor="sim-nom">Nom *</label>
                       <input id="sim-nom" type="text" autoComplete="family-name" value={contact.nom} onChange={(e) => setContact({ ...contact, nom: e.target.value })} />
                     </div>
                   </div>
                   <div className="form-row">
                     <div className="form-field">
-                      <label htmlFor="sim-structure">Structure</label>
+                      <label htmlFor="sim-structure">Structure *</label>
                       <input id="sim-structure" type="text" autoComplete="organization" value={contact.structure} onChange={(e) => setContact({ ...contact, structure: e.target.value })} />
                     </div>
                     <div className="form-field">
-                      <label htmlFor="sim-email">Email</label>
+                      <label htmlFor="sim-email">Email *</label>
                       <input id="sim-email" type="email" autoComplete="email" value={contact.email} onChange={(e) => setContact({ ...contact, email: e.target.value })} />
                     </div>
                   </div>
@@ -368,7 +411,7 @@ export default function DigitalisationSimulator() {
                   <label className="sim-consent">
                     <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
                     <span>
-                      J&apos;accepte que Satisa Formation utilise ces informations pour me recontacter au sujet de ma
+                      * J&apos;accepte que Satisa Formation utilise ces informations pour me recontacter au sujet de ma
                       demande. <Link href={ROUTES.privacy}>Politique de confidentialité</Link>
                     </span>
                   </label>
@@ -376,6 +419,7 @@ export default function DigitalisationSimulator() {
                   <button type="button" className="btn btn--dark" onClick={send} disabled={sendStatus === "sending"}>
                     {sendStatus === "sending" ? "Envoi en cours..." : "Envoyer mon résultat"}
                   </button>
+                  <RequiredNote />
                 </>
               )}
             </div>

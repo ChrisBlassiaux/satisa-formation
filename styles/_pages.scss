@@ -1358,6 +1358,7 @@
 }
 
 .sim-result {
+  scroll-margin-top: 96px;
   margin-bottom: $spacing-md;
   padding: $spacing-md;
   border-radius: $radius-md;
@@ -1410,6 +1411,37 @@
   border-bottom: 0;
   border-top: 2px solid $color-dark;
   font-weight: 700;
+}
+
+.sim-included {
+  margin: $spacing-md 0;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $color-surface;
+
+  summary {
+    padding: $spacing-sm $spacing-md;
+    font-weight: 700;
+    color: $color-dark;
+    cursor: pointer;
+  }
+
+  .pricing-card__deliverables {
+    margin: 0;
+    padding: 0 $spacing-md $spacing-md;
+  }
+}
+
+.sim-required {
+  margin: $spacing-sm 0 0;
+}
+
+.sim-contact__intro {
+  margin-bottom: $spacing-md;
+}
+
+.sim-section-intro {
+  margin-top: $spacing-sm;
 }
 
 .sim-contact {

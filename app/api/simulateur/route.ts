@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { calculer, erreurSimulation, euros, type Answers } from "@/lib/simulateur";
+import { calculer, erreurSimulation, euros, normaliser, type Answers } from "@/lib/simulateur";
 
 function escapeHtml(value: string) {
   return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
   }
 
-  const { answers, contact, website } = body as {
+  const { answers: rawAnswers, contact, website } = body as {
     answers?: Answers;
     contact?: Record<string, unknown>;
     website?: string;
@@ -39,7 +39,8 @@ export async function POST(request: Request) {
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return NextResponse.json({ error: "Indiquez une adresse email valide." }, { status: 400 });
   }
-  if (!answers || typeof answers !== "object" || erreurSimulation(answers)) {
+  const answers = rawAnswers && typeof rawAnswers === "object" ? normaliser(rawAnswers) : undefined;
+  if (!answers || erreurSimulation(answers)) {
     return NextResponse.json({ error: "La simulation est incomplète. Refaites-la puis réessayez." }, { status: 400 });
   }
 
@@ -59,18 +60,19 @@ export async function POST(request: Request) {
   const complete = res.cle === "complete";
   const plateforme =
     answers.plateforme === "oui"
-      ? `${answers.plateformeNom} (${answers.configuree === "oui" ? "configurée" : "à configurer"})`
+      ? `${answers.plateformeNom === "Autre" ? `Autre : ${text(answers.plateformeAutre, 100)}` : answers.plateformeNom} (${answers.configuree === "oui" ? "configurée" : "à configurer"})`
       : "Aucune";
 
   const lignes = [
     `Formule obtenue : ${res.formule}`,
     `Prix affiché : ${euros(res.total)}`,
+    `Durée totale de la formation : ${answers.duree} h`,
     `Heures d'e-learning estimées : ${answers.heures} h`,
     `Contenu prêt à l'emploi : ${answers.pret === "oui" ? "Oui" : "Non"}`,
     `Référent métier disponible : ${answers.pret === "oui" ? "Non demandé" : answers.referent === "oui" ? "Oui" : "Non"}`,
     "",
     `Format : ${answers.format}`,
-    `Formation séquencée : ${complete ? "Non demandé (inclus)" : answers.sequencee === "oui" ? "Oui" : `Non (durée totale : ${answers.duree} h)`}`,
+    `Formation séquencée : ${complete ? "Non demandé (inclus)" : answers.sequencee === "oui" ? "Oui" : "Non"}`,
     `Plateforme : ${complete ? "Non demandé (inclus)" : plateforme}`,
     `Détail : ${res.lignes.map((l) => `${l.libelle} = ${euros(l.montant)}`).join(" ; ")}`,
     "",

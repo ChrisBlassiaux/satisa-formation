@@ -13,6 +13,7 @@ export type Answers = {
   duree?: number;
   plateforme?: YesNo;
   plateformeNom?: string;
+  plateformeAutre?: string;
   configuree?: YesNo;
 };
 
@@ -35,6 +36,11 @@ export const PARAMS = {
 } as const;
 
 type FormuleParams = (typeof PARAMS.formules)[FormuleKey];
+
+// En 100 % e-learning, la durée totale de la formation est aussi le nombre d'heures d'e-learning.
+export function normaliser(r: Answers): Answers {
+  return r.format === "Blended" ? r : { ...r, heures: r.duree };
+}
 
 function arrondir(valeur: number, pas: number) {
   return Math.round(valeur / pas) * pas;
@@ -128,18 +134,24 @@ function nombreValide(valeur: unknown, max: number): valeur is number {
 export function erreurEtape(step: 1 | 2 | 3, r: Answers): string {
   if (step === 1) {
     if (!r.format || !(FORMATS as readonly string[]).includes(r.format)) return "Choisissez le format de la formation.";
-    if (!nombreValide(r.heures, MAX_HEURES)) return "Indiquez un nombre d'heures d'e-learning.";
+    if (!nombreValide(r.duree, MAX_HEURES)) return "Indiquez la durée totale de la formation.";
+    if (r.format === "Blended") {
+      if (!nombreValide(r.heures, MAX_HEURES)) return "Indiquez le nombre d'heures d'e-learning.";
+      if (r.heures > r.duree) return "Les heures d'e-learning ne peuvent pas dépasser la durée totale de la formation.";
+    }
   }
   if (step === 2) {
     if (!r.pret) return "Indiquez si vos contenus sont prêts.";
-    if (r.pret === "non" && !r.referent) return "Indiquez si une personne de votre équipe peut répondre à nos questions.";
+    if (r.pret === "non" && !r.referent) return "Indiquez si une personne de votre équipe est disponible pour nous aider sur la rédaction des contenus.";
   }
   if (step === 3) {
     if (!r.sequencee) return "Indiquez si votre formation est déjà découpée en séquences.";
-    if (r.sequencee === "non" && !nombreValide(r.duree, MAX_HEURES)) return "Indiquez la durée totale de la formation.";
     if (!r.plateforme) return "Indiquez si vous avez déjà une plateforme.";
     if (r.plateforme === "oui" && (!r.plateformeNom || !(PLATEFORMES as readonly string[]).includes(r.plateformeNom) || !r.configuree)) {
       return "Précisez votre plateforme et si elle est configurée.";
+    }
+    if (r.plateforme === "oui" && r.plateformeNom === "Autre" && !r.plateformeAutre?.trim()) {
+      return "Précisez le nom de votre plateforme.";
     }
   }
   return "";

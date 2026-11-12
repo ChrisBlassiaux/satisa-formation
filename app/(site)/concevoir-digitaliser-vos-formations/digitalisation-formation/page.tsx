@@ -215,7 +215,7 @@ export default function DigitalisationPage() {
           <div className="section-head">
             <p className="eyebrow">Simulateur de prix</p>
             <h2>Estimez le prix de votre projet de digitalisation</h2>
-            <p className="hero-page__subtitle">
+            <p className="hero-page__subtitle sim-section-intro">
               Répondez à quelques questions sur vos contenus et votre organisation : vous obtenez la formule adaptée et
               une estimation en euros HT, sans engagement.
             </p>
