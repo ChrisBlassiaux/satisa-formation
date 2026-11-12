@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import {
@@ -42,6 +43,36 @@ const BREADCRUMB_JSON_LD = breadcrumbJsonLd([
   { name: "Concevoir et digitaliser vos formations", path: ROUTES.formations },
   { name: "Digitalisation", path: ROUTES.formationsDigitalisation },
 ]);
+
+const EXTRA_ICONS: Record<string, ReactNode> = {
+  "Séquençage et scénarisation": (
+    <>
+      <circle cx="6" cy="19" r="2" />
+      <circle cx="18" cy="5" r="2" />
+      <path d="M8 19h7a3.5 3.5 0 000-7H9a3.5 3.5 0 010-7h7" />
+    </>
+  ),
+  "Configuration de la plateforme": (
+    <>
+      <path d="M4 7h10M18 7h2M4 17h2M10 17h10" />
+      <circle cx="16" cy="7" r="2" />
+      <circle cx="8" cy="17" r="2" />
+    </>
+  ),
+  "Formation à la plateforme + accompagnement 3 mois": (
+    <>
+      <path d="M2 9l10-5 10 5-10 5z" />
+      <path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5" />
+    </>
+  ),
+  "Maintenance pédagogique mensuelle": (
+    <>
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M3 10h18M8 3v4M16 3v4" />
+      <path d="M9 15l2 2 4-4" />
+    </>
+  ),
+};
 
 const TOOL_CHIPS = ["Articulate Rise", "Storyline", "iSpring", "SCORM 1.2", "HTML/CSS/JS"];
 
@@ -148,7 +179,14 @@ export default function DigitalisationPage() {
               return (
                 <article key={plan.name} className={`formula-card${featured ? " formula-card--featured" : ""}`}>
                   <div className="formula-card__top">
-                    {plan.badge && <span className="formula-card__badge">{plan.badge}</span>}
+                    {plan.badge && (
+                      <span className="formula-card__badge">
+                        <svg className="formula-card__badge-star" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                          <path d="M10 1.6l2.35 4.76 5.25.77-3.8 3.7.9 5.23L10 13.5l-4.7 2.46.9-5.23-3.8-3.7 5.25-.77L10 1.6z" fill="#FECC01" />
+                        </svg>
+                        {plan.badge}
+                      </span>
+                    )}
                   </div>
                   <header className="formula-card__head">
                     <h4 className="formula-card__name">{plan.name}</h4>
@@ -156,7 +194,9 @@ export default function DigitalisationPage() {
                   </header>
                   <p className="formula-card__unit">{plan.unit}</p>
                   <p className="pricing-card__note formula-card__note">{plan.tagline}</p>
-                  <p className="formula-card__core">✓ Tout le socle inclus</p>
+                  <a href="#socle-inclus" className="formula-card__core">
+                    ✓ Tout le socle inclus <span aria-hidden="true">↓</span>
+                  </a>
                   <ul className="pricing-card__deliverables">
                     {plan.deliverables.map((item) => (
                       <li key={item}>{item}</li>
@@ -177,7 +217,7 @@ export default function DigitalisationPage() {
               <li key={note}>{note}</li>
             ))}
           </ul>
-          <div className="digital-core">
+          <div className="digital-core" id="socle-inclus">
             <p className="digital-core__title">Le socle inclus dans chaque formule</p>
             <ul className="pricing-card__deliverables digital-core__list">
               {DIGITALISATION_CORE.map((item) => (
@@ -187,10 +227,18 @@ export default function DigitalisationPage() {
           </div>
 
           <h3 className="subsection-title digital-extras-title">Formules supplémentaires</h3>
-          <p className="digital-extras-intro">Une fois par projet de formation.</p>
+          <p className="digital-extras-intro">À ajouter selon vos besoins, une seule fois par projet de formation, sauf la maintenance, facturée chaque mois.</p>
           <div className="digital-extras">
-            {DIGITALISATION_EXTRAS.map((extra) => (
+            {DIGITALISATION_EXTRAS.map((extra, index) => (
               <article key={extra.name} className="digital-extra">
+                <span
+                  className={`benefit-tile__icon digital-extra__icon${index === 1 || index === 2 ? " benefit-tile__icon--accent" : ""}`}
+                  aria-hidden="true"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    {EXTRA_ICONS[extra.name]}
+                  </svg>
+                </span>
                 <header className="digital-extra__head">
                   <h4 className="digital-extra__name">{extra.name}</h4>
                   <span className="offer-row__price">{extra.price}</span>
@@ -226,14 +274,18 @@ export default function DigitalisationPage() {
 
       <section>
         <div className="container">
-          <h2 className="subsection-title">Les deux axes de digitalisation</h2>
+          <div className="section-head">
+            <p className="eyebrow">Pourquoi digitaliser</p>
+            <h2>Pourquoi créer une formation en ligne ?</h2>
+          </div>
+          <h3 className="subsection-title subsection-title--start">Les deux axes de digitalisation</h3>
           <div className="digital-axes">
             <div className="digital-axis">
               <div className="digital-axis__head">
                 <span className="offer-row__index" aria-hidden="true">1</span>
-                <h3>
+                <h4>
                   Présentiel &amp; télé-présentiel augmenté <span>(Blended Learning)</span>
-                </h3>
+                </h4>
               </div>
               <ul className="digital-axis__list">
                 <li>Enrichissez vos cours en salle ou en visio avec du contenu complémentaire en ligne</li>
@@ -245,9 +297,9 @@ export default function DigitalisationPage() {
             <div className="digital-axis">
               <div className="digital-axis__head">
                 <span className="offer-row__index" aria-hidden="true">2</span>
-                <h3>
+                <h4>
                   Distanciel <span>(E-learning)</span>
-                </h3>
+                </h4>
               </div>
               <ul className="digital-axis__list">
                 <li>Transformez une partie ou l&apos;ensemble de vos formations en modules accessibles 100&nbsp;% à distance</li>
@@ -257,12 +309,7 @@ export default function DigitalisationPage() {
               </ul>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="container">
-          <h3 className="subsection-title">Ce que ça change pour votre organisme de formation</h3>
+          <h3 className="subsection-title subsection-title--start">Ce que ça change pour votre organisme de formation</h3>
           <div className="benefit-grid">
             <div className="benefit-tile">
               <span className="benefit-tile__icon" aria-hidden="true">

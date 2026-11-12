@@ -83,7 +83,7 @@ export const DIGITALISATION_PLANS: DigitalisationPlan[] = [
     price: "À partir de 3 000 € HT",
     unit: "Pour 20 h d'e-learning*",
     tagline: "Votre référent métier* apporte le savoir, nous construisons la formation.",
-    badge: "⭐ La plus demandée",
+    badge: "La plus demandée",
     deliverables: [
       "Votre référent métier* remplit nos cahiers de contenu et valide le résultat.",
       "Nous rédigeons le contenu final et créons les activités.",

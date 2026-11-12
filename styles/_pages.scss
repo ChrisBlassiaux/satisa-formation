@@ -716,11 +716,16 @@
   margin-top: $spacing-xl;
   margin-bottom: $spacing-sm;
   text-align: center;
-  font-size: 1.05rem;
+  font-size: $fs-h3;
 }
 
-.subsection-title:first-child {
+.subsection-title:first-child,
+.section-head + .subsection-title {
   margin-top: 0;
+}
+
+.subsection-title--start {
+  text-align: left;
 }
 
 .digital-axes {
@@ -746,11 +751,11 @@
   margin-bottom: $spacing-sm;
 }
 
-.digital-axis__head h3 {
+.digital-axis__head :is(h3, h4) {
   font-size: 1.02rem;
 }
 
-.digital-axis__head h3 span {
+.digital-axis__head :is(h3, h4) span {
   display: block;
   font-size: $fs-small;
   font-weight: 600;
@@ -1069,25 +1074,28 @@
   color: $color-white;
   font-size: $fs-small;
   font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
 }
 
+.formula-card__badge-star {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+// Le prix est sous le titre, aligné à gauche, comme sur les pages de certification.
 .formula-card__head {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
   gap: $spacing-xs;
   margin-bottom: $spacing-xs;
 }
 
 .formula-card__name {
   font-size: 1.1rem;
-}
-
-// Prix un peu plus compact pour que le nom et le prix restent sur la même ligne dans les trois colonnes.
-.formula-card__head .offer-row__price {
-  padding: 0.3em 0.6em;
-  font-size: 0.9rem;
 }
 
 .formula-card .pricing-card__deliverables {
@@ -1109,6 +1117,13 @@
   border: 1px solid $color-border;
   border-radius: $radius-lg;
   background: $color-surface;
+  // Évite que l'en-tête fixe ne masque le bloc quand on arrive par l'ancre.
+  scroll-margin-top: 6rem;
+
+  &:target {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 4px rgba($color-primary, 0.2);
+  }
 }
 
 .digital-core__title {
@@ -1143,10 +1158,22 @@
   color: $color-dark;
 }
 
+// Lien vers le détail du socle, plus bas sur la page.
 .formula-card__core {
+  display: block;
+  width: fit-content;
   font-weight: 700;
   font-size: $fs-small;
   color: $color-primary-dark;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration-color: currentColor;
+  }
 }
 
 .formula-card--featured .formula-card__core {
@@ -1188,12 +1215,24 @@
   background: $color-white;
 }
 
+// Vert, jaune / jaune, vert : l'alternance suit la grille à deux colonnes (cartes 2 et 3 en jaune).
+.digital-extra__icon {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  margin-bottom: $spacing-sm;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 .digital-extra__head {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: $spacing-sm;
+  gap: $spacing-xs;
   margin-bottom: $spacing-xs;
 }
 
