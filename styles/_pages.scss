@@ -1183,6 +1183,243 @@
   margin-bottom: 0;
 }
 
+// Simulateur de prix de digitalisation.
+.sim {
+  max-width: 760px;
+  margin-inline: auto;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+  overflow: hidden;
+}
+
+.sim__head {
+  padding: $spacing-md;
+  background: $color-dark;
+  color: $color-white;
+
+  h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+    color: $color-white;
+  }
+
+  p {
+    margin: 0;
+    color: $color-mint;
+    font-size: $fs-small;
+  }
+}
+
+.sim__body {
+  padding: $spacing-md;
+}
+
+.sim__steps {
+  display: flex;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-md;
+
+  span {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: $color-border;
+  }
+
+  .is-on {
+    background: $color-primary;
+  }
+}
+
+.sim__step-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.15rem;
+  color: $color-dark;
+}
+
+.sim__sub {
+  margin: 0 0 $spacing-md;
+  color: $color-muted;
+  font-size: $fs-small;
+}
+
+.sim__h4 {
+  margin: $spacing-md 0 $spacing-xs;
+  font-size: 1rem;
+  color: $color-dark;
+}
+
+.sim__note {
+  color: $color-muted;
+  font-size: $fs-small;
+}
+
+.sim__error {
+  margin-top: $spacing-sm;
+}
+
+.sim__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $spacing-xs;
+  margin-top: $spacing-md;
+}
+
+.sim-question {
+  margin: 0 0 $spacing-md;
+  padding: 0;
+  border: 0;
+
+  legend {
+    padding: 0;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+    color: $color-dark;
+  }
+}
+
+.sim-field input,
+.sim-field select {
+  max-width: 280px;
+}
+
+.sim-help {
+  margin: 0.4rem 0 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: $radius-sm;
+  background: $color-mint-light;
+  color: $color-dark;
+  font-size: $fs-small;
+}
+
+.sim-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}
+
+.sim-choice {
+  position: relative;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  span {
+    display: block;
+    padding: 0.6em 1.1em;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-sm;
+    font-weight: 500;
+    color: $color-dark;
+  }
+
+  input:checked + span {
+    border-color: $color-primary;
+    background: $color-mint-light;
+    color: $color-teal-dark;
+  }
+
+  input:focus-visible + span {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.sim-result {
+  margin-bottom: $spacing-md;
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  background: $color-mint-light;
+
+  p {
+    margin: 0;
+  }
+}
+
+.sim-result__label {
+  color: $color-muted;
+  font-size: $fs-small;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sim-result__formule {
+  margin: 0.1rem 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $color-primary-dark;
+}
+
+.sim-result__prix {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.sim-detail {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+
+  td {
+    padding: 0.55rem 0.25rem;
+    border-bottom: 1px solid $color-border;
+  }
+
+  td:last-child {
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+}
+
+.sim-detail__total td {
+  border-bottom: 0;
+  border-top: 2px solid $color-dark;
+  font-weight: 700;
+}
+
+.sim-contact {
+  margin-top: $spacing-md;
+  padding: $spacing-md;
+  border: 1.5px solid $color-primary;
+  border-radius: $radius-md;
+}
+
+.sim-contact__title {
+  margin-top: 0;
+}
+
+.sim-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  margin: $spacing-sm 0;
+  font-size: $fs-small;
+
+  input {
+    margin-top: 0.25rem;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 560px) {
+  .sim__head,
+  .sim__body {
+    padding: $spacing-sm;
+  }
+}
+
 .problem-list__link {
   display: inline-block;
   margin-top: $spacing-xs;
