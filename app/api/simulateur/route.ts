@@ -99,8 +99,14 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Failed to send simulator email:", error);
+    const failure = error as { code?: string; responseCode?: number; command?: string };
+    // Hors production, on ajoute le code d'erreur SMTP (jamais de secret) pour diagnostiquer un aperçu.
+    const detail =
+      process.env.VERCEL_ENV === "production"
+        ? ""
+        : ` [${[failure.code, failure.responseCode, failure.command].filter(Boolean).join(" ") || "erreur inconnue"}]`;
     return NextResponse.json(
-      { error: "L'envoi a échoué. Réessayez ou écrivez directement à chris@satisa.fr." },
+      { error: `L'envoi a échoué. Réessayez ou écrivez directement à chris@satisa.fr.${detail}` },
       { status: 502 },
     );
   }
