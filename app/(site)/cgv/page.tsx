@@ -125,7 +125,7 @@ export default function CgvPage() {
           <li>
             <strong>Formule 6 - Conception de formation</strong> : analyse de la demande, du référentiel et du
             public cible, progression pédagogique, programme de formation conforme aux exigences du référentiel
-            Qualiopi, scénario pédagogique, séquencement et volumétrie horaire, alignement avec le référentiel de la
+            Qualiopi, scénario pédagogique, séquençage et volumétrie horaire, alignement avec le référentiel de la
             certification visée.
           </li>
           <li>

@@ -19,7 +19,7 @@ export const FORMULAS: Record<"conception" | "contenus" | "maintenance", Formula
       "Analyse de la demande, du référentiel et du public cible",
       "Progression pédagogique (objectifs dérivés du référentiel)",
       "Programme de formation conforme Qualiopi",
-      "Scénario pédagogique et d'accompagnement, séquencement et volumétrie horaire",
+      "Scénario pédagogique et d'accompagnement, séquençage et volumétrie horaire",
     ],
     noteAfter:
       "Alignement avec le référentiel de la certification visée (RNCP, RS ou référentiel interne), de l'analyse des compétences jusqu'aux modalités d'évaluation certificative.",
