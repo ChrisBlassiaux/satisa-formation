@@ -48,7 +48,7 @@ export const FORMULAS: Record<"conception" | "contenus" | "maintenance", Formula
 
 // Digitalisation d'un bloc de formation : socle commun, trois formules, formules supplémentaires.
 export const DIGITALISATION_CORE: string[] = [
-  "Organisation des contenus pédagogiques du bloc",
+  "Organisation des contenus pédagogiques par module",
   "Adaptation à l'apprentissage en ligne : séquences courtes, consignes, textes de liaison",
   "Structuration des modules et des activités pédagogiques",
   "Activités, quiz et évaluations, avec leurs corrections",
@@ -61,6 +61,7 @@ export const DIGITALISATION_CORE: string[] = [
 export type DigitalisationPlan = {
   name: string;
   price: string;
+  unit: string;
   tagline: string;
   deliverables: string[];
   badge?: string;
@@ -69,7 +70,8 @@ export type DigitalisationPlan = {
 export const DIGITALISATION_PLANS: DigitalisationPlan[] = [
   {
     name: "Essentielle",
-    price: "À partir de 2 000 € HT par bloc",
+    price: "À partir de 2 000 € HT",
+    unit: "Pour 20 h d'e-learning*",
     tagline: "Vos contenus sont prêts à l'emploi, nous les mettons en ligne.",
     deliverables: [
       "Vous fournissez des contenus utilisables tels quels : vidéos finies, cours déjà rédigés.",
@@ -78,32 +80,34 @@ export const DIGITALISATION_PLANS: DigitalisationPlan[] = [
   },
   {
     name: "Co-construite",
-    price: "À partir de 3 000 € HT par bloc",
-    tagline: "Votre référent métier apporte le savoir, nous construisons la formation.",
+    price: "À partir de 3 000 € HT",
+    unit: "Pour 20 h d'e-learning*",
+    tagline: "Votre référent métier* apporte le savoir, nous construisons la formation.",
     badge: "⭐ La plus demandée",
     deliverables: [
-      "Votre référent métier remplit nos cahiers de contenu et valide le résultat.",
+      "Votre référent métier* remplit nos cahiers de contenu et valide le résultat.",
       "Nous rédigeons le contenu final et créons les activités.",
-      "Capsules vidéo face caméra : nous écrivons les scripts et faisons le montage, votre équipe tourne.",
+      "Capsules vidéo face caméra* : nous écrivons les scripts et faisons le montage, votre équipe tourne.",
     ],
   },
   {
     name: "Complète",
-    price: "À partir de 8 200 € HT par bloc",
+    price: "À partir de 8 200 € HT",
+    unit: "Pour 20 h d'e-learning*",
     tagline: "Nous prenons tout en charge, de l'analyse à l'accompagnement.",
     deliverables: [
-      "Vous fournissez vos sources et nous mettez en relation avec votre référent métier.",
+      "Vous fournissez vos sources et vous nous mettez en relation avec votre référent métier*.",
       "Nous créons tout le contenu.",
-      "Capsules vidéo face caméra : nous écrivons les scripts et faisons le montage.",
-      "Inclus pour tous vos blocs : séquençage et scénarisation, configuration de la plateforme, formation + accompagnement 3 mois.",
+      "Capsules vidéo face caméra* : nous écrivons les scripts et faisons le montage.",
+      "Inclus pour l'ensemble de votre projet : séquençage et scénarisation, configuration de la plateforme, formation + accompagnement 3 mois.",
     ],
   },
 ];
 
 export const DIGITALISATION_NOTES: string[] = [
-  "Le tournage des capsules vidéo reste assuré par votre équipe, avec notre accompagnement.",
-  "Prix pour un bloc de 20 h d'e-learning. Le prix final dépend de la durée du bloc, fixée lors du séquençage.",
-  "Votre référent métier : formateur, professionnel du métier ou responsable pédagogique qui maîtrise le sujet de la formation.",
+  "* Pour 20 h d'e-learning : le prix final dépend de la durée de la formation, fixée lors du séquençage.",
+  "* Capsules vidéo face caméra : le tournage reste assuré par votre équipe, avec notre accompagnement.",
+  "* Référent métier : formateur, professionnel du métier ou responsable pédagogique qui maîtrise le sujet de la formation.",
 ];
 
 export type DigitalisationExtra = { name: string; price: string; text: string; list?: string[]; note?: string };
@@ -127,8 +131,7 @@ export const DIGITALISATION_EXTRAS: DigitalisationExtra[] = [
   {
     name: "Maintenance pédagogique mensuelle",
     price: "800 € HT par mois",
-    text: "Votre formation reste à jour et votre plateforme fonctionne, sans que vous ayez à vous en occuper.",
-    list: ["Mise à jour des contenus", "Maintenance et paramétrage du LMS"],
+    text: "Mise à jour des contenus, maintenance et paramétrage du LMS.",
     note: "Engagement de 3 mois minimum.",
   },
 ];

@@ -142,15 +142,6 @@ export default function DigitalisationPage() {
             <p className="eyebrow">Nos formules</p>
             <h2>Choisissez la formule adaptée à votre projet de digitalisation</h2>
           </div>
-          <h3 className="subsection-title">Digitalisation d&apos;un bloc de formation</h3>
-          <div className="digital-core">
-            <p className="digital-core__title">Inclus dans chaque formule</p>
-            <ul className="pricing-card__deliverables digital-core__list">
-              {DIGITALISATION_CORE.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
           <div className="formula-cards formula-cards--3">
             {DIGITALISATION_PLANS.map((plan) => {
               const featured = Boolean(plan.badge);
@@ -163,6 +154,7 @@ export default function DigitalisationPage() {
                     <h4 className="formula-card__name">{plan.name}</h4>
                     <span className="offer-row__price">{plan.price}</span>
                   </header>
+                  <p className="formula-card__unit">{plan.unit}</p>
                   <p className="pricing-card__note formula-card__note">{plan.tagline}</p>
                   <p className="formula-card__core">✓ Tout le socle inclus</p>
                   <ul className="pricing-card__deliverables">
@@ -185,9 +177,17 @@ export default function DigitalisationPage() {
               <li key={note}>{note}</li>
             ))}
           </ul>
+          <div className="digital-core">
+            <p className="digital-core__title">Le socle inclus dans chaque formule</p>
+            <ul className="pricing-card__deliverables digital-core__list">
+              {DIGITALISATION_CORE.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
 
           <h3 className="subsection-title digital-extras-title">Formules supplémentaires</h3>
-          <p className="digital-extras-intro">Une fois par projet de formation. Incluses dans la formule Complète.</p>
+          <p className="digital-extras-intro">Une fois par projet de formation.</p>
           <div className="digital-extras">
             {DIGITALISATION_EXTRAS.map((extra) => (
               <article key={extra.name} className="digital-extra">

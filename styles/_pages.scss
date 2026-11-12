@@ -1076,12 +1076,18 @@
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: $spacing-sm;
+  gap: $spacing-xs;
   margin-bottom: $spacing-xs;
 }
 
 .formula-card__name {
   font-size: 1.1rem;
+}
+
+// Prix un peu plus compact pour que le nom et le prix restent sur la même ligne dans les trois colonnes.
+.formula-card__head .offer-row__price {
+  padding: 0.3em 0.6em;
+  font-size: 0.9rem;
 }
 
 .formula-card .pricing-card__deliverables {
@@ -1098,7 +1104,7 @@
 
 // Digitalisation d'un bloc : socle commun, notes, formules supplémentaires.
 .digital-core {
-  margin: 0 0 $spacing-md;
+  margin: $spacing-md 0 0;
   padding: $spacing-md;
   border: 1px solid $color-border;
   border-radius: $radius-lg;
@@ -1113,10 +1119,28 @@
 .digital-core__list {
   margin-bottom: 0;
 
+  // Deux colonnes qui se remplissent indépendamment : un item sur 2 lignes n'agrandit pas la rangée voisine.
   @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
+    display: block;
+    column-count: 2;
     column-gap: $spacing-md;
+
+    li {
+      break-inside: avoid;
+      margin-bottom: $spacing-xs;
+    }
   }
+}
+
+.formula-card__unit {
+  margin: 0 0 $spacing-xs;
+  font-size: $fs-small;
+  font-style: italic;
+  color: $color-muted;
+}
+
+.formula-card--featured .formula-card__unit {
+  color: $color-dark;
 }
 
 .formula-card__core {
@@ -1133,7 +1157,8 @@
   display: grid;
   gap: $spacing-xs;
   margin: $spacing-md 0 0;
-  font-size: $fs-small;
+  font-size: 0.8rem;
+  font-style: italic;
   color: $color-muted;
 }
 
@@ -1149,6 +1174,7 @@
 .digital-extras {
   display: grid;
   gap: $spacing-md;
+  grid-auto-rows: 1fr;
 
   @include from($bp-tablet) {
     grid-template-columns: repeat(2, 1fr);
