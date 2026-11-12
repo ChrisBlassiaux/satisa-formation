@@ -620,28 +620,22 @@
 
 .profile-card--featured {
   border: 1px solid transparent;
-  background: $color-dark;
+  background: $color-ray-yellow-soft;
 }
 
-.profile-card--featured h3 {
-  color: $color-white;
-}
-
-.profile-card--featured .profile-card__description {
-  color: $color-white;
-}
-
+.profile-card--featured h3,
+.profile-card--featured .profile-card__description,
 .profile-card--featured .profile-card__list li {
-  color: $color-white;
+  color: $color-dark;
 }
 
 .profile-card--featured .profile-card__list--positive .profile-card__mark {
-  color: $color-mint;
+  color: $color-teal-dark;
 }
 
 .profile-card--featured .profile-card__satisa {
-  border-top-color: $color-teal-dark;
-  color: $color-mint;
+  border-top-color: rgba(0, 39, 48, 0.2);
+  color: $color-dark;
 }
 
 .profile-card__badge {
@@ -650,8 +644,8 @@
   right: $spacing-md;
   padding: 0.3em 0.9em;
   border-radius: $radius-sm;
-  background: $color-mint;
-  color: $color-dark;
+  background: $color-dark;
+  color: $color-white;
   font-size: $fs-small;
   font-weight: 700;
 }
@@ -1100,6 +1094,93 @@
 
 .formula-card__cta {
   margin-top: auto;
+}
+
+// Digitalisation d'un bloc : socle commun, notes, formules supplémentaires.
+.digital-core {
+  margin: 0 0 $spacing-md;
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-surface;
+}
+
+.digital-core__title {
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.digital-core__list {
+  margin-bottom: 0;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: $spacing-md;
+  }
+}
+
+.formula-card__core {
+  font-weight: 700;
+  font-size: $fs-small;
+  color: $color-primary-dark;
+}
+
+.formula-card--featured .formula-card__core {
+  color: $color-dark;
+}
+
+.digital-notes {
+  display: grid;
+  gap: $spacing-xs;
+  margin: $spacing-md 0 0;
+  font-size: $fs-small;
+  color: $color-muted;
+}
+
+.digital-extras-title {
+  margin-top: $spacing-xl;
+}
+
+.digital-extras-intro {
+  margin-bottom: $spacing-md;
+  text-align: center;
+}
+
+.digital-extras {
+  display: grid;
+  gap: $spacing-md;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.digital-extra {
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+}
+
+.digital-extra__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xs;
+}
+
+.digital-extra__name {
+  font-size: 1.05rem;
+}
+
+.digital-extra__text {
+  font-size: $fs-small;
+}
+
+.digital-extra__note {
+  margin-bottom: 0;
 }
 
 .problem-list__link {

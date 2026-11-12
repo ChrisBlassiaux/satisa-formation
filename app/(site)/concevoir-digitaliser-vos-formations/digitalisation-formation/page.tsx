@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
-import { FAQ_DIGITALISATION, FORMULAS, breadcrumbJsonLd, faqJsonLd } from "@/lib/formations";
+import {
+  DIGITALISATION_CORE,
+  DIGITALISATION_EXTRAS,
+  DIGITALISATION_NOTES,
+  DIGITALISATION_PLANS,
+  FAQ_DIGITALISATION,
+  breadcrumbJsonLd,
+  faqJsonLd,
+} from "@/lib/formations";
 import FaqList from "@/components/FaqList";
-import FormulaCard from "@/components/FormulaCard";
 import LinkArrow from "@/components/LinkArrow";
 
 const TITLE = "Digitalisation de formation : e-learning et LMS - Satisa Formation";
@@ -134,9 +141,70 @@ export default function DigitalisationPage() {
             <p className="eyebrow">Nos formules</p>
             <h2>Choisissez la formule adaptée à votre projet de digitalisation</h2>
           </div>
-          <div className="formula-cards formula-cards--2">
-            <FormulaCard formula={FORMULAS.digitalisation} />
-            <FormulaCard formula={FORMULAS.maintenance} featured badge="Maintenance" />
+          <h3 className="subsection-title">Digitalisation d&apos;un bloc de formation</h3>
+          <div className="digital-core">
+            <p className="digital-core__title">Inclus dans chaque formule</p>
+            <ul className="pricing-card__deliverables digital-core__list">
+              {DIGITALISATION_CORE.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="formula-cards formula-cards--3">
+            {DIGITALISATION_PLANS.map((plan) => {
+              const featured = Boolean(plan.badge);
+              return (
+                <article key={plan.name} className={`formula-card${featured ? " formula-card--featured" : ""}`}>
+                  <div className="formula-card__top">
+                    {plan.badge && <span className="formula-card__badge">{plan.badge}</span>}
+                  </div>
+                  <header className="formula-card__head">
+                    <h4 className="formula-card__name">{plan.name}</h4>
+                    <span className="offer-row__price">{plan.price}</span>
+                  </header>
+                  <p className="pricing-card__note formula-card__note">{plan.tagline}</p>
+                  <p className="formula-card__core">✓ Tout le socle inclus</p>
+                  <ul className="pricing-card__deliverables">
+                    {plan.deliverables.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={ROUTES.contact}
+                    className={`btn ${featured ? "btn--dark" : "btn--primary"} btn--block formula-card__cta`}
+                  >
+                    Prendre un rendez-vous
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
+          <ul className="digital-notes">
+            {DIGITALISATION_NOTES.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+          </ul>
+
+          <h3 className="subsection-title digital-extras-title">Formules supplémentaires</h3>
+          <p className="digital-extras-intro">Une fois par projet de formation. Incluses dans la formule Complète.</p>
+          <div className="digital-extras">
+            {DIGITALISATION_EXTRAS.map((extra) => (
+              <article key={extra.name} className="digital-extra">
+                <header className="digital-extra__head">
+                  <h4 className="digital-extra__name">{extra.name}</h4>
+                  <span className="offer-row__price">{extra.price}</span>
+                </header>
+                <p className="digital-extra__text">{extra.text}</p>
+                {extra.list && (
+                  <ul className="pricing-card__deliverables">
+                    {extra.list.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+                {extra.note && <p className="pricing-card__note digital-extra__note">{extra.note}</p>}
+              </article>
+            ))}
           </div>
         </div>
       </section>

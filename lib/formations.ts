@@ -10,7 +10,7 @@ export type Formula = {
   cta: string;
 };
 
-export const FORMULAS: Record<"conception" | "contenus" | "digitalisation" | "maintenance", Formula> = {
+export const FORMULAS: Record<"conception" | "contenus" | "maintenance", Formula> = {
   conception: {
     index: 6,
     name: "Conception de formation",
@@ -36,21 +36,6 @@ export const FORMULAS: Record<"conception" | "contenus" | "digitalisation" | "ma
     ],
     cta: "Prendre un rendez-vous",
   },
-  digitalisation: {
-    index: 8,
-    name: "Digitalisation",
-    price: "Sur devis",
-    noteBefore:
-      "Diagnostic inclus. Modalités couvertes : e-learning, blended learning. Outils : Moodle, Digiforma, Teachizy, 360Learning, outils auteurs (Articulate Rise, Storyline, iSpring), HTML/CSS/JS sur-mesure, SCORM 1.2.",
-    deliverables: [
-      "Diagnostic et cadrage du projet",
-      "Scénarisation et conception digitale",
-      "Production des modules",
-      "Déploiement technique sur le LMS",
-      "Tests et accompagnement des équipes",
-    ],
-    cta: "Prendre un rendez-vous",
-  },
   maintenance: {
     index: 9,
     name: "Maintenance pédagogique mensuelle",
@@ -60,6 +45,93 @@ export const FORMULAS: Record<"conception" | "contenus" | "digitalisation" | "ma
     cta: "Prendre un rendez-vous",
   },
 };
+
+// Digitalisation d'un bloc de formation : socle commun, trois formules, formules supplémentaires.
+export const DIGITALISATION_CORE: string[] = [
+  "Organisation des contenus pédagogiques du bloc",
+  "Adaptation à l'apprentissage en ligne : séquences courtes, consignes, textes de liaison",
+  "Structuration des modules et des activités pédagogiques",
+  "Activités, quiz et évaluations, avec leurs corrections",
+  "Intégration dans votre LMS",
+  "Paramétrage de la progression et des conditions d'achèvement",
+  "Tests fonctionnels et ajustements",
+  "Deux cycles de relecture par livrable",
+];
+
+export type DigitalisationPlan = {
+  name: string;
+  price: string;
+  tagline: string;
+  deliverables: string[];
+  badge?: string;
+};
+
+export const DIGITALISATION_PLANS: DigitalisationPlan[] = [
+  {
+    name: "Essentielle",
+    price: "À partir de 2 000 € HT par bloc",
+    tagline: "Vos contenus sont prêts à l'emploi, nous les mettons en ligne.",
+    deliverables: [
+      "Vous fournissez des contenus utilisables tels quels : vidéos finies, cours déjà rédigés.",
+      "Nous faisons tout le reste.",
+    ],
+  },
+  {
+    name: "Co-construite",
+    price: "À partir de 3 000 € HT par bloc",
+    tagline: "Votre référent métier apporte le savoir, nous construisons la formation.",
+    badge: "⭐ La plus demandée",
+    deliverables: [
+      "Votre référent métier remplit nos cahiers de contenu et valide le résultat.",
+      "Nous rédigeons le contenu final et créons les activités.",
+      "Capsules vidéo face caméra : nous écrivons les scripts et faisons le montage, votre équipe tourne.",
+    ],
+  },
+  {
+    name: "Complète",
+    price: "À partir de 8 200 € HT par bloc",
+    tagline: "Nous prenons tout en charge, de l'analyse à l'accompagnement.",
+    deliverables: [
+      "Vous fournissez vos sources et nous mettez en relation avec votre référent métier.",
+      "Nous créons tout le contenu.",
+      "Capsules vidéo face caméra : nous écrivons les scripts et faisons le montage.",
+      "Inclus pour tous vos blocs : séquençage et scénarisation, configuration de la plateforme, formation + accompagnement 3 mois.",
+    ],
+  },
+];
+
+export const DIGITALISATION_NOTES: string[] = [
+  "Le tournage des capsules vidéo reste assuré par votre équipe, avec notre accompagnement.",
+  "Prix pour un bloc de 20 h d'e-learning. Le prix final dépend de la durée du bloc, fixée lors du séquençage.",
+  "Votre référent métier : formateur, professionnel du métier ou responsable pédagogique qui maîtrise le sujet de la formation.",
+];
+
+export type DigitalisationExtra = { name: string; price: string; text: string; list?: string[]; note?: string };
+
+export const DIGITALISATION_EXTRAS: DigitalisationExtra[] = [
+  {
+    name: "Séquençage et scénarisation",
+    price: "À partir de 900 € HT",
+    text: "Analyse des objectifs, structuration du parcours et des séquences, choix des méthodes pédagogiques et des modalités d'évaluation.",
+  },
+  {
+    name: "Configuration de la plateforme",
+    price: "À partir de 400 € HT",
+    text: "Configuration initiale, organisation de l'espace de formation, paramétrage des accès et des fonctionnalités.",
+  },
+  {
+    name: "Formation à la plateforme + accompagnement 3 mois",
+    price: "900 € HT",
+    text: "Vos équipes formées à la plateforme, puis accompagnées pendant 3 mois pour la mise en service.",
+  },
+  {
+    name: "Maintenance pédagogique mensuelle",
+    price: "800 € HT par mois",
+    text: "Votre formation reste à jour et votre plateforme fonctionne, sans que vous ayez à vous en occuper.",
+    list: ["Mise à jour des contenus", "Maintenance et paramétrage du LMS"],
+    note: "Engagement de 3 mois minimum.",
+  },
+];
 
 export type FaqItem = { question: string; answer: string };
 
