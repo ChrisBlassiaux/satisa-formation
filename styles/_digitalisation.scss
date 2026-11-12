@@ -1,0 +1,649 @@
+@use 'variables' as *;
+
+// Page Digitalisation : éléments retenus de la refonte (préfixe dg-).
+// Les classes partagées avec la page Conception (formula-card, etc.) ne sont pas modifiées.
+
+$dg-shadow: 0 1px 2px rgba($color-dark, 0.05), 0 8px 24px rgba($color-dark, 0.06);
+$dg-shadow-hover: 0 2px 4px rgba($color-dark, 0.06), 0 18px 44px rgba($color-dark, 0.14);
+
+$dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+
+@mixin dg-check-list($check, $text) {
+  display: grid;
+  gap: $spacing-xs;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 1.65rem;
+    font-size: $fs-small;
+    color: $text;
+  }
+
+  li::before {
+    content: "";
+    position: absolute;
+    top: 0.18em;
+    left: 0;
+    width: 1.05rem;
+    height: 1.05rem;
+    background: $check;
+    mask: $dg-check center / contain no-repeat;
+  }
+}
+
+// ---------- Formules : panneaux dans le style des deux axes ----------
+.dg-plans {
+  display: grid;
+  gap: $spacing-md;
+  align-items: stretch;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.dg-plan {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  overflow: hidden;
+  container-type: inline-size;
+  padding: $spacing-lg;
+  border-radius: $radius-lg;
+
+  h3,
+  p {
+    margin: 0;
+  }
+}
+
+// Motif de points très pâle dans l'angle haut droit, à la place du chiffre des panneaux d'axes : rogné par la
+// carte, derrière le contenu, estompé vers le centre. Il reste loin du badge (en flux, à gauche) et du prix.
+// La densité des points augmente d'une formule à l'autre, sans chiffre.
+.dg-plan__mark {
+  --dot-gap: 18px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  z-index: -1;
+  width: 160px;
+  height: 140px;
+  pointer-events: none;
+  background-image: radial-gradient(circle, currentColor 2px, transparent 2.5px);
+  background-size: var(--dot-gap) var(--dot-gap);
+  -webkit-mask-image: radial-gradient(circle at 100% 0, #000 25%, transparent 75%);
+  mask-image: radial-gradient(circle at 100% 0, #000 25%, transparent 75%);
+}
+
+.dg-plan__mark--sparse {
+  --dot-gap: 26px;
+}
+
+.dg-plan__mark--medium {
+  --dot-gap: 18px;
+}
+
+.dg-plan__mark--dense {
+  --dot-gap: 12px;
+}
+
+.dg-plan--light .dg-plan__mark {
+  color: $color-primary-dark;
+  opacity: 0.35;
+}
+
+.dg-plan--dark .dg-plan__mark {
+  color: $color-mint;
+  opacity: 0.35;
+}
+
+.dg-plan--light {
+  background: $color-mint-light;
+  color: $color-dark;
+}
+
+.dg-plan--dark {
+  background: $color-dark;
+  color: $color-white;
+}
+
+.dg-plan__top {
+  display: flex;
+  align-items: center;
+  min-height: 34px;
+}
+
+.dg-plan__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.3em 0.9em;
+  border-radius: $radius-sm;
+  background: rgba($color-white, 0.14);
+  color: $color-white;
+  font-size: $fs-small;
+  font-weight: 700;
+}
+
+.dg-plan__badge-star {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.dg-plan__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-xs;
+}
+
+.dg-plan__name {
+  font-size: clamp(1.6rem, 0.8vw + 1.3rem, 2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.dg-plan--light .dg-plan__name {
+  color: $color-dark;
+}
+
+.dg-plan--dark .dg-plan__name {
+  color: $color-white;
+}
+
+.dg-plan__price {
+  padding: 0.35em 0.8em;
+  border-radius: $radius-sm;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dg-plan--light .dg-plan__price {
+  background: $color-white;
+  color: $color-teal-dark;
+}
+
+.dg-plan--dark .dg-plan__price {
+  background: $color-mint;
+  color: $color-dark;
+}
+
+.dg-plan__unit {
+  font-size: $fs-small;
+  font-style: italic;
+}
+
+.dg-plan--light .dg-plan__unit {
+  color: $color-muted;
+}
+
+.dg-plan--dark .dg-plan__unit {
+  color: rgba($color-white, 0.7);
+}
+
+.dg-plan__tagline {
+  margin-top: $spacing-xs;
+  font-size: $fs-small;
+}
+
+.dg-plan--light .dg-plan__tagline {
+  color: rgba($color-dark, 0.82);
+}
+
+.dg-plan--dark .dg-plan__tagline {
+  color: rgba($color-white, 0.85);
+}
+
+// Lien vers le détail du socle, plus bas sur la page.
+.dg-plan__core {
+  display: block;
+  width: fit-content;
+  margin-top: $spacing-xs;
+  font-size: $fs-small;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration-color: currentColor;
+  }
+}
+
+.dg-plan--light .dg-plan__core {
+  color: $color-primary-dark;
+}
+
+.dg-plan--dark .dg-plan__core {
+  color: $color-mint;
+}
+
+.dg-plan--light .dg-plan__list {
+  @include dg-check-list($color-primary-dark, $color-dark);
+  margin-block: $spacing-xs $spacing-md;
+}
+
+.dg-plan--dark .dg-plan__list {
+  @include dg-check-list($color-mint, rgba($color-white, 0.92));
+  margin-block: $spacing-xs $spacing-md;
+}
+
+.dg-plan__cta {
+  margin-top: auto;
+}
+
+// ---------- Formules supplémentaires : lignes de tarifs ----------
+.dg-extras {
+  overflow: hidden;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+  box-shadow: $dg-shadow;
+}
+
+.dg-extra {
+  display: grid;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  transition: background-color 0.2s;
+
+  & + & {
+    border-top: 1px solid $color-border;
+  }
+
+  &:hover {
+    background: $color-surface;
+  }
+
+  @include from($bp-tablet) {
+    grid-template-columns: 44px minmax(0, 300px) minmax(0, 1fr);
+    gap: $spacing-md $spacing-lg;
+    align-items: start;
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.dg-extra__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-md;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.dg-extra__main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.dg-extra__name {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.dg-extra__price {
+  padding: 0.3em 0.75em;
+  border-radius: $radius-sm;
+  background: $color-mint-light;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $color-teal-dark;
+}
+
+.dg-extra__text {
+  margin: 0;
+  font-size: $fs-small;
+}
+
+.dg-extra__note {
+  margin: $spacing-xs 0 0;
+  font-size: 0.8rem;
+}
+
+// ---------- Simulateur : fond sombre uni ----------
+.dg-sim {
+  background: $color-dark;
+
+  .section-head h2 {
+    color: $color-white;
+  }
+
+  .section-head p {
+    color: rgba($color-white, 0.82);
+  }
+
+  .eyebrow {
+    color: $color-mint;
+
+    &::before {
+      background: $color-mint;
+    }
+  }
+}
+
+// ---------- Ce que comprend le service : tuiles simples, dans le style du bloc « Le socle inclus » ----------
+.dg-bento {
+  display: grid;
+  gap: $spacing-sm;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Fond clair, fin contour, coins arrondis : comme le socle.
+.dg-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-surface;
+  color: $color-dark;
+
+  h3,
+  p {
+    margin: 0;
+  }
+}
+
+.dg-tile--span-2 {
+  @include from($bp-tablet) {
+    grid-column: span 2;
+  }
+}
+
+.dg-tile--span-4 {
+  @include from($bp-tablet) {
+    grid-column: 1 / -1;
+  }
+
+  @include from($bp-desktop) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: $spacing-md;
+  }
+}
+
+.dg-tile__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-md;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.dg-tile__title {
+  margin-bottom: 0.25rem;
+  font-size: 1.05rem;
+  color: $color-dark;
+
+  .dg-tile--span-4 & {
+    margin-bottom: 0.15rem;
+  }
+}
+
+.dg-tile__text {
+  font-size: $fs-small;
+}
+
+// Mise en avant mesurée : fond menthe clair du site, un peu plus d'espace, titre et texte plus grands.
+.dg-tile--featured {
+  padding: $spacing-lg;
+  border-color: rgba($color-primary-dark, 0.22);
+  background: $color-mint-light;
+
+  .dg-tile__icon {
+    width: 52px;
+    height: 52px;
+    background: $color-white;
+
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  .dg-tile__title {
+    font-size: 1.35rem;
+  }
+
+  .dg-tile__text {
+    font-size: 1rem;
+    color: rgba($color-dark, 0.82);
+  }
+
+  .digital-chips .tag {
+    background: $color-white;
+    border-color: transparent;
+    color: $color-dark;
+  }
+}
+
+// ---------- Pourquoi créer une formation en ligne ----------
+.dg-axes {
+  display: grid;
+  gap: $spacing-md;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.dg-axis {
+  position: relative;
+  overflow: hidden;
+  padding: $spacing-lg;
+  border-radius: $radius-lg;
+}
+
+.dg-axis--light {
+  background: $color-mint-light;
+  color: $color-dark;
+}
+
+.dg-axis--dark {
+  background: $color-dark;
+  color: $color-white;
+}
+
+.dg-axis__num {
+  position: absolute;
+  top: -0.2em;
+  right: 0.25em;
+  font-size: 7rem;
+  font-weight: 800;
+  line-height: 1;
+  pointer-events: none;
+  opacity: 0.1;
+}
+
+.dg-axis--light .dg-axis__num {
+  color: $color-primary-dark;
+  opacity: 0.16;
+}
+
+.dg-axis--dark .dg-axis__num {
+  color: $color-mint;
+  opacity: 0.18;
+}
+
+.dg-axis__title {
+  position: relative;
+  margin: 0 0 $spacing-sm;
+  font-size: 1.3rem;
+
+  span {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: $fs-small;
+    font-weight: 600;
+  }
+}
+
+.dg-axis--light .dg-axis__title {
+  color: $color-dark;
+
+  span {
+    color: $color-primary-dark;
+  }
+}
+
+.dg-axis--dark .dg-axis__title {
+  color: $color-white;
+
+  span {
+    color: $color-mint;
+  }
+}
+
+.dg-axis__list {
+  position: relative;
+}
+
+.dg-axis--light .dg-axis__list {
+  @include dg-check-list($color-primary-dark, $color-dark);
+}
+
+.dg-axis--dark .dg-axis__list {
+  @include dg-check-list($color-mint, rgba($color-white, 0.92));
+}
+
+.dg-benefits {
+  display: grid;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  border-radius: $radius-lg;
+  background: $color-surface;
+  border: 1px solid $color-border;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+}
+
+.dg-benefit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @include from($bp-desktop) {
+    padding-inline: $spacing-md;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    & + & {
+      border-left: 1px solid $color-border;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.dg-benefit__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 0.25rem;
+  border-radius: 50%;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+
+  svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.dg-benefit__icon--accent {
+  background: $color-ray-yellow-soft;
+  color: $color-dark;
+}
+
+.dg-benefit__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.dg-benefit__text {
+  font-size: $fs-small;
+}
+
+// Apparition au scroll des axes et des bénéfices : CSS pur, l'état de base est l'état final.
+@keyframes dg-reveal {
+  from {
+    opacity: 0.15;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .dg-axis,
+    .dg-benefits {
+      animation: dg-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}

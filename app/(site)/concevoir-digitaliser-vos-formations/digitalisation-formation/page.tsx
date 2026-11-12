@@ -44,6 +44,9 @@ const BREADCRUMB_JSON_LD = breadcrumbJsonLd([
   { name: "Digitalisation", path: ROUTES.formationsDigitalisation },
 ]);
 
+// Motif de points décoratif des cartes de formules : plus dense à mesure que la formule prend en charge.
+const MARK_DENSITY = ["sparse", "medium", "dense"];
+
 const EXTRA_ICONS: Record<string, ReactNode> = {
   "Séquençage et scénarisation": (
     <>
@@ -137,6 +140,92 @@ const DIGITAL_FEATURES = [
   },
 ];
 
+const AXES = [
+  {
+    num: 1,
+    tone: "light",
+    title: (
+      <>
+        Présentiel &amp; télé-présentiel augmenté <span>(Blended Learning)</span>
+      </>
+    ),
+    items: [
+      "Enrichissez vos cours en salle ou en visio avec du contenu complémentaire en ligne",
+      "Plateforme pédagogique disponible en parallèle de la formation",
+      "Supports, vidéos, quiz, exercices pour approfondir les notions",
+      "Plus de temps en présentiel pour la pratique et les échanges",
+    ],
+  },
+  {
+    num: 2,
+    tone: "dark",
+    title: (
+      <>
+        Distanciel <span>(E-learning)</span>
+      </>
+    ),
+    items: [
+      "Transformez une partie ou l'ensemble de vos formations en modules accessibles 100 % à distance",
+      "Capsules vidéos interactives, quiz et exercices auto-corrigés",
+      "Suivi de progression et validation des acquis",
+      "Accessibles à tout moment, sur tout appareil",
+    ],
+  },
+];
+
+const BENEFITS = [
+  {
+    title: "Attirez plus d'apprenants",
+    text: "Une offre accessible à distance élargit votre audience au-delà de votre zone géographique.",
+    icon: (
+      <>
+        <circle cx="8" cy="9" r="3" />
+        <path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+        <circle cx="17" cy="8" r="2.5" />
+        <path d="M14.7 14.3c2.7.5 4.3 2.7 4.3 5.7" />
+      </>
+    ),
+  },
+  {
+    title: "Modernisez vos formations",
+    text: "Des contenus interactifs et à jour, à la hauteur des attentes de vos apprenants.",
+    icon: (
+      <>
+        <path d="M20 11a8 8 0 00-14.9-3.5" />
+        <path d="M4 13a8 8 0 0014.9 3.5" />
+        <path d="M5 4v4h4" />
+        <path d="M19 20v-4h-4" />
+      </>
+    ),
+  },
+  {
+    title: "Proposez une expérience engageante et flexible",
+    text: "Apprentissage à son rythme, sur tout appareil, avec un suivi de la progression.",
+    icon: <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />,
+  },
+  {
+    title: "Nouvelles sources de revenus",
+    text: "Vendez vos modules en ligne ou proposez des formules hybrides à plus forte marge.",
+    icon: (
+      <>
+        <path d="M3 17l6-6 4 4 8-8" />
+        <path d="M15 6h6v6" />
+      </>
+    ),
+  },
+];
+
+// Grille « Ce que comprend notre service » : même ordre que DIGITAL_FEATURES. Les tuiles reprennent le style du
+// socle ; deux d'entre elles (exercices, outils auteurs) sont mises en avant.
+const TILE_LAYOUT: { span: number; featured?: boolean }[] = [
+  { span: 2 },
+  { span: 2, featured: true },
+  { span: 2, featured: true },
+  { span: 1 },
+  { span: 1 },
+  { span: 4 },
+];
+
 export default function DigitalisationPage() {
   return (
     <>
@@ -173,38 +262,39 @@ export default function DigitalisationPage() {
             <p className="eyebrow">Nos formules</p>
             <h2>Choisissez la formule adaptée à votre projet de digitalisation</h2>
           </div>
-          <div className="formula-cards formula-cards--3">
-            {DIGITALISATION_PLANS.map((plan) => {
+          <div className="dg-plans">
+            {DIGITALISATION_PLANS.map((plan, index) => {
               const featured = Boolean(plan.badge);
               return (
-                <article key={plan.name} className={`formula-card${featured ? " formula-card--featured" : ""}`}>
-                  <div className="formula-card__top">
+                <article key={plan.name} className={`dg-plan dg-plan--${featured ? "dark" : "light"}`}>
+                  <span className={`dg-plan__mark dg-plan__mark--${MARK_DENSITY[index] ?? "dense"}`} aria-hidden="true" />
+                  <div className="dg-plan__top">
                     {plan.badge && (
-                      <span className="formula-card__badge">
-                        <svg className="formula-card__badge-star" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <span className="dg-plan__badge">
+                        <svg className="dg-plan__badge-star" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                           <path d="M10 1.6l2.35 4.76 5.25.77-3.8 3.7.9 5.23L10 13.5l-4.7 2.46.9-5.23-3.8-3.7 5.25-.77L10 1.6z" fill="#FECC01" />
                         </svg>
                         {plan.badge}
                       </span>
                     )}
                   </div>
-                  <header className="formula-card__head">
-                    <h4 className="formula-card__name">{plan.name}</h4>
-                    <span className="offer-row__price">{plan.price}</span>
+                  <header className="dg-plan__head">
+                    <h3 className="dg-plan__name">{plan.name}</h3>
+                    <span className="dg-plan__price">{plan.price}</span>
                   </header>
-                  <p className="formula-card__unit">{plan.unit}</p>
-                  <p className="pricing-card__note formula-card__note">{plan.tagline}</p>
-                  <a href="#socle-inclus" className="formula-card__core">
+                  <p className="dg-plan__unit">{plan.unit}</p>
+                  <p className="dg-plan__tagline">{plan.tagline}</p>
+                  <a href="#socle-inclus" className="dg-plan__core">
                     ✓ Tout le socle inclus <span aria-hidden="true">↓</span>
                   </a>
-                  <ul className="pricing-card__deliverables">
+                  <ul className="dg-plan__list">
                     {plan.deliverables.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
                   <Link
                     href={ROUTES.contact}
-                    className={`btn ${featured ? "btn--dark" : "btn--primary"} btn--block formula-card__cta`}
+                    className={`btn ${featured ? "btn--primary" : "btn--dark"} btn--block dg-plan__cta`}
                   >
                     Prendre un rendez-vous
                   </Link>
@@ -228,37 +318,36 @@ export default function DigitalisationPage() {
 
           <h3 className="subsection-title digital-extras-title">Formules supplémentaires</h3>
           <p className="digital-extras-intro">À ajouter selon vos besoins, une seule fois par projet de formation, sauf la maintenance, facturée chaque mois.</p>
-          <div className="digital-extras">
-            {DIGITALISATION_EXTRAS.map((extra, index) => (
-              <article key={extra.name} className="digital-extra">
-                <span
-                  className={`benefit-tile__icon digital-extra__icon${index === 1 || index === 2 ? " benefit-tile__icon--accent" : ""}`}
-                  aria-hidden="true"
-                >
+          <div className="dg-extras">
+            {DIGITALISATION_EXTRAS.map((extra) => (
+              <article key={extra.name} className="dg-extra">
+                <span className="dg-extra__icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                     {EXTRA_ICONS[extra.name]}
                   </svg>
                 </span>
-                <header className="digital-extra__head">
-                  <h4 className="digital-extra__name">{extra.name}</h4>
-                  <span className="offer-row__price">{extra.price}</span>
+                <header className="dg-extra__main">
+                  <h4 className="dg-extra__name">{extra.name}</h4>
+                  <span className="dg-extra__price">{extra.price}</span>
                 </header>
-                <p className="digital-extra__text">{extra.text}</p>
-                {extra.list && (
-                  <ul className="pricing-card__deliverables">
-                    {extra.list.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                )}
-                {extra.note && <p className="pricing-card__note digital-extra__note">{extra.note}</p>}
+                <div>
+                  <p className="dg-extra__text">{extra.text}</p>
+                  {extra.list && (
+                    <ul className="pricing-card__deliverables">
+                      {extra.list.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {extra.note && <p className="pricing-card__note dg-extra__note">{extra.note}</p>}
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section-tinted">
+      <section className="dg-sim">
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Simulateur de prix</p>
@@ -279,81 +368,32 @@ export default function DigitalisationPage() {
             <h2>Pourquoi créer une formation en ligne ?</h2>
           </div>
           <h3 className="subsection-title subsection-title--start">Les deux axes de digitalisation</h3>
-          <div className="digital-axes">
-            <div className="digital-axis">
-              <div className="digital-axis__head">
-                <span className="offer-row__index" aria-hidden="true">1</span>
-                <h4>
-                  Présentiel &amp; télé-présentiel augmenté <span>(Blended Learning)</span>
-                </h4>
+          <div className="dg-axes">
+            {AXES.map((axis) => (
+              <div key={axis.num} className={`dg-axis dg-axis--${axis.tone}`}>
+                <span className="dg-axis__num" aria-hidden="true">{axis.num}</span>
+                <h4 className="dg-axis__title">{axis.title}</h4>
+                <ul className="dg-axis__list">
+                  {axis.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
               </div>
-              <ul className="digital-axis__list">
-                <li>Enrichissez vos cours en salle ou en visio avec du contenu complémentaire en ligne</li>
-                <li>Plateforme pédagogique disponible en parallèle de la formation</li>
-                <li>Supports, vidéos, quiz, exercices pour approfondir les notions</li>
-                <li>Plus de temps en présentiel pour la pratique et les échanges</li>
-              </ul>
-            </div>
-            <div className="digital-axis">
-              <div className="digital-axis__head">
-                <span className="offer-row__index" aria-hidden="true">2</span>
-                <h4>
-                  Distanciel <span>(E-learning)</span>
-                </h4>
-              </div>
-              <ul className="digital-axis__list">
-                <li>Transformez une partie ou l&apos;ensemble de vos formations en modules accessibles 100&nbsp;% à distance</li>
-                <li>Capsules vidéos interactives, quiz et exercices auto-corrigés</li>
-                <li>Suivi de progression et validation des acquis</li>
-                <li>Accessibles à tout moment, sur tout appareil</li>
-              </ul>
-            </div>
+            ))}
           </div>
           <h3 className="subsection-title subsection-title--start">Ce que ça change pour votre organisme de formation</h3>
-          <div className="benefit-grid">
-            <div className="benefit-tile">
-              <span className="benefit-tile__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="8" cy="9" r="3" />
-                  <path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
-                  <circle cx="17" cy="8" r="2.5" />
-                  <path d="M14.7 14.3c2.7.5 4.3 2.7 4.3 5.7" />
-                </svg>
-              </span>
-              <p className="benefit-tile__title">Attirez plus d&apos;apprenants</p>
-              <p className="benefit-tile__text">Une offre accessible à distance élargit votre audience au-delà de votre zone géographique.</p>
-            </div>
-            <div className="benefit-tile">
-              <span className="benefit-tile__icon benefit-tile__icon--accent" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 11a8 8 0 00-14.9-3.5" />
-                  <path d="M4 13a8 8 0 0014.9 3.5" />
-                  <path d="M5 4v4h4" />
-                  <path d="M19 20v-4h-4" />
-                </svg>
-              </span>
-              <p className="benefit-tile__title">Modernisez vos formations</p>
-              <p className="benefit-tile__text">Des contenus interactifs et à jour, à la hauteur des attentes de vos apprenants.</p>
-            </div>
-            <div className="benefit-tile">
-              <span className="benefit-tile__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
-                </svg>
-              </span>
-              <p className="benefit-tile__title">Proposez une expérience engageante et flexible</p>
-              <p className="benefit-tile__text">Apprentissage à son rythme, sur tout appareil, avec un suivi de la progression.</p>
-            </div>
-            <div className="benefit-tile">
-              <span className="benefit-tile__icon benefit-tile__icon--accent" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 17l6-6 4 4 8-8" />
-                  <path d="M15 6h6v6" />
-                </svg>
-              </span>
-              <p className="benefit-tile__title">Nouvelles sources de revenus</p>
-              <p className="benefit-tile__text">Vendez vos modules en ligne ou proposez des formules hybrides à plus forte marge.</p>
-            </div>
+          <div className="dg-benefits">
+            {BENEFITS.map((benefit, index) => (
+              <div key={benefit.title} className="dg-benefit">
+                <span className={`dg-benefit__icon${index % 2 === 1 ? " dg-benefit__icon--accent" : ""}`} aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    {benefit.icon}
+                  </svg>
+                </span>
+                <p className="dg-benefit__title">{benefit.title}</p>
+                <p className="dg-benefit__text">{benefit.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -361,31 +401,33 @@ export default function DigitalisationPage() {
       <section>
         <div className="container">
           <div className="section-head">
-            <p className="eyebrow">Ce qui est inclus</p>
+            <p className="eyebrow">Notre savoir-faire</p>
             <h2>Ce que comprend notre service de digitalisation</h2>
           </div>
-          <div className="digital-features">
-            {DIGITAL_FEATURES.map((feature, index) => (
-              <div key={feature.title} className="digital-feature">
-                <span
-                  className={`benefit-tile__icon${index % 2 === 1 ? " benefit-tile__icon--accent" : ""}`}
-                  aria-hidden="true"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    {feature.icon}
-                  </svg>
-                </span>
-                <h3 className="digital-feature__title">{feature.title}</h3>
-                <p className="digital-feature__text">{feature.text}</p>
-                {feature.chips && (
-                  <ul className="digital-chips">
-                    {feature.chips.map((chip) => (
-                      <li key={chip} className="tag">{chip}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
+          <div className="dg-bento">
+            {DIGITAL_FEATURES.map((feature, index) => {
+              const layout = TILE_LAYOUT[index];
+              return (
+                <div key={feature.title} className={`dg-tile dg-tile--span-${layout.span}${layout.featured ? " dg-tile--featured" : ""}`}>
+                  <span className="dg-tile__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      {feature.icon}
+                    </svg>
+                  </span>
+                  <div>
+                    <h3 className="dg-tile__title">{feature.title}</h3>
+                    <p className="dg-tile__text">{feature.text}</p>
+                    {feature.chips && (
+                      <ul className="digital-chips">
+                        {feature.chips.map((chip) => (
+                          <li key={chip} className="tag">{chip}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
