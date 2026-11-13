@@ -3,12 +3,12 @@ import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import RelatedArticles from "@/components/RelatedArticles";
 
-const TITLE = "Déposer une certification RNCP ou RS - Satisa Formation";
+const TITLE = "Dépôt de certification RNCP/RS - Satisa Formation";
 const DESCRIPTION =
   "Enregistrer une certification au RNCP ou au RS : choisissez le bon répertoire, puis faites-vous accompagner du diagnostic à la décision de France Compétences.";
 
 export const metadata: Metadata = {
-  title: "Déposer une certification RNCP ou RS",
+  title: "Dépôt de certification RNCP/RS",
   description: DESCRIPTION,
   alternates: {
     canonical: "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs",
