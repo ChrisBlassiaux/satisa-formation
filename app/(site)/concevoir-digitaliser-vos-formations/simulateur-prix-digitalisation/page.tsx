@@ -113,11 +113,12 @@ export default function SimulateurPrixPage() {
           </div>
           <Image
             className="sim-cover__visual"
-            src="/images/simulateur/apercu-simulateur-v3.webp"
+            src="/images/simulateur/apercu-simulateur-v4.webp"
             alt=""
             aria-hidden="true"
-            width={1533}
-            height={586}
+            width={1535}
+            height={591}
+            quality={95}
             sizes="(min-width: 1000px) 1300px, 120vw"
             priority
           />

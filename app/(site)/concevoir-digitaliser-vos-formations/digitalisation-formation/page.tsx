@@ -384,10 +384,11 @@ export default function DigitalisationPage() {
           </div>
           <Image
             className="dg-sim__visual"
-            src="/images/simulateur/apercu-simulateur-v3.webp"
+            src="/images/simulateur/apercu-simulateur-v4.webp"
             alt="Aperçu du simulateur de prix : trois écrans de questions puis le résultat, avec la formule recommandée et le tarif en euros HT"
-            width={1533}
-            height={586}
+            width={1535}
+            height={591}
+            quality={95}
             sizes="(min-width: 768px) 44vw, 100vw"
           />
         </div>
