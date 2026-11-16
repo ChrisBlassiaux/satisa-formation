@@ -203,6 +203,21 @@ export const FAQ_CONCEPTION: FaqItem[] = [
 ];
 
 export const FAQ_DIGITALISATION: FaqItem[] = [
+  {
+    question: "Comment digitaliser une formation présentielle ?",
+    answer:
+      "Digitaliser une formation présentielle, c'est la transformer en parcours e-learning ou blended learning, disponible sur un LMS. Le projet suit six étapes : cadrage et choix du format, scénarisation pédagogique, production des contenus, développement du module, intégration et paramétrage du LMS, puis lancement et accompagnement. Il ne s'agit pas de copier le présentiel en ligne : la formation est repensée pour la distance, avec des séquences courtes, des activités et des évaluations.",
+  },
+  {
+    question: "Combien coûte la digitalisation d'une formation ?",
+    answer:
+      "Chez Satisa Formation, la digitalisation démarre à 2 000 € HT pour 20 heures d'e-learning avec la formule Essentielle (vos contenus sont prêts), à partir de 3 000 € HT avec la formule Co-construite (votre référent métier apporte le savoir) et à partir de 8 200 € HT avec la formule Complète (nous prenons tout en charge). Le prix final dépend de la durée d'e-learning, fixée lors du séquençage. Le simulateur de prix en ligne donne une estimation en 1 minute.",
+  },
+  {
+    question: "Quelle différence entre e-learning, blended learning et digital learning ?",
+    answer:
+      "L'e-learning est une formation entièrement suivie à distance, en ligne, sur un LMS. Le blended learning (ou formation hybride) combine des séances en présentiel ou en classe virtuelle avec des modules e-learning dans un même parcours. Le digital learning est le terme le plus large : il regroupe tous les formats de formation digitale (e-learning, classe virtuelle, micro-learning, mobile learning).",
+  },
   FAQ_DELAYS,
   {
     question: "Quelles sont les étapes d'un projet de digitalisation ?",
@@ -210,12 +225,37 @@ export const FAQ_DIGITALISATION: FaqItem[] = [
       "Rendez-vous de cadrage, diagnostic, scénarisation et conception digitale, production des modules, intégration et paramétrage sur le LMS, tests et validation, puis accompagnement et première session.",
   },
   FAQ_LMS,
+  {
+    question: "Quel LMS choisir pour un organisme de formation ?",
+    answer:
+      "Le bon LMS dépend de votre taille, de votre budget, du suivi attendu (progression, évaluations, assiduité) et de son intégration avec vos outils de gestion. Nous intégrons et paramétrons vos contenus sur Moodle, Digiforma, Teachizy, 360Learning ou sur votre plateforme, et le diagnostic permet de vérifier que votre outil répond à votre projet.",
+  },
+  {
+    question: "SCORM 1.2, SCORM 2004 ou xAPI : quel format choisir pour mon LMS ?",
+    answer:
+      "SCORM 1.2 est le format le plus largement compatible avec les LMS, dont Moodle : il suit l'achèvement et le score. SCORM 2004 permet un suivi plus fin, mais sa prise en charge varie selon la version de la plateforme. xAPI est plus riche mais demande généralement un LRS (Learning Record Store). Nous exportons vos modules en SCORM 1.2 et vérifions la compatibilité de votre LMS dès le diagnostic.",
+  },
+  {
+    question: "Une formation e-learning doit-elle respecter Qualiopi ?",
+    answer:
+      "Les formations à distance ou hybrides relèvent du référentiel Qualiopi comme les formations présentielles, avec des preuves propres à la distance : traçabilité de l'assiduité, évaluation des acquis, accompagnement des apprenants. Nous les anticipons dans la scénarisation et dans le paramétrage du LMS (suivi de progression, conditions d'achèvement, évaluations avec corrections).",
+  },
   FAQ_CUSTOM,
   {
     question: "Les modules créés m'appartiennent-ils ?",
     answer: "Oui. Chaque module est conçu en exclusivité pour vous et le contenu vous appartient.",
   },
   FAQ_MAINTENANCE,
+  {
+    question: "Qui est Satisa Formation ?",
+    answer:
+      "Satisa Formation est une structure d'ingénierie pédagogique et d'ingénierie de certification RNCP/RS, fondée en 2024 par Chris Blassiaux, ingénieur pédagogique et ingénieur de certification en freelance. Elle accompagne les organismes de formation sur la conception pédagogique, la digitalisation de leurs formations (e-learning, blended learning, intégration LMS) et le dépôt de certifications RNCP/RS, avec un interlocuteur unique.",
+  },
+  {
+    question: "Pouvez-vous intervenir comme ingénieur pédagogique freelance sur mon projet ?",
+    answer:
+      "Oui. Chris Blassiaux, fondateur de Satisa Formation, intervient en freelance comme ingénieur pédagogique : conception de la formation, création des contenus, développement des modules e-learning et intégration sur votre LMS, du cadrage à la première session. Prenez rendez-vous pour qu'il étudie votre projet.",
+  },
 ];
 
 export function faqJsonLd(items: FaqItem[]) {

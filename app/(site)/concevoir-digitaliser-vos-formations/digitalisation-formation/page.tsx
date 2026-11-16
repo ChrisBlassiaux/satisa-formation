@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
+import { serviceJsonLd, webPageJsonLd } from "@/lib/schema";
 import {
   DIGITALISATION_CORE,
   DIGITALISATION_EXTRAS,
@@ -14,14 +15,15 @@ import {
 } from "@/lib/formations";
 import FaqList from "@/components/FaqList";
 import LinkArrow from "@/components/LinkArrow";
+import RelatedArticles from "@/components/RelatedArticles";
 
-const TITLE = "Digitalisation de formation : e-learning et LMS - Satisa Formation";
+const TITLE = "Digitalisation de formation e-learning - Satisa Formation";
 const DESCRIPTION =
-  "Digitalisation de formation : e-learning, blended learning et intégration LMS (Moodle, Digiforma, Teachizy, 360Learning), avec contenus 100 % uniques.";
+  "Digitalisation de formation : e-learning sur mesure, blended learning et intégration LMS (Moodle, Teachizy). Formules dès 2 000 € HT. Satisa Formation.";
 const URL = "https://www.satisa-formation.fr/concevoir-digitaliser-vos-formations/digitalisation-formation";
 
 export const metadata: Metadata = {
-  title: "Digitalisation de formation : e-learning et LMS",
+  title: "Digitalisation de formation e-learning",
   description: DESCRIPTION,
   alternates: { canonical: URL },
   openGraph: {
@@ -43,6 +45,81 @@ const BREADCRUMB_JSON_LD = breadcrumbJsonLd([
   { name: "Concevoir et digitaliser vos formations", path: ROUTES.formations },
   { name: "Digitalisation", path: ROUTES.formationsDigitalisation },
 ]);
+
+const prixEnNombre = (prix: string) => Number(prix.replace(/\D/g, ""));
+
+// Les prix du balisage viennent des mêmes données que les cartes affichées : ils restent toujours identiques.
+const SERVICE_JSON_LD = serviceJsonLd({
+  name: "Digitalisation de formation (e-learning et blended learning)",
+  description: DESCRIPTION,
+  url: URL,
+  offers: [
+    ...DIGITALISATION_PLANS.map((plan) => ({
+      name: `Formule ${plan.name}`,
+      price: prixEnNombre(plan.price),
+      unit: plan.unit.replace(/^Pour\s+/, "").replace(/\*/g, ""),
+    })),
+    ...DIGITALISATION_EXTRAS.map((extra) => ({
+      name: extra.name,
+      price: prixEnNombre(extra.price),
+      ...(extra.name.startsWith("Maintenance") ? { unit: "mois" } : {}),
+    })),
+  ],
+});
+
+const WEBPAGE_JSON_LD = webPageJsonLd({
+  name: TITLE,
+  description: DESCRIPTION,
+  url: URL,
+  dateModified: "2026-11-16",
+});
+
+// Les six étapes d'un projet de digitalisation (même enchaînement que la FAQ et le diagnostic).
+const STEPS = [
+  {
+    title: "Cadrage et choix du format",
+    text: "Nous analysons votre formation, votre public et vos contraintes pour choisir entre 100 % e-learning, blended learning (présentiel et distanciel) ou classe virtuelle, puis nous fixons la durée d'e-learning à produire.",
+  },
+  {
+    title: "Scénarisation pédagogique",
+    text: "Séquençage de la formation, storyboard, choix des activités et des modalités d'évaluation : la formation n'est pas copiée du présentiel, elle est repensée pour la distance.",
+  },
+  {
+    title: "Production des contenus",
+    text: "Textes, vidéos (face caméra, ou motion design et voix off), quiz, exercices et corrigés, avec la relecture de votre référent métier.",
+  },
+  {
+    title: "Développement du module",
+    text: "Mise en forme dans un outil auteur (Articulate Rise, Storyline, iSpring) ou développement sur mesure en HTML/CSS/JS, avec export SCORM 1.2.",
+  },
+  {
+    title: "Intégration et paramétrage du LMS",
+    text: "Déploiement sur Moodle, Digiforma, Teachizy, 360Learning ou votre plateforme : accès, progression, conditions d'achèvement et tests fonctionnels.",
+  },
+  {
+    title: "Lancement et accompagnement",
+    text: "Vos équipes sont formées à la plateforme et accompagnées sur la première session, puis une maintenance pédagogique mensuelle est possible.",
+  },
+];
+
+// E-learning, blended learning, digital learning : les termes que cherchent les prospects.
+const TERMS = [
+  {
+    term: "E-learning",
+    definition: "Formation entièrement suivie à distance, en ligne et en autonomie, sur un LMS : modules, quiz et suivi de progression.",
+    when: "Public dispersé, rythme libre, grand nombre d'apprenants.",
+  },
+  {
+    term: "Blended learning (formation hybride)",
+    definition: "Parcours qui combine des séances en présentiel ou en classe virtuelle et des modules e-learning.",
+    when: "Mises en situation, pratique, échanges en groupe.",
+  },
+  {
+    term: "Digital learning",
+    definition: "Terme le plus large : tous les formats de formation digitale (e-learning, classe virtuelle, micro-learning, mobile learning, MOOC).",
+    when: "Stratégie de formation globale, plusieurs formats à articuler.",
+  },
+];
 
 // Motif de points décoratif des cartes de formules : plus dense à mesure que la formule prend en charge.
 const MARK_DENSITY = ["sparse", "medium", "dense"];
@@ -231,6 +308,8 @@ export default function DigitalisationPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(FAQ_DIGITALISATION)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSON_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBPAGE_JSON_LD) }} />
 
       <aside className="dg-banner" aria-label="Simulateur de prix">
         <div className="container dg-banner__inner">
@@ -254,11 +333,11 @@ export default function DigitalisationPage() {
           <div>
             <p className="eyebrow">Digitalisation des formations</p>
             <h1>
-              Digitalisez vos formations : <span className="dg-nowrap">e-learning</span> et intégration LMS
+              Digitalisation de formation : <span className="dg-nowrap">e-learning</span> sur mesure et intégration LMS
             </h1>
             <p className="hero-page__subtitle">
-              De votre contenu à la première session : on conçoit, produit et déploie vos formations digitales
-              (e-learning ou blended learning) sur votre LMS.
+              Satisa Formation conçoit, produit et déploie vos formations digitales (e-learning ou blended learning) sur
+              votre LMS, de votre contenu existant à la première session.
             </p>
           </div>
           <div className="hero-page__visual" aria-hidden="true">
@@ -277,7 +356,7 @@ export default function DigitalisationPage() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Nos formules</p>
-            <h2>Choisissez la formule adaptée à votre projet de digitalisation</h2>
+            <h2>Formules de digitalisation de formation : contenu et tarifs HT</h2>
           </div>
           <div className="dg-plans">
             {DIGITALISATION_PLANS.map((plan, index) => {
@@ -384,10 +463,10 @@ export default function DigitalisationPage() {
           </div>
           <Image
             className="dg-sim__visual"
-            src="/images/simulateur/apercu-simulateur.webp"
+            src="/images/simulateur/apercu-simulateur-v2.webp"
             alt="Aperçu du simulateur de prix : trois écrans de questions puis le résultat, avec la formule recommandée et le tarif en euros HT"
-            width={1541}
-            height={591}
+            width={1545}
+            height={602}
             sizes="(min-width: 768px) 44vw, 100vw"
           />
         </div>
@@ -467,8 +546,139 @@ export default function DigitalisationPage() {
       <section>
         <div className="container">
           <div className="section-head">
+            <p className="eyebrow">Méthode</p>
+            <h2>Comment digitaliser une formation ? Les 6 étapes de Satisa Formation</h2>
+          </div>
+          <p className="seo-lead">
+            Digitaliser une formation, c&apos;est transformer un cours présentiel ou des supports existants en parcours{" "}
+            <strong>e-learning</strong> ou <strong>blended learning</strong>, disponible sur un LMS, avec scénarisation
+            pédagogique, activités, évaluations et suivi des apprenants. Chez Satisa Formation, un projet de
+            digitalisation suit six étapes, du cadrage à la première session.
+          </p>
+          <ol className="dg-steps">
+            {STEPS.map((step, index) => (
+              <li key={step.title} className="dg-step">
+                <span className="dg-step__num" aria-hidden="true">{index + 1}</span>
+                <h3 className="dg-step__title">{step.title}</h3>
+                <p className="dg-step__text">{step.text}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="seo-more">
+            Vous voulez connaître le budget de votre projet ?{" "}
+            <Link href={ROUTES.formationsSimulateur}>Estimez le prix de votre formation e-learning en 1 minute</Link>.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Vocabulaire</p>
+            <h2>E-learning, blended learning, digital learning : quelles différences ?</h2>
+          </div>
+          <div className="seo-table-wrap">
+            <table className="seo-table">
+              <caption className="visually-hidden">Différences entre e-learning, blended learning et digital learning</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Terme</th>
+                  <th scope="col">Définition</th>
+                  <th scope="col">Quand le choisir</th>
+                </tr>
+              </thead>
+              <tbody>
+                {TERMS.map((row) => (
+                  <tr key={row.term}>
+                    <th scope="row">{row.term}</th>
+                    <td data-label="Définition">{row.definition}</td>
+                    <td data-label="Quand le choisir">{row.when}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="seo-more">
+            Que vous partiez d&apos;un cours en salle ou de contenus déjà rédigés, Satisa Formation vous aide à choisir le
+            bon format, puis à produire la formation digitale correspondante.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Format et plateforme</p>
+            <h2>SCORM, xAPI, LMS : quel format et quelle plateforme pour votre formation digitale ?</h2>
+          </div>
+          <div className="article-body">
+            <h3>SCORM 1.2, SCORM 2004 ou xAPI : quel format choisir ?</h3>
+            <p>
+              <strong>SCORM 1.2</strong> est le format le plus largement compatible avec les LMS, dont Moodle : il suit
+              l&apos;achèvement et le score. <strong>SCORM 2004</strong> permet un suivi plus fin, mais sa prise en
+              charge varie selon la version de la plateforme. <strong>xAPI</strong> est plus riche mais demande
+              généralement un LRS (Learning Record Store). Nous exportons vos modules en SCORM 1.2 et vérifions la
+              compatibilité de votre LMS dès le diagnostic.
+            </p>
+            <h3>Quel LMS choisir pour un organisme de formation ?</h3>
+            <p>
+              Le bon LMS dépend de votre taille, de votre budget, du suivi attendu (progression, évaluations, assiduité)
+              et de son intégration avec vos outils de gestion. Nous intégrons et paramétrons vos contenus sur Moodle,
+              Digiforma, Teachizy, 360Learning ou sur votre plateforme.
+            </p>
+            <h3>Digitalisation de formation et Qualiopi</h3>
+            <p>
+              Une formation à distance ou hybride doit pouvoir prouver ce qui a été réalisé : traçabilité de
+              l&apos;assiduité, évaluation des acquis, accompagnement des apprenants. Nous construisons les parcours et
+              le paramétrage du LMS (suivi de progression, conditions d&apos;achèvement, évaluations avec corrections)
+              pour répondre aux exigences Qualiopi applicables aux formations à distance.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Satisa Formation</p>
+            <h2>Satisa Formation, votre ingénieur pédagogique freelance pour digitaliser vos formations</h2>
+          </div>
+          <div className="article-body">
+            <p>
+              Satisa Formation est une structure d&apos;ingénierie pédagogique et d&apos;ingénierie de certification
+              RNCP/RS, fondée en 2024 par <strong>Chris Blassiaux</strong>, ingénieur pédagogique et ingénieur de
+              certification en freelance. Ancien développeur web et formateur en développement web, Chris conçoit les
+              formations digitales de bout en bout : conception pédagogique, création des contenus, développement des
+              modules et intégration sur votre LMS.
+            </p>
+            <p>
+              Cette double compétence, pédagogique et technique, permet de proposer des modules e-learning sur mesure en
+              HTML/CSS/JS lorsque les outils auteurs ne suffisent plus. Chris est titulaire du CCP1 du titre
+              professionnel de formateur professionnel d&apos;adultes (FPA), qui valide la conception de parcours
+              multimodaux, la scénarisation pédagogique et la conception d&apos;activités d&apos;apprentissage et
+              d&apos;évaluation. Il est également responsable et ingénieur pédagogique freelance au sein de
+              l&apos;organisme de formation Cloud Campus.
+            </p>
+            <ul className="seo-checks">
+              <li>Un interlocuteur unique, du référentiel RNCP/RS à la formation digitalisée</li>
+              <li>Des contenus conçus en exclusivité, qui vous appartiennent</li>
+              <li>Des tarifs affichés et un simulateur de prix en ligne</li>
+              <li>Des formations digitales conçues pour répondre aux exigences du référentiel Qualiopi</li>
+            </ul>
+            <p>
+              En savoir plus sur <Link href={ROUTES.about}>Chris Blassiaux et Satisa Formation</Link>, sur la{" "}
+              <Link href={ROUTES.formationsConception}>conception pédagogique de formation</Link> ou sur
+              l&apos;<Link href={ROUTES.certification}>accompagnement au dépôt d&apos;une certification RNCP/RS</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="section-head">
             <p className="eyebrow">Questions fréquentes</p>
-            <h2>Délais, compatibilité, sur-mesure</h2>
+            <h2>Questions fréquentes sur la digitalisation de formation</h2>
           </div>
           <FaqList items={FAQ_DIGITALISATION} />
           <div className="dg-faq-more">
@@ -481,6 +691,8 @@ export default function DigitalisationPage() {
           </div>
         </div>
       </section>
+
+      <RelatedArticles slugs={["evaluation-formative-sommative-certificative-quelles-differences-en-formation-professionnelle"]} />
 
       <section>
         <div className="container">

@@ -6,6 +6,7 @@ import { metadata as rsMetadata } from "@/app/(site)/deposer-une-certification-r
 import { metadata as formationsMetadata } from "@/app/(site)/concevoir-digitaliser-vos-formations/page";
 import { metadata as conceptionMetadata } from "@/app/(site)/concevoir-digitaliser-vos-formations/conception-pedagogique/page";
 import { metadata as digitalisationMetadata } from "@/app/(site)/concevoir-digitaliser-vos-formations/digitalisation-formation/page";
+import { metadata as simulateurMetadata } from "@/app/(site)/concevoir-digitaliser-vos-formations/simulateur-prix-digitalisation/page";
 import { metadata as aboutMetadata } from "@/app/(site)/a-propos/page";
 import { metadata as contactMetadata } from "@/app/(site)/rendez-vous/page";
 
@@ -25,7 +26,7 @@ export async function GET() {
     "",
     "> Ingénierie de certification RNCP/RS et ingénierie pédagogique et digitale pour les organismes de formation.",
     "",
-    "Satisa Formation est fondée par Chris Blassiaux, ingénieur de certification et pédagogique. Contact : chris@satisa.fr.",
+    "Satisa Formation est fondée en 2024 par Chris Blassiaux, ingénieur pédagogique et ingénieur de certification en freelance. Elle accompagne les organismes de formation sur la digitalisation de formation (création e-learning sur mesure, blended learning, scénarisation pédagogique, intégration LMS), la conception pédagogique et le dépôt de certifications RNCP/RS. Les tarifs de digitalisation sont publics : à partir de 2 000 € HT pour 20 heures d'e-learning, et un simulateur de prix gratuit donne une estimation en 1 minute. Contact : chris@satisa.fr.",
     "",
     "## Offres",
     "",
@@ -34,7 +35,8 @@ export async function GET() {
     link("Accompagnement au dépôt RS", ROUTES.certificationRs, rsMetadata.description),
     link("Concevoir et digitaliser vos formations", ROUTES.formations, formationsMetadata.description),
     link("Conception pédagogique", ROUTES.formationsConception, conceptionMetadata.description),
-    link("Digitalisation des formations", ROUTES.formationsDigitalisation, digitalisationMetadata.description),
+    link("Digitalisation de formation (e-learning, blended learning, intégration LMS)", ROUTES.formationsDigitalisation, digitalisationMetadata.description),
+    link("Simulateur de prix de formation e-learning", ROUTES.formationsSimulateur, simulateurMetadata.description),
     "",
     "## Blog",
     "",

@@ -589,6 +589,251 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
   font-size: 0.8rem;
 }
 
+// ---------- Contenu éditorial des pages Digitalisation et Simulateur (SEO) ----------
+.seo-lead {
+  max-width: 820px;
+  margin: 0 0 $spacing-md;
+  font-size: 1.1rem;
+  color: $color-dark;
+}
+
+.seo-more {
+  margin: $spacing-md 0 0;
+  color: $color-dark;
+
+  a {
+    font-weight: 700;
+    color: $color-primary-dark;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.article-body a {
+  font-weight: 600;
+  color: $color-primary-dark;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+// Étapes numérotées
+.dg-steps {
+  display: grid;
+  gap: $spacing-md;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.dg-step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+}
+
+.dg-step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $color-mint-light;
+  font-weight: 700;
+  color: $color-teal-dark;
+}
+
+.dg-step__title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.dg-step__text {
+  margin: 0;
+  font-size: $fs-small;
+  color: $color-dark;
+}
+
+// Tableaux de définitions et de tarifs (lisibles par les moteurs de recherche et les assistants IA)
+.seo-table-wrap {
+  overflow-x: auto;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+}
+
+.seo-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid $color-border;
+    font-size: $fs-small;
+    text-align: left;
+    vertical-align: top;
+    color: $color-dark;
+  }
+
+  thead th {
+    background: $color-mint-light;
+    font-weight: 700;
+  }
+
+  tbody th {
+    font-weight: 700;
+  }
+
+  tbody tr:last-child > * {
+    border-bottom: 0;
+  }
+
+  // Mobile : chaque ligne devient une carte, pour lire les prix sans défilement horizontal.
+  @media (max-width: ($bp-tablet - 1px)) {
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+
+    tbody tr {
+      display: block;
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid $color-border;
+    }
+
+    tbody tr:last-child {
+      border-bottom: 0;
+    }
+
+    tbody th,
+    tbody td {
+      display: block;
+      padding: 0.15rem 0;
+      border: 0;
+    }
+
+    tbody td::before {
+      content: attr(data-label);
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: $color-muted;
+    }
+  }
+
+  @include from($bp-tablet) {
+    min-width: 560px;
+
+    tbody th {
+      width: 24%;
+    }
+
+    tbody td:last-child {
+      width: 24%;
+    }
+  }
+}
+
+.seo-table__unit {
+  display: block;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: $color-muted;
+}
+
+// Exemples de simulation chiffrés
+.seo-examples {
+  display: grid;
+  gap: $spacing-md;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: $spacing-md;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    background: $color-surface;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.seo-examples__situation {
+  font-weight: 600;
+  color: $color-dark;
+}
+
+.seo-examples__result {
+  font-size: 1.1rem;
+  color: $color-teal-dark;
+
+  strong {
+    font-size: 1.35rem;
+    color: $color-dark;
+  }
+}
+
+.seo-examples__detail {
+  margin-top: auto;
+  font-size: $fs-small;
+  color: $color-muted;
+}
+
+.seo-checks {
+  display: grid;
+  gap: $spacing-xs;
+  margin: $spacing-sm 0 $spacing-md;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 1.7rem;
+    font-weight: 600;
+    color: $color-dark;
+  }
+
+  li::before {
+    content: '';
+    position: absolute;
+    top: 0.2em;
+    left: 0;
+    width: 1.05rem;
+    height: 1.05rem;
+    background: $color-primary-dark;
+    mask: $dg-check center / contain no-repeat;
+  }
+}
+
 // ---------- Simulateur : fond sombre uni ----------
 .dg-sim {
   background: $color-dark;

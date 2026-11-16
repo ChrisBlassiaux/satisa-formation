@@ -18,6 +18,8 @@ export default function Footer() {
             <ul>
               <li><Link href={ROUTES.certification}>Certification RNCP/RS</Link></li>
               <li><Link href={ROUTES.formations}>Formations et digital</Link></li>
+              <li><Link href={ROUTES.formationsDigitalisation}>Digitalisation de formation</Link></li>
+              <li><Link href={ROUTES.formationsSimulateur}>Simulateur de prix e-learning</Link></li>
             </ul>
           </div>
           <div className="site-footer__col">

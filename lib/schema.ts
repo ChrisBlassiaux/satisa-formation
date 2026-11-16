@@ -26,6 +26,8 @@ export const ORGANIZATION_JSON_LD = {
     "Accompagnement au dépôt d'une certification RS",
     "Conception de formation conforme Qualiopi",
     "Digitalisation de formation (e-learning, blended learning)",
+    "Création de formation e-learning sur mesure et intégration LMS",
+    "Simulateur de prix de digitalisation de formation",
   ],
   knowsAbout: [
     "Certification professionnelle RNCP",
@@ -35,6 +37,10 @@ export const ORGANIZATION_JSON_LD = {
     "Qualiopi",
     "Ingénierie pédagogique",
     "E-learning et LMS",
+    "Blended learning",
+    "Scénarisation pédagogique",
+    "SCORM",
+    "Moodle",
   ],
   ...(orgSameAs.length > 0 ? { sameAs: orgSameAs } : {}),
 };
@@ -94,5 +100,50 @@ export function serviceJsonLd({
         },
       })),
     },
+  };
+}
+
+// Page web avec date de dernière mise à jour (utile aux moteurs de recherche et aux assistants IA).
+export function webPageJsonLd({
+  name,
+  description,
+  url,
+  dateModified,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  dateModified: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    description,
+    url,
+    inLanguage: "fr-FR",
+    dateModified,
+    isPartOf: { "@type": "WebSite", name: "Satisa Formation", url: `${SITE_URL}/` },
+    publisher: { "@id": ORGANIZATION_ID },
+    author: { "@id": PERSON_ID },
+  };
+}
+
+// Outil en ligne gratuit (simulateur de prix).
+export function webApplicationJsonLd({ name, description, url }: { name: string; description: string; url: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name,
+    description,
+    url,
+    inLanguage: "fr-FR",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Tous (navigateur web)",
+    browserRequirements: "Navigateur web avec JavaScript",
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: 0, priceCurrency: "EUR" },
+    provider: { "@id": ORGANIZATION_ID },
+    creator: { "@id": PERSON_ID },
   };
 }
