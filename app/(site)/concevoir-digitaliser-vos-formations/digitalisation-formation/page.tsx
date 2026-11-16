@@ -237,7 +237,7 @@ export default function DigitalisationPage() {
           <div>
             <p className="eyebrow">Digitalisation des formations</p>
             <h1>
-              Digitalisez vos formations : <span style={{ whiteSpace: "nowrap" }}>e-learning</span> et intégration LMS
+              Digitalisez vos formations : <span className="dg-nowrap">e-learning</span> et intégration LMS
             </h1>
             <p className="hero-page__subtitle">
               De votre contenu à la première session : on conçoit, produit et déploie vos formations digitales
@@ -269,6 +269,7 @@ export default function DigitalisationPage() {
                 <article key={plan.name} className={`dg-plan dg-plan--${featured ? "dark" : "light"}`}>
                   <span className={`dg-plan__mark dg-plan__mark--${MARK_DENSITY[index] ?? "dense"}`} aria-hidden="true" />
                   <div className="dg-plan__top">
+                    <span className="dg-plan__index" aria-hidden="true">{plan.index}</span>
                     {plan.badge && (
                       <span className="dg-plan__badge">
                         <svg className="dg-plan__badge-star" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -285,7 +286,7 @@ export default function DigitalisationPage() {
                   <p className="dg-plan__unit">{plan.unit}</p>
                   <p className="dg-plan__tagline">{plan.tagline}</p>
                   <a href="#socle-inclus" className="dg-plan__core">
-                    ✓ Tout le socle inclus <span aria-hidden="true">↓</span>
+                    <span aria-hidden="true">✓</span> Tout le socle inclus <span aria-hidden="true">↓</span>
                   </a>
                   <ul className="dg-plan__list">
                     {plan.deliverables.map((item) => (
@@ -308,7 +309,7 @@ export default function DigitalisationPage() {
             ))}
           </ul>
           <div className="digital-core" id="socle-inclus">
-            <p className="digital-core__title">Le socle inclus dans chaque formule</p>
+            <h3 className="digital-core__title">Le socle inclus dans chaque formule</h3>
             <ul className="pricing-card__deliverables digital-core__list">
               {DIGITALISATION_CORE.map((item) => (
                 <li key={item}>{item}</li>
@@ -316,7 +317,7 @@ export default function DigitalisationPage() {
             </ul>
           </div>
 
-          <h3 className="subsection-title digital-extras-title">Formules supplémentaires</h3>
+          <h3 className="subsection-title digital-extras-title">Options supplémentaires</h3>
           <p className="digital-extras-intro">À ajouter selon vos besoins, une seule fois par projet de formation, sauf la maintenance, facturée chaque mois.</p>
           <div className="dg-extras">
             {DIGITALISATION_EXTRAS.map((extra) => (
@@ -439,12 +440,10 @@ export default function DigitalisationPage() {
             <h2>Délais, compatibilité, sur-mesure</h2>
           </div>
           <FaqList items={FAQ_DIGITALISATION} />
-          <div style={{ marginTop: "2rem" }}>
-            <p style={{ fontWeight: 700, color: "#002730" }}>
-              Votre contenu n&apos;est pas encore structuré ?
-            </p>
-            <p style={{ marginTop: "0.5rem" }}>
-              <Link href={ROUTES.formationsConception} style={{ fontStyle: "italic", textDecoration: "underline" }}>
+          <div className="dg-faq-more">
+            <p className="dg-faq-more__lead">Votre contenu n&apos;est pas encore structuré ?</p>
+            <p>
+              <Link href={ROUTES.formationsConception} className="dg-faq-more__link">
                 Découvrez notre service de conception pédagogique <LinkArrow />
               </Link>
             </p>

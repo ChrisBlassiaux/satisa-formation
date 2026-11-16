@@ -728,260 +728,6 @@
   text-align: left;
 }
 
-.digital-axes {
-  display: grid;
-  gap: $spacing-md;
-
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.digital-axis {
-  background: $color-surface;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  padding: $spacing-lg;
-}
-
-.digital-axis__head {
-  display: flex;
-  align-items: center;
-  gap: $spacing-sm;
-  margin-bottom: $spacing-sm;
-}
-
-.digital-axis__head :is(h3, h4) {
-  font-size: 1.02rem;
-}
-
-.digital-axis__head :is(h3, h4) span {
-  display: block;
-  font-size: $fs-small;
-  font-weight: 600;
-  color: $color-muted;
-}
-
-.digital-axis__list {
-  display: grid;
-  gap: $spacing-xs;
-}
-
-.digital-axis__list li {
-  display: flex;
-  align-items: flex-start;
-  gap: $spacing-xs;
-  font-size: $fs-small;
-  color: $color-dark;
-}
-
-.digital-axis__list li::before {
-  content: '✓';
-  color: $color-primary-dark;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.benefit-grid {
-  display: grid;
-  gap: $spacing-sm;
-
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include from($bp-desktop) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.benefit-tile {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-sm;
-  background: $color-white;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  padding: $spacing-md;
-}
-
-.benefit-tile__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: $radius-sm;
-  background: $color-mint-light;
-  color: $color-teal-dark;
-  flex-shrink: 0;
-}
-
-.benefit-tile__icon--accent {
-  background: $color-ray-yellow-soft;
-  color: $color-dark;
-}
-
-.benefit-tile__icon svg {
-  width: 22px;
-  height: 22px;
-}
-
-.benefit-tile__title {
-  font-weight: 700;
-  color: $color-dark;
-  font-size: $fs-small;
-}
-
-.benefit-tile__text {
-  font-size: $fs-small;
-  color: $color-muted;
-}
-
-// Digitalisation page (page formations)
-.digital-band {
-  background: $color-dark;
-  color: $color-white;
-}
-
-.digital-band h2,
-.digital-band h3 {
-  color: $color-white;
-}
-
-.digital-band .eyebrow {
-  color: $color-mint;
-}
-
-.digital-band p {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.digital-band .section-head {
-  max-width: 720px;
-}
-
-.roadmap-title {
-  margin-bottom: $spacing-md;
-  font-size: 1.1rem;
-}
-
-.roadmap {
-  display: grid;
-  gap: 0;
-
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(4, 1fr);
-    gap: $spacing-lg $spacing-md;
-  }
-}
-
-.roadmap__step {
-  position: relative;
-  padding: 0 0 $spacing-md 3.25rem;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 44px;
-    bottom: 4px;
-    left: 19px;
-    width: 2px;
-    background: rgba(151, 225, 220, 0.35);
-  }
-
-  &:last-child::after {
-    display: none;
-  }
-
-  @include from($bp-tablet) {
-    padding: 3.25rem 0 0;
-
-    &::after {
-      top: 19px;
-      bottom: auto;
-      left: 48px;
-      right: calc(-#{$spacing-md} + 8px);
-      width: auto;
-      height: 2px;
-    }
-
-    &:nth-child(4n)::after {
-      display: none;
-    }
-  }
-}
-
-.roadmap__num {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: $color-mint;
-  color: $color-dark;
-  font-weight: 700;
-}
-
-.roadmap__title {
-  margin-bottom: 0.25rem;
-  font-weight: 700;
-  color: $color-white;
-}
-
-.digital-band .roadmap__title {
-  color: $color-white;
-}
-
-.roadmap__text {
-  font-size: $fs-small;
-}
-
-.roadmap-note {
-  margin-top: $spacing-lg;
-  padding-top: $spacing-sm;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: $fs-small;
-}
-
-.digital-features {
-  display: grid;
-  gap: $spacing-sm;
-
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include from($bp-desktop) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.digital-feature {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: $spacing-xs;
-  padding: $spacing-md;
-  border: 1px solid $color-border;
-  border-left: 4px solid $color-primary;
-  border-radius: $radius-md;
-  background: $color-white;
-}
-
-.digital-feature__title {
-  margin-top: $spacing-xs;
-  font-size: 1rem;
-}
-
-.digital-feature__text {
-  font-size: $fs-small;
-}
-
 .digital-chips {
   display: flex;
   flex-wrap: wrap;
@@ -1079,12 +825,6 @@
   gap: 0.4em;
 }
 
-.formula-card__badge-star {
-  width: 15px;
-  height: 15px;
-  flex-shrink: 0;
-}
-
 // Le prix est sous le titre, aligné à gauche, comme sur les pages de certification.
 .formula-card__head {
   display: flex;
@@ -1110,7 +850,7 @@
   margin-top: auto;
 }
 
-// Digitalisation d'un bloc : socle commun, notes, formules supplémentaires.
+// Digitalisation : socle commun, notes de bas de formules, introduction des options supplémentaires.
 .digital-core {
   margin: $spacing-md 0 0;
   padding: $spacing-md;
@@ -1127,6 +867,8 @@
 }
 
 .digital-core__title {
+  margin: 0;
+  font-size: 1rem;
   font-weight: 700;
   color: $color-dark;
 }
@@ -1147,39 +889,6 @@
   }
 }
 
-.formula-card__unit {
-  margin: 0 0 $spacing-xs;
-  font-size: $fs-small;
-  font-style: italic;
-  color: $color-muted;
-}
-
-.formula-card--featured .formula-card__unit {
-  color: $color-dark;
-}
-
-// Lien vers le détail du socle, plus bas sur la page.
-.formula-card__core {
-  display: block;
-  width: fit-content;
-  font-weight: 700;
-  font-size: $fs-small;
-  color: $color-primary-dark;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 3px;
-  transition: text-decoration-color 0.15s;
-
-  &:hover,
-  &:focus-visible {
-    text-decoration-color: currentColor;
-  }
-}
-
-.formula-card--featured .formula-card__core {
-  color: $color-dark;
-}
-
 .digital-notes {
   display: grid;
   gap: $spacing-xs;
@@ -1198,56 +907,6 @@
   text-align: center;
 }
 
-.digital-extras {
-  display: grid;
-  gap: $spacing-md;
-  grid-auto-rows: 1fr;
-
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.digital-extra {
-  padding: $spacing-md;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  background: $color-white;
-}
-
-// Vert, jaune / jaune, vert : l'alternance suit la grille à deux colonnes (cartes 2 et 3 en jaune).
-.digital-extra__icon {
-  display: flex;
-  width: 34px;
-  height: 34px;
-  margin-bottom: $spacing-sm;
-
-  svg {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-.digital-extra__head {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: $spacing-xs;
-  margin-bottom: $spacing-xs;
-}
-
-.digital-extra__name {
-  font-size: 1.05rem;
-}
-
-.digital-extra__text {
-  font-size: $fs-small;
-}
-
-.digital-extra__note {
-  margin-bottom: 0;
-}
-
 // Simulateur de prix de digitalisation.
 .sim {
   max-width: 760px;
@@ -1263,16 +922,19 @@
   background: $color-dark;
   color: $color-white;
 
-  h3 {
-    margin: 0 0 0.25rem;
-    font-size: 1.25rem;
-    color: $color-white;
-  }
-
   p {
     margin: 0;
     color: $color-mint;
     font-size: $fs-small;
+  }
+
+  // Titre de l'encadré : un paragraphe, car le titre de la section (h2) est déjà le même juste au-dessus.
+  .sim__title {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: $color-white;
   }
 }
 

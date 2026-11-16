@@ -176,7 +176,7 @@ export default function DigitalisationSimulator() {
   return (
     <div className="sim" id="simulateur">
       <div className="sim__head">
-        <h3>Estimez le prix de votre projet de digitalisation</h3>
+        <p className="sim__title">Estimez le prix de votre projet de digitalisation</p>
         <p>Quelques questions, et vous obtenez la formule adaptée à votre projet avec une estimation.</p>
       </div>
 

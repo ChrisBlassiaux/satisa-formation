@@ -119,7 +119,31 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
 .dg-plan__top {
   display: flex;
   align-items: center;
-  min-height: 34px;
+  gap: $spacing-sm;
+  min-height: 36px;
+}
+
+// Numéro de la formule, dans la suite des offres du site (comme les cartes de la page conception).
+.dg-plan__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.dg-plan--light .dg-plan__index {
+  background: $color-white;
+  color: $color-teal-dark;
+}
+
+.dg-plan--dark .dg-plan__index {
+  background: $color-mint;
+  color: $color-dark;
 }
 
 .dg-plan__badge {
@@ -246,7 +270,7 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
   margin-top: auto;
 }
 
-// ---------- Formules supplémentaires : lignes de tarifs ----------
+// ---------- Options supplémentaires : lignes de tarifs ----------
 .dg-extras {
   overflow: hidden;
   border: 1px solid $color-border;
@@ -623,6 +647,33 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
 
 .dg-benefit__text {
   font-size: $fs-small;
+}
+
+.dg-nowrap {
+  white-space: nowrap;
+}
+
+// Renvoi vers la page conception, sous la FAQ.
+.dg-faq-more {
+  margin-top: 2rem;
+
+  p {
+    margin: 0;
+  }
+}
+
+.dg-faq-more__lead {
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.dg-faq-more p + p {
+  margin-top: 0.5rem;
+}
+
+.dg-faq-more__link {
+  font-style: italic;
+  text-decoration: underline;
 }
 
 // Apparition au scroll des axes et des bénéfices : CSS pur, l'état de base est l'état final.

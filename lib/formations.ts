@@ -37,7 +37,7 @@ export const FORMULAS: Record<"conception" | "contenus" | "maintenance", Formula
     cta: "Prendre un rendez-vous",
   },
   maintenance: {
-    index: 9,
+    index: 11,
     name: "Maintenance pédagogique mensuelle",
     price: "800 € HT/mois",
     noteBefore: "Engagement de 3 mois minimum.",
@@ -46,7 +46,7 @@ export const FORMULAS: Record<"conception" | "contenus" | "maintenance", Formula
   },
 };
 
-// Digitalisation d'un bloc de formation : socle commun, trois formules, formules supplémentaires.
+// Digitalisation : socle commun, trois formules (numérotées 8 à 10 dans la suite des offres), options supplémentaires.
 export const DIGITALISATION_CORE: string[] = [
   "Organisation des contenus pédagogiques par module",
   "Adaptation à l'apprentissage en ligne : séquences courtes, consignes, textes de liaison",
@@ -59,6 +59,7 @@ export const DIGITALISATION_CORE: string[] = [
 ];
 
 export type DigitalisationPlan = {
+  index: number;
   name: string;
   price: string;
   unit: string;
@@ -69,6 +70,7 @@ export type DigitalisationPlan = {
 
 export const DIGITALISATION_PLANS: DigitalisationPlan[] = [
   {
+    index: 8,
     name: "Essentielle",
     price: "À partir de 2 000 € HT",
     unit: "Pour 20 h d'e-learning*",
@@ -79,6 +81,7 @@ export const DIGITALISATION_PLANS: DigitalisationPlan[] = [
     ],
   },
   {
+    index: 9,
     name: "Co-construite",
     price: "À partir de 3 000 € HT",
     unit: "Pour 20 h d'e-learning*",
@@ -91,6 +94,7 @@ export const DIGITALISATION_PLANS: DigitalisationPlan[] = [
     ],
   },
   {
+    index: 10,
     name: "Complète",
     price: "À partir de 8 200 € HT",
     unit: "Pour 20 h d'e-learning*",
