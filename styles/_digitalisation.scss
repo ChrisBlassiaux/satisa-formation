@@ -34,6 +34,107 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
   }
 }
 
+// ---------- Bandeau sous l'en-tête : renvoi vers le simulateur de prix ----------
+.dg-banner {
+  // Reste accroché sous la barre de navigation quand on défile. L'offset est la hauteur de l'en-tête moins sa
+  // bordure (le bandeau passe sous l'en-tête : z-index plus bas).
+  position: sticky;
+  top: 60px;
+  z-index: 90;
+  background: $color-dark;
+  color: $color-white;
+
+  @include from($bp-desktop) {
+    top: 65px;
+  }
+}
+
+.dg-banner__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  padding-block: 0.45rem;
+
+  @include from($bp-tablet) {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $spacing-xs $spacing-sm;
+    padding-block: 0.6rem;
+  }
+}
+
+.dg-banner__text {
+  margin: 0;
+  font-size: $fs-small;
+  font-weight: 600;
+  line-height: 1.25;
+  color: $color-white;
+
+  @include from($bp-tablet) {
+    text-align: center;
+  }
+}
+
+// Sur mobile, texte court : le bandeau reste collé en haut et doit rester bas.
+.dg-banner__long {
+  display: none;
+
+  @include from($bp-tablet) {
+    display: inline;
+  }
+}
+
+.dg-banner__short {
+  @include from($bp-tablet) {
+    display: none;
+  }
+}
+
+.dg-banner__sparkle {
+  display: inline-block;
+  width: 1.35em;
+  height: 1.35em;
+  margin-right: 0.45em;
+  vertical-align: -0.3em;
+  color: #fecc01;
+}
+
+// Scintillement discret : les trois étoiles brillent à tour de rôle.
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes dg-twinkle {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.35;
+      transform: scale(0.7);
+    }
+  }
+
+  .dg-banner__sparkle path {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: dg-twinkle 2.4s ease-in-out infinite;
+  }
+
+  .dg-banner__sparkle-small {
+    animation-delay: 0.8s;
+  }
+
+  .dg-banner__sparkle-tiny {
+    animation-delay: 1.6s;
+  }
+}
+
+.btn.dg-banner__cta {
+  flex-shrink: 0;
+  padding: 0.4em 1.1em;
+  font-size: $fs-small;
+}
+
 // ---------- Formules : panneaux dans le style des deux axes ----------
 .dg-plans {
   display: grid;
@@ -147,6 +248,10 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
 }
 
 .dg-plan__badge {
+  // Badge dans le coin haut droit de la carte, le numéro restant à gauche.
+  position: absolute;
+  top: $spacing-sm;
+  right: $spacing-sm;
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
@@ -351,6 +456,11 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
 // ---------- Simulateur : fond sombre uni ----------
 .dg-sim {
   background: $color-dark;
+
+  // Page de vente : un simple appel à l'action vers la page du simulateur.
+  .dg-sim__cta {
+    margin: $spacing-md 0 0;
+  }
 
   .section-head h2 {
     color: $color-white;
@@ -588,6 +698,17 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
   @include from($bp-desktop) {
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
+  }
+}
+
+// Variante à trois éléments (page du simulateur).
+.dg-benefits--3 {
+  @include from($bp-tablet) {
+    grid-template-columns: 1fr;
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

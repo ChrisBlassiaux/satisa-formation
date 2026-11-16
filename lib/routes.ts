@@ -6,6 +6,7 @@ export const ROUTES = {
   formations: "/concevoir-digitaliser-vos-formations",
   formationsConception: "/concevoir-digitaliser-vos-formations/conception-pedagogique",
   formationsDigitalisation: "/concevoir-digitaliser-vos-formations/digitalisation-formation",
+  formationsSimulateur: "/concevoir-digitaliser-vos-formations/simulateur-prix-digitalisation",
   about: "/a-propos",
   blog: "/blog",
   contact: "/rendez-vous",

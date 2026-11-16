@@ -16,6 +16,7 @@ import {
   type Answers,
   type YesNo,
 } from "@/lib/simulateur";
+import LinkArrow from "@/components/LinkArrow";
 
 type Step = 1 | 2 | 3 | 4;
 type SendStatus = "idle" | "sending" | "sent" | "error";
@@ -99,7 +100,7 @@ function Question({ label, help, children }: { label: ReactNode; help?: ReactNod
   );
 }
 
-export default function DigitalisationSimulator() {
+export default function DigitalisationSimulator({ showFormulasLink = false }: { showFormulasLink?: boolean }) {
   const [step, setStep] = useState<Step>(1);
   const [draft, setDraft] = useState<Draft>(EMPTY);
   const [error, setError] = useState("");
@@ -364,6 +365,14 @@ export default function DigitalisationSimulator() {
               )}
               </ul>
             </details>
+
+            {showFormulasLink && (
+              <p className="sim__more">
+                <Link href={ROUTES.formationsDigitalisation}>
+                  Voir le détail des formules de digitalisation <LinkArrow />
+                </Link>
+              </p>
+            )}
 
             <div className="sim-contact">
               {sendStatus === "sent" ? (
