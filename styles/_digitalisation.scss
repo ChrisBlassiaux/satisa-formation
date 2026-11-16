@@ -129,6 +129,142 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
   }
 }
 
+// Page du simulateur : la couverture et l'outil sont dans la même section sombre, sans coupure.
+.dg-sim__tool {
+  margin-top: $spacing-md;
+}
+
+// Couverture : texte aligné à gauche (badge, titre sur une ligne, paragraphe, trois checks) ; l'aperçu du simulateur
+// est en arrière-plan, agrandi, estompé et fondu dans le décor.
+.dg-sim--cover {
+  // « clip » rogne l'image sans rendre la section défilable (avec « hidden », le focus d'un champ pouvait la décaler).
+  overflow: hidden;
+  overflow: clip;
+}
+
+.sim-cover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+
+  @include from($bp-tablet) {
+    min-height: 360px;
+  }
+}
+
+.sim-cover__text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  // Le texte reste lisible quand il passe devant l'aperçu en arrière-plan.
+  text-shadow: 0 2px 16px rgba($color-dark, 0.9);
+
+  // Titre sur une seule ligne (il passe à la ligne sur mobile uniquement).
+  .sim-intro__title {
+    font-size: clamp(1.9rem, 4.3vw, 3.5rem);
+    line-height: 1.1;
+
+    @include from($bp-tablet) {
+      white-space: nowrap;
+    }
+  }
+
+  .sim-intro__lead {
+    max-width: 62ch;
+    font-size: 1.1rem;
+  }
+
+  .sim-intro__points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs $spacing-md;
+  }
+}
+
+.sim-cover__visual {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: min(1300px, max(120vw, 760px));
+  max-width: none;
+  height: auto;
+  opacity: 0.15;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 38%, transparent 74%);
+  mask-image: radial-gradient(ellipse at center, #000 38%, transparent 74%);
+}
+
+// ---------- Couverture de la page du simulateur : sur le fond sombre de la section ----------
+.sim-intro__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0 0 $spacing-xs;
+  font-size: $fs-small;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-mint;
+
+  &::before {
+    content: '';
+    width: 4px;
+    height: 1.1em;
+    border-radius: 2px;
+    background: $color-mint;
+  }
+}
+
+.sim-intro__title {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: $color-white;
+}
+
+.sim-intro__lead {
+  max-width: 34ch;
+  margin: $spacing-sm 0 0;
+  font-size: 1.1rem;
+  color: rgba($color-white, 0.85);
+}
+
+.sim-intro__points {
+  display: grid;
+  gap: $spacing-xs;
+  margin: $spacing-md 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 1.7rem;
+    font-weight: 600;
+    color: $color-white;
+  }
+
+  li::before {
+    content: '';
+    position: absolute;
+    top: 0.2em;
+    left: 0;
+    width: 1.05rem;
+    height: 1.05rem;
+    background: $color-mint;
+    mask: $dg-check center / contain no-repeat;
+  }
+}
+
 .btn.dg-banner__cta {
   flex-shrink: 0;
   padding: 0.4em 1.1em;
@@ -460,6 +596,48 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
   // Page de vente : un simple appel à l'action vers la page du simulateur.
   .dg-sim__cta {
     margin: $spacing-md 0 0;
+  }
+
+  // Texte à gauche et aperçu du simulateur (fond transparent) à droite. Sur mobile, l'aperçu passe sous le texte.
+  position: relative;
+
+  @include from($bp-tablet) {
+    padding-block: $spacing-2xl;
+  }
+
+  .dg-sim__layout {
+    position: relative;
+    display: grid;
+    gap: $spacing-md;
+    align-items: center;
+
+    @include from($bp-tablet) {
+      min-height: 330px;
+    }
+  }
+
+  .dg-sim__text {
+    position: relative;
+    z-index: 1;
+
+    @include from($bp-tablet) {
+      max-width: 50%;
+    }
+  }
+
+  // Sur ordinateur, l'aperçu est superposé au texte et va jusqu'au bord droit de la page : le prix « 8 200 € HT » reste
+  // entièrement visible (l'image est recadrée au plus près des cartes).
+  .dg-sim__visual {
+    width: 100%;
+    height: auto;
+
+    @include from($bp-tablet) {
+      position: absolute;
+      top: 50%;
+      right: calc(-1 * (50vw - 50%) + 1.5vw);
+      width: min(62vw, 960px);
+      transform: translateY(-50%);
+    }
   }
 
   .section-head h2 {

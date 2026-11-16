@@ -982,33 +982,6 @@
   font-size: $fs-small;
 }
 
-.sim__more {
-  margin-top: $spacing-md;
-  font-weight: 700;
-
-  a {
-    color: $color-primary-dark;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-}
-
-// Page du simulateur : trois engagements sous l'introduction.
-.sim-promises {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $spacing-xs $spacing-md;
-  margin-top: $spacing-sm;
-  font-weight: 700;
-  color: $color-dark;
-
-  li::before {
-    content: '✓';
-    margin-right: 0.4em;
-    color: $color-primary-dark;
-  }
-}
-
 .sim-more-formulas {
   margin: $spacing-md 0 0;
   text-align: center;

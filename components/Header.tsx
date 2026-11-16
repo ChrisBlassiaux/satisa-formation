@@ -63,7 +63,7 @@ export default function Header() {
                     {link.children.map((child) => (
                       <li key={child.href}>
                         <Link
-                          className="nav__submenu-link"
+                          className={`nav__submenu-link${"button" in child ? " nav__submenu-link--button" : ""}`}
                           href={child.href}
                           aria-current={isActive(child.href) ? "page" : undefined}
                           onClick={closeSubmenu}
@@ -104,7 +104,11 @@ export default function Header() {
             </Link>
             {"children" in link &&
               link.children.map((child) => (
-                <Link key={child.href} className="mobile-nav__link mobile-nav__link--child" href={child.href}>
+                <Link
+                  key={child.href}
+                  className={`mobile-nav__link mobile-nav__link--child${"button" in child ? " mobile-nav__link--button" : ""}`}
+                  href={child.href}
+                >
                   {child.label}
                 </Link>
               ))}

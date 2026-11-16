@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
-import { DIGITALISATION_NOTES, DIGITALISATION_PLANS, breadcrumbJsonLd, faqJsonLd, type FaqItem } from "@/lib/formations";
+import { DIGITALISATION_PLANS, breadcrumbJsonLd, faqJsonLd, type FaqItem } from "@/lib/formations";
 import DigitalisationSimulator from "@/components/DigitalisationSimulator";
 import FaqList from "@/components/FaqList";
 import LinkArrow from "@/components/LinkArrow";
@@ -63,6 +64,14 @@ const FAQ_SIMULATEUR: FaqItem[] = [
   },
 ];
 
+const COVER_POINTS = ["3 questions simples", "Estimation immédiate en euros HT", "Sans engagement, sans inscription"];
+
+// Ici, pas de renvoi d'astérisque : les notes sont sur la page de détail des formules.
+const sansAsterisque = (texte: string) => texte.replace(/\*/g, "");
+
+// Même motif de points que sur la page de vente : plus dense à mesure que la formule prend en charge.
+const MARK_DENSITY = ["sparse", "medium", "dense"];
+
 const STEPS = [
   {
     num: 1,
@@ -87,36 +96,35 @@ export default function SimulateurPrixPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(FAQ_SIMULATEUR)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }} />
 
-      <section className="hero-page hero-page--formations hero-page--wide-h1">
-        <div className="container hero-page__layout">
-          <div>
-            <p className="eyebrow">Simulateur de prix</p>
-            <h1>Simulateur de prix : combien coûte la digitalisation de votre formation ?</h1>
-            <p className="hero-page__subtitle">
-              Répondez à quelques questions sur vos contenus et votre organisation : vous obtenez la formule adaptée
-              et une estimation en euros HT, en 1 minute, sans engagement.
+      <section className="dg-sim dg-sim--cover">
+        <div className="container sim-cover">
+          <div className="sim-cover__text">
+            <p className="sim-intro__eyebrow">Simulateur de prix</p>
+            <h1 className="sim-intro__title">Simulateur de prix de formation e-learning</h1>
+            <p className="sim-intro__lead">
+              Répondez à quelques questions sur vos contenus et votre organisation : vous obtenez la formule adaptée et
+              une estimation en euros HT, en 1 minute, sans engagement.
             </p>
-            <ul className="sim-promises">
-              <li>3 étapes, 1 minute</li>
-              <li>Résultat immédiat</li>
-              <li>Sans engagement</li>
+            <ul className="sim-intro__points">
+              {COVER_POINTS.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
             </ul>
           </div>
-          <div className="hero-page__visual" aria-hidden="true">
-            <div className="hero-page__visual-shape">
-              <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="28" y="20" width="44" height="60" rx="5" />
-                <rect x="35" y="28" width="30" height="12" rx="2" />
-                <path d="M37 52h.01M50 52h.01M63 52h.01M37 63h.01M50 63h.01M63 63h.01M37 73h.01M50 73h.01M63 73h.01" />
-              </svg>
-            </div>
-          </div>
+          <Image
+            className="sim-cover__visual"
+            src="/images/simulateur/apercu-simulateur.webp"
+            alt=""
+            aria-hidden="true"
+            width={1541}
+            height={591}
+            sizes="(min-width: 1000px) 1300px, 120vw"
+            priority
+          />
         </div>
-      </section>
 
-      <section className="dg-sim" id="simulateur">
-        <div className="container">
-          <DigitalisationSimulator showFormulasLink />
+        <div className="container dg-sim__tool">
+          <DigitalisationSimulator />
         </div>
       </section>
 
@@ -145,26 +153,32 @@ export default function SimulateurPrixPage() {
             <h2>Les trois formules de digitalisation en un coup d&apos;œil</h2>
           </div>
           <div className="dg-plans">
-            {DIGITALISATION_PLANS.map((plan) => (
-              <article key={plan.name} className="dg-plan dg-plan--light">
-                <span className="dg-plan__mark dg-plan__mark--medium" aria-hidden="true" />
-                <div className="dg-plan__top">
-                  <span className="dg-plan__index" aria-hidden="true">{plan.index}</span>
-                </div>
-                <header className="dg-plan__head">
-                  <h3 className="dg-plan__name">{plan.name}</h3>
-                  <span className="dg-plan__price">{plan.price}</span>
-                </header>
-                <p className="dg-plan__unit">{plan.unit}</p>
-                <p className="dg-plan__tagline">{plan.tagline}</p>
-              </article>
-            ))}
+            {DIGITALISATION_PLANS.map((plan, index) => {
+              const featured = Boolean(plan.badge);
+              return (
+                <article key={plan.name} className={`dg-plan dg-plan--${featured ? "dark" : "light"}`}>
+                  <span className={`dg-plan__mark dg-plan__mark--${MARK_DENSITY[index] ?? "dense"}`} aria-hidden="true" />
+                  <div className="dg-plan__top">
+                    <span className="dg-plan__index" aria-hidden="true">{plan.index}</span>
+                    {plan.badge && (
+                      <span className="dg-plan__badge">
+                        <svg className="dg-plan__badge-star" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                          <path d="M10 1.6l2.35 4.76 5.25.77-3.8 3.7.9 5.23L10 13.5l-4.7 2.46.9-5.23-3.8-3.7 5.25-.77L10 1.6z" fill="#FECC01" />
+                        </svg>
+                        {plan.badge}
+                      </span>
+                    )}
+                  </div>
+                  <header className="dg-plan__head">
+                    <h3 className="dg-plan__name">{plan.name}</h3>
+                    <span className="dg-plan__price">{plan.price}</span>
+                  </header>
+                  <p className="dg-plan__unit">{sansAsterisque(plan.unit)}</p>
+                  <p className="dg-plan__tagline">{sansAsterisque(plan.tagline)}</p>
+                </article>
+              );
+            })}
           </div>
-          <ul className="digital-notes">
-            {DIGITALISATION_NOTES.map((note) => (
-              <li key={note}>{note}</li>
-            ))}
-          </ul>
           <p className="sim-more-formulas">
             <Link href={ROUTES.formationsDigitalisation} className="btn btn--outline">
               Voir le détail des formules et des options <LinkArrow />

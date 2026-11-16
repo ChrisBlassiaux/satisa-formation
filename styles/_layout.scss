@@ -116,6 +116,20 @@
   }
 }
 
+// Lien du menu affiché comme un bouton foncé (même couleurs que « Prendre contact », y compris au survol).
+.nav__submenu-link--button {
+  margin-top: $spacing-xs;
+  background: $color-dark;
+  color: $color-white;
+  text-align: left;
+
+  &:hover,
+  &[aria-current='page'] {
+    background: $color-teal-dark;
+    color: $color-white;
+  }
+}
+
 .btn.site-header__cta {
   display: none;
 
@@ -207,6 +221,17 @@
   font-weight: 500;
   font-size: $fs-small;
   color: $color-muted;
+}
+
+.mobile-nav__link--button {
+  margin-block: $spacing-xs;
+  padding: 0.7em $spacing-sm;
+  border: 0;
+  border-radius: $radius-md;
+  background: $color-dark;
+  font-weight: 700;
+  color: $color-white;
+  text-align: left;
 }
 
 .mobile-nav__cta {

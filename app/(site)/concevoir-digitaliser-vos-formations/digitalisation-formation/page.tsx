@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import {
@@ -242,7 +243,7 @@ export default function DigitalisationPage() {
             <span className="dg-banner__short">Estimez votre prix en 1 minute</span>
             <span className="dg-banner__long">Combien coûte votre projet de digitalisation ? Estimez-le en 1 minute.</span>
           </p>
-          <Link href={`${ROUTES.formationsSimulateur}#simulateur`} className="btn btn--primary dg-banner__cta">
+          <Link href={ROUTES.formationsSimulateur} className="btn btn--primary dg-banner__cta">
             Calculer mon tarif <LinkArrow />
           </Link>
         </div>
@@ -365,20 +366,30 @@ export default function DigitalisationPage() {
       </section>
 
       <section className="dg-sim">
-        <div className="container">
-          <div className="section-head">
-            <p className="eyebrow">Simulateur de prix</p>
-            <h2>Calculez votre tarif sur mesure en 1 minute</h2>
-            <p className="hero-page__subtitle sim-section-intro">
-              Répondez à quelques questions sur vos contenus et votre organisation : vous obtenez la formule adaptée et
-              une estimation en euros HT, sans engagement.
+        <div className="container dg-sim__layout">
+          <div className="dg-sim__text">
+            <div className="section-head">
+              <p className="eyebrow">Simulateur de prix</p>
+              <h2>Calculez votre tarif sur mesure en 1 minute</h2>
+              <p className="hero-page__subtitle sim-section-intro">
+                Répondez à quelques questions sur vos contenus et votre organisation : vous obtenez la formule adaptée et
+                une estimation en euros HT, sans engagement.
+              </p>
+            </div>
+            <p className="dg-sim__cta">
+              <Link href={ROUTES.formationsSimulateur} className="btn btn--primary">
+                Calculer mon tarif <LinkArrow />
+              </Link>
             </p>
           </div>
-          <p className="dg-sim__cta">
-            <Link href={ROUTES.formationsSimulateur} className="btn btn--primary">
-              Lancer le simulateur de prix <LinkArrow />
-            </Link>
-          </p>
+          <Image
+            className="dg-sim__visual"
+            src="/images/simulateur/apercu-simulateur.webp"
+            alt="Aperçu du simulateur de prix : trois écrans de questions puis le résultat, avec la formule recommandée et le tarif en euros HT"
+            width={1541}
+            height={591}
+            sizes="(min-width: 768px) 44vw, 100vw"
+          />
         </div>
       </section>
 
