@@ -1045,3 +1045,280 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 }
+
+// Page du simulateur : repères généraux sur le prix de l'e-learning (schéma, critères, tableau, accordéon).
+.sim-prose {
+  max-width: 70ch;
+  margin-top: $spacing-lg;
+
+  p + p {
+    margin-top: $spacing-sm;
+  }
+}
+
+// Schéma : ce que suit l'apprenant, relié à ce que Satisa produit en amont.
+.sim-schema {
+  margin: 0;
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-surface;
+
+  @include from($bp-tablet) {
+    padding: $spacing-lg;
+  }
+}
+
+.sim-schema__title {
+  margin-bottom: $spacing-md;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.sim-schema__grid {
+  display: grid;
+  gap: $spacing-sm;
+
+  @include from($bp-tablet) {
+    grid-template-columns: 1fr minmax(96px, 150px) 1fr;
+    align-items: start;
+    gap: 0;
+  }
+}
+
+.sim-schema__panel {
+  padding: $spacing-md;
+  border: 1.5px solid $color-border;
+  border-radius: $radius-md;
+  background: $color-white;
+}
+
+.sim-schema__panel--accent {
+  border-color: $color-primary;
+  background: $color-dark;
+  color: $color-white;
+
+  .sim-schema__heading {
+    color: $color-white;
+  }
+
+  .sim-schema__list li {
+    border-color: rgba($color-white, 0.16);
+    background: rgba($color-white, 0.06);
+    color: $color-white;
+  }
+}
+
+.sim-schema__heading {
+  margin-bottom: $spacing-sm;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.sim-schema__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 0.75rem 1rem;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    font-size: $fs-small;
+    font-weight: 500;
+    line-height: 1.4;
+    color: $color-dark;
+  }
+}
+
+.sim-schema__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: $color-primary-dark;
+  font-size: $fs-small;
+  font-weight: 600;
+
+  @include from($bp-tablet) {
+    align-self: center;
+    padding-inline: $spacing-xs;
+  }
+}
+
+.sim-schema__arrow {
+  width: 48px;
+  height: 16px;
+  // Sur mobile, les blocs sont l'un sous l'autre : la flèche pointe vers le haut.
+  transform: rotate(90deg);
+  // La rotation ne change pas la place occupée : on réserve la hauteur de la flèche une fois tournée.
+  margin-block: 16px;
+
+  @include from($bp-tablet) {
+    width: 100%;
+    max-width: 96px;
+    margin-block: 0;
+    transform: none;
+  }
+}
+
+// Cinq critères : liste numérotée, un critère par ligne.
+.sim-criteria {
+  display: flex;
+  flex-direction: column;
+  max-width: 860px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sim-criteria__item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: $spacing-sm;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $color-border;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  @include from($bp-tablet) {
+    grid-template-columns: 56px 1fr;
+    gap: $spacing-md;
+  }
+}
+
+.sim-criteria__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+  font-weight: 700;
+
+  @include from($bp-tablet) {
+    width: 56px;
+    height: 56px;
+    font-size: 1.1rem;
+  }
+}
+
+.sim-criteria__title {
+  margin-bottom: 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.sim-criteria__text {
+  margin: 0;
+  font-size: $fs-small;
+  max-width: 68ch;
+}
+
+// Tableau « comment comparer deux devis » : sur mobile, chaque ligne devient un bloc.
+.sim-table-wrap {
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.sim-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: $fs-small;
+
+  th,
+  td {
+    padding: 0.85rem 1rem;
+    vertical-align: top;
+  }
+
+  thead th {
+    background: $color-dark;
+    color: $color-white;
+    font-weight: 700;
+  }
+
+  tbody tr + tr > * {
+    border-top: 1px solid $color-border;
+  }
+
+  tbody tr:nth-child(even) > * {
+    background: $color-surface;
+  }
+
+  tbody th {
+    width: 52%;
+    font-weight: 700;
+    color: $color-dark;
+  }
+
+  @media (max-width: $bp-tablet - 1px) {
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    tr,
+    th,
+    td {
+      display: block;
+    }
+
+    tbody th {
+      width: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    tbody td {
+      padding-top: 0;
+
+      &::before {
+        content: attr(data-label) ' : ';
+        font-weight: 600;
+        color: $color-primary-dark;
+      }
+    }
+  }
+}
+
+// Accordéon des modes de tarification : deux lignes (principe, point de vigilance).
+.sim-mode {
+  p {
+    margin: 0;
+  }
+
+  p + p {
+    margin-top: 0.5rem;
+  }
+}
+
+// Liste à puces dans une carte « étape » (méthode de calcul chez Satisa).
+.sim-benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding-left: 1.1rem;
+  list-style: disc;
+  font-size: $fs-small;
+
+  li::marker {
+    color: $color-primary-dark;
+  }
+}
