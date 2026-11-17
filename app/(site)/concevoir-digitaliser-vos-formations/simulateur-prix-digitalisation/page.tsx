@@ -64,7 +64,7 @@ const FAQ_SIMULATEUR: FaqItem[] = [
   },
 ];
 
-const COVER_POINTS = ["3 questions simples", "Estimation immédiate en euros HT", "Sans engagement, sans inscription"];
+const COVER_POINTS = ["Quelques questions simples", "Tarif en euros HT affiché immédiatement", "Sans engagement, sans inscription"];
 
 // Ici, pas de renvoi d'astérisque : les notes sont sur la page de détail des formules.
 const sansAsterisque = (texte: string) => texte.replace(/\*/g, "");
@@ -181,11 +181,13 @@ export default function SimulateurPrixPage() {
       <section className="dg-sim dg-sim--cover">
         <div className="container sim-cover">
           <div className="sim-cover__text">
-            <p className="sim-intro__eyebrow">Simulateur de prix</p>
+            <p className="sim-intro__eyebrow">Calculateur de coût e-learning</p>
             <h1 className="sim-intro__title">Simulateur de prix de formation e-learning</h1>
             <p className="sim-intro__lead">
-              Répondez à quelques questions sur vos contenus et votre organisation : vous obtenez la formule adaptée et
-              une estimation en euros HT, en 1 minute, sans engagement.
+              Le simulateur de digitalisation calcule gratuitement le coût de votre création de formation e-learning ou
+              blended learning pour votre organisme de formation. Il suffit de répondre à quelques questions sur vos
+              contenus et vous obtenez un tarif en euros HT rapidement. Aucune coordonnée n&apos;est demandée et vous
+              n&apos;êtes recontacté que si vous envoyez votre simulation.
             </p>
             <ul className="sim-intro__points">
               {COVER_POINTS.map((point) => (
