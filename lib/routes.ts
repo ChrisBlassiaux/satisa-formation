@@ -30,14 +30,8 @@ export const MAIN_NAV_LINKS = [
     children: [
       { href: ROUTES.formationsConception, label: "Conception pédagogique" },
       { href: ROUTES.formationsDigitalisation, label: "Digitalisation" },
-      // Affiché comme un bouton foncé dans le menu (comme « Prendre contact »). Le sous-texte précise que ce
-      // simulateur ne concerne que la digitalisation.
-      {
-        href: ROUTES.formationsSimulateur,
-        label: "Calculer mon tarif",
-        sublabel: "Digitalisation e-learning",
-        button: true,
-      },
+      // Bouton foncé, décalé sous « Digitalisation » (avec un trait de liaison) : il ne concerne que la digitalisation.
+      { href: ROUTES.formationsSimulateur, label: "Calculer mon tarif", button: true, nested: true },
     ],
   },
   { href: ROUTES.about, label: "À propos" },

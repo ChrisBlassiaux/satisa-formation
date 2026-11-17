@@ -61,21 +61,14 @@ export default function Header() {
                 {"children" in link && (
                   <ul className={`nav__submenu${submenuForceClosed ? " nav__submenu--force-closed" : ""}`}>
                     {link.children.map((child) => (
-                      <li key={child.href}>
+                      <li key={child.href} className={"nested" in child ? "nav__submenu-item--nested" : undefined}>
                         <Link
                           className={`nav__submenu-link${"button" in child ? " nav__submenu-link--button" : ""}`}
                           href={child.href}
                           aria-current={isActive(child.href) ? "page" : undefined}
                           onClick={closeSubmenu}
                         >
-                          {"sublabel" in child ? (
-                            <>
-                              <span className="nav__submenu-label">{child.label}</span>
-                              <span className="nav__submenu-sub">{child.sublabel}</span>
-                            </>
-                          ) : (
-                            child.label
-                          )}
+                          {child.label}
                         </Link>
                       </li>
                     ))}
@@ -113,17 +106,10 @@ export default function Header() {
               link.children.map((child) => (
                 <Link
                   key={child.href}
-                  className={`mobile-nav__link mobile-nav__link--child${"button" in child ? " mobile-nav__link--button" : ""}`}
+                  className={`mobile-nav__link mobile-nav__link--child${"button" in child ? " mobile-nav__link--button" : ""}${"nested" in child ? " mobile-nav__link--nested" : ""}`}
                   href={child.href}
                 >
-                  {"sublabel" in child ? (
-                    <>
-                      <span className="mobile-nav__label">{child.label}</span>
-                      <span className="mobile-nav__sub">{child.sublabel}</span>
-                    </>
-                  ) : (
-                    child.label
-                  )}
+                  {child.label}
                 </Link>
               ))}
           </div>

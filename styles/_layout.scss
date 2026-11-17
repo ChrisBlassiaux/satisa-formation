@@ -130,22 +130,28 @@
   }
 }
 
-// Bouton à deux lignes : l'action, puis le périmètre (digitalisation seulement) en petit.
-.nav__submenu-link--button {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
+// Bouton décalé sous « Digitalisation », relié par un trait : il ne concerne que la digitalisation.
+.nav__submenu-item--nested {
+  position: relative;
+  margin-left: $spacing-sm;
+  padding-left: $spacing-sm;
 
-.nav__submenu-label {
-  font-weight: 700;
-}
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    // Le trait part du bas de « Digitalisation » (l'écart entre deux entrées du menu) et rejoint le bouton.
+    top: -$spacing-xs;
+    width: $spacing-sm;
+    height: calc(50% + #{$spacing-xs});
+    border-left: 2px solid $color-primary;
+    border-bottom: 2px solid $color-primary;
+    border-bottom-left-radius: $radius-sm;
+  }
 
-.nav__submenu-sub {
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1.3;
-  color: $color-mint;
+  .nav__submenu-link--button {
+    margin-top: 0;
+  }
 }
 
 .btn.site-header__cta {
@@ -252,16 +258,9 @@
   text-align: left;
 }
 
-.mobile-nav__label {
-  display: block;
-}
-
-.mobile-nav__sub {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1.3;
-  color: $color-mint;
+// Même décalage que sur ordinateur, sans le trait de liaison.
+.mobile-nav__link--nested {
+  margin-left: $spacing-md;
 }
 
 .mobile-nav__cta {
