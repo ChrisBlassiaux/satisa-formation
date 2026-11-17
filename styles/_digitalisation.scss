@@ -731,9 +731,13 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   background: $color-surface;
   color: $color-dark;
 
-  h3,
   p {
     margin: 0;
+  }
+
+  // Le titre garde sa marge basse (celle du composant, sinon celle des titres du site).
+  h3 {
+    margin-top: 0;
   }
 }
 
@@ -779,7 +783,7 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   color: $color-dark;
 
   .dg-tile--span-4 & {
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.3rem;
   }
 }
 
@@ -1033,7 +1037,7 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
     .sg-quotes,
     .sg-format,
     .sg-modes,
-    .sg-calc__steps {
+    .sg-devis {
       animation: dg-reveal linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 55%;
@@ -1129,60 +1133,40 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 0;
 }
 
+// Paragraphe d'introduction : style de paragraphe du site (couleur et taille de _base.scss).
 .sg-hour__lead {
-  max-width: 38ch;
+  max-width: 60ch;
   margin-bottom: $spacing-md;
-  font-size: clamp(1.15rem, 1.2vw + 0.85rem, 1.5rem);
-  font-weight: 700;
-  line-height: 1.3;
-  color: $color-dark;
 }
 
 .sg-hour__grid {
-  display: grid;
-  gap: $spacing-xs;
-
-  @include from($bp-tablet) {
-    grid-template-columns: 1fr 112px 1fr;
-    gap: 0;
-  }
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: $radius-lg;
 }
 
 .sg-hour__panel {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
   padding: $spacing-md;
-  border-radius: $radius-lg;
 
   @include from($bp-tablet) {
     padding: $spacing-lg;
   }
 }
 
+// Partie visible : ce que suit l'apprenant.
 .sg-hour__panel--learner {
-  align-self: start;
   background: $color-mint-light;
   color: $color-dark;
 }
 
+// Partie immergée : le travail en amont, sous une ligne de flottaison en pointillés.
 .sg-hour__panel--upstream {
+  border-top: 2px dashed rgba($color-mint, 0.6);
   background: $color-dark;
   color: $color-white;
-}
-
-// Grand « 1 h » en filigrane, comme les chiffres des panneaux de la page Digitalisation.
-.sg-hour__big {
-  position: absolute;
-  top: -0.1em;
-  right: 0.3em;
-  z-index: -1;
-  font-size: 6.5rem;
-  font-weight: 800;
-  line-height: 1;
-  color: $color-primary-dark;
-  opacity: 0.14;
-  pointer-events: none;
 }
 
 .sg-hour__heading {
@@ -1212,9 +1196,29 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-.sg-hour__panel--learner .sg-hour__list li {
-  background: $color-white;
-  color: $color-dark;
+// Ce que suit l'apprenant : cinq cartes en rangée.
+.sg-hour__panel--learner .sg-hour__list {
+  @include from($bp-tablet) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  li {
+    background: $color-white;
+    color: $color-dark;
+
+    @include from($bp-tablet) {
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 1.1rem 0.75rem;
+      text-align: center;
+    }
+  }
 }
 
 .sg-hour__icon {
@@ -1232,6 +1236,16 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
     width: 18px;
     height: 18px;
   }
+
+  @include from($bp-tablet) {
+    width: 44px;
+    height: 44px;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
 }
 
 .sg-hour__panel--upstream .sg-hour__list li {
@@ -1240,7 +1254,14 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   color: $color-white;
 }
 
-// Étapes numérotées reliées par un trait : c'est une chaîne de production.
+// Sur grand écran, les étapes n'ont plus de cadre : c'est le trait qui les relie.
+@include from($bp-desktop) {
+  .sg-hour__panel--upstream .sg-hour__list--steps li {
+    border: 0;
+    background: none;
+  }
+}
+
 .sg-hour__num {
   display: inline-flex;
   align-items: center;
@@ -1255,76 +1276,76 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   color: $color-dark;
 }
 
-.sg-hour__list--steps li:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: calc(0.9rem + 14px);
-  width: 2px;
-  height: 0.6rem;
-  background: rgba($color-mint, 0.45);
-}
-
-// Lien « pour » entre les deux panneaux : la flèche part de la production vers l'apprenant.
-.sg-hour__link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  padding-block: 0.15rem;
-
+// Production en amont : étapes numérotées. Liste verticale reliée par un trait sur mobile, grille de cartes
+// sur tablette, puis une seule rangée de sept étapes reliées par un trait horizontal sur grand écran.
+.sg-hour__list--steps {
   @include from($bp-tablet) {
-    align-self: center;
-    padding-block: 0;
-  }
-}
-
-.sg-hour__link-label {
-  font-size: $fs-small;
-  font-weight: 600;
-  color: $color-primary-dark;
-}
-
-.sg-hour__link-chip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border: 1.5px solid $color-primary;
-  border-radius: 50%;
-  background: $color-white;
-  color: $color-primary-dark;
-  box-shadow: $dg-shadow;
-  // Sur mobile, les panneaux sont l'un sous l'autre : la flèche pointe vers le haut.
-  transform: rotate(90deg);
-
-  @include from($bp-tablet) {
-    transform: none;
-  }
-
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-.sg-hour__notes {
-  display: grid;
-  gap: $spacing-md;
-  margin-top: $spacing-lg;
-
-  @include from($bp-tablet) {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: $spacing-lg;
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+  }
+
+  @media (max-width: #{$bp-tablet - 1px}) {
+    li:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: calc(0.9rem + 14px);
+      width: 2px;
+      height: 0.6rem;
+      background: rgba($color-mint, 0.45);
+    }
+  }
+
+  @include from($bp-desktop) {
+    li {
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 0 0.35rem;
+      border: 0;
+      background: none;
+      text-align: center;
+    }
+
+    .sg-hour__num {
+      width: 38px;
+      height: 38px;
+      font-size: 0.9rem;
+    }
+
+    // Trait horizontal d'une pastille à la suivante.
+    li:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: calc(50% + 26px);
+      width: calc(100% - 52px);
+      height: 2px;
+      background: rgba($color-mint, 0.45);
+    }
   }
 }
 
-.sg-note {
-  margin: 0;
-  padding-left: $spacing-md;
-  border-left: 3px solid $color-primary;
+// Texte d'explication de chaque zone, sous sa liste, séparé par un filet.
+// Le filet occupe toute la largeur, le texte reste limité à une longueur de ligne confortable.
+.sg-hour__note {
+  margin: $spacing-md 0 0;
+  padding-top: $spacing-md;
+  padding-right: max(0px, calc(100% - 78ch));
+}
+
+.sg-hour__panel--learner .sg-hour__note {
+  border-top: 1px solid rgba($color-primary-dark, 0.22);
+  color: rgba($color-dark, 0.85);
+}
+
+.sg-hour__panel--upstream .sg-hour__note {
+  border-top: 1px solid rgba($color-white, 0.16);
+  color: rgba($color-white, 0.85);
 }
 
 // ----- 2. Ce qui fait varier le prix : mosaïque de cinq critères -----
@@ -1355,9 +1376,13 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   background: $color-surface;
   color: $color-dark;
 
-  h3,
   p {
     margin: 0;
+  }
+
+  // Le titre garde sa marge basse (celle du composant, sinon celle des titres du site).
+  h3 {
+    margin-top: 0;
   }
 
   .sg-chips {
@@ -1557,17 +1582,25 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: $radius-lg;
   background: $color-surface;
 
-  h3,
   p {
     margin: 0;
   }
+
+  // Le titre garde sa marge basse (celle du composant, sinon celle des titres du site).
+  h3 {
+    margin-top: 0;
+  }
 }
 
+// Point d'interrogation à la place d'une coche : ce sont des questions à poser, pas des points à valider.
 .sg-quote__check {
   @extend %sg-icon-chip;
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
 }
 
 .sg-quote__q {
@@ -1844,53 +1877,38 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-// Unité de prix en filigrane (€ / h, € / module…) : c'est ce qui distingue les quatre modes.
-.sg-mode__unit {
-  position: absolute;
-  top: 0.9rem;
-  right: 1rem;
-  z-index: -1;
-  font-size: 2.2rem;
-  font-weight: 800;
-  line-height: 1;
-  white-space: nowrap;
-  color: $color-primary-dark;
-  opacity: 0.14;
-  pointer-events: none;
-}
-
-.sg-mode__index {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: $color-mint-light;
-  font-weight: 700;
-  color: $color-teal-dark;
-}
-
 .sg-mode__name {
   font-size: 1.2rem;
   color: $color-dark;
 }
 
 .sg-mode__principle {
-  // Trois lignes de réserve : les quatre encadrés ci-dessous démarrent à la même hauteur.
-  min-height: calc(3 * 1.5 * #{$fs-small});
   font-size: $fs-small;
+
+  // Trois lignes de réserve en grille : les bandeaux foncés démarrent à la même hauteur d'une carte à l'autre.
+  @include from($bp-tablet) {
+    min-height: calc(3 * 1.5 * #{$fs-small});
+  }
 }
 
+// Bandeau clair en pied de carte : il isole « ce qu'il faut vérifier » du principe du mode.
 .sg-mode__check {
   flex: 1;
-  padding: 0.9rem 1rem;
-  border-radius: $radius-md;
+  margin: 0 (-$spacing-md) (-$spacing-md);
+  padding: $spacing-sm $spacing-md $spacing-md;
   background: $color-mint-light;
+
+  // Une carte sur deux : menthe un peu plus soutenu (le menthe de la charte éclairci à 75 %).
+  .sg-mode:nth-child(even) & {
+    background: mix($color-mint, $color-white, 75%);
+  }
 }
 
 .sg-mode__label {
-  margin-bottom: 0.25rem !important;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.4rem !important;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1898,70 +1916,67 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   color: $color-primary-dark;
 }
 
+.sg-mode__label-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
 .sg-mode__text {
   font-size: $fs-small;
   color: $color-dark;
 }
 
-// ----- 6. Comment est calculé le prix chez Satisa : bloc foncé en trois étapes -----
+// ----- 6. Comment est calculé le prix chez Satisa : le devis qui se construit -----
 .sg-calc {
-  position: relative;
-  isolation: isolate;
+  display: grid;
+  gap: $spacing-lg;
+
+  @include from($bp-desktop) {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: $spacing-xl;
+    align-items: start;
+  }
+}
+
+// Titre et introduction restent visibles à gauche pendant la lecture du devis.
+.sg-calc__aside {
+  @include from($bp-desktop) {
+    position: sticky;
+    top: 6.5rem;
+  }
+
+  .section-head {
+    margin-bottom: 0;
+  }
+}
+
+// La feuille : bord en pointillés comme un devis détachable, une ligne par paramètre du calcul.
+.sg-devis {
   overflow: hidden;
-  padding: $spacing-md;
+  border: 2px dashed rgba($color-primary-dark, 0.4);
   border-radius: $radius-lg;
-  background: $color-dark;
-  color: $color-white;
+  background: $color-white;
+  box-shadow: $dg-shadow;
+}
+
+.sg-devis__line {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: $spacing-md;
+
+  & + & {
+    border-top: 2px dashed rgba($color-primary-dark, 0.2);
+  }
 
   @include from($bp-tablet) {
     padding: $spacing-lg;
   }
-
-  @include from($bp-desktop) {
-    padding: $spacing-xl;
-  }
-}
-
-.sg-calc__head {
-  max-width: 680px;
-
-  .eyebrow {
-    color: $color-mint;
-  }
-
-  .eyebrow::before {
-    background: $color-mint;
-  }
-
-  h2 {
-    margin-block: 0.5rem 0.75rem;
-    color: $color-white;
-  }
-
-  p {
-    margin: 0;
-    color: rgba($color-white, 0.82);
-  }
-}
-
-.sg-calc__steps {
-  display: grid;
-  gap: $spacing-sm;
-  margin-top: $spacing-lg;
-
-  @include from($bp-desktop) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.sg-step {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-sm;
-  padding: $spacing-md;
-  border: 1px solid rgba($color-white, 0.14);
-  border-radius: $radius-lg;
-  background: rgba($color-white, 0.05);
 
   h3,
   p {
@@ -1969,115 +1984,181 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-.sg-step__num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: $color-mint;
-  font-weight: 700;
+.sg-devis__title {
+  font-size: 1.25rem;
   color: $color-dark;
 }
 
-.sg-step__title {
-  font-size: 1.15rem;
-  color: $color-white;
-}
-
-.sg-step__text {
+.sg-devis__text {
   font-size: $fs-small;
-  color: rgba($color-white, 0.82);
 }
 
-// Tarif horaire dégressif : trois colonnes de hauteur décroissante.
-.sg-hours {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: end;
-  gap: 0.5rem;
-  height: 100px;
-  margin-top: auto;
+// Dernière ligne : le prix reste indicatif, comme le total du devis.
+.sg-devis__total {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0 $spacing-sm $spacing-sm;
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  background: $color-dark;
 
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 0.35rem;
-    height: 100%;
+  p {
+    margin: 0;
   }
 
-  i {
-    display: block;
-    border-radius: 6px 6px 3px 3px;
-    background: linear-gradient(180deg, $color-mint, rgba($color-mint, 0.45));
-  }
-
-  span {
-    font-size: 0.7rem;
-    font-weight: 600;
-    line-height: 1.2;
-    text-align: center;
-    color: rgba($color-white, 0.82);
+  @include from($bp-tablet) {
+    margin: 0 $spacing-md $spacing-md;
+    padding: $spacing-md $spacing-lg;
   }
 }
 
-.sg-hours__caption {
-  font-size: 0.72rem !important;
+.sg-devis__total-label {
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: $color-mint !important;
 }
 
-.sg-formulas,
+.sg-devis__total-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: $color-white !important;
+}
+
+// Ligne 1 : tarif horaire dégressif, en barres horizontales.
+.sg-hours__caption {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-primary-dark;
+}
+
+.sg-hours {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  > div {
+    display: grid;
+    grid-template-columns: minmax(7rem, 9rem) 1fr;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  span {
+    order: 1;
+    font-size: $fs-small;
+    font-weight: 600;
+    color: $color-dark;
+  }
+
+  i {
+    order: 2;
+    display: block;
+    height: 22px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, $color-primary-dark, $color-primary);
+  }
+}
+
+// Ligne 2 : les trois formules, chacune avec sa condition.
+.sg-formulas {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    background: $color-surface;
+
+    @include from($bp-tablet) {
+      grid-template-columns: 9rem 1fr;
+      gap: $spacing-sm;
+    }
+  }
+
+  b {
+    width: fit-content;
+    padding: 0.25em 0.8em;
+    border-radius: $radius-sm;
+    background: $color-mint-light;
+    font-size: $fs-small;
+    font-weight: 700;
+    color: $color-teal-dark;
+  }
+
+  span {
+    font-size: $fs-small;
+    line-height: 1.5;
+    color: $color-dark;
+  }
+}
+
+// Ligne 3 : options et prix reliés par des points de conduite, comme sur un ticket.
 .sg-options {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   margin: 0;
   padding: 0;
+  list-style: none;
 
+  // Petit écran : le prix passe sous le nom. À partir de la tablette : une ligne avec points de conduite.
   li {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: $spacing-xs;
-    padding: 0.7rem 0.9rem;
-    border: 1px solid rgba($color-white, 0.12);
-    border-radius: $radius-md;
-    background: rgba($color-white, 0.06);
+    flex-direction: column;
+    gap: 0.15rem;
+
+    @include from($bp-tablet) {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.6rem;
+
+      &::before {
+        content: '';
+        order: 2;
+        flex: 1;
+        min-width: 1rem;
+        align-self: flex-end;
+        margin-bottom: 0.35em;
+        border-bottom: 2px dotted rgba($color-primary-dark, 0.35);
+      }
+    }
+  }
+
+  span {
+    order: 1;
     font-size: $fs-small;
-    line-height: 1.35;
-    color: rgba($color-white, 0.9);
+    font-weight: 600;
+    color: $color-dark;
   }
 
   b {
-    flex-shrink: 0;
-    padding: 0.2em 0.7em;
-    border-radius: 999px;
-    background: $color-mint;
-    font-size: 0.75rem;
-    color: $color-dark;
+    order: 3;
+    font-size: 1.05rem;
+    white-space: nowrap;
+    color: $color-primary-dark;
   }
-}
-
-.sg-options b {
-  padding: 0;
-  background: none;
-  font-size: 0.8125rem;
-  color: $color-mint;
 }
 
 .sg-step__note {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: auto !important;
   font-size: $fs-small;
   font-weight: 600;
-  color: $color-mint;
+  color: $color-primary-dark;
 }
 
 .sg-step__note-icon {

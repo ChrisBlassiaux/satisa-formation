@@ -68,14 +68,15 @@ const ICONS = {
       <path d="m16 11 2 2 4-4" />
     </Icon>
   ),
+  search: (
+    <Icon>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </Icon>
+  ),
   check: (
     <Icon>
       <path d="m5 12.5 4.5 4.5L19 7.5" />
-    </Icon>
-  ),
-  arrowLeft: (
-    <Icon>
-      <path d="M20 12H4M10 6l-6 6 6 6" />
     </Icon>
   ),
   arrowRight: (
@@ -130,35 +131,35 @@ const ADDED_SERVICES = [
 // ---------- 3. Comparer deux devis ----------
 const QUOTE_QUESTIONS = [
   {
-    question: "Sur quoi porte le prix : la durée de formation pour l'apprenant, ou seulement les minutes de vidéo ?",
+    question: "Sur quoi porte le prix : la durée de formation pour l'apprenant, ou seulement les minutes de vidéo\u00a0?",
     why: "Une heure de formation en ligne contient aussi des lectures, des exercices et des quiz, pas seulement des vidéos.",
   },
   {
-    question: "Qui rédige le contenu : votre expert ou le prestataire ?",
+    question: "Qui rédige le contenu : votre expert ou le prestataire\u00a0?",
     why: "C'est souvent une grosse part du travail.",
   },
   {
-    question: "Les vidéos sont-elles incluses ? Qui tourne, qui monte ?",
+    question: "Les vidéos sont-elles incluses ? Qui tourne, qui monte\u00a0?",
     why: "Le tournage et le montage changent fortement le prix.",
   },
   {
-    question: "Les quiz, exercices et évaluations sont-ils inclus ?",
+    question: "Les quiz, exercices et évaluations sont-ils inclus\u00a0?",
     why: "Certains devis ne couvrent que la mise en forme.",
   },
   {
-    question: "L'intégration dans votre plateforme est-elle comprise ?",
+    question: "L'intégration dans votre plateforme est-elle comprise\u00a0?",
     why: "Elle est parfois facturée à part.",
   },
   {
-    question: "Combien de cycles de relecture sont prévus ?",
+    question: "Combien de cycles de relecture sont prévus\u00a0?",
     why: "Sans limite écrite, les allers-retours dérapent.",
   },
   {
-    question: "Que se passe-t-il si la durée réelle change ?",
+    question: "Que se passe-t-il si la durée réelle change\u00a0?",
     why: "Un devis sérieux prévoit une règle d'ajustement.",
   },
   {
-    question: "Un module pilote est-il prévu ?",
+    question: "Un module pilote est-il prévu\u00a0?",
     why: "Il permet de juger sur pièce avant de tout produire.",
   },
 ];
@@ -167,25 +168,21 @@ const QUOTE_QUESTIONS = [
 const PRICING_MODES = [
   {
     mode: "À l'heure d'e-learning",
-    unit: "€ / h",
     principle: "Un prix par heure de formation suivie par l'apprenant.",
     check: "Ce que comprend une heure : seulement des vidéos, ou aussi des lectures, des exercices et des quiz.",
   },
   {
     mode: "Au module",
-    unit: "€ / module",
     principle: "Un prix par module, quelle que soit sa longueur.",
     check: "La durée et le contenu d'un module, qui varient d'un prestataire à l'autre.",
   },
   {
     mode: "À la minute de vidéo",
-    unit: "€ / min",
     principle: "Un prix par minute de vidéo produite.",
     check: "Ce qui entoure la vidéo : activités, quiz, intégration.",
   },
   {
     mode: "Au forfait",
-    unit: "forfait",
     principle: "Un prix global pour le projet.",
     check: "Le périmètre exact et ce qui se passe si le volume change.",
   },
@@ -211,16 +208,17 @@ export default function SimulatorGuide() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Repères</p>
-            <h2>Ce que contient une heure d&apos;e-learning</h2>
+            <h2>Ce que contient une heure <span className="nowrap">d&apos;e-learning</span></h2>
           </div>
           <figure className="sg-hour">
-            <figcaption className="sg-hour__lead">
-              Une heure d&apos;e-learning repose sur bien plus que ce que voit l&apos;apprenant
+            <figcaption>
+              <p className="sg-hour__lead">
+                Une heure d&apos;e-learning repose sur bien plus que ce que voit l&apos;apprenant
+              </p>
             </figcaption>
             <div className="sg-hour__grid">
               <div className="sg-hour__panel sg-hour__panel--learner">
-                <span className="sg-hour__big" aria-hidden="true">1&nbsp;h</span>
-                <h3 className="sg-hour__heading">Ce que suit l&apos;apprenant (1&nbsp;h)</h3>
+                <h3 className="sg-hour__heading">Ce que suit un apprenant durant 1&nbsp;h de formation</h3>
                 <ul className="sg-hour__list">
                   {LEARNER_ITEMS.map((item) => (
                     <li key={item.label}>
@@ -229,10 +227,11 @@ export default function SimulatorGuide() {
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="sg-hour__link" aria-hidden="true">
-                <span className="sg-hour__link-label">pour</span>
-                <span className="sg-hour__link-chip">{ICONS.arrowLeft}</span>
+                <p className="sg-hour__note">
+                  Une heure d&apos;e-learning, c&apos;est une heure de formation suivie par l&apos;apprenant, pas une heure
+                  de vidéo. Elle mélange des lectures, des capsules vidéo, des capsules pédagogiques interactives, des
+                  activités, des quiz et des évaluations, reliés par des consignes et des synthèses.
+                </p>
               </div>
               <div className="sg-hour__panel sg-hour__panel--upstream">
                 <span className="sg-mark sg-mark--light" aria-hidden="true" />
@@ -245,22 +244,15 @@ export default function SimulatorGuide() {
                     </li>
                   ))}
                 </ol>
+                <p className="sg-hour__note">
+                  Pour que cette heure fonctionne sans formateur, tout doit être préparé en amont : le parcours est
+                  scénarisé, chaque écran est décrit dans un storyboard, les contenus sont rédigés, les vidéos scriptées
+                  et montées, les activités créées avec leurs corrections, puis tout est intégré, testé et relu.
+                  C&apos;est ce travail invisible qui fait la qualité d&apos;un module, et qui explique son prix.
+                </p>
               </div>
             </div>
           </figure>
-          <div className="sg-hour__notes">
-            <p className="sg-note">
-              Une heure d&apos;e-learning, c&apos;est une heure de formation suivie par l&apos;apprenant, pas une heure de
-              vidéo. Elle mélange des lectures, des capsules vidéo, des capsules pédagogiques interactives, des activités,
-              des quiz et des évaluations, reliés par des consignes et des synthèses.
-            </p>
-            <p className="sg-note">
-              Pour que cette heure fonctionne sans formateur, tout doit être préparé en amont : le parcours est scénarisé,
-              chaque écran est décrit dans un storyboard, les contenus sont rédigés, les vidéos scriptées et montées, les
-              activités créées avec leurs corrections, puis tout est intégré, testé et relu. C&apos;est ce travail
-              invisible qui fait la qualité d&apos;un module, et qui explique son prix.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -384,7 +376,7 @@ export default function SimulatorGuide() {
           <ul className="sg-quotes">
             {QUOTE_QUESTIONS.map((row) => (
               <li key={row.question} className="sg-quote">
-                <span className="sg-quote__check">{ICONS.check}</span>
+                <span className="sg-quote__check" aria-hidden="true">?</span>
                 <div>
                   <h3 className="sg-quote__q">{row.question}</h3>
                   <p className="sg-quote__why">{row.why}</p>
@@ -474,14 +466,15 @@ export default function SimulatorGuide() {
             <p>Aucune n&apos;est meilleure que les autres : l&apos;important est de savoir ce qu&apos;elle couvre.</p>
           </div>
           <div className="sg-modes">
-            {PRICING_MODES.map((item, index) => (
+            {PRICING_MODES.map((item) => (
               <article key={item.mode} className="sg-mode">
-                <span className="sg-mode__unit" aria-hidden="true">{item.unit}</span>
-                <span className="sg-mode__index" aria-hidden="true">{index + 1}</span>
                 <h3 className="sg-mode__name">{item.mode}</h3>
                 <p className="sg-mode__principle">{item.principle}</p>
                 <div className="sg-mode__check">
-                  <p className="sg-mode__label">Ce qu&apos;il faut vérifier</p>
+                  <p className="sg-mode__label">
+                    <span className="sg-mode__label-icon" aria-hidden="true">{ICONS.search}</span>
+                    Ce qu&apos;il faut vérifier
+                  </p>
                   <p className="sg-mode__text">{item.check}</p>
                 </div>
               </article>
@@ -491,58 +484,53 @@ export default function SimulatorGuide() {
       </section>
 
       {/* 6. Le calcul chez Satisa */}
-      <section>
+      <section className="section-tinted">
         <div className="container">
           <div className="sg-calc">
-            <span className="sg-mark sg-mark--light sg-mark--big" aria-hidden="true" />
-            <div className="sg-calc__head">
-              <p className="eyebrow">Méthode de calcul</p>
-              <h2>Comment est calculé le prix chez Satisa ?</h2>
-              <p>
-                Le simulateur applique la même méthode que nos devis : le prix dépend de ce que vous apportez. Le
-                résultat est indicatif ; le prix final est confirmé après un échange et le séquençage de votre
-                formation.
-              </p>
+            <div className="sg-calc__aside">
+              <div className="section-head">
+                <p className="eyebrow">Méthode de calcul</p>
+                <h2>Comment est calculé le prix chez Satisa ?</h2>
+                <p>Le simulateur applique la même méthode que nos devis : le prix dépend de ce que vous apportez.</p>
+              </div>
             </div>
-            <div className="sg-calc__steps">
-              <article className="sg-step">
-                <span className="sg-step__num" aria-hidden="true">1</span>
-                <h3 className="sg-step__title">Vos heures d&apos;e-learning</h3>
-                <p className="sg-step__text">
+
+            <div className="sg-devis">
+              <div className="sg-devis__line">
+                <h3 className="sg-devis__title">Vos heures d&apos;e-learning</h3>
+                <p className="sg-devis__text">
                   Le prix part du nombre d&apos;heures d&apos;e-learning à produire, avec un minimum de 20 heures. Le
                   tarif horaire baisse au-delà de 20 heures, puis au-delà de 40 heures.
                 </p>
-                <div className="sg-hours" aria-hidden="true">
-                  <div><i style={{ height: "100%" }} /><span>jusqu&apos;à 20 h</span></div>
-                  <div><i style={{ height: "78%" }} /><span>20 à 40 h</span></div>
-                  <div><i style={{ height: "58%" }} /><span>au-delà de 40 h</span></div>
-                </div>
                 <p className="sg-hours__caption">Tarif horaire</p>
-              </article>
+                <div className="sg-hours" aria-hidden="true">
+                  <div><i style={{ width: "100%" }} /><span>jusqu&apos;à 20 h</span></div>
+                  <div><i style={{ width: "78%" }} /><span>20 à 40 h</span></div>
+                  <div><i style={{ width: "58%" }} /><span>au-delà de 40 h</span></div>
+                </div>
+              </div>
 
-              <article className="sg-step">
-                <span className="sg-step__num" aria-hidden="true">2</span>
-                <h3 className="sg-step__title">L&apos;état de vos contenus</h3>
+              <div className="sg-devis__line">
+                <h3 className="sg-devis__title">L&apos;état de vos contenus</h3>
                 <ul className="sg-formulas">
                   <li>
-                    <span>Contenus prêts à l&apos;emploi</span>
                     <b>Essentielle</b>
+                    <span>Contenus prêts à l&apos;emploi</span>
                   </li>
                   <li>
-                    <span>Pas prêts, mais un référent métier peut transmettre le savoir</span>
                     <b>Co-construite</b>
+                    <span>Pas prêts, mais un référent métier peut transmettre le savoir</span>
                   </li>
                   <li>
-                    <span>Ni contenus prêts, ni référent disponible : Satisa prend tout en charge</span>
                     <b>Complète</b>
+                    <span>Ni contenus prêts, ni référent disponible : Satisa prend tout en charge</span>
                   </li>
                 </ul>
-              </article>
+              </div>
 
-              <article className="sg-step">
-                <span className="sg-step__num" aria-hidden="true">3</span>
-                <h3 className="sg-step__title">Les options supplémentaires</h3>
-                <p className="sg-step__text">Selon vos réponses, deux options s&apos;ajoutent :</p>
+              <div className="sg-devis__line">
+                <h3 className="sg-devis__title">Les options supplémentaires</h3>
+                <p className="sg-devis__text">Selon vos réponses, deux options s&apos;ajoutent&nbsp;:</p>
                 <ul className="sg-options">
                   <li>
                     <span>Séquençage et scénarisation</span>
@@ -557,7 +545,15 @@ export default function SimulatorGuide() {
                   <span className="sg-step__note-icon">{ICONS.check}</span>
                   Ils sont inclus dans la formule Complète.
                 </p>
-              </article>
+              </div>
+
+              <div className="sg-devis__total">
+                <p className="sg-devis__total-label">Prix indicatif</p>
+                <p className="sg-devis__total-text">
+                  Le résultat est indicatif ; le prix final est confirmé après un échange et le séquençage de votre
+                  formation.
+                </p>
+              </div>
             </div>
           </div>
         </div>
