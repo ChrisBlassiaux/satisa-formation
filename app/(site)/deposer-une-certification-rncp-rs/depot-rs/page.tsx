@@ -51,7 +51,7 @@ const FAQ_JSON_LD = {
       name: "Combien de temps dure un projet de certification RS ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Comptez en moyenne 12 à 18 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre promotion de titulaires.",
+        text: "Comptez à partir de 8 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre promotion de titulaires.",
       },
     },
     {
@@ -332,7 +332,7 @@ export default function CertificationRsPage() {
         intro="Une certification au Répertoire spécifique atteste des compétences complémentaires à un métier : une spécialisation, des compétences transversales ou une activité professionnelle autonome. Depuis octobre 2025, les exigences d’enregistrement au RS se sont fortement renforcées. Voici comment Satisa vous accompagne, du diagnostic jusqu’à la décision."
         stats={[
           { value: "6 étapes", label: "du diagnostic de faisabilité à la décision de France Compétences" },
-          { value: "12 à 18 mois", label: "durée évaluée dès le diagnostic, du diagnostic à la décision, selon l’existant actuel" },
+          { value: "À partir de 8 mois", label: "durée évaluée dès le diagnostic, du diagnostic à la décision, selon l’existant actuel" },
           { value: "0 €", label: "de frais de dépôt : le dépôt auprès de France Compétences est gratuit" },
         ]}
         steps={[
@@ -376,7 +376,7 @@ export default function CertificationRsPage() {
                 Combien de temps dure un projet de certification RS ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Comptez en moyenne 12 à 18 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre promotion de titulaires.</p>
+              <p className="faq-item__answer">Comptez à partir de 8 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel et la disponibilité de votre promotion de titulaires.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">

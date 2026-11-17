@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
-import RelatedArticles from "@/components/RelatedArticles";
 
 const TITLE = "Dépôt de certification RNCP/RS - Satisa Formation";
 const DESCRIPTION =
@@ -148,7 +147,7 @@ export default function CertificationPage() {
                   <dt>Certifie</dt>
                   <dd>Un métier, en blocs de compétences</dd>
                   <dt>Durée moyenne</dt>
-                  <dd>12 à 24 mois</dd>
+                  <dd>À partir de 10 mois</dd>
                   <dt>Adapté si</dt>
                   <dd>Vous formez sur un poste entier</dd>
                 </dl>
@@ -167,7 +166,7 @@ export default function CertificationPage() {
                   <dt>Certifie</dt>
                   <dd>Une compétence ciblée</dd>
                   <dt>Durée moyenne</dt>
-                  <dd>12 à 18 mois</dd>
+                  <dd>À partir de 8 mois</dd>
                   <dt>Adapté si</dt>
                   <dd>Vous formez sur une pratique précise</dd>
                 </dl>
@@ -415,8 +414,6 @@ export default function CertificationPage() {
           </div>
         </div>
       </section>
-
-      <RelatedArticles slugs={["rncp-ou-rs-guide-complet", "organisme-certificateur-ou-organisme-habilite-qui-peut-delivrer-une-certification-rncp-ou-rs", "passer-d-une-certification-rs-a-un-rncp-est-ce-possible"]} />
 
       <section>
         <div className="container">

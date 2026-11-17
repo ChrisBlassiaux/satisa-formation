@@ -51,7 +51,7 @@ const FAQ_JSON_LD = {
       name: "Combien de temps dure un projet de certification RNCP ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Comptez en moyenne 12 à 24 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre promotion de titulaires.",
+        text: "Comptez à partir de 10 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre promotion de titulaires.",
       },
     },
     {
@@ -332,7 +332,7 @@ export default function CertificationRncpPage() {
         intro="Une certification RNCP atteste qu’une personne maîtrise un métier. Pour l’enregistrer, France Compétences attend la preuve que ce métier répond à un besoin réel, que vos référentiels sont solides et que vos titulaires s’insèrent dans les emplois visés. Voici comment Satisa vous accompagne, du diagnostic jusqu’à la décision."
         stats={[
           { value: "6 étapes", label: "du diagnostic de faisabilité à la décision de France Compétences" },
-          { value: "12 à 24 mois", label: "durée évaluée dès le diagnostic, du diagnostic à la décision, selon l’existant actuel" },
+          { value: "À partir de 10 mois", label: "durée évaluée dès le diagnostic, du diagnostic à la décision, selon l’existant actuel" },
           { value: "0 €", label: "de frais de dépôt : le dépôt auprès de France Compétences est gratuit" },
         ]}
         steps={[
@@ -376,7 +376,7 @@ export default function CertificationRncpPage() {
                 Combien de temps dure un projet de certification RNCP ?
                 <span className="faq-item__icon" aria-hidden="true"></span>
               </summary>
-              <p className="faq-item__answer">Comptez en moyenne 12 à 24 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre promotion de titulaires.</p>
+              <p className="faq-item__answer">Comptez à partir de 10 mois entre le diagnostic de faisabilité et la décision de France Compétences, selon la complexité du référentiel, votre engagement et la disponibilité de votre promotion de titulaires.</p>
             </details>
             <details className="faq-item">
               <summary className="faq-item__question">
