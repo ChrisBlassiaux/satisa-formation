@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
-import RelatedArticles from "@/components/RelatedArticles";
 import OfferAccordion from "@/components/OfferAccordion";
 import OfferRowChevron from "@/components/OfferRowChevron";
 import PaymentOptions from "@/components/PaymentOptions";
@@ -449,8 +448,6 @@ export default function CertificationRsPage() {
           </div>
         </div>
       </section>
-
-      <RelatedArticles slugs={["certification-rncp-suis-je-eligible-au-rs-criteres-de-certification-au-repertoire-specifique", "passer-d-une-certification-rs-a-un-rncp-est-ce-possible", "rncp-ou-rs-guide-complet"]} />
 
       <section>
         <div className="container">
