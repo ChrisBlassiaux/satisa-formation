@@ -423,20 +423,6 @@ export default function CertificationRncpPage() {
           </div>
           <div style={{ marginTop: "2rem" }}>
             <p style={{ fontWeight: 700, color: "#002730" }}>
-              Pour aller plus loin, consultez notre article de blog associé :
-            </p>
-            <p style={{ marginTop: "0.5rem" }}>
-              →{" "}
-              <Link
-                href={`${ROUTES.blog}/suis-je-eligible-au-rncp-criteres-d-eligibilite-et-conditions-2026`}
-                style={{ fontStyle: "italic", textDecoration: "underline" }}
-              >
-                Suis-je éligible au RNCP ? Critères d&apos;éligibilité et conditions 2026
-              </Link>
-            </p>
-          </div>
-          <div style={{ marginTop: "2rem" }}>
-            <p style={{ fontWeight: 700, color: "#002730" }}>
               Vous hésitez encore entre RNCP et RS ?
             </p>
             <p style={{ marginTop: "0.5rem" }}>
