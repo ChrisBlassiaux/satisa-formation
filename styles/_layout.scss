@@ -130,6 +130,24 @@
   }
 }
 
+// Bouton à deux lignes : l'action, puis le périmètre (digitalisation seulement) en petit.
+.nav__submenu-link--button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.nav__submenu-label {
+  font-weight: 700;
+}
+
+.nav__submenu-sub {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: $color-mint;
+}
+
 .btn.site-header__cta {
   display: none;
 
@@ -232,6 +250,18 @@
   font-weight: 700;
   color: $color-white;
   text-align: left;
+}
+
+.mobile-nav__label {
+  display: block;
+}
+
+.mobile-nav__sub {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: $color-mint;
 }
 
 .mobile-nav__cta {

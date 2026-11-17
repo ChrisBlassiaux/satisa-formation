@@ -68,7 +68,14 @@ export default function Header() {
                           aria-current={isActive(child.href) ? "page" : undefined}
                           onClick={closeSubmenu}
                         >
-                          {child.label}
+                          {"sublabel" in child ? (
+                            <>
+                              <span className="nav__submenu-label">{child.label}</span>
+                              <span className="nav__submenu-sub">{child.sublabel}</span>
+                            </>
+                          ) : (
+                            child.label
+                          )}
                         </Link>
                       </li>
                     ))}
@@ -109,7 +116,14 @@ export default function Header() {
                   className={`mobile-nav__link mobile-nav__link--child${"button" in child ? " mobile-nav__link--button" : ""}`}
                   href={child.href}
                 >
-                  {child.label}
+                  {"sublabel" in child ? (
+                    <>
+                      <span className="mobile-nav__label">{child.label}</span>
+                      <span className="mobile-nav__sub">{child.sublabel}</span>
+                    </>
+                  ) : (
+                    child.label
+                  )}
                 </Link>
               ))}
           </div>
