@@ -116,17 +116,18 @@
   }
 }
 
-// Lien du menu affiché comme un bouton foncé (même couleurs que « Prendre contact », y compris au survol).
+// Lien du menu affiché comme un bouton : fond blanc, bordure foncée, texte foncé.
 .nav__submenu-link--button {
   margin-top: $spacing-xs;
-  background: $color-dark;
-  color: $color-white;
+  border: 1.5px solid $color-dark;
+  background: $color-white;
+  color: $color-dark;
   text-align: left;
 
   &:hover,
   &[aria-current='page'] {
-    background: $color-teal-dark;
-    color: $color-white;
+    background: $color-mint-light;
+    color: $color-dark;
   }
 }
 
@@ -250,11 +251,11 @@
 .mobile-nav__link--button {
   margin-block: $spacing-xs;
   padding: 0.7em $spacing-sm;
-  border: 0;
+  border: 1.5px solid $color-dark;
   border-radius: $radius-md;
-  background: $color-dark;
+  background: $color-white;
   font-weight: 700;
-  color: $color-white;
+  color: $color-dark;
   text-align: left;
 }
 
