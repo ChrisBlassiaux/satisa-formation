@@ -927,6 +927,17 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+// Variante à trois éléments (page du simulateur).
+.dg-benefits--3 {
+  @include from($bp-tablet) {
+    grid-template-columns: 1fr;
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .dg-benefit {
   display: flex;
   flex-direction: column;
@@ -1027,13 +1038,7 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .dg-axis,
-    .dg-benefits,
-    .sg-hour__grid,
-    .sg-levers,
-    .sg-quotes,
-    .sg-format,
-    .sg-modes,
-    .sg-calc__steps {
+    .dg-benefits {
       animation: dg-reveal linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 55%;
@@ -1041,157 +1046,78 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-// ---------- Page du simulateur : repères sur le prix de l'e-learning (préfixe sg-) ----------
-// Même vocabulaire que la page Digitalisation : cartes menthe / foncées, motif de points, grands chiffres en
-// filigrane, pictogrammes dans des pastilles. Chaque section a une forme adaptée à son contenu.
+// Page du simulateur : repères généraux sur le prix de l'e-learning (schéma, critères, tableau, accordéon).
+.sim-prose {
+  max-width: 70ch;
+  margin-top: $spacing-lg;
 
-// Motif de points décoratif dans l'angle haut droit (comme les formules), rogné par la carte.
-.sg-mark {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  z-index: -1;
-  width: 170px;
-  height: 150px;
-  color: $color-primary-dark;
-  opacity: 0.3;
-  pointer-events: none;
-  background-image: radial-gradient(circle, currentColor 2px, transparent 2.5px);
-  background-size: 20px 20px;
-  -webkit-mask-image: radial-gradient(circle at 100% 0, #000 25%, transparent 75%);
-  mask-image: radial-gradient(circle at 100% 0, #000 25%, transparent 75%);
-}
-
-.sg-mark--light {
-  color: $color-mint;
-  opacity: 0.35;
-}
-
-.sg-mark--big {
-  width: 320px;
-  height: 260px;
-}
-
-// Pastille de pictogramme : mêmes dimensions que les tuiles de la page Digitalisation.
-%sg-icon-chip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: $radius-md;
-  background: $color-mint-light;
-  color: $color-teal-dark;
-
-  svg {
-    width: 22px;
-    height: 22px;
+  p + p {
+    margin-top: $spacing-sm;
   }
 }
 
-// Petites étiquettes (pilules) : les éléments précis d'un critère.
-.sg-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+// Schéma : ce que suit l'apprenant, relié à ce que Satisa produit en amont.
+.sim-schema {
   margin: 0;
-  padding: 0;
-
-  li {
-    padding: 0.3em 0.8em;
-    border: 1px solid $color-border;
-    border-radius: 999px;
-    background: $color-white;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    line-height: 1.4;
-    color: $color-dark;
-  }
-
-  // Ce qui fait monter le prix.
-  .sg-chips__more {
-    border-color: rgba($color-primary-dark, 0.3);
-    background: $color-mint-light;
-    color: $color-primary-dark;
-  }
-}
-
-.sg-chips--plus li::before {
-  content: '+';
-  margin-right: 0.4em;
-  font-weight: 700;
-  color: $color-primary-dark;
-}
-
-// ----- 1. Ce que contient une heure d'e-learning -----
-.sg-hour {
-  margin: 0;
-}
-
-.sg-hour__lead {
-  max-width: 38ch;
-  margin-bottom: $spacing-md;
-  font-size: clamp(1.15rem, 1.2vw + 0.85rem, 1.5rem);
-  font-weight: 700;
-  line-height: 1.3;
-  color: $color-dark;
-}
-
-.sg-hour__grid {
-  display: grid;
-  gap: $spacing-xs;
-
-  @include from($bp-tablet) {
-    grid-template-columns: 1fr 112px 1fr;
-    gap: 0;
-  }
-}
-
-.sg-hour__panel {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   padding: $spacing-md;
+  border: 1px solid $color-border;
   border-radius: $radius-lg;
+  background: $color-surface;
 
   @include from($bp-tablet) {
     padding: $spacing-lg;
   }
 }
 
-.sg-hour__panel--learner {
-  align-self: start;
-  background: $color-mint-light;
+.sim-schema__title {
+  margin-bottom: $spacing-md;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: $color-dark;
 }
 
-.sg-hour__panel--upstream {
+.sim-schema__grid {
+  display: grid;
+  gap: $spacing-sm;
+
+  @include from($bp-tablet) {
+    grid-template-columns: 1fr minmax(96px, 150px) 1fr;
+    align-items: start;
+    gap: 0;
+  }
+}
+
+.sim-schema__panel {
+  padding: $spacing-md;
+  border: 1.5px solid $color-border;
+  border-radius: $radius-md;
+  background: $color-white;
+}
+
+.sim-schema__panel--accent {
+  border-color: $color-primary;
   background: $color-dark;
   color: $color-white;
+
+  .sim-schema__heading {
+    color: $color-white;
+  }
+
+  .sim-schema__list li {
+    border-color: rgba($color-white, 0.16);
+    background: rgba($color-white, 0.06);
+    color: $color-white;
+  }
 }
 
-// Grand « 1 h » en filigrane, comme les chiffres des panneaux de la page Digitalisation.
-.sg-hour__big {
-  position: absolute;
-  top: -0.1em;
-  right: 0.3em;
-  z-index: -1;
-  font-size: 6.5rem;
-  font-weight: 800;
-  line-height: 1;
-  color: $color-primary-dark;
-  opacity: 0.14;
-  pointer-events: none;
+.sim-schema__heading {
+  margin-bottom: $spacing-sm;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: $color-dark;
 }
 
-.sg-hour__heading {
-  margin: 0 0 $spacing-md;
-  font-size: 1.25rem;
-  color: inherit;
-}
-
-.sg-hour__list {
+.sim-schema__list {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -1200,891 +1126,199 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   list-style: none;
 
   li {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.65rem 0.9rem;
-    border-radius: $radius-md;
+    padding: 0.75rem 1rem;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-surface;
     font-size: $fs-small;
-    font-weight: 600;
-    line-height: 1.35;
+    font-weight: 500;
+    line-height: 1.4;
+    color: $color-dark;
   }
 }
 
-.sg-hour__panel--learner .sg-hour__list li {
-  background: $color-white;
-  color: $color-dark;
+.sim-schema__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: $color-primary-dark;
+  font-size: $fs-small;
+  font-weight: 600;
+
+  @include from($bp-tablet) {
+    align-self: center;
+    padding-inline: $spacing-xs;
+  }
 }
 
-.sg-hour__icon {
+.sim-schema__arrow {
+  width: 48px;
+  height: 16px;
+  // Sur mobile, les blocs sont l'un sous l'autre : la flèche pointe vers le haut.
+  transform: rotate(90deg);
+  // La rotation ne change pas la place occupée : on réserve la hauteur de la flèche une fois tournée.
+  margin-block: 16px;
+
+  @include from($bp-tablet) {
+    width: 100%;
+    max-width: 96px;
+    margin-block: 0;
+    transform: none;
+  }
+}
+
+// Cinq critères : liste numérotée, un critère par ligne.
+.sim-criteria {
+  display: flex;
+  flex-direction: column;
+  max-width: 860px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sim-criteria__item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: $spacing-sm;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $color-border;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  @include from($bp-tablet) {
+    grid-template-columns: 56px 1fr;
+    gap: $spacing-md;
+  }
+}
+
+.sim-criteria__num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: $color-mint-light;
   color: $color-teal-dark;
+  font-weight: 700;
 
-  svg {
-    width: 18px;
-    height: 18px;
+  @include from($bp-tablet) {
+    width: 56px;
+    height: 56px;
+    font-size: 1.1rem;
   }
 }
 
-.sg-hour__panel--upstream .sg-hour__list li {
-  border: 1px solid rgba($color-white, 0.14);
-  background: rgba($color-white, 0.06);
-  color: $color-white;
-}
-
-// Étapes numérotées reliées par un trait : c'est une chaîne de production.
-.sg-hour__num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: $color-mint;
-  font-size: 0.8125rem;
+.sim-criteria__title {
+  margin-bottom: 0.25rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: $color-dark;
 }
 
-.sg-hour__list--steps li:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: calc(0.9rem + 14px);
-  width: 2px;
-  height: 0.6rem;
-  background: rgba($color-mint, 0.45);
-}
-
-// Lien « pour » entre les deux panneaux : la flèche part de la production vers l'apprenant.
-.sg-hour__link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  padding-block: 0.15rem;
-
-  @include from($bp-tablet) {
-    align-self: center;
-    padding-block: 0;
-  }
-}
-
-.sg-hour__link-label {
-  font-size: $fs-small;
-  font-weight: 600;
-  color: $color-primary-dark;
-}
-
-.sg-hour__link-chip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border: 1.5px solid $color-primary;
-  border-radius: 50%;
-  background: $color-white;
-  color: $color-primary-dark;
-  box-shadow: $dg-shadow;
-  // Sur mobile, les panneaux sont l'un sous l'autre : la flèche pointe vers le haut.
-  transform: rotate(90deg);
-
-  @include from($bp-tablet) {
-    transform: none;
-  }
-
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-.sg-hour__notes {
-  display: grid;
-  gap: $spacing-md;
-  margin-top: $spacing-lg;
-
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: $spacing-lg;
-  }
-}
-
-.sg-note {
+.sim-criteria__text {
   margin: 0;
-  padding-left: $spacing-md;
-  border-left: 3px solid $color-primary;
-}
-
-// ----- 2. Ce qui fait varier le prix : mosaïque de cinq critères -----
-.sg-levers {
-  display: grid;
-  gap: $spacing-sm;
-
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include from($bp-desktop) {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-.sg-lever {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: $spacing-sm;
-  overflow: hidden;
-  padding: $spacing-md;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  background: $color-surface;
-  color: $color-dark;
-
-  h3,
-  p {
-    margin: 0;
-  }
-
-  .sg-chips {
-    margin-top: auto;
-  }
-}
-
-.sg-lever__icon {
-  @extend %sg-icon-chip;
-}
-
-.sg-lever__num {
-  position: absolute;
-  top: -0.2em;
-  right: 0.25em;
-  z-index: -1;
-  font-size: 6rem;
-  font-weight: 800;
-  line-height: 1;
-  color: $color-primary-dark;
-  opacity: 0.08;
-  pointer-events: none;
-}
-
-.sg-lever__title {
-  margin-bottom: 0.3rem;
-  font-size: 1.1rem;
-  color: inherit;
-}
-
-.sg-lever__text {
   font-size: $fs-small;
+  max-width: 68ch;
 }
 
-.sg-lever--mint {
-  padding: $spacing-lg;
-  border-color: rgba($color-primary-dark, 0.22);
-  background: $color-mint-light;
-
-  .sg-lever__icon {
-    background: $color-white;
-  }
-
-  .sg-lever__num {
-    opacity: 0.16;
-  }
-
-  .sg-lever__text {
-    font-size: 1rem;
-    color: rgba($color-dark, 0.82);
-  }
-
-  .sg-chips li {
-    border-color: transparent;
-  }
+// Tableau « comment comparer deux devis » : sur mobile, chaque ligne devient un bloc.
+.sim-table-wrap {
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
 }
 
-.sg-lever--dark {
-  padding: $spacing-lg;
-  border-color: transparent;
-  background: $color-dark;
-  color: $color-white;
-
-  .sg-lever__icon {
-    background: $color-mint;
-    color: $color-dark;
-  }
-
-  .sg-lever__num {
-    color: $color-mint;
-    opacity: 0.18;
-  }
-
-  .sg-lever__text {
-    font-size: 1rem;
-    color: rgba($color-white, 0.86);
-  }
-}
-
-.sg-lever--mint .sg-lever__title,
-.sg-lever--dark .sg-lever__title {
-  font-size: 1.35rem;
-}
-
-.sg-lever--w3 {
-  @include from($bp-desktop) {
-    grid-column: span 3;
-  }
-}
-
-.sg-lever--w2 {
-  @include from($bp-desktop) {
-    grid-column: span 2;
-  }
-
-  // Tablette : deux colonnes, le cinquième critère prend toute la largeur.
-  &:last-of-type {
-    @include from($bp-tablet) {
-      grid-column: 1 / -1;
-    }
-
-    @include from($bp-desktop) {
-      grid-column: span 2;
-    }
-  }
-}
-
-// Échelle d'effort de production : plus les contenus sont éloignés d'un cours prêt, plus il y a de barres.
-.sg-scale {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+.sim-table {
   width: 100%;
-  margin: auto 0 0;
-  padding: 0;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: $fs-small;
 
-  li {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.7rem 0.8rem;
-    border: 1px solid rgba($color-white, 0.14);
-    border-radius: $radius-md;
-    background: rgba($color-white, 0.06);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    line-height: 1.3;
+  th,
+  td {
+    padding: 0.85rem 1rem;
+    vertical-align: top;
+  }
+
+  thead th {
+    background: $color-dark;
     color: $color-white;
+    font-weight: 700;
   }
-}
 
-.sg-scale__bars {
-  display: flex;
-  gap: 4px;
-
-  i {
-    flex: 1;
-    height: 6px;
-    border-radius: 3px;
-    background: rgba($color-white, 0.2);
-
-    &.is-on {
-      background: $color-mint;
-    }
+  tbody tr + tr > * {
+    border-top: 1px solid $color-border;
   }
-}
 
-// Bandeau « s'y ajoutent » : contour en pointillés, c'est un complément, pas un critère.
-.sg-levers__more {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  padding: $spacing-md;
-  border: 1.5px dashed rgba($color-primary-dark, 0.4);
-  border-radius: $radius-lg;
-  background: $color-white;
+  tbody tr:nth-child(even) > * {
+    background: $color-surface;
+  }
 
-  p {
-    margin: 0;
-    font-size: $fs-small;
+  tbody th {
+    width: 52%;
     font-weight: 700;
     color: $color-dark;
   }
 
-  @include from($bp-tablet) {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    align-items: center;
-    gap: $spacing-md;
+  @media (max-width: $bp-tablet - 1px) {
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
 
-    p {
-      flex: 0 0 auto;
-      max-width: 230px;
+    tr,
+    th,
+    td {
+      display: block;
+    }
+
+    tbody th {
+      width: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    tbody td {
+      padding-top: 0;
+
+      &::before {
+        content: attr(data-label) ' : ';
+        font-weight: 600;
+        color: $color-primary-dark;
+      }
     }
   }
 }
 
-// ----- 3. Comparer deux devis : liste de contrôle -----
-.sg-quotes {
-  display: grid;
-  gap: $spacing-sm;
+// Accordéon des modes de tarification : deux lignes (principe, point de vigilance).
+.sim-mode {
+  p {
+    margin: 0;
+  }
+
+  p + p {
+    margin-top: 0.5rem;
+  }
+}
+
+// Liste à puces dans une carte « étape » (méthode de calcul chez Satisa).
+.sim-benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
   margin: 0;
-  padding: 0;
-  list-style: none;
-
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.sg-quote {
-  display: flex;
-  align-items: flex-start;
-  gap: $spacing-sm;
-  padding: $spacing-md;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  background: $color-surface;
-
-  h3,
-  p {
-    margin: 0;
-  }
-}
-
-.sg-quote__check {
-  @extend %sg-icon-chip;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-.sg-quote__q {
-  margin-bottom: 0.3rem;
-  font-size: 1rem;
-  line-height: 1.4;
-  color: $color-dark;
-}
-
-.sg-quote__why {
+  padding-left: 1.1rem;
+  list-style: disc;
   font-size: $fs-small;
-}
 
-// Conclusion : bloc foncé, c'est la phrase à retenir.
-.sg-verdict {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: $spacing-sm;
-  overflow: hidden;
-  margin-top: $spacing-sm;
-  padding: $spacing-md;
-  border-radius: $radius-lg;
-  background: $color-dark;
-
-  p {
-    max-width: 62ch;
-    margin: 0;
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.45;
-    color: $color-white;
-  }
-
-  @include from($bp-tablet) {
-    flex-direction: row;
-    align-items: center;
-    gap: $spacing-md;
-    padding: $spacing-lg;
-  }
-}
-
-.sg-verdict__icon {
-  @extend %sg-icon-chip;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: $color-mint;
-  color: $color-dark;
-
-  svg {
-    width: 28px;
-    height: 28px;
-  }
-}
-
-// ----- 4. E-learning ou blended -----
-.sg-format {
-  display: grid;
-  gap: $spacing-md;
-
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.sg-format__card {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-sm;
-  overflow: hidden;
-  padding: $spacing-lg;
-  border-radius: $radius-lg;
-
-  h3,
-  p {
-    margin: 0;
-  }
-}
-
-.sg-format__card--light {
-  background: $color-mint-light;
-  color: $color-dark;
-}
-
-.sg-format__card--dark {
-  background: $color-dark;
-  color: $color-white;
-}
-
-.sg-format__title {
-  font-size: 1.4rem;
-  color: inherit;
-
-  span {
-    display: block;
-    margin-top: 0.15rem;
-    font-size: $fs-small;
-    font-weight: 600;
-  }
-}
-
-.sg-format__card--light .sg-format__title span {
-  color: $color-primary-dark;
-}
-
-.sg-format__card--dark .sg-format__title span {
-  color: $color-mint;
-}
-
-.sg-format__text {
-  color: rgba($color-dark, 0.82);
-}
-
-.sg-format__card--dark .sg-format__text {
-  color: rgba($color-white, 0.86);
-}
-
-// Frise : chaque case est une séquence. Pleine = en ligne ; en pointillés = présentiel ou classe virtuelle.
-.sg-bar {
-  display: flex;
-  gap: 4px;
-  height: 16px;
-  margin-top: auto;
-
-  span {
-    flex: 1;
-    border: 1.5px dashed currentColor;
-    border-radius: 4px;
-    opacity: 0.45;
-
-    &.is-on {
-      border-color: transparent;
-      background: $color-primary;
-      opacity: 1;
-    }
-  }
-}
-
-.sg-format__card--dark .sg-bar span.is-on {
-  background: $color-mint;
-}
-
-.sg-bar__legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem $spacing-sm;
-  margin: 0;
-  padding: 0;
-  font-size: 0.75rem;
-  font-weight: 600;
-
-  li {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  li::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    border: 1.5px dashed currentColor;
-    border-radius: 3px;
-    opacity: 0.6;
-  }
-
-  li.is-on::before {
-    border-color: transparent;
-    background: $color-primary;
-    opacity: 1;
-  }
-}
-
-.sg-format__card--dark .sg-bar__legend li.is-on::before {
-  background: $color-mint;
-}
-
-// Une heure de présentiel ne fait pas une heure d'e-learning.
-.sg-equiv {
-  display: grid;
-  gap: $spacing-md;
-  margin-top: $spacing-md;
-  padding: $spacing-md;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  background: $color-surface;
-
-  @include from($bp-desktop) {
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: $spacing-lg;
-    padding: $spacing-lg;
-  }
-}
-
-.sg-equiv__eq {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-.sg-equiv__pill {
-  padding: 0.6rem 1rem;
-  border: 1.5px solid $color-dark;
-  border-radius: $radius-md;
-  background: $color-white;
-  font-weight: 700;
-  color: $color-dark;
-}
-
-.sg-equiv__pill--mint {
-  border-color: transparent;
-  background: $color-mint-light;
-  color: $color-teal-dark;
-}
-
-.sg-equiv__arrow {
-  display: inline-flex;
-  color: $color-primary-dark;
-
-  svg {
-    width: 26px;
-    height: 26px;
-  }
-}
-
-.sg-equiv__text {
-  max-width: 64ch;
-  margin: 0;
-}
-
-// ----- 5. Les 4 façons de fixer le prix : quatre cartes, sans accordéon -----
-.sg-modes {
-  display: grid;
-  gap: $spacing-sm;
-
-  @include from($bp-tablet) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include from($bp-desktop) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.sg-mode {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-sm;
-  overflow: hidden;
-  padding: $spacing-md;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  background: $color-white;
-  box-shadow: $dg-shadow;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    box-shadow: $dg-shadow-hover;
-    transform: translateY(-2px);
-  }
-
-  h3,
-  p {
-    margin: 0;
-  }
-}
-
-// Unité de prix en filigrane (€ / h, € / module…) : c'est ce qui distingue les quatre modes.
-.sg-mode__unit {
-  position: absolute;
-  top: 0.9rem;
-  right: 1rem;
-  z-index: -1;
-  font-size: 2.2rem;
-  font-weight: 800;
-  line-height: 1;
-  white-space: nowrap;
-  color: $color-primary-dark;
-  opacity: 0.14;
-  pointer-events: none;
-}
-
-.sg-mode__index {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: $color-mint-light;
-  font-weight: 700;
-  color: $color-teal-dark;
-}
-
-.sg-mode__name {
-  font-size: 1.2rem;
-  color: $color-dark;
-}
-
-.sg-mode__principle {
-  // Trois lignes de réserve : les quatre encadrés ci-dessous démarrent à la même hauteur.
-  min-height: calc(3 * 1.5 * #{$fs-small});
-  font-size: $fs-small;
-}
-
-.sg-mode__check {
-  flex: 1;
-  padding: 0.9rem 1rem;
-  border-radius: $radius-md;
-  background: $color-mint-light;
-}
-
-.sg-mode__label {
-  margin-bottom: 0.25rem !important;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: $color-primary-dark;
-}
-
-.sg-mode__text {
-  font-size: $fs-small;
-  color: $color-dark;
-}
-
-// ----- 6. Comment est calculé le prix chez Satisa : bloc foncé en trois étapes -----
-.sg-calc {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding: $spacing-md;
-  border-radius: $radius-lg;
-  background: $color-dark;
-  color: $color-white;
-
-  @include from($bp-tablet) {
-    padding: $spacing-lg;
-  }
-
-  @include from($bp-desktop) {
-    padding: $spacing-xl;
-  }
-}
-
-.sg-calc__head {
-  max-width: 680px;
-
-  .eyebrow {
-    color: $color-mint;
-  }
-
-  .eyebrow::before {
-    background: $color-mint;
-  }
-
-  h2 {
-    margin-block: 0.5rem 0.75rem;
-    color: $color-white;
-  }
-
-  p {
-    margin: 0;
-    color: rgba($color-white, 0.82);
-  }
-}
-
-.sg-calc__steps {
-  display: grid;
-  gap: $spacing-sm;
-  margin-top: $spacing-lg;
-
-  @include from($bp-desktop) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.sg-step {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-sm;
-  padding: $spacing-md;
-  border: 1px solid rgba($color-white, 0.14);
-  border-radius: $radius-lg;
-  background: rgba($color-white, 0.05);
-
-  h3,
-  p {
-    margin: 0;
-  }
-}
-
-.sg-step__num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: $color-mint;
-  font-weight: 700;
-  color: $color-dark;
-}
-
-.sg-step__title {
-  font-size: 1.15rem;
-  color: $color-white;
-}
-
-.sg-step__text {
-  font-size: $fs-small;
-  color: rgba($color-white, 0.82);
-}
-
-// Tarif horaire dégressif : trois colonnes de hauteur décroissante.
-.sg-hours {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: end;
-  gap: 0.5rem;
-  height: 100px;
-  margin-top: auto;
-
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 0.35rem;
-    height: 100%;
-  }
-
-  i {
-    display: block;
-    border-radius: 6px 6px 3px 3px;
-    background: linear-gradient(180deg, $color-mint, rgba($color-mint, 0.45));
-  }
-
-  span {
-    font-size: 0.7rem;
-    font-weight: 600;
-    line-height: 1.2;
-    text-align: center;
-    color: rgba($color-white, 0.82);
-  }
-}
-
-.sg-hours__caption {
-  font-size: 0.72rem !important;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: $color-mint !important;
-}
-
-.sg-formulas,
-.sg-options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin: 0;
-  padding: 0;
-
-  li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: $spacing-xs;
-    padding: 0.7rem 0.9rem;
-    border: 1px solid rgba($color-white, 0.12);
-    border-radius: $radius-md;
-    background: rgba($color-white, 0.06);
-    font-size: $fs-small;
-    line-height: 1.35;
-    color: rgba($color-white, 0.9);
-  }
-
-  b {
-    flex-shrink: 0;
-    padding: 0.2em 0.7em;
-    border-radius: 999px;
-    background: $color-mint;
-    font-size: 0.75rem;
-    color: $color-dark;
-  }
-}
-
-.sg-options b {
-  padding: 0;
-  background: none;
-  font-size: 0.8125rem;
-  color: $color-mint;
-}
-
-.sg-step__note {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: auto !important;
-  font-size: $fs-small;
-  font-weight: 600;
-  color: $color-mint;
-}
-
-.sg-step__note-icon {
-  display: inline-flex;
-
-  svg {
-    width: 18px;
-    height: 18px;
+  li::marker {
+    color: $color-primary-dark;
   }
 }
