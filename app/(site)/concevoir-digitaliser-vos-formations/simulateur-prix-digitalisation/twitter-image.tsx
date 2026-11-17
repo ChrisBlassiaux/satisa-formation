@@ -1,7 +1,7 @@
 import { renderOgImage, ogTitle, OG_SIZE, OG_CONTENT_TYPE } from "@/components/OgImage";
 import { metadata } from "./page";
 
-export const alt = "Simulateur de prix de formation e-learning - Satisa Formation";
+export const alt = "Calculateur de coût e-learning - Satisa Formation";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

@@ -8,18 +8,21 @@ import FaqList from "@/components/FaqList";
 import LinkArrow from "@/components/LinkArrow";
 import SimulatorGuide from "@/components/SimulatorGuide";
 
-const TITLE = "Simulateur de prix de formation e-learning - Satisa Formation";
+const TITLE = "Calculateur de coût e-learning - Satisa Formation";
 const DESCRIPTION =
-  "Estimez en 1 minute le prix de la digitalisation de votre formation en e-learning ou en blended learning : formule recommandée et détail du tarif en € HT, sans engagement.";
+  "Calculez gratuitement le prix de votre formation e-learning ou blended : recevez votre tarif en 1 minute, sans inscription ni engagement.";
+// Description des aperçus de partage (LinkedIn, Facebook, WhatsApp…) : plus directe que celle de Google.
+const SHARE_DESCRIPTION =
+  "Quelques questions, un tarif en euros HT affiché immédiatement pour votre formation e-learning ou blended learning. Sans inscription, sans engagement.";
 const URL = `https://www.satisa-formation.fr${ROUTES.formationsSimulateur}`;
 
 export const metadata: Metadata = {
-  title: "Simulateur de prix de formation e-learning",
+  title: "Calculateur de coût e-learning",
   description: DESCRIPTION,
   alternates: { canonical: URL },
   openGraph: {
     title: TITLE,
-    description: DESCRIPTION,
+    description: SHARE_DESCRIPTION,
     url: URL,
     siteName: "Satisa Formation",
     locale: "fr_FR",
@@ -28,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: TITLE,
-    description: DESCRIPTION,
+    description: SHARE_DESCRIPTION,
   },
 };
 
