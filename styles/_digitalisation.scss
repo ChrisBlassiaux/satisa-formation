@@ -34,6 +34,8 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
   }
 }
 
+$dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+
 // ---------- Bandeau sous l'en-tête : renvoi vers le simulateur de prix ----------
 .dg-banner {
   // Reste accroché sous la barre de navigation quand on défile. L'offset est la hauteur de l'en-tête moins sa
@@ -55,6 +57,7 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
   justify-content: space-between;
   gap: $spacing-sm;
   padding-block: 0.45rem;
+  transition: padding-block $dg-banner-ease, gap $dg-banner-ease;
 
   @include from($bp-tablet) {
     flex-wrap: wrap;
@@ -66,6 +69,7 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
 
 .dg-banner__text {
   margin: 0;
+  transition: font-size $dg-banner-ease;
   font-size: $fs-small;
   font-weight: 600;
   line-height: 1.25;
@@ -95,6 +99,7 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
   display: inline-block;
   width: 1.35em;
   height: 1.35em;
+  transition: width $dg-banner-ease, height $dg-banner-ease, margin $dg-banner-ease;
   margin-right: 0.45em;
   vertical-align: -0.3em;
   color: #fecc01;
@@ -269,6 +274,49 @@ $dg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vie
   flex-shrink: 0;
   padding: 0.4em 1.1em;
   font-size: $fs-small;
+  transition:
+    padding $dg-banner-ease,
+    font-size $dg-banner-ease,
+    border-radius $dg-banner-ease,
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+// Version compacte (page défilée) : le bandeau, le texte et le bouton rétrécissent en douceur.
+.dg-banner--compact {
+  .dg-banner__inner {
+    padding-block: 0.2rem;
+
+    @include from($bp-tablet) {
+      padding-block: 0.25rem;
+    }
+  }
+
+  .dg-banner__text {
+    font-size: 0.8125rem;
+  }
+
+  .dg-banner__sparkle {
+    width: 1.15em;
+    height: 1.15em;
+  }
+
+  .btn.dg-banner__cta {
+    padding: 0.22em 0.85em;
+    font-size: 0.8125rem;
+    border-radius: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-banner__inner,
+  .dg-banner__text,
+  .dg-banner__sparkle,
+  .btn.dg-banner__cta {
+    transition: none;
+  }
 }
 
 // ---------- Formules : panneaux dans le style des deux axes ----------

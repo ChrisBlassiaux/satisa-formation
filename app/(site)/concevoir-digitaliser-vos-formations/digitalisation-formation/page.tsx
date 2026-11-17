@@ -14,6 +14,7 @@ import {
 } from "@/lib/formations";
 import FaqList from "@/components/FaqList";
 import LinkArrow from "@/components/LinkArrow";
+import SimulatorBanner from "@/components/SimulatorBanner";
 
 const TITLE = "Digitalisation de formation : e-learning et LMS - Satisa Formation";
 const DESCRIPTION =
@@ -232,22 +233,7 @@ export default function DigitalisationPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(FAQ_DIGITALISATION)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }} />
 
-      <aside className="dg-banner" aria-label="Simulateur de prix">
-        <div className="container dg-banner__inner">
-          <p className="dg-banner__text">
-            <svg className="dg-banner__sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path className="dg-banner__sparkle-main" d="M10 4l1.9 5.1L17 11l-5.1 1.9L10 18l-1.9-5.1L3 11l5.1-1.9z" />
-              <path className="dg-banner__sparkle-small" d="M18.5 2l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" />
-              <path className="dg-banner__sparkle-tiny" d="M18 15l.6 1.6 1.6.6-1.6.6L18 19.4l-.6-1.6-1.6-.6 1.6-.6z" />
-            </svg>
-            <span className="dg-banner__short">Estimez votre prix en 1 minute</span>
-            <span className="dg-banner__long">Combien coûte votre projet de digitalisation ? Estimez-le en 1 minute.</span>
-          </p>
-          <Link href={ROUTES.formationsSimulateur} className="btn btn--primary dg-banner__cta">
-            Calculer mon tarif <LinkArrow />
-          </Link>
-        </div>
-      </aside>
+      <SimulatorBanner />
 
       <section className="hero-page hero-page--formations hero-page--wide-h1">
         <div className="container hero-page__layout">
