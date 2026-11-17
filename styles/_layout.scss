@@ -150,6 +150,20 @@
     border-bottom-left-radius: $radius-sm;
   }
 
+  // Pastille d'ancrage au sommet du trait : elle rattache visuellement le bouton à « Digitalisation ».
+  &::after {
+    content: '';
+    position: absolute;
+    // Centrée sur le trait (2 px de large) et sur son extrémité haute : le trait part du centre de la pastille,
+    // qui chevauche le bord bas du lien parent.
+    left: -2px;
+    top: calc(-#{$spacing-xs} - 3px);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $color-primary;
+  }
+
   .nav__submenu-link--button {
     margin-top: 0;
   }

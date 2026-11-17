@@ -17,6 +17,19 @@ h4 {
   letter-spacing: -0.01em;
 }
 
+// Respiration sous les titres, pour qu'un titre ne soit jamais collé au texte qui le suit. Proportionnelle à la
+// taille du titre ; sans effet quand le titre termine son bloc (c'est alors le bloc qui gère l'espace).
+h1,
+h2,
+h3,
+h4 {
+  margin-bottom: 0.35em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 h1 {
   font-size: $fs-h1;
 }
@@ -77,6 +90,11 @@ section {
 
 .text-center {
   text-align: center;
+}
+
+// Empêche un mot composé (ex. « e-learning ») de se couper au tiret en fin de ligne.
+.nowrap {
+  white-space: nowrap;
 }
 
 .section-head {
