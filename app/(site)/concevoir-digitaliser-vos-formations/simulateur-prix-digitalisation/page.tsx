@@ -6,7 +6,6 @@ import { DIGITALISATION_PLANS, breadcrumbJsonLd, faqJsonLd, type FaqItem } from 
 import DigitalisationSimulator from "@/components/DigitalisationSimulator";
 import FaqList from "@/components/FaqList";
 import LinkArrow from "@/components/LinkArrow";
-import SimulatorGuide from "@/components/SimulatorGuide";
 
 const TITLE = "Calculateur de coût e-learning - Satisa Formation";
 const DESCRIPTION =
@@ -76,6 +75,106 @@ const sansAsterisque = (texte: string) => texte.replace(/\*/g, "");
 // Même motif de points que sur la page de vente : plus dense à mesure que la formule prend en charge.
 const MARK_DENSITY = ["sparse", "medium", "dense"];
 
+// Schéma « ce que contient une heure d'e-learning » : ce que suit l'apprenant, et ce qui est produit en amont.
+const LEARNER_ITEMS = [
+  "Lectures et capsules vidéo",
+  "Capsules pédagogiques interactives",
+  "Activités et exercices",
+  "Quiz et évaluations",
+  "Consignes et synthèses",
+];
+
+const UPSTREAM_ITEMS = [
+  "Scénarisation et storyboard",
+  "Rédaction des contenus",
+  "Scripts et montage vidéo",
+  "Activités et leurs corrections",
+  "Intégration et paramétrage",
+  "Tests fonctionnels",
+  "Relectures et validations",
+];
+
+const PRICE_CRITERIA = [
+  {
+    title: "La durée du parcours",
+    text: "C'est le premier facteur : plus il y a d'heures d'e-learning à produire, plus le budget augmente, même si beaucoup de prestataires appliquent un tarif dégressif.",
+  },
+  {
+    title: "L'état de vos contenus",
+    text: "Des vidéos finies ou un cours déjà rédigé pour l'apprenant se mettent en ligne rapidement. Des diaporamas de formateur ou des notes demandent d'être réécrits. Sans aucun support, tout est à créer.",
+  },
+  {
+    title: "Qui apporte le savoir",
+    text: "Si un expert de votre équipe peut transmettre le contenu, le prestataire se concentre sur la mise en forme. Sinon, il doit faire appel à un expert du sujet, un formateur par exemple, pour produire le contenu : c'est un coût en plus.",
+  },
+  {
+    title: "Les vidéos",
+    text: "Le tournage, le montage, l'animation ou le motion design pèsent lourd. Une capsule filmée par votre équipe coûte bien moins qu'une vidéo produite par un studio.",
+  },
+  {
+    title: "Le niveau d'interactivité",
+    text: "Des quiz et des exercices classiques restent abordables. Des mises en situation à embranchements, des simulations ou un jeu sérieux demandent beaucoup plus de conception.",
+  },
+];
+
+const QUOTE_QUESTIONS = [
+  {
+    question: "Sur quoi porte le prix : la durée de formation pour l'apprenant, ou seulement les minutes de vidéo ?",
+    why: "Une heure de formation en ligne contient aussi des lectures, des exercices et des quiz, pas seulement des vidéos",
+  },
+  {
+    question: "Qui rédige le contenu : votre expert ou le prestataire ?",
+    why: "C'est souvent une grosse part du travail",
+  },
+  {
+    question: "Les vidéos sont-elles incluses ? Qui tourne, qui monte ?",
+    why: "Le tournage et le montage changent fortement le prix",
+  },
+  {
+    question: "Les quiz, exercices et évaluations sont-ils inclus ?",
+    why: "Certains devis ne couvrent que la mise en forme",
+  },
+  {
+    question: "L'intégration dans votre plateforme est-elle comprise ?",
+    why: "Elle est parfois facturée à part",
+  },
+  {
+    question: "Combien de cycles de relecture sont prévus ?",
+    why: "Sans limite écrite, les allers-retours dérapent",
+  },
+  {
+    question: "Que se passe-t-il si la durée réelle change ?",
+    why: "Un devis sérieux prévoit une règle d'ajustement",
+  },
+  {
+    question: "Un module pilote est-il prévu ?",
+    why: "Il permet de juger sur pièce avant de tout produire",
+  },
+];
+
+const PRICING_MODES = [
+  {
+    mode: "À l'heure d'e-learning",
+    principle: "Un prix par heure de formation suivie par l'apprenant.",
+    check: "Ce que comprend une heure : seulement des vidéos, ou aussi des lectures, des exercices et des quiz.",
+  },
+  {
+    mode: "Au module",
+    principle: "Un prix par module, quelle que soit sa longueur.",
+    check: "La durée et le contenu d'un module, qui varient d'un prestataire à l'autre.",
+  },
+  {
+    mode: "À la minute de vidéo",
+    principle: "Un prix par minute de vidéo produite.",
+    check: "Ce qui entoure la vidéo : activités, quiz, intégration.",
+  },
+  {
+    mode: "Au forfait",
+    principle: "Un prix global pour le projet.",
+    check: "Le périmètre exact et ce qui se passe si le volume change.",
+  },
+];
+
 export default function SimulateurPrixPage() {
   return (
     <>
@@ -117,7 +216,211 @@ export default function SimulateurPrixPage() {
         </div>
       </section>
 
-      <SimulatorGuide />
+      <section>
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Repères</p>
+            <h2>Ce que contient une heure d&apos;e-learning</h2>
+          </div>
+          <figure className="sim-schema">
+            <figcaption className="sim-schema__title">
+              Une heure d&apos;e-learning repose sur bien plus que ce que voit l&apos;apprenant
+            </figcaption>
+            <div className="sim-schema__grid">
+              <div className="sim-schema__panel">
+                <h3 className="sim-schema__heading">Ce que suit l&apos;apprenant (1&nbsp;h)</h3>
+                <ul className="sim-schema__list">
+                  {LEARNER_ITEMS.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="sim-schema__link" aria-hidden="true">
+                <span className="sim-schema__link-label">pour</span>
+                <svg className="sim-schema__arrow" viewBox="0 0 48 16" fill="none">
+                  <path d="M47 8H3M10 1.5L3 8l7 6.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <div className="sim-schema__panel sim-schema__panel--accent">
+                <h3 className="sim-schema__heading">Ce que nous produisons en amont</h3>
+                <ul className="sim-schema__list">
+                  {UPSTREAM_ITEMS.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </figure>
+          <div className="sim-prose">
+            <p>
+              Une heure d&apos;e-learning, c&apos;est une heure de formation suivie par l&apos;apprenant, pas une heure de
+              vidéo. Elle mélange des lectures, des capsules vidéo, des capsules pédagogiques interactives, des activités,
+              des quiz et des évaluations, reliés par des consignes et des synthèses.
+            </p>
+            <p>
+              Pour que cette heure fonctionne sans formateur, tout doit être préparé en amont : le parcours est scénarisé,
+              chaque écran est décrit dans un storyboard, les contenus sont rédigés, les vidéos scriptées et montées, les
+              activités créées avec leurs corrections, puis tout est intégré, testé et relu. C&apos;est ce travail
+              invisible qui fait la qualité d&apos;un module, et qui explique son prix.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Critères de prix</p>
+            <h2>Ce qui fait varier le prix d&apos;un module e-learning</h2>
+            <p>Quel que soit le prestataire, cinq critères font varier le prix d&apos;une formation e-learning.</p>
+          </div>
+          <ol className="sim-criteria">
+            {PRICE_CRITERIA.map((criterion, index) => (
+              <li key={criterion.title} className="sim-criteria__item">
+                <span className="sim-criteria__num" aria-hidden="true">{index + 1}</span>
+                <div>
+                  <h3 className="sim-criteria__title">{criterion.title}</h3>
+                  <p className="sim-criteria__text">{criterion.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="sim-prose">
+            <p>
+              S&apos;y ajoutent souvent des prestations autour du contenu : le séquençage de la formation, la
+              configuration de la plateforme (LMS), la formation de vos équipes et l&apos;accompagnement après la mise en
+              ligne.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Comparer</p>
+            <h2>Comment comparer deux devis e-learning&nbsp;?</h2>
+            <p>
+              Deux devis peuvent afficher des prix très différents pour le même projet, simplement parce qu&apos;ils ne
+              couvrent pas la même chose. Avant de comparer les montants, comparez ce qu&apos;ils incluent.
+            </p>
+          </div>
+          <div className="sim-table-wrap">
+            <table className="sim-table">
+              <thead>
+                <tr>
+                  <th scope="col">Question à poser</th>
+                  <th scope="col">Pourquoi elle compte</th>
+                </tr>
+              </thead>
+              <tbody>
+                {QUOTE_QUESTIONS.map((row) => (
+                  <tr key={row.question}>
+                    <th scope="row">{row.question}</th>
+                    <td data-label="Pourquoi elle compte">{row.why}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="sim-prose">
+            <p>
+              Un devis plus cher qui inclut la rédaction, les évaluations et l&apos;intégration peut coûter moins au final
+              qu&apos;un devis bas qui les facture en supplément.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Durée</p>
+            <h2>E-learning ou blended : bien estimer le nombre d&apos;heures</h2>
+          </div>
+          <div className="sim-prose">
+            <p>
+              En 100&nbsp;% e-learning, tout le parcours est produit en ligne : le budget suit la durée totale. En
+              blended, seules certaines séquences passent en ligne (apports, exercices individuels, évaluations), le reste
+              se fait en présentiel ou en classe virtuelle.
+            </p>
+            <p>
+              Dans les deux cas, une heure de présentiel ne fait pas une heure d&apos;e-learning : en ligne, l&apos;apprenant
+              va droit au contenu. Elle donne généralement moins d&apos;une heure en ligne, et c&apos;est le séquençage qui
+              fixe la durée réelle.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Modes de tarification</p>
+            <h2>Les 4 façons de fixer le prix d&apos;une formation e-learning</h2>
+            <p>Aucune n&apos;est meilleure que les autres : l&apos;important est de savoir ce qu&apos;elle couvre.</p>
+          </div>
+          <div>
+            {PRICING_MODES.map((item) => (
+              <details key={item.mode} className="faq-item">
+                <summary className="faq-item__question">
+                  {item.mode}
+                  <span className="faq-item__icon" aria-hidden="true"></span>
+                </summary>
+                <div className="faq-item__answer sim-mode">
+                  <p>
+                    <strong>Principe :</strong> {item.principle}
+                  </p>
+                  <p>
+                    <strong>Ce qu&apos;il faut vérifier :</strong> {item.check}
+                  </p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Méthode de calcul</p>
+            <h2>Comment est calculé le prix chez Satisa ?</h2>
+            <p>
+              Le simulateur applique la même méthode que nos devis : le prix dépend de ce que vous apportez. Le résultat
+              est indicatif ; le prix final est confirmé après un échange et le séquençage de votre formation.
+            </p>
+          </div>
+          <div className="dg-benefits dg-benefits--3">
+            <div className="dg-benefit">
+              <span className="dg-benefit__icon" aria-hidden="true">1</span>
+              <h3 className="dg-benefit__title">Vos heures d&apos;e-learning</h3>
+              <p className="dg-benefit__text">
+                Le prix part du nombre d&apos;heures d&apos;e-learning à produire, avec un minimum de 20 heures. Le tarif
+                horaire baisse au-delà de 20 heures, puis au-delà de 40 heures.
+              </p>
+            </div>
+            <div className="dg-benefit">
+              <span className="dg-benefit__icon" aria-hidden="true">2</span>
+              <h3 className="dg-benefit__title">L&apos;état de vos contenus</h3>
+              <ul className="sim-benefit-list">
+                <li>Contenus prêts à l&apos;emploi : formule Essentielle.</li>
+                <li>Pas prêts, mais un référent métier peut transmettre le savoir : formule Co-construite.</li>
+                <li>Ni contenus prêts, ni référent disponible : formule Complète, Satisa prend tout en charge.</li>
+              </ul>
+            </div>
+            <div className="dg-benefit">
+              <span className="dg-benefit__icon" aria-hidden="true">3</span>
+              <h3 className="dg-benefit__title">Les options supplémentaires</h3>
+              <p className="dg-benefit__text">
+                Selon vos réponses, le séquençage et la scénarisation (à partir de 900&nbsp;€&nbsp;HT) et la
+                configuration de la plateforme (à partir de 400&nbsp;€&nbsp;HT) s&apos;ajoutent. Ils sont inclus dans la
+                formule Complète.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section>
         <div className="container">
