@@ -856,6 +856,15 @@
   color: $color-dark;
 }
 
+.form-required {
+  color: $color-primary-dark;
+}
+
+.form-note {
+  margin: 0 0 $spacing-sm;
+  font-size: $fs-small;
+}
+
 .form-field input,
 .form-field select,
 .form-field textarea {

@@ -1,26 +1,19 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { FORMULA_OPTIONS, PROJECT_TYPES } from "@/lib/contact";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-const REQUEST_OPTIONS: Record<string, { value: string; label: string }[]> = {
-  certification: [
-    { value: "depot_rncp", label: "Dépôt RNCP" },
-    { value: "depot_rs", label: "Dépôt RS" },
-    { value: "autre", label: "Autres" },
-  ],
-  formations: [
-    { value: "conception", label: "Conception de formation" },
-    { value: "digitalisation", label: "Digitalisation de formation" },
-    { value: "autre", label: "Autres" },
-  ],
-};
+// Astérisque des champs obligatoires (masqué pour les lecteurs d'écran : l'attribut « required » suffit).
+function Required() {
+  return <span className="form-required" aria-hidden="true">*</span>;
+}
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [projectType, setProjectType] = useState("certification");
+  const [projectType, setProjectType] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -68,38 +61,44 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit}>
       <div className="form-row">
         <div className="form-field">
-          <label htmlFor="firstname">Prénom</label>
+          <label htmlFor="firstname">Prénom <Required /></label>
           <input type="text" id="firstname" name="prenom" required />
         </div>
         <div className="form-field">
-          <label htmlFor="lastname">Nom</label>
+          <label htmlFor="lastname">Nom <Required /></label>
           <input type="text" id="lastname" name="nom" required />
         </div>
       </div>
       <div className="form-field">
-        <label htmlFor="structure">Nom de structure</label>
-        <input type="text" id="structure" name="structure" />
+        <label htmlFor="structure">Nom de structure <Required /></label>
+        <input type="text" id="structure" name="structure" required />
       </div>
       <div className="form-field">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">Email <Required /></label>
         <input type="email" id="email" name="email" required />
       </div>
       <div className="form-field">
-        <label htmlFor="project-type">Type de projet</label>
+        <label htmlFor="project-type">Type de projet <Required /></label>
         <select
           id="project-type"
           name="type_projet"
+          required
           value={projectType}
           onChange={(event) => setProjectType(event.target.value)}
         >
-          <option value="certification">Ingénierie RNCP/RS</option>
-          <option value="formations">Ingénierie pédagogique et digitale</option>
+          <option value="">Choisir un type de projet</option>
+          {PROJECT_TYPES.map((type) => (
+            <option key={type.value} value={type.value}>
+              {type.label}
+            </option>
+          ))}
         </select>
       </div>
       <div className="form-field">
-        <label htmlFor="request">Votre demande</label>
-        <select id="request" name="demande">
-          {REQUEST_OPTIONS[projectType].map((option) => (
+        <label htmlFor="request">La formule souhaitée</label>
+        <select id="request" name="demande" key={projectType} defaultValue="" disabled={!projectType}>
+          <option value="">{projectType ? "Choisir une formule" : "Choisissez d'abord un type de projet"}</option>
+          {(FORMULA_OPTIONS[projectType] ?? []).map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -110,6 +109,7 @@ export default function ContactForm() {
         <label htmlFor="message">Message</label>
         <textarea id="message" name="message" rows={4} required></textarea>
       </div>
+      <p className="form-note">* Champs obligatoires</p>
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="form-honeypot" aria-hidden="true" />
       {status === "error" && <p className="form-error">{errorMessage}</p>}
       <button type="submit" className="btn btn--dark btn--block" disabled={status === "sending"}>

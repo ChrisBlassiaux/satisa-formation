@@ -1,23 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-
-const PROJECT_TYPE_LABELS: Record<string, string> = {
-  certification: "Ingénierie RNCP/RS",
-  formations: "Ingénierie pédagogique et digitale",
-};
-
-const REQUEST_LABELS: Record<string, Record<string, string>> = {
-  certification: {
-    depot_rncp: "Dépôt RNCP",
-    depot_rs: "Dépôt RS",
-    autre: "Autres",
-  },
-  formations: {
-    conception: "Conception de formation",
-    digitalisation: "Digitalisation de formation",
-    autre: "Autres",
-  },
-};
+import { PROJECT_TYPE_LABELS, formulaLabel } from "@/lib/contact";
 
 function escapeHtml(value: string) {
   return value
@@ -42,7 +25,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  if (!firstName || !lastName || !email || !message) {
+  if (!firstName || !lastName || !structureName || !email || !PROJECT_TYPE_LABELS[projectType] || !message) {
     return NextResponse.json({ error: "Merci de remplir tous les champs requis." }, { status: 400 });
   }
 
@@ -65,7 +48,7 @@ export async function POST(request: Request) {
   });
 
   const projectLabel = PROJECT_TYPE_LABELS[projectType] ?? "Non précisé";
-  const requestLabel = REQUEST_LABELS[projectType]?.[demande] ?? "Non précisé";
+  const requestLabel = formulaLabel(projectType, demande) ?? "Non précisé";
   const structureLine = structureName ? `Structure : ${structureName}\n` : "";
 
   try {
@@ -74,13 +57,13 @@ export async function POST(request: Request) {
       to: smtpUser,
       replyTo: email,
       subject: `Nouveau message du site - ${firstName} ${lastName}`,
-      text: `Nom : ${firstName} ${lastName}\n${structureLine}Email : ${email}\nType de projet : ${projectLabel}\nDemande : ${requestLabel}\n\n${message}`,
+      text: `Nom : ${firstName} ${lastName}\n${structureLine}Email : ${email}\nType de projet : ${projectLabel}\nFormule souhaitée : ${requestLabel}\n\n${message}`,
       html: `
         <p><strong>Nom :</strong> ${escapeHtml(firstName)} ${escapeHtml(lastName)}</p>
         ${structureName ? `<p><strong>Structure :</strong> ${escapeHtml(structureName)}</p>` : ""}
         <p><strong>Email :</strong> ${escapeHtml(email)}</p>
         <p><strong>Type de projet :</strong> ${escapeHtml(projectLabel)}</p>
-        <p><strong>Demande :</strong> ${escapeHtml(requestLabel)}</p>
+        <p><strong>Formule souhaitée :</strong> ${escapeHtml(requestLabel)}</p>
         <p><strong>Message :</strong></p>
         <p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
       `,
