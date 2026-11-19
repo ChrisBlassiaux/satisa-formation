@@ -403,9 +403,6 @@ function VueResultat({
           <Link href={pageDeLaFormule(resultat)} className="btn btn--outline">
             Voir cette formule
           </Link>
-          <Link href={ROUTES.contact} className="btn btn--dark">
-            Prendre un rendez-vous
-          </Link>
         </div>
       </div>
 
