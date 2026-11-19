@@ -2,6 +2,7 @@ import { ORGANIZATION_JSON_LD } from "@/lib/schema";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { TOOLS, ToolCardLink, ToolsMoreCard } from "@/components/ToolCard";
 import { ROUTES, LINKEDIN_URL } from "@/lib/routes";
 import { getAllPosts, CATEGORY_LABELS, formatPostDate } from "@/lib/posts";
 
@@ -176,6 +177,23 @@ export default async function HomePage() {
                 Voir les formules formations
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-tinted tb-section">
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">Boîte à outils</p>
+            <h2>
+              Des outils gratuits <span className="tb-section__sub">pour avancer sur votre projet</span>
+            </h2>
+          </div>
+          <div className="tb-grid tb-home">
+            {TOOLS.map((tool) => (
+              <ToolCardLink key={tool.title} tool={tool} />
+            ))}
+            <ToolsMoreCard />
           </div>
         </div>
       </section>

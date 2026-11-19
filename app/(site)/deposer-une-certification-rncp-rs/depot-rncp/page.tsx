@@ -6,6 +6,7 @@ import OfferRowChevron from "@/components/OfferRowChevron";
 import PaymentOptions from "@/components/PaymentOptions";
 import DiagnosticFaisabilite from "@/components/DiagnosticFaisabilite";
 import DepotProcess from "@/components/DepotProcess";
+import RsOuRncpBanner from "@/components/RsOuRncpBanner";
 import { serviceJsonLd } from "@/lib/schema";
 
 const TITLE = "Accompagnement au dépôt RNCP - Satisa Formation";
@@ -145,6 +146,8 @@ export default function CertificationRncpPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSON_LD) }}
       />
+
+      <RsOuRncpBanner />
 
       <section className="hero-page hero-page--certification hero-page--wide-h1">
         <div className="container hero-page__layout">

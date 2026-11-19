@@ -70,7 +70,7 @@
   top: 100%;
   left: 0;
   width: 100%;
-  min-width: 180px;
+  min-width: 17rem;
   margin-top: $spacing-xs;
   padding: $spacing-xs;
   display: flex;
@@ -167,6 +167,22 @@
   .nav__submenu-link--button {
     margin-top: 0;
   }
+}
+
+// Menu de la boîte à outils : assez large pour que les noms d'outils tiennent sur une ligne.
+.nav__submenu--wide {
+  min-width: 21rem;
+}
+
+// « Voir tous nos outils » : séparé des outils, en vert.
+.nav__submenu-item--more {
+  margin-top: 0.1rem;
+  padding-top: $spacing-xs;
+  border-top: 1px solid $color-border;
+}
+
+.nav__submenu-link--more {
+  color: $color-primary-dark;
 }
 
 .btn.site-header__cta {
@@ -271,6 +287,11 @@
   font-weight: 700;
   color: $color-dark;
   text-align: left;
+}
+
+.mobile-nav__link--more {
+  font-weight: 700;
+  color: $color-primary-dark;
 }
 
 // Même décalage que sur ordinateur, sans le trait de liaison.

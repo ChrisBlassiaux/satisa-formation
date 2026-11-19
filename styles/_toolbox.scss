@@ -1,0 +1,291 @@
+@use 'variables' as *;
+
+// Page « Boîte à outils » (préfixe tb-) : une carte par outil, avec un aperçu en haut.
+.tb-grid {
+  display: grid;
+  gap: $spacing-md;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tb-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+  box-shadow: 0 1px 2px rgba($color-dark, 0.05), 0 8px 24px rgba($color-dark, 0.06);
+
+  h3,
+  p {
+    margin: 0;
+  }
+}
+
+.tb-card--soon {
+  border-style: dashed;
+  background: $color-surface;
+  box-shadow: none;
+}
+
+// Cadre de l'aperçu : le fond reprend celui de l'image pour qu'elle s'y fonde sans bord visible.
+.tb-card__media {
+  position: relative;
+  aspect-ratio: 2.1 / 1;
+  background: $color-mint-light;
+
+  img {
+    object-fit: contain;
+    padding: 0.6rem;
+  }
+}
+
+.tb-card__media--dark {
+  background: $color-dark;
+
+  img {
+    padding: 0;
+  }
+}
+
+// Image détourée : menthe de la charte, plus soutenu que le fond menthe clair de la section.
+.tb-card__media--mint {
+  background: $color-mint;
+}
+
+// Carte « idée » : pas d'aperçu, le motif de points du site à la place.
+.tb-card__media--soon {
+  overflow: hidden;
+  background: $color-mint-light;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba($color-primary-dark, 0.35) 2px, transparent 2.5px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(circle at 100% 0, #000 20%, transparent 80%);
+    mask-image: radial-gradient(circle at 100% 0, #000 20%, transparent 80%);
+  }
+}
+
+.tb-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  padding: $spacing-lg;
+}
+
+.tb-card__tag {
+  padding: 0.25em 0.8em;
+  border-radius: $radius-sm;
+  background: $color-mint-light;
+  font-size: $fs-small;
+  font-weight: 700;
+  color: $color-teal-dark;
+}
+
+.tb-card__title {
+  margin-top: $spacing-xs !important;
+  font-size: 1.35rem;
+  color: $color-dark;
+}
+
+.tb-card__text {
+  font-size: $fs-small;
+}
+
+.tb-card__meta {
+  margin-bottom: $spacing-sm !important;
+  font-size: $fs-small;
+  font-weight: 600;
+  color: $color-primary-dark;
+}
+
+// Le bouton reste en bas : les cartes d'une même rangée restent alignées.
+.tb-card__cta {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+// ----- Section de la page d'accueil : compacte, trois cartes cliquables -----
+.tb-section {
+  padding-block: $spacing-lg;
+
+  .section-head {
+    max-width: none;
+    margin-bottom: $spacing-md;
+  }
+}
+
+.tb-home {
+  gap: $spacing-sm;
+}
+
+// Titre sur deux lignes : la seconde moitié passe sous « Des outils gratuits », en vert de la charte comme
+// la fin du titre du bandeau d'accueil (.hero__intro h1 .accent).
+.tb-section__sub {
+  display: block;
+  color: $color-primary-dark;
+}
+
+// Carte entièrement cliquable : pas de bouton, un léger renforcement de l'ombre au survol.
+.tb-card--link {
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    border-color: rgba($color-primary-dark, 0.35);
+    box-shadow: 0 2px 4px rgba($color-dark, 0.06), 0 14px 36px rgba($color-dark, 0.12);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba($color-primary, 0.5);
+    outline-offset: 2px;
+  }
+
+  .tb-card__media {
+    aspect-ratio: 3.2 / 1;
+
+    img {
+      padding: 0;
+    }
+  }
+
+  .tb-card__body {
+    gap: 0.35rem;
+    padding: $spacing-md;
+  }
+
+  .tb-card__title {
+    margin-top: 0.25rem !important;
+    font-size: 1.2rem;
+  }
+
+  .tb-card__meta {
+    margin-bottom: 0 !important;
+  }
+}
+
+.tb-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+  padding-top: $spacing-xs;
+}
+
+// Petite flèche ronde : c'est elle qui signale que toute la carte se clique.
+.tb-card__go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.tb-card__arrow {
+  transition: transform 0.2s ease;
+}
+
+// Au survol, la flèche avance seulement de 2 px.
+.tb-card--link:hover .tb-card__arrow {
+  transform: translateX(2px);
+}
+
+.tb-card--link:hover .tb-card__go {
+  background: $color-primary-dark;
+  color: $color-white;
+}
+
+// Troisième carte : fond foncé et motif de points du site, pour qu'on voie tout de suite que c'est l'appel à l'action.
+.tb-card--more {
+  position: relative;
+  isolation: isolate;
+  justify-content: flex-end;
+  border-color: $color-dark;
+  background: $color-dark;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    z-index: -1;
+    width: 200px;
+    height: 150px;
+    background-image: radial-gradient(circle, rgba($color-mint, 0.4) 2px, transparent 2.5px);
+    background-size: 16px 16px;
+    -webkit-mask-image: radial-gradient(circle at 100% 0, #000 20%, transparent 75%);
+    mask-image: radial-gradient(circle at 100% 0, #000 20%, transparent 75%);
+  }
+
+  .tb-card__body {
+    flex: 0 0 auto;
+    margin-top: auto;
+  }
+
+  .tb-card__tag {
+    background: rgba($color-white, 0.14);
+    color: $color-mint;
+  }
+
+  .tb-card__title {
+    color: $color-white;
+  }
+
+  .tb-card__text {
+    color: rgba($color-white, 0.82);
+  }
+
+  .tb-card__meta {
+    color: $color-mint;
+  }
+
+  .tb-card__go {
+    background: $color-mint;
+    color: $color-dark;
+  }
+
+  &:hover {
+    border-color: $color-dark;
+  }
+
+  &:hover .tb-card__go {
+    background: $color-white;
+    color: $color-dark;
+  }
+}
+
+@include from($bp-tablet) {
+  // En deux colonnes, la carte d'appel passe sur toute la largeur plutôt que de rester seule en bas.
+  .tb-home .tb-card--more {
+    grid-column: 1 / -1;
+  }
+}
+
+@include from($bp-desktop) {
+  .tb-home .tb-card--more {
+    grid-column: auto;
+  }
+}

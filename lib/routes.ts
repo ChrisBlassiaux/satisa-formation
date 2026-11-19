@@ -8,6 +8,7 @@ export const ROUTES = {
   formationsConception: "/concevoir-digitaliser-vos-formations/conception-pedagogique",
   formationsDigitalisation: "/concevoir-digitaliser-vos-formations/digitalisation-formation",
   formationsSimulateur: "/concevoir-digitaliser-vos-formations/simulateur-prix-digitalisation",
+  tools: "/boite-a-outils",
   about: "/a-propos",
   blog: "/blog",
   contact: "/rendez-vous",
@@ -19,7 +20,7 @@ export const ROUTES = {
 export const MAIN_NAV_LINKS = [
   {
     href: ROUTES.certification,
-    label: "Déposer une certification RNCP/RS",
+    label: "Certification RNCP/RS",
     children: [
       { href: ROUTES.certificationRncp, label: "Dépôt RNCP" },
       { href: ROUTES.certificationRs, label: "Dépôt RS" },
@@ -27,14 +28,24 @@ export const MAIN_NAV_LINKS = [
   },
   {
     href: ROUTES.formations,
-    label: "Concevoir et digitaliser vos formations",
+    label: "Formations et digital",
     children: [
       { href: ROUTES.formationsConception, label: "Conception pédagogique" },
       { href: ROUTES.formationsDigitalisation, label: "Digitalisation" },
-      // Bouton foncé, décalé sous « Digitalisation » (avec un trait de liaison) : il ne concerne que la digitalisation.
-      { href: ROUTES.formationsSimulateur, label: "Calculer mon tarif", button: true, nested: true },
     ],
   },
+  {
+    href: ROUTES.tools,
+    label: "Boîte à outils",
+    wide: true,
+    // Les deux outils les plus stratégiques, puis le lien vers la page qui les réunit tous.
+    children: [
+      { href: ROUTES.formationsSimulateur, label: "Simulateur de prix e-learning" },
+      { href: ROUTES.certificationRsOuRncp, label: "Test RS ou RNCP" },
+      { href: ROUTES.tools, label: "Voir tous nos outils", more: true },
+    ],
+  },
+  { href: ROUTES.blog, label: "Blog" },
   { href: ROUTES.about, label: "À propos" },
 ] as const;
 

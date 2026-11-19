@@ -59,11 +59,14 @@ export default function Header() {
                   {link.label}
                 </Link>
                 {"children" in link && (
-                  <ul className={`nav__submenu${submenuForceClosed ? " nav__submenu--force-closed" : ""}`}>
+                  <ul className={`nav__submenu${"wide" in link ? " nav__submenu--wide" : ""}${submenuForceClosed ? " nav__submenu--force-closed" : ""}`}>
                     {link.children.map((child) => (
-                      <li key={child.href} className={"nested" in child ? "nav__submenu-item--nested" : undefined}>
+                      <li
+                        key={child.href}
+                        className={"nested" in child ? "nav__submenu-item--nested" : "more" in child ? "nav__submenu-item--more" : undefined}
+                      >
                         <Link
-                          className={`nav__submenu-link${"button" in child ? " nav__submenu-link--button" : ""}`}
+                          className={`nav__submenu-link${"button" in child ? " nav__submenu-link--button" : ""}${"more" in child ? " nav__submenu-link--more" : ""}`}
                           href={child.href}
                           aria-current={isActive(child.href) ? "page" : undefined}
                           onClick={closeSubmenu}
@@ -106,7 +109,7 @@ export default function Header() {
               link.children.map((child) => (
                 <Link
                   key={child.href}
-                  className={`mobile-nav__link mobile-nav__link--child${"button" in child ? " mobile-nav__link--button" : ""}${"nested" in child ? " mobile-nav__link--nested" : ""}`}
+                  className={`mobile-nav__link mobile-nav__link--child${"button" in child ? " mobile-nav__link--button" : ""}${"nested" in child ? " mobile-nav__link--nested" : ""}${"more" in child ? " mobile-nav__link--more" : ""}`}
                   href={child.href}
                 >
                   {child.label}
@@ -114,9 +117,6 @@ export default function Header() {
               ))}
           </div>
         ))}
-        <Link className="mobile-nav__link" href={ROUTES.blog}>
-          Blog
-        </Link>
         <Link href={ROUTES.contact} className="btn btn--dark btn--block mobile-nav__cta">
           Prendre contact
         </Link>
