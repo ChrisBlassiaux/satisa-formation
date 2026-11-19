@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# données locales de l'outil « RS ou RNCP ? » (journal de développement, jamais versionné)
+/.data/

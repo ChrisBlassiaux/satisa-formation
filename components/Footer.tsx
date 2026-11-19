@@ -17,6 +17,7 @@ export default function Footer() {
             <h3>Offres</h3>
             <ul>
               <li><Link href={ROUTES.certification}>Certification RNCP/RS</Link></li>
+              <li><Link href={ROUTES.certificationRsOuRncp}>Test gratuit : RS ou RNCP ?</Link></li>
               <li><Link href={ROUTES.formations}>Formations et digital</Link></li>
             </ul>
           </div>

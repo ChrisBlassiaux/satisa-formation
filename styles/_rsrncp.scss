@@ -1,0 +1,499 @@
+@use 'variables' as *;
+
+// Outil « RS ou RNCP ? » (préfixe rsr-). Il réutilise le cadre et les contrôles du simulateur (.sim*) ; seuls
+// les éléments propres à ce test sont définis ici.
+
+// Bleu ciel clair du test gratuit : il distingue ce test (clair) du simulateur de prix de digitalisation (bleu nuit).
+$rsr-ciel: $color-mint;
+$rsr-ciel-clair: $color-mint-light;
+
+// ---------- Bandeau de la page « Déposer une certification » : même bandeau que celui du simulateur, en bleu ciel ----------
+.dg-banner--ciel {
+  background: $rsr-ciel;
+  color: $color-dark;
+
+  .dg-banner__text {
+    color: $color-dark;
+  }
+
+  .dg-banner__sparkle {
+    color: $color-primary-dark;
+  }
+}
+
+// ---------- Couverture de la page du test : fond bleu ciel clair, même mise en page que le simulateur de prix ----------
+.rsr-cover {
+  position: relative;
+  // « clip » rogne l'image sans rendre la section défilable.
+  overflow: hidden;
+  overflow: clip;
+  padding-block: $spacing-xl;
+  background: linear-gradient(180deg, $rsr-ciel 0%, $rsr-ciel-clair 60%, $rsr-ciel-clair 100%);
+  color: $color-dark;
+
+  @include from($bp-tablet) {
+    padding-block: $spacing-2xl;
+  }
+
+  .sim-cover__text {
+    // Texte sombre sur fond clair : on remplace l'ombre sombre du simulateur par un léger halo clair.
+    text-shadow: 0 1px 14px rgba($rsr-ciel-clair, 0.9);
+
+    .sim-intro__title {
+      max-width: 22ch;
+      color: $color-dark;
+      font-size: clamp(2rem, 4.6vw, 3.6rem);
+
+      @include from($bp-tablet) {
+        white-space: normal;
+      }
+    }
+
+    .sim-intro__lead {
+      max-width: 62ch;
+      color: rgba($color-dark, 0.85);
+    }
+  }
+
+  .sim-intro__eyebrow {
+    color: $color-primary-dark;
+
+    &::before {
+      background: $color-primary-dark;
+    }
+  }
+
+  .sim-intro__points li {
+    color: $color-dark;
+
+    &::before {
+      background: $color-primary-dark;
+    }
+  }
+
+  // Aperçu en arrière-plan : cartes blanches sur fond clair, donc plus estompé que sur le fond sombre du simulateur.
+  .sim-cover__visual {
+    opacity: 0.2;
+    // Décalé vers la droite : les cartes restent surtout derrière l'espace libre, le texte à gauche reste net.
+    left: 62%;
+  }
+
+  // Le test est le héros de la page : grand encadré centré, plus large que celui du simulateur.
+  .dg-sim__tool {
+    margin-top: $spacing-lg;
+  }
+
+  .sim {
+    max-width: 860px;
+    border-color: rgba($color-dark, 0.16);
+    box-shadow: 0 28px 70px rgba($color-dark, 0.22);
+  }
+
+  .sim__head {
+    padding: $spacing-md $spacing-md;
+
+    @include from($bp-tablet) {
+      padding: 1.75rem 2rem;
+    }
+
+    .sim__title {
+      font-size: 1.5rem;
+    }
+  }
+
+  .sim__body {
+    @include from($bp-tablet) {
+      padding: 2rem;
+    }
+  }
+}
+
+// Écran d'accueil du test, dans la couverture : titre plus grand et gros bouton « Commencer le test ».
+.rsr-cover .rsr-intro {
+  .sim__step-title {
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+
+  .sim__sub {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.9em 2.2em;
+    font-size: 1.1rem;
+  }
+}
+
+// ---------- Écran d'accueil ----------
+.rsr-promesses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs $spacing-md;
+  margin: 0 0 $spacing-md;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-weight: 600;
+    color: $color-dark;
+  }
+
+  li::before {
+    content: '';
+    position: absolute;
+    top: 0.3em;
+    left: 0;
+    width: 1rem;
+    height: 1rem;
+    background: $color-primary-dark;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+}
+
+// ---------- Questions ----------
+.rsr-compteur {
+  margin: 0 0 $spacing-sm;
+  font-size: $fs-small;
+  font-weight: 600;
+  color: $color-muted;
+}
+
+.rsr-question {
+  margin-bottom: $spacing-sm;
+}
+
+// Le titre de la question est un titre (h2) placé dans la légende : on neutralise sa mise en forme par défaut.
+.rsr-question__titre {
+  margin: 0 0 $spacing-sm;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  color: $color-dark;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+}
+
+.rsr-options {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.rsr-option span {
+  line-height: 1.4;
+}
+
+.rsr-pourquoi {
+  margin-bottom: $spacing-xs;
+  font-size: $fs-small;
+
+  summary {
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 600;
+    color: $color-primary-dark;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  summary:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    padding: 0.6rem 0.8rem;
+    border-radius: $radius-sm;
+    background: $color-mint-light;
+    color: $color-dark;
+  }
+}
+
+// ---------- Résultat ----------
+.rsr-niveau {
+  display: inline-block;
+  margin: 0 0 $spacing-xs;
+  padding: 0.3em 0.9em;
+  border-radius: 999px;
+  font-size: $fs-small;
+  color: $color-dark;
+}
+
+.rsr-niveau--pret {
+  background: $color-mint-light;
+  color: $color-teal-dark;
+}
+
+.rsr-niveau--presque_pret {
+  background: $color-ray-yellow-soft;
+}
+
+.rsr-niveau--a_construire {
+  background: $color-surface;
+  border: 1px solid $color-border;
+}
+
+.rsr-resultat__titre {
+  margin: 0 0 $spacing-xs;
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  line-height: 1.2;
+  color: $color-dark;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+}
+
+.rsr-resultat__resume {
+  margin: 0 0 $spacing-xs;
+  font-size: 1.05rem;
+  color: $color-dark;
+}
+
+.rsr-critere {
+  margin-top: $spacing-sm;
+}
+
+.rsr-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: raison;
+
+  li {
+    position: relative;
+    padding-left: 2.1rem;
+    font-size: $fs-small;
+    color: $color-dark;
+  }
+}
+
+.rsr-liste--numerotee li {
+  counter-increment: raison;
+
+  &::before {
+    content: counter(raison);
+    position: absolute;
+    top: -0.05em;
+    left: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: $color-mint-light;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: $color-teal-dark;
+  }
+}
+
+.rsr-liste--vigilance li::before {
+  content: '!';
+  position: absolute;
+  top: -0.05em;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: $color-ray-yellow-soft;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.rsr-chiffres {
+  display: grid;
+  gap: $spacing-sm;
+  margin-top: $spacing-md;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.rsr-chiffre {
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $color-surface;
+
+  p {
+    margin: 0;
+  }
+}
+
+.rsr-chiffre__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-muted;
+}
+
+.rsr-chiffre__valeur {
+  margin: 0.2rem 0 0.3rem !important;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.rsr-chiffre__note {
+  font-size: $fs-small;
+}
+
+.rsr-formule {
+  margin-top: $spacing-md;
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  background: $color-mint-light;
+  color: $color-dark;
+
+  p {
+    margin: 0 0 0.35rem;
+    color: $color-dark;
+  }
+}
+
+.rsr-formule__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-primary-dark !important;
+}
+
+.rsr-formule__nom {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.rsr-formule__sous-titre {
+  font-weight: 600;
+  color: $color-primary-dark !important;
+}
+
+.rsr-formule__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin-top: $spacing-sm;
+}
+
+.rsr-avertissement {
+  margin: $spacing-md 0 0;
+  padding: 0.7rem 0.9rem;
+  border-left: 4px solid $color-primary;
+  border-radius: 0 $radius-sm $radius-sm 0;
+  background: $color-surface;
+  font-size: $fs-small;
+  font-weight: 600;
+  color: $color-dark;
+}
+
+.rsr-partage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-top: $spacing-sm;
+}
+
+.rsr-partage__etat {
+  font-size: $fs-small;
+  font-weight: 600;
+  color: $color-primary-dark;
+}
+
+.rsr-contact {
+  margin-top: $spacing-md;
+}
+
+// ---------- Page : différence RS / RNCP ----------
+.rsr-difference {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $spacing-md;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.rsr-difference__carte {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  background: $color-mint-light;
+  color: $color-dark;
+
+  @include from($bp-tablet) {
+    padding: $spacing-lg;
+  }
+
+  h3,
+  ul {
+    margin: 0;
+  }
+
+  h3 {
+    color: $color-dark;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 1.1rem;
+    list-style: disc;
+    font-size: $fs-small;
+  }
+
+  li::marker {
+    color: $color-primary-dark;
+  }
+
+  .btn {
+    margin-top: auto;
+  }
+}
+
+.rsr-difference__carte--sombre {
+  background: $color-dark;
+  color: $color-white;
+
+  h3 {
+    color: $color-white;
+  }
+
+  li::marker {
+    color: $color-mint;
+  }
+}

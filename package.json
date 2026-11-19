@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:rs-rncp": "node --test \"tests/rs-rncp/*.test.ts\"",
+    "stats:rs-rncp": "node scripts/stats-rs-ou-rncp.mjs"
   },
   "dependencies": {
     "@keystatic/core": "^0.6.8",

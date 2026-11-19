@@ -431,6 +431,12 @@ export default function CertificationRncpPage() {
                 Consultez notre comparatif RNCP vs RS
               </Link>
             </p>
+            <p style={{ marginTop: "0.5rem" }}>
+              →{" "}
+              <Link href={ROUTES.certificationRsOuRncp} style={{ fontStyle: "italic", textDecoration: "underline" }}>
+                Faites le test gratuit : RS ou RNCP ?
+              </Link>
+            </p>
           </div>
         </div>
       </section>

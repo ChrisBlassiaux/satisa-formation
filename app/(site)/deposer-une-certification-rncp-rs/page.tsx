@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
+import RsOuRncpBanner from "@/components/RsOuRncpBanner";
 
 const TITLE = "Dépôt de certification RNCP/RS - Satisa Formation";
 const DESCRIPTION =
@@ -91,6 +92,8 @@ export default function CertificationPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }}
       />
+
+      <RsOuRncpBanner />
 
       <section className="hero-page hero-page--certification">
         <div className="container hero-page__layout">

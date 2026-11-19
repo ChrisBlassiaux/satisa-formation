@@ -3,6 +3,7 @@ export const ROUTES = {
   certification: "/deposer-une-certification-rncp-rs",
   certificationRncp: "/deposer-une-certification-rncp-rs/depot-rncp",
   certificationRs: "/deposer-une-certification-rncp-rs/depot-rs",
+  certificationRsOuRncp: "/deposer-une-certification-rncp-rs/rs-ou-rncp",
   formations: "/concevoir-digitaliser-vos-formations",
   formationsConception: "/concevoir-digitaliser-vos-formations/conception-pedagogique",
   formationsDigitalisation: "/concevoir-digitaliser-vos-formations/digitalisation-formation",
