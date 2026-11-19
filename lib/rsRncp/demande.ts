@@ -11,7 +11,8 @@ import type { Answers, Config, Resultat } from "./types";
 
 const REGEX_EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
-export type ContactDemande = { email: string; prenom: string; organisme: string };
+// Mêmes champs que le formulaire du simulateur de prix : prénom, nom, structure et e-mail obligatoires, téléphone facultatif.
+export type ContactDemande = { prenom: string; nom: string; structure: string; email: string; telephone: string };
 
 /** Contenu envoyé à l'outil d'automatisation. Schéma documenté dans AUTOMATION.md. */
 export type DemandePayload = {
@@ -44,7 +45,7 @@ export interface AdaptateurDemande {
 }
 
 export const TEXTE_CONSENTEMENT =
-  "J'accepte que Satisa Formation utilise mon adresse e-mail pour m'envoyer mon résultat et me recontacter au sujet de mon projet de certification.";
+  "J'accepte que Satisa Formation utilise ces informations pour me recontacter au sujet de ma demande.";
 
 function texte(valeur: unknown, max: number): string {
   return typeof valeur === "string" ? valeur.trim().slice(0, max) : "";
@@ -69,6 +70,10 @@ export function construireDemande(brut: unknown, contexte: ContexteConstruction)
   if (!brut || typeof brut !== "object") return { ok: false, erreur: "Requête invalide." };
   const donnees = brut as Record<string, unknown>;
 
+  const prenom = texte(donnees.prenom, 100);
+  const nom = texte(donnees.nom, 100);
+  const structure = texte(donnees.structure, 150);
+  if (!prenom || !nom || !structure) return { ok: false, erreur: "Indiquez vos prénom, nom et structure." };
   const email = texte(donnees.email, 200);
   if (!REGEX_EMAIL.test(email)) return { ok: false, erreur: "Indiquez une adresse e-mail valide." };
   if (donnees.consentement !== true) return { ok: false, erreur: "Merci de cocher la case de consentement." };
@@ -89,7 +94,7 @@ export function construireDemande(brut: unknown, contexte: ContexteConstruction)
       versionRegles: resultat.versionRegles,
       date: maintenant.toISOString(),
       pageOrigine: contexte.pageOrigine,
-      contact: { email, prenom: texte(donnees.prenom, 100), organisme: texte(donnees.organisme, 150) },
+      contact: { prenom, nom, structure, email, telephone: texte(donnees.telephone, 40) },
       consentement: { accepte: true, date: maintenant.toISOString(), texte: TEXTE_CONSENTEMENT },
       reponses,
       resultat: {

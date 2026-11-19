@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type FormEvent, type RefObject } from "react";
 import Link from "next/link";
+import CalBookingButton from "@/components/CalBookingButton";
 import { ROUTES } from "@/lib/routes";
 import { CONFIG, decoder, encoder, evaluer, type Answers, type QuestionId, type Resultat } from "@/lib/rsRncp";
 
@@ -270,7 +271,7 @@ function VueResultat({
   onRecommencer: () => void;
 }) {
   const [copie, setCopie] = useState(false);
-  const [contact, setContact] = useState({ email: "", prenom: "", organisme: "", website: "" });
+  const [contact, setContact] = useState({ prenom: "", nom: "", structure: "", email: "", tel: "", website: "" });
   const [consentement, setConsentement] = useState(false);
   const [statut, setStatut] = useState<StatutEnvoi>("inactif");
   const [messageErreur, setMessageErreur] = useState("");
@@ -309,6 +310,10 @@ function VueResultat({
     evenement.preventDefault();
     if (!resultat) return;
     setMessageErreur("");
+    if (!contact.prenom.trim() || !contact.nom.trim() || !contact.structure.trim()) {
+      setMessageErreur("Indiquez vos prénom, nom et structure.");
+      return;
+    }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(contact.email.trim())) {
       setMessageErreur("Indiquez une adresse e-mail valide.");
       return;
@@ -323,9 +328,11 @@ function VueResultat({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: contact.email,
           prenom: contact.prenom,
-          organisme: contact.organisme,
+          nom: contact.nom,
+          structure: contact.structure,
+          email: contact.email,
+          telephone: contact.tel,
           consentement: true,
           reponses,
           website: contact.website,
@@ -418,46 +425,40 @@ function VueResultat({
       <div className="sim-contact rsr-contact">
         {statut === "envoye" ? (
           <p className="form-success" role="status">
-            Merci ! Votre demande est bien reçue. Vous recevrez votre résultat par e-mail et nous revenons vers vous sous 48h.
+            Résultat envoyé, merci ! Nous revenons vers vous sous 48h.
+            <br />
+            Ou prenez rendez-vous dès à présent via notre calendrier.
           </p>
         ) : (
           <form onSubmit={envoyer} noValidate>
-            <h3 className="sim__h4 sim-contact__title">Recevoir ce résultat par e-mail et être recontacté</h3>
+            <h3 className="sim__h4 sim-contact__title">Joindre votre résultat à votre demande</h3>
             <p className="sim-contact__intro">
-              C&apos;est facultatif. Indiquez votre e-mail : nous vous envoyons ce résultat et nous pouvons en discuter avec vous.
+              Vous souhaitez être recontacté ? Envoyez-nous votre résultat : nous pourrons vous répondre plus précisément,
+              sans vous reposer les mêmes questions.
             </p>
-            <div className="form-field">
-              <label htmlFor="rsr-email">E-mail *</label>
-              <input
-                id="rsr-email"
-                type="email"
-                autoComplete="email"
-                required
-                value={contact.email}
-                onChange={(e) => setContact({ ...contact, email: e.target.value })}
-              />
+            <div className="form-row">
+              <div className="form-field">
+                <label htmlFor="rsr-prenom">Prénom *</label>
+                <input id="rsr-prenom" type="text" autoComplete="given-name" value={contact.prenom} onChange={(e) => setContact({ ...contact, prenom: e.target.value })} />
+              </div>
+              <div className="form-field">
+                <label htmlFor="rsr-nom">Nom *</label>
+                <input id="rsr-nom" type="text" autoComplete="family-name" value={contact.nom} onChange={(e) => setContact({ ...contact, nom: e.target.value })} />
+              </div>
             </div>
             <div className="form-row">
               <div className="form-field">
-                <label htmlFor="rsr-prenom">Prénom (facultatif)</label>
-                <input
-                  id="rsr-prenom"
-                  type="text"
-                  autoComplete="given-name"
-                  value={contact.prenom}
-                  onChange={(e) => setContact({ ...contact, prenom: e.target.value })}
-                />
+                <label htmlFor="rsr-structure">Structure *</label>
+                <input id="rsr-structure" type="text" autoComplete="organization" value={contact.structure} onChange={(e) => setContact({ ...contact, structure: e.target.value })} />
               </div>
               <div className="form-field">
-                <label htmlFor="rsr-organisme">Nom de votre organisme (facultatif)</label>
-                <input
-                  id="rsr-organisme"
-                  type="text"
-                  autoComplete="organization"
-                  value={contact.organisme}
-                  onChange={(e) => setContact({ ...contact, organisme: e.target.value })}
-                />
+                <label htmlFor="rsr-email">Email *</label>
+                <input id="rsr-email" type="email" autoComplete="email" value={contact.email} onChange={(e) => setContact({ ...contact, email: e.target.value })} />
               </div>
+            </div>
+            <div className="form-field">
+              <label htmlFor="rsr-tel">Téléphone (facultatif)</label>
+              <input id="rsr-tel" type="tel" autoComplete="tel" value={contact.tel} onChange={(e) => setContact({ ...contact, tel: e.target.value })} />
             </div>
             <input
               type="text"
@@ -472,8 +473,8 @@ function VueResultat({
             <label className="sim-consent">
               <input type="checkbox" checked={consentement} onChange={(e) => setConsentement(e.target.checked)} />
               <span>
-                * J&apos;accepte que Satisa Formation utilise mon adresse e-mail pour m&apos;envoyer mon résultat et me recontacter
-                au sujet de mon projet de certification. <Link href={ROUTES.privacy}>Politique de confidentialité</Link>
+                * J&apos;accepte que Satisa Formation utilise ces informations pour me recontacter au sujet de ma demande.{" "}
+                <Link href={ROUTES.privacy}>Politique de confidentialité</Link>
               </span>
             </label>
             {messageErreur && (
@@ -482,7 +483,7 @@ function VueResultat({
               </p>
             )}
             <button type="submit" className="btn btn--dark" disabled={statut === "envoi"}>
-              {statut === "envoi" ? "Envoi en cours..." : "Recevoir mon résultat"}
+              {statut === "envoi" ? "Envoi en cours..." : "Envoyer mon résultat"}
             </button>
             <p className="sim__note sim-required">* Champs obligatoires</p>
           </form>
@@ -493,6 +494,7 @@ function VueResultat({
         <button type="button" className="btn btn--outline" onClick={onRecommencer}>
           Refaire le test
         </button>
+        {statut === "envoye" && <CalBookingButton className="btn btn--primary" />}
       </div>
     </div>
   );

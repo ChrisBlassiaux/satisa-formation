@@ -18,7 +18,7 @@ Ce document explique, en langage simple, comment brancher l'outil à un outil d'
 ```
 Visiteur  →  fait le test  →  voit son résultat (aucune donnée demandée)
                     │
-                    └─ (facultatif) saisit son e-mail + coche la case de consentement
+                    └─ (facultatif) saisit ses coordonnées (prénom, nom, structure, e-mail) + coche la case de consentement
                                    │
                                    ▼
                     /api/rs-ou-rncp/demande   (le site recalcule le verdict, vérifie, filtre le spam)
@@ -58,9 +58,11 @@ Une requête `POST`, au format JSON (`Content-Type: application/json`).
 | `versionRegles` | version des règles qui ont produit le résultat (ex. `"2026-11-19"`) |
 | `date` | date et heure d'envoi, format ISO (ex. `"2026-11-19T10:00:00.000Z"`) |
 | `pageOrigine` | adresse de la page de l'outil |
+| `contact.prenom` | prénom (obligatoire) |
+| `contact.nom` | nom (obligatoire) |
+| `contact.structure` | structure / organisme (obligatoire) |
 | `contact.email` | e-mail (obligatoire) |
-| `contact.prenom` | prénom (peut être vide) |
-| `contact.organisme` | nom de l'organisme (peut être vide) |
+| `contact.telephone` | téléphone (facultatif, peut être vide) |
 | `consentement` | `accepte: true`, `date`, et `texte` exact de la case cochée (preuve RGPD) |
 | `reponses` | les 10 réponses (voir la liste ci-dessous) |
 | `resultat.verdict` | `rncp`, `rs`, `deux` ou `pas_pret` |
@@ -86,11 +88,11 @@ Une requête `POST`, au format JSON (`Content-Type: application/json`).
   "versionRegles": "2026-11-19",
   "date": "2026-11-19T10:00:00.000Z",
   "pageOrigine": "https://www.satisa-formation.fr/deposer-une-certification-rncp-rs/rs-ou-rncp",
-  "contact": { "email": "marie@organisme.fr", "prenom": "Marie", "organisme": "Organisme Test" },
+  "contact": { "prenom": "Marie", "nom": "Dupont", "structure": "Organisme Test", "email": "marie@organisme.fr", "telephone": "" },
   "consentement": {
     "accepte": true,
     "date": "2026-11-19T10:00:00.000Z",
-    "texte": "J'accepte que Satisa Formation utilise mon adresse e-mail pour m'envoyer mon résultat et me recontacter au sujet de mon projet de certification."
+    "texte": "J'accepte que Satisa Formation utilise ces informations pour me recontacter au sujet de ma demande."
   },
   "reponses": {
     "objectif": "marche", "nature": "metier", "duree": "longue", "public": "demandeurs",
@@ -115,8 +117,8 @@ Une requête `POST`, au format JSON (`Content-Type: application/json`).
 
 ### Étape 1 : ajouter la demande dans la base de prospects Notion
 - Module « Notion → Créer une page dans une base » (Make/n8n/Zapier).
-- Correspondance suggérée des champs : **Nom** ← `contact.organisme` (ou `contact.email` s'il est vide) ;
-  **E-mail** ← `contact.email` ; **Prénom** ← `contact.prenom` ; **Verdict** ← `resultat.verdictTitre` ;
+- Correspondance suggérée des champs : **Nom** ← `contact.structure` ;
+  **E-mail** ← `contact.email` ; **Prénom** ← `contact.prenom` ; **Nom de famille** ← `contact.nom` ; **Téléphone** ← `contact.telephone` ; **Verdict** ← `resultat.verdictTitre` ;
   **Préparation** ← `resultat.preparationLabel` ; **Formule recommandée** ← `resultat.formule.nom` ;
   **Montant** ← `resultat.formule.prixMin` ; **Lien du résultat** ← `lienResultat` ; **Source** ← « Test RS ou RNCP » ;
   **Date** ← `date` ; **Statut** ← « À contacter ».

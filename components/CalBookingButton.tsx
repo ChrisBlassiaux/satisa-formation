@@ -59,11 +59,11 @@ function openCal(): void {
   });
 }
 
-export default function CalBookingButton() {
+export default function CalBookingButton({ className = "btn btn--primary btn--block" }: { className?: string } = {}) {
   return (
     <button
       type="button"
-      className="btn btn--primary btn--block"
+      className={className}
       onPointerEnter={loadCal}
       onFocus={loadCal}
       onTouchStart={loadCal}

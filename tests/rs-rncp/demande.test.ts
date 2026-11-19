@@ -38,7 +38,15 @@ const contexte: ContexteConstruction = {
   maintenant: () => MAINTENANT,
 };
 
-const valide = { email: "  marie@organisme.fr ", prenom: "Marie", organisme: "Organisme Test", consentement: true, reponses: REPONSES };
+const valide = {
+  email: "  marie@organisme.fr ",
+  prenom: "Marie",
+  nom: "Dupont",
+  structure: "Organisme Test",
+  telephone: " 06 12 34 56 78 ",
+  consentement: true,
+  reponses: REPONSES,
+};
 
 function payloadValide(): DemandePayload {
   const construction = construireDemande(valide, contexte);
@@ -52,7 +60,9 @@ test("demande valide : le payload contient e-mail, réponses, verdict, préparat
   assert.equal(p.type, "demande_rs_ou_rncp");
   assert.equal(p.contact.email, "marie@organisme.fr");
   assert.equal(p.contact.prenom, "Marie");
-  assert.equal(p.contact.organisme, "Organisme Test");
+  assert.equal(p.contact.nom, "Dupont");
+  assert.equal(p.contact.structure, "Organisme Test");
+  assert.equal(p.contact.telephone, "06 12 34 56 78");
   assert.deepEqual(p.reponses, REPONSES);
   assert.equal(p.resultat.verdict, "rncp");
   assert.equal(p.resultat.preparation, "pret");
@@ -71,11 +81,15 @@ test("le verdict est toujours recalculé : un verdict envoyé par le navigateur 
   assert.equal(construction.payload.resultat.verdict, "rncp");
 });
 
-test("prénom et organisme sont facultatifs", () => {
-  const construction = construireDemande({ email: "a@b.fr", consentement: true, reponses: REPONSES }, contexte);
-  assert.ok(construction.ok);
-  assert.equal(construction.payload.contact.prenom, "");
-  assert.equal(construction.payload.contact.organisme, "");
+test("le téléphone est facultatif, mais prénom, nom, structure et e-mail sont obligatoires", () => {
+  const sansTelephone = construireDemande({ ...valide, telephone: undefined }, contexte);
+  assert.ok(sansTelephone.ok);
+  assert.equal(sansTelephone.payload.contact.telephone, "");
+  for (const champ of ["prenom", "nom", "structure"] as const) {
+    for (const valeur of ["", "   ", undefined]) {
+      assert.equal(construireDemande({ ...valide, [champ]: valeur }, contexte).ok, false, `${champ} ${String(valeur)}`);
+    }
+  }
 });
 
 test("e-mail invalide, consentement absent ou test incomplet : demande refusée", () => {
@@ -92,10 +106,12 @@ test("e-mail invalide, consentement absent ou test incomplet : demande refusée"
 });
 
 test("les champs trop longs sont tronqués", () => {
-  const construction = construireDemande({ ...valide, prenom: "x".repeat(500), organisme: "y".repeat(500) }, contexte);
+  const construction = construireDemande({ ...valide, prenom: "x".repeat(500), nom: "z".repeat(500), structure: "y".repeat(500), telephone: "0".repeat(500) }, contexte);
   assert.ok(construction.ok);
   assert.equal(construction.payload.contact.prenom.length, 100);
-  assert.equal(construction.payload.contact.organisme.length, 150);
+  assert.equal(construction.payload.contact.nom.length, 100);
+  assert.equal(construction.payload.contact.structure.length, 150);
+  assert.equal(construction.payload.contact.telephone.length, 40);
 });
 
 // ---------- Adaptateur simulé ----------
