@@ -909,15 +909,25 @@
   font-weight: 600;
 }
 
-// Bouton d'action sous le message de confirmation (ex. « Choisir un créneau »).
-.form-success p {
-  margin: 0;
-  color: inherit;
-}
+// Message de confirmation avec un bouton d'action (ex. « Choisir un créneau ») : texte à gauche, bouton à droite,
+// le bouton passe sous le texte sur petit écran.
+.form-success--action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm $spacing-md;
 
-.form-success .btn {
-  max-width: 100%;
-  margin-top: $spacing-sm;
+  p {
+    flex: 1 1 18rem;
+    margin: 0;
+    color: inherit;
+  }
+
+  .btn {
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
 }
 
 .form-error {

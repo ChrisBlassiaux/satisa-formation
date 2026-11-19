@@ -368,13 +368,13 @@ export default function DigitalisationSimulator() {
 
             <div className="sim-contact">
               {sendStatus === "sent" ? (
-                <div className="form-success">
+                <div className="form-success form-success--action">
                   <p>
                     Résultat envoyé, merci ! Nous revenons vers vous sous 48h.
                     <br />
                     Ou prenez rendez-vous dès à présent via notre calendrier.
                   </p>
-                  <CalBookingButton className="btn btn--dark" />
+                  <CalBookingButton className="btn btn--outline" />
                 </div>
               ) : (
                 <>

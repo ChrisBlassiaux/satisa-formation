@@ -424,13 +424,13 @@ function VueResultat({
 
       <div className="sim-contact rsr-contact">
         {statut === "envoye" ? (
-          <div className="form-success" role="status">
+          <div className="form-success form-success--action" role="status">
             <p>
               Résultat envoyé, merci ! Nous revenons vers vous sous 48h.
               <br />
               Ou prenez rendez-vous dès à présent via notre calendrier.
             </p>
-            <CalBookingButton className="btn btn--dark" />
+            <CalBookingButton className="btn btn--outline" />
           </div>
         ) : (
           <form onSubmit={envoyer} noValidate>
