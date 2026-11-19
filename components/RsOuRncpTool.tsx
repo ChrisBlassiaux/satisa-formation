@@ -424,11 +424,14 @@ function VueResultat({
 
       <div className="sim-contact rsr-contact">
         {statut === "envoye" ? (
-          <p className="form-success" role="status">
-            Résultat envoyé, merci ! Nous revenons vers vous sous 48h.
-            <br />
-            Ou prenez rendez-vous dès à présent via notre calendrier.
-          </p>
+          <div className="form-success" role="status">
+            <p>
+              Résultat envoyé, merci ! Nous revenons vers vous sous 48h.
+              <br />
+              Ou prenez rendez-vous dès à présent via notre calendrier.
+            </p>
+            <CalBookingButton className="btn btn--dark" />
+          </div>
         ) : (
           <form onSubmit={envoyer} noValidate>
             <h3 className="sim__h4 sim-contact__title">Joindre votre résultat à votre demande</h3>
@@ -494,7 +497,6 @@ function VueResultat({
         <button type="button" className="btn btn--outline" onClick={onRecommencer}>
           Refaire le test
         </button>
-        {statut === "envoye" && <CalBookingButton className="btn btn--primary" />}
       </div>
     </div>
   );

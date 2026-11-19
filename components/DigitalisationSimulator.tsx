@@ -368,11 +368,14 @@ export default function DigitalisationSimulator() {
 
             <div className="sim-contact">
               {sendStatus === "sent" ? (
-                <p className="form-success">
-                  Résultat envoyé, merci ! Nous revenons vers vous sous 48h.
-                  <br />
-                  Ou prenez rendez-vous dès à présent via notre calendrier.
-                </p>
+                <div className="form-success">
+                  <p>
+                    Résultat envoyé, merci ! Nous revenons vers vous sous 48h.
+                    <br />
+                    Ou prenez rendez-vous dès à présent via notre calendrier.
+                  </p>
+                  <CalBookingButton className="btn btn--dark" />
+                </div>
               ) : (
                 <>
                   <h4 className="sim__h4 sim-contact__title">Joindre votre résultat à votre demande</h4>
@@ -446,12 +449,9 @@ export default function DigitalisationSimulator() {
               {nextLabel}
             </button>
           ) : (
-            <div className="sim__nav-actions">
-              <button type="button" className="btn btn--outline" onClick={restart}>
-                Refaire une simulation
-              </button>
-              {sendStatus === "sent" && <CalBookingButton className="btn btn--primary" />}
-            </div>
+            <button type="button" className="btn btn--outline" onClick={restart}>
+              Refaire une simulation
+            </button>
           )}
         </div>
       </div>

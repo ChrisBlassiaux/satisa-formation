@@ -999,14 +999,6 @@
   margin-top: $spacing-md;
 }
 
-// Boutons d'action regroupés à droite (ex. « Refaire » + « Choisir un créneau » une fois le résultat envoyé).
-.sim__nav-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $spacing-xs;
-  margin-left: auto;
-}
-
 .sim-question {
   margin: 0 0 $spacing-md;
   padding: 0;

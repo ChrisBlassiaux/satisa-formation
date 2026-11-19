@@ -909,6 +909,17 @@
   font-weight: 600;
 }
 
+// Bouton d'action sous le message de confirmation (ex. « Choisir un créneau »).
+.form-success p {
+  margin: 0;
+  color: inherit;
+}
+
+.form-success .btn {
+  max-width: 100%;
+  margin-top: $spacing-sm;
+}
+
 .form-error {
   margin-bottom: $spacing-sm;
   color: #b3261e;
