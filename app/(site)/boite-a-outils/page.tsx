@@ -40,12 +40,19 @@ export default function ToolboxPage() {
             ))}
             <article className="tb-card tb-card--soon">
               <div className="tb-card__media tb-card__media--soon" aria-hidden="true">
-                <span className="tb-idea">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path className="tb-idea__bulb" d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
-                    <path d="M9 18h6M10 22h4" />
-                  </svg>
-                </span>
+                <svg className="tb-idea" viewBox="0 0 200 240" focusable="false">
+                  <g className="tb-idea__rays">
+                    <path d="M100 4v-3M38 22l-3-3M162 22l3-3M12 82H9M188 82h3M26 138l-3 3M174 138l3 3" />
+                  </g>
+                  <path
+                    className="tb-idea__glass"
+                    d="M100 20C60 20 30 50 30 90c0 25 12 40 26 58 8 10 12 20 14 32h60c2-12 6-22 14-32 14-18 26-33 26-58 0-40-30-70-70-70Z"
+                  />
+                  <path className="tb-idea__shine" d="M54 76c3-18 16-32 34-38" />
+                  <path className="tb-idea__filament" d="M88 180v-52c0-10 6-16 12-16s12 6 12 16v52" />
+                  <rect className="tb-idea__base" x="68" y="188" width="64" height="14" rx="7" />
+                  <rect className="tb-idea__base" x="78" y="208" width="44" height="14" rx="7" />
+                </svg>
               </div>
               <div className="tb-card__body">
                 <span className="tb-card__tag">Une idée ?</span>
