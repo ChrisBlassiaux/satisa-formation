@@ -604,6 +604,17 @@ $rsr-ciel-clair: $color-mint-light;
   }
 }
 
+// Étape 2 : trois niveaux seulement (la liste du simulateur compte sept étapes) : ils occupent toute la largeur.
+.rsr-etapes .sg-hour__list--steps {
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 // Cinq points de préparation en deux colonnes : le dernier prend toute la largeur.
 .rsr-points .sg-quote:last-child {
   @include from($bp-tablet) {
