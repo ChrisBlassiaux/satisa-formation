@@ -303,68 +303,145 @@
   margin-top: $spacing-xs;
 }
 
-// Footer
+// Footer : une colonne par rubrique, puis un bandeau (marque + moyens de contact), puis les mentions légales.
 .site-footer {
+  // Filet menthe puis jaune en haut : les deux couleurs de la charte.
+  border-top: 4px solid transparent;
+  border-image: linear-gradient(90deg, $color-mint, #fecc01) 1;
   background: $color-dark;
   color: rgba(255, 255, 255, 0.75);
-  padding-block: $spacing-2xl $spacing-lg;
+  padding-block: $spacing-xl $spacing-lg;
+
+  @include from($bp-tablet) {
+    padding-block: $spacing-2xl $spacing-lg;
+  }
+}
+
+.site-footer__panel {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+  padding: $spacing-md;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $radius-lg;
+  background: rgba(255, 255, 255, 0.05);
+
+  @include from($bp-tablet) {
+    padding: $spacing-lg;
+  }
+
+  // Grand écran : la marque à gauche, les actions à droite sur une même ligne.
+  @include from($bp-desktop) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-xl;
+  }
+}
+
+.site-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  max-width: 44ch;
+}
+
+.site-footer__brand img {
+  height: 40px;
+  width: auto;
+  align-self: flex-start;
+}
+
+.site-footer__brand p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: $fs-small;
+}
+
+.site-footer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+// Bouton « fantôme » : contour clair sur le fond sombre du bandeau.
+.btn.site-footer__ghost {
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: $color-white;
+
+  &:hover,
+  &:focus-visible {
+    border-color: $color-mint;
+    background: $color-mint;
+    color: $color-dark;
+  }
+}
+
+.site-footer__mail {
+  padding-inline: $spacing-xs;
+  font-size: $fs-small;
+  font-weight: 600;
+  color: $color-white;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-underline-offset: 0.25em;
+
+  &:hover {
+    color: $color-mint;
+  }
+}
+
+.site-footer .social-link--footer {
+  margin-top: 0;
 }
 
 .site-footer__grid {
   display: grid;
   gap: $spacing-lg;
   grid-template-columns: 1fr;
-  padding-bottom: $spacing-xl;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: $spacing-xl;
 
-  // Tablette : la marque en haut sur toute la largeur, puis les colonnes de liens deux par deux.
   @include from($bp-tablet) {
     grid-template-columns: repeat(2, 1fr);
     gap: $spacing-xl $spacing-lg;
   }
 
-  // Grand écran : la marque en haut, puis quatre colonnes de liens sur une ligne.
   @include from($bp-desktop) {
-    grid-template-columns: 1.2fr 1fr 0.8fr 1.1fr;
-    gap: $spacing-xl $spacing-lg;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-// La marque occupe toute la largeur au-dessus des colonnes : logo à gauche, présentation à côté dès la tablette.
-.site-footer__brand {
-  grid-column: 1 / -1;
-  padding-bottom: $spacing-lg;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-
-  @include from($bp-tablet) {
-    display: flex;
-    align-items: center;
-    gap: $spacing-lg;
-  }
-}
-
-.site-footer__brand img {
-  height: 40px;
-  width: auto;
-  margin-bottom: $spacing-sm;
-
-  @include from($bp-tablet) {
-    margin-bottom: 0;
-  }
-}
-
-.site-footer__brand p {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: $fs-small;
-  max-width: 52ch;
-}
-
+// Titre de colonne : le lien de la rubrique, souligné d'un court trait jaune.
 .site-footer__col h3 {
+  position: relative;
+  margin-bottom: $spacing-sm;
+  padding-bottom: 0.7rem;
   font-size: $fs-small;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: $spacing-sm;
+  color: $color-white;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+    background: #fecc01;
+  }
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: $color-mint;
+    }
+  }
 }
 
 .site-footer__col ul {
@@ -373,26 +450,13 @@
   gap: $spacing-xs;
 }
 
-// Groupe « offre » : le lien principal, puis ses pages en retrait, avec un filet comme le liseré du menu.
-.site-footer__group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+.site-footer__col a:not(.btn) {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: $fs-small;
 
-  & + & {
-    margin-top: $spacing-xs;
+  &:hover {
+    color: $color-mint;
   }
-}
-
-.site-footer__col a:not(.btn).site-footer__parent {
-  font-weight: 700;
-  color: $color-white;
-}
-
-.site-footer__sub {
-  margin-left: 0.15rem;
-  padding-left: $spacing-sm;
-  border-left: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 // « Voir tous nos outils » : en menthe, pour le repérer comme le lien vers la page qui réunit tous les outils.
@@ -406,30 +470,12 @@
   }
 }
 
-.site-footer__col a:not(.btn) {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: $fs-small;
-
-  &:hover {
-    color: $color-mint;
-  }
-}
-
-.site-footer__contact {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.site-footer__contact ul {
-  margin-bottom: $spacing-sm;
-}
-
 .site-footer__bottom {
   display: flex;
   flex-direction: column;
   gap: $spacing-sm;
   padding-top: $spacing-lg;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   font-size: $fs-small;
   color: rgba(255, 255, 255, 0.5);
 

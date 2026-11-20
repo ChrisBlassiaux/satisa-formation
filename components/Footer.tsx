@@ -8,34 +8,32 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="container">
+        {/* Une colonne par rubrique du site, avec le lien de la rubrique en titre. */}
         <div className="site-footer__grid">
-          <div className="site-footer__brand">
-            <Image src="/images/logo/logo-satisa-blanc.svg" alt="Satisa Formation" width={330} height={152} />
-            <p>Ingénierie de certification RNCP/RS et ingénierie pédagogique et digitale pour les organismes de formation.</p>
-          </div>
-
           <div className="site-footer__col">
-            <h3>Offres</h3>
+            <h3>
+              <Link href={ROUTES.certification}>Certification RNCP/RS</Link>
+            </h3>
             <ul>
-              <li className="site-footer__group">
-                <Link href={ROUTES.certification} className="site-footer__parent">Certification RNCP/RS</Link>
-                <ul className="site-footer__sub">
-                  <li><Link href={ROUTES.certificationRncp}>Dépôt RNCP</Link></li>
-                  <li><Link href={ROUTES.certificationRs}>Dépôt RS</Link></li>
-                </ul>
-              </li>
-              <li className="site-footer__group">
-                <Link href={ROUTES.formations} className="site-footer__parent">Formations et digital</Link>
-                <ul className="site-footer__sub">
-                  <li><Link href={ROUTES.formationsConception}>Conception pédagogique</Link></li>
-                  <li><Link href={ROUTES.formationsDigitalisation}>Digitalisation</Link></li>
-                </ul>
-              </li>
+              <li><Link href={ROUTES.certificationRncp}>Dépôt RNCP</Link></li>
+              <li><Link href={ROUTES.certificationRs}>Dépôt RS</Link></li>
             </ul>
           </div>
 
           <div className="site-footer__col">
-            <h3>Boîte à outils</h3>
+            <h3>
+              <Link href={ROUTES.formations}>Formations et digital</Link>
+            </h3>
+            <ul>
+              <li><Link href={ROUTES.formationsConception}>Conception pédagogique</Link></li>
+              <li><Link href={ROUTES.formationsDigitalisation}>Digitalisation</Link></li>
+            </ul>
+          </div>
+
+          <div className="site-footer__col">
+            <h3>
+              <Link href={ROUTES.tools}>Boîte à outils</Link>
+            </h3>
             <ul>
               <li><Link href={ROUTES.formationsSimulateur}>Simulateur de prix e-learning</Link></li>
               <li><Link href={ROUTES.certificationRsOuRncp}>Test RS ou RNCP</Link></li>
@@ -50,15 +48,23 @@ export default function Footer() {
               <li><Link href={ROUTES.blog}>Blog</Link></li>
             </ul>
           </div>
+        </div>
 
-          <div className="site-footer__col site-footer__contact">
-            <h3>Contact</h3>
-            <ul>
-              <li><Link href={ROUTES.contact}>Prendre un rendez-vous</Link></li>
-              <li><a href="mailto:chris@satisa.fr">chris@satisa.fr</a></li>
-            </ul>
-            <a href="https://wa.me/33783456753" className="btn btn--primary" target="_blank" rel="noopener">
+        {/* Bandeau sous les colonnes : la marque à gauche, les moyens de nous joindre à droite. */}
+        <div className="site-footer__panel">
+          <div className="site-footer__brand">
+            <Image src="/images/logo/logo-satisa-blanc.svg" alt="Satisa Formation" width={330} height={152} />
+            <p>Ingénierie de certification RNCP/RS et ingénierie pédagogique et digitale pour les organismes de formation.</p>
+          </div>
+          <div className="site-footer__actions">
+            <Link href={ROUTES.contact} className="btn btn--primary">
+              Prendre un rendez-vous
+            </Link>
+            <a href="https://wa.me/33783456753" className="btn site-footer__ghost" target="_blank" rel="noopener">
               Discuter sur WhatsApp
+            </a>
+            <a href="mailto:chris@satisa.fr" className="site-footer__mail">
+              chris@satisa.fr
             </a>
             <a
               href={LINKEDIN_URL}
@@ -72,6 +78,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
+
         <div className="site-footer__bottom">
           <p>© 2026 Satisa Formation</p>
           <div className="site-footer__legal">
