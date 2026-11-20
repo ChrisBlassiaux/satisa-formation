@@ -84,51 +84,37 @@
   }
 }
 
-// Grande ampoule en fond de l'aperçu : intérieur jaune un peu transparent, rognée par le cadre.
+// Grande ampoule dessinée à la main (nuage jaune, trait foncé) en fond de l'aperçu : penchée, rognée par le cadre,
+// avec une ombre portée pour qu'elle se détache du fond.
 .tb-idea {
   position: absolute;
-  top: 2%;
-  left: 50%;
-  height: 112%;
-  aspect-ratio: 200 / 240;
-  transform: translateX(-50%);
+  top: 57%;
+  left: 52%;
+  height: 138%;
+  aspect-ratio: 300 / 280;
+  transform: translate(-50%, -50%) rotate(-12deg);
   overflow: visible;
+  filter: drop-shadow(0 14px 12px rgba($color-dark, 0.28));
 }
 
-.tb-idea__glass {
-  fill: #fecc01;
-  fill-opacity: 0.88;
-  stroke: #e0a800;
-  stroke-width: 3;
+.tb-idea__cloud {
+  fill: #f5c33b;
 }
 
-.tb-idea__shine {
+.tb-idea__line {
   fill: none;
-  stroke: #fff;
-  stroke-opacity: 0.75;
-  stroke-width: 7;
-  stroke-linecap: round;
-}
-
-.tb-idea__filament {
-  fill: none;
-  stroke: #b88700;
-  stroke-opacity: 0.8;
-  stroke-width: 5;
+  stroke: $color-dark;
+  stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.tb-idea__base {
-  fill: $color-dark;
-  fill-opacity: 0.45;
-}
-
-.tb-idea__rays {
+// Traits blancs dans le verre : reflet à la main.
+.tb-idea__scribble {
   fill: none;
-  stroke: #fecc01;
-  stroke-opacity: 0.9;
-  stroke-width: 7;
+  stroke: #fff;
+  stroke-opacity: 0.85;
+  stroke-width: 4;
   stroke-linecap: round;
 }
 

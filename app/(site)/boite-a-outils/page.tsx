@@ -40,18 +40,22 @@ export default function ToolboxPage() {
             ))}
             <article className="tb-card tb-card--soon">
               <div className="tb-card__media tb-card__media--soon" aria-hidden="true">
-                <svg className="tb-idea" viewBox="0 0 200 240" focusable="false">
-                  <g className="tb-idea__rays">
-                    <path d="M100 4v-3M38 22l-3-3M162 22l3-3M12 82H9M188 82h3M26 138l-3 3M174 138l3 3" />
-                  </g>
+                <svg className="tb-idea" viewBox="0 0 300 280" focusable="false">
                   <path
-                    className="tb-idea__glass"
-                    d="M100 20C60 20 30 50 30 90c0 25 12 40 26 58 8 10 12 20 14 32h60c2-12 6-22 14-32 14-18 26-33 26-58 0-40-30-70-70-70Z"
+                    className="tb-idea__cloud"
+                    d="M70 120C50 100 60 60 100 62c10-27 60-34 80-10 35-12 75 18 60 53 28 20 15 70-20 75 5 30-30 45-55 30-25 22-70 15-75-15-35 5-60-35-35-55 3-8 7-14 15-20Z"
                   />
-                  <path className="tb-idea__shine" d="M54 76c3-18 16-32 34-38" />
-                  <path className="tb-idea__filament" d="M88 180v-52c0-10 6-16 12-16s12 6 12 16v52" />
-                  <rect className="tb-idea__base" x="68" y="188" width="64" height="14" rx="7" />
-                  <rect className="tb-idea__base" x="78" y="208" width="44" height="14" rx="7" />
+                  <circle className="tb-idea__cloud" cx="206" cy="234" r="10" />
+                  <circle className="tb-idea__cloud" cx="223" cy="253" r="7" />
+                  <circle className="tb-idea__cloud" cx="234" cy="268" r="4.5" />
+                  <g className="tb-idea__line">
+                    <path d="M85 82L68 74M103 60L88 44M128 45L122 25M150 42L150 20M172 45L178 25M197 60L212 44M215 82L232 74" />
+                    <path d="M54 122C46 94 62 68 82 58M250 70c18 20 20 52 8 72" />
+                    <path d="M150 60c-32 0-50 25-46 52 2 18 14 28 20 44v10h52v-10c6-16 18-26 20-44 4-27-14-52-46-52Z" />
+                    <path d="M140 160v-30c0-12 8-16 12-12 4 4 0 12-6 10" />
+                    <path d="M126 174c14 8 34-8 48 0M126 186c14 8 34-8 48 0M131 198c12 7 26-6 38 0M142 208h16" />
+                  </g>
+                  <path className="tb-idea__scribble" d="M166 78c8 4 14 10 18 18M160 90c10 6 16 14 18 24M170 70c6 2 10 4 14 8" />
                 </svg>
               </div>
               <div className="tb-card__body">
