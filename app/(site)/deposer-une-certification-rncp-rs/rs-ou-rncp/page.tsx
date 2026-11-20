@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import { breadcrumbJsonLd, faqJsonLd, type FaqItem } from "@/lib/formations";
 import FaqList from "@/components/FaqList";
-import LinkArrow from "@/components/LinkArrow";
 import RsOuRncpGuide from "@/components/RsOuRncpGuide";
 import RsOuRncpTool from "@/components/RsOuRncpTool";
 
@@ -36,29 +35,24 @@ export const metadata: Metadata = {
 
 const FAQ_RS_OU_RNCP: FaqItem[] = [
   {
-    question: "Sur quoi se base le test RS ou RNCP ?",
-    answer:
-      "Le test applique des règles écrites, les mêmes pour tout le monde, tirées des articles de Satisa et du Code du travail. Il répond à deux questions : que certifie votre formation (un métier complet relève plutôt du RNCP, une compétence complémentaire plutôt du RS), puis votre projet est-il prêt à être déposé (référentiel de compétences, promotion formée et évaluée, suivi des diplômés, évaluation indépendante, temps disponible et délai). Certains critères, comme le public visé ou la durée, sont pondérés selon l'expérience de Satisa.",
-  },
-  {
-    question: "Quelle est la différence entre le RNCP et le RS ?",
-    answer:
-      "Le RNCP enregistre des certifications qui préparent à un métier complet, avec un niveau de qualification. Le RS enregistre une compétence complémentaire à un métier (une spécialisation, une compétence transversale ou une habilitation), sans niveau de qualification. Les deux sont tenus par France Compétences et ouvrent l'accès au CPF, mais pas dans les mêmes conditions.",
-  },
-  {
     question: "Ce test remplace-t-il un diagnostic de faisabilité ?",
     answer:
       "Non. Le test est une orientation générale, pas un avis juridique : l'enregistrement dépend de la décision de France Compétences. Le diagnostic de faisabilité analyse votre projet en détail (besoin en compétences, offre existante, promotions, dispositif d'évaluation, conformité) et vous rend un verdict argumenté.",
   },
   {
-    question: "Mes réponses sont-elles conservées ?",
-    answer:
-      "Aucune donnée personnelle n'est demandée pour voir le résultat. Vos réponses restent dans le lien de la page : elles ne sont envoyées que si vous choisissez de recevoir votre résultat par e-mail. Nous comptons seulement, de façon anonyme et sans cookie, le nombre de tests commencés et terminés.",
-  },
-  {
     question: "Le dépôt auprès de France Compétences est-il payant ?",
     answer:
       "Non, le dépôt lui-même est gratuit. Le coût d'un projet vient du temps de préparation (référentiels, promotion de titulaires, données d'insertion) et, si vous le souhaitez, de l'accompagnement.",
+  },
+  {
+    question: "Mon RS peut-il devenir un RNCP plus tard ?",
+    answer:
+      "Non, un RS ne se transforme pas en RNCP : passer de l'un à l'autre, c'est déposer une nouvelle demande, avec un autre périmètre et d'autres critères. Une partie du travail se réutilise (le retour d'expérience de votre formation, vos contenus), mais le référentiel d'activités est à créer. Si vous savez dès le départ que vous voulez un niveau de qualification, mieux vaut viser directement le RNCP : commencer par un RS additionne les délais et le travail.",
+  },
+  {
+    question: "Dois-je créer ma propre certification pour faire certifier ma formation ?",
+    answer:
+      "Pas forcément. Il y a trois situations : vous êtes organisme certificateur (vous créez et déposez la certification, et vous en portez la responsabilité), organisme habilité (vous préparez ou évaluez des candidats sur la certification d'un autre organisme, avec un accord formel avec lui), ou ni l'un ni l'autre (formation non certifiante, qui reste fermée au CPF). Ce test concerne le cas où vous déposez votre propre certification.",
   },
 ];
 
@@ -107,43 +101,6 @@ export default function RsOuRncpPage() {
       </section>
 
       <RsOuRncpGuide />
-
-      <section>
-        <div className="container">
-          <div className="section-head">
-            <p className="eyebrow">Les repères</p>
-            <h2>RS ou RNCP : la différence en bref</h2>
-            <p>
-              Les deux répertoires sont tenus par France Compétences et ouvrent l&apos;accès au CPF. Ils ne certifient pas la
-              même chose.
-            </p>
-          </div>
-          <div className="rsr-difference">
-            <article className="rsr-difference__carte">
-              <h3>RNCP : un métier complet</h3>
-              <ul>
-                <li>La certification prépare à un métier identifié, avec ses activités et ses responsabilités propres.</li>
-                <li>Elle est rattachée à un niveau de qualification (équivalent bac, bac+2…).</li>
-                <li>Exemples : développeur, gestionnaire, designer, commercial.</li>
-              </ul>
-              <Link href={ROUTES.certificationRncp} className="btn btn--outline">
-                Accompagnement au dépôt RNCP <LinkArrow />
-              </Link>
-            </article>
-            <article className="rsr-difference__carte rsr-difference__carte--sombre">
-              <h3>RS : une compétence complémentaire</h3>
-              <ul>
-                <li>La certification atteste une compétence qui s&apos;ajoute à un métier déjà exercé.</li>
-                <li>Elle n&apos;est pas rattachée à un niveau de qualification.</li>
-                <li>Exemples : langue, logiciel, technique de spécialisation, habilitation réglementaire.</li>
-              </ul>
-              <Link href={ROUTES.certificationRs} className="btn btn--primary">
-                Accompagnement au dépôt RS <LinkArrow />
-              </Link>
-            </article>
-          </div>
-        </div>
-      </section>
 
       <section>
         <div className="container">

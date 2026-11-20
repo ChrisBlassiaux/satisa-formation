@@ -1,7 +1,4 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
-import { ROUTES } from "@/lib/routes";
-import LinkArrow from "@/components/LinkArrow";
 
 // Sections de repères de la page du test « RS ou RNCP ? » : « Sur quoi se base le test ? ».
 // Elles réutilisent les composants visuels de la page du simulateur de prix (préfixe sg-) ; seuls les ajustements
@@ -58,18 +55,6 @@ const ICONS = {
   check: (
     <Icon>
       <path d="m5 12 5 5L20 7" />
-    </Icon>
-  ),
-  book: (
-    <Icon>
-      <path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z" />
-      <path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z" />
-    </Icon>
-  ),
-  info: (
-    <Icon>
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 16v-4M12 8h.01" />
     </Icon>
   ),
 };
@@ -151,19 +136,6 @@ const POINTS_DE_PREPARATION = [
   },
 ];
 
-// ---------- Ce que le test ne fait pas ----------
-const LIMITES = [
-  "C'est une orientation générale, pas un avis juridique.",
-  "La décision d'enregistrement revient à France Compétences.",
-  "Un résultat « presque prêt » indique ce qu'il reste à compléter : il ne garantit rien.",
-];
-
-const ARTICLES = [
-  { title: "RNCP ou RS : comment choisir en 2026 ?", slug: "rncp-ou-rs-guide-complet" },
-  { title: "Suis-je éligible au RNCP ?", slug: "suis-je-eligible-au-rncp-criteres-d-eligibilite-et-conditions-2026" },
-  { title: "Suis-je éligible au RS ?", slug: "certification-rncp-suis-je-eligible-au-rs-criteres-de-certification-au-repertoire-specifique" },
-];
-
 export default function RsOuRncpGuide() {
   return (
     <>
@@ -174,8 +146,8 @@ export default function RsOuRncpGuide() {
             <p className="eyebrow">Sur quoi se base le test ?</p>
             <h2>Comment faire le choix d&apos;un RS ou d&apos;un RNCP&nbsp;?</h2>
             <p>
-              Le test ne devine pas : il applique des règles écrites, les mêmes pour tout le monde, tirées de nos
-              articles et du Code du travail. Certains critères, comme le public ou la durée, sont pondérés selon
+              Le test ne devine pas : il applique des règles écrites, les mêmes pour tout le monde, tirées du Code
+              du travail et des recommandations officielles de France Compétences. Certains critères, comme le public ou la durée, sont pondérés selon
               l&apos;expérience de Satisa. Le test répond à deux questions, dans cet ordre.
             </p>
           </div>
@@ -268,46 +240,6 @@ export default function RsOuRncpGuide() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* 4. Ce que le test ne fait pas + pour aller plus loin */}
-      <section>
-        <div className="container">
-          <div className="section-head">
-            <p className="eyebrow">Les limites</p>
-            <h2>Ce que le test ne fait pas</h2>
-          </div>
-          <div className="rsr-limites">
-            <article className="sg-lever sg-lever--mint">
-              <span className="sg-lever__icon">{ICONS.info}</span>
-              <div>
-                <h3 className="sg-lever__title">Une orientation, pas une décision</h3>
-                <ul className="rsr-limites__liste">
-                  {LIMITES.map((limite) => (
-                    <li key={limite}>{limite}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-            <article className="sg-lever sg-lever--dark">
-              <span className="sg-mark sg-mark--light" aria-hidden="true" />
-              <span className="sg-lever__icon">{ICONS.book}</span>
-              <div>
-                <h3 className="sg-lever__title">Pour aller plus loin</h3>
-                <p className="sg-lever__text">Les articles sur lesquels s&apos;appuient les règles du test.</p>
-              </div>
-              <ul className="rsr-limites__articles">
-                {ARTICLES.map((article) => (
-                  <li key={article.slug}>
-                    <Link href={`${ROUTES.blog}/${article.slug}`}>
-                      {article.title} <LinkArrow />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          </div>
         </div>
       </section>
     </>
