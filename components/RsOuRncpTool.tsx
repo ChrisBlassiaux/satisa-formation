@@ -162,8 +162,8 @@ export default function RsOuRncpTool() {
               Votre certification doit-elle viser le RS ou le RNCP ?
             </h2>
             <p className="sim__sub">
-              Répondez à 10 questions simples. Vous obtenez tout de suite un verdict clair, les points de vigilance et la
-              formule d&apos;accompagnement adaptée. Aucune donnée personnelle n&apos;est demandée pour voir le résultat.
+              Répondez à 10 questions simples. Vous obtenez tout de suite un verdict clair et les points de vigilance.
+              Aucune donnée personnelle n&apos;est demandée pour voir le résultat.
             </p>
             <ul className="rsr-promesses">
               <li>Réponse en 2 minutes</li>
@@ -220,7 +220,8 @@ export default function RsOuRncpTool() {
               </div>
             </fieldset>
 
-            <details className="rsr-pourquoi">
+            {/* « key » : l'encadré se referme à chaque nouvelle question. */}
+            <details className="rsr-pourquoi" key={question.id}>
               <summary>Pourquoi cette question ?</summary>
               <p>{question.pourquoi}</p>
             </details>

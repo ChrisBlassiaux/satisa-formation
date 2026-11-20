@@ -79,9 +79,8 @@ export default function RsOuRncpPage() {
             <p className="sim-intro__eyebrow">Test gratuit</p>
             <h1 className="sim-intro__title">RS ou RNCP : quel répertoire pour votre certification ?</h1>
             <p className="sim-intro__lead">
-              Répondez à 10 questions : en 2 minutes, vous obtenez un verdict clair, les points de vigilance et la
-              formule d&apos;accompagnement adaptée à votre situation. Aucune coordonnée n&apos;est demandée pour voir le
-              résultat.
+              Répondez à 10 questions : en 2 minutes, vous obtenez un verdict clair et les points de vigilance. Aucune
+              coordonnée n&apos;est demandée pour voir le résultat.
             </p>
             <ul className="sim-intro__points">
               {COVER_POINTS.map((point) => (

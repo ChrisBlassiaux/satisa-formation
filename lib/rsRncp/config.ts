@@ -438,7 +438,7 @@ export const CONFIG: Config = {
       id: "temps",
       titre: "Quel temps votre équipe peut-elle consacrer au projet ?",
       pourquoi:
-        "Le dépôt est gratuit, mais il demande beaucoup de temps (référentiels, collecte des données, suivi). C'est le vrai coût du projet, et il détermine la formule d'accompagnement adaptée.",
+        "Le dépôt est gratuit, mais il demande beaucoup de temps (référentiels, collecte des données, suivi). C'est le vrai coût du projet.",
       options: [
         { value: "peu", label: "Très peu : je ne peux pas y consacrer de temps régulier" },
         { value: "modere", label: "Quelques heures par semaine" },
