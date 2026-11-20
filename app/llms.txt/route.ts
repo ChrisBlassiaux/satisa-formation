@@ -6,6 +6,7 @@ import { metadata as rsMetadata } from "@/app/(site)/deposer-une-certification-r
 import { metadata as formationsMetadata } from "@/app/(site)/concevoir-digitaliser-vos-formations/page";
 import { metadata as conceptionMetadata } from "@/app/(site)/concevoir-digitaliser-vos-formations/conception-pedagogique/page";
 import { metadata as digitalisationMetadata } from "@/app/(site)/concevoir-digitaliser-vos-formations/digitalisation-formation/page";
+import { metadata as toolsMetadata } from "@/app/(site)/boite-a-outils/page";
 import { metadata as aboutMetadata } from "@/app/(site)/a-propos/page";
 import { metadata as contactMetadata } from "@/app/(site)/rendez-vous/page";
 
@@ -35,6 +36,12 @@ export async function GET() {
     link("Concevoir et digitaliser vos formations", ROUTES.formations, formationsMetadata.description),
     link("Conception pédagogique", ROUTES.formationsConception, conceptionMetadata.description),
     link("Digitalisation des formations", ROUTES.formationsDigitalisation, digitalisationMetadata.description),
+    "",
+    "## Boîte à outils",
+    "",
+    link("Boîte à outils : simulateur de prix et test RS ou RNCP", ROUTES.tools, toolsMetadata.description),
+    link("Simulateur de prix e-learning", ROUTES.formationsSimulateur),
+    link("Test RS ou RNCP", ROUTES.certificationRsOuRncp),
     "",
     "## Blog",
     "",

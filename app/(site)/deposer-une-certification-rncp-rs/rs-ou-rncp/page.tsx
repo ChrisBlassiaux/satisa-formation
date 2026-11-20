@@ -5,6 +5,7 @@ import { ROUTES } from "@/lib/routes";
 import { breadcrumbJsonLd, faqJsonLd, type FaqItem } from "@/lib/formations";
 import FaqList from "@/components/FaqList";
 import LinkArrow from "@/components/LinkArrow";
+import RsOuRncpGuide from "@/components/RsOuRncpGuide";
 import RsOuRncpTool from "@/components/RsOuRncpTool";
 
 const TITLE = "Test gratuit : RS ou RNCP ? - Satisa Formation";
@@ -34,6 +35,11 @@ export const metadata: Metadata = {
 };
 
 const FAQ_RS_OU_RNCP: FaqItem[] = [
+  {
+    question: "Sur quoi se base le test RS ou RNCP ?",
+    answer:
+      "Le test applique des règles écrites, les mêmes pour tout le monde, tirées des articles de Satisa et du Code du travail. Il répond à deux questions : que certifie votre formation (un métier complet relève plutôt du RNCP, une compétence complémentaire plutôt du RS), puis votre projet est-il prêt à être déposé (référentiel de compétences, promotion formée et évaluée, suivi des diplômés, évaluation indépendante, temps disponible et délai). Certains critères, comme le public visé ou la durée, sont pondérés selon l'expérience de Satisa.",
+  },
   {
     question: "Quelle est la différence entre le RNCP et le RS ?",
     answer:
@@ -100,6 +106,8 @@ export default function RsOuRncpPage() {
           <RsOuRncpTool />
         </div>
       </section>
+
+      <RsOuRncpGuide />
 
       <section>
         <div className="container">

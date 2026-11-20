@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { PROJECT_TYPE_LABELS, formulaLabel } from "@/lib/contact";
+import { IDEA_BOX_TYPE, PROJECT_TYPE_LABELS, formulaLabel } from "@/lib/contact";
 
 function escapeHtml(value: string) {
   return value
@@ -48,6 +48,8 @@ export async function POST(request: Request) {
   });
 
   const projectLabel = PROJECT_TYPE_LABELS[projectType] ?? "Non précisé";
+  // Boîte à idées : pas de formule, le message contient l'idée.
+  const isIdeaBox = projectType === IDEA_BOX_TYPE;
   const requestLabel = formulaLabel(projectType, demande) ?? "Non précisé";
   const structureLine = structureName ? `Structure : ${structureName}\n` : "";
 
@@ -56,15 +58,15 @@ export async function POST(request: Request) {
       from: `"Satisa Formation" <${smtpUser}>`,
       to: smtpUser,
       replyTo: email,
-      subject: `Nouveau message du site - ${firstName} ${lastName}`,
-      text: `Nom : ${firstName} ${lastName}\n${structureLine}Email : ${email}\nType de projet : ${projectLabel}\nFormule souhaitée : ${requestLabel}\n\n${message}`,
+      subject: `${isIdeaBox ? "Boîte à idées" : "Nouveau message du site"} - ${firstName} ${lastName}`,
+      text: `Nom : ${firstName} ${lastName}\n${structureLine}Email : ${email}\nType de projet : ${projectLabel}\n${isIdeaBox ? "" : `Formule souhaitée : ${requestLabel}\n`}\n${message}`,
       html: `
         <p><strong>Nom :</strong> ${escapeHtml(firstName)} ${escapeHtml(lastName)}</p>
         ${structureName ? `<p><strong>Structure :</strong> ${escapeHtml(structureName)}</p>` : ""}
         <p><strong>Email :</strong> ${escapeHtml(email)}</p>
         <p><strong>Type de projet :</strong> ${escapeHtml(projectLabel)}</p>
-        <p><strong>Formule souhaitée :</strong> ${escapeHtml(requestLabel)}</p>
-        <p><strong>Message :</strong></p>
+        ${isIdeaBox ? "" : `<p><strong>Formule souhaitée :</strong> ${escapeHtml(requestLabel)}</p>`}
+        <p><strong>${isIdeaBox ? "Idée" : "Message"} :</strong></p>
         <p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
       `,
     });

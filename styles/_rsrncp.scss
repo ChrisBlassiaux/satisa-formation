@@ -497,3 +497,83 @@ $rsr-ciel-clair: $color-mint-light;
     color: $color-mint;
   }
 }
+
+// ---------- Sections « Sur quoi se base le test ? » (réutilisent les composants sg- de la page du simulateur) ----------
+
+// Étape 1 : deux repères seulement (la liste du simulateur en compte cinq).
+.rsr-etapes .sg-hour__panel--learner .sg-hour__list {
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Cinq points de préparation en deux colonnes : le dernier prend toute la largeur.
+.rsr-points .sg-quote:last-child {
+  @include from($bp-tablet) {
+    grid-column: 1 / -1;
+  }
+}
+
+// Ce que le test ne fait pas / pour aller plus loin : deux cartes côte à côte.
+.rsr-limites {
+  display: grid;
+  gap: $spacing-sm;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sg-lever {
+    justify-content: flex-start;
+  }
+}
+
+.rsr-limites__liste,
+.rsr-limites__articles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rsr-limites__liste li {
+  position: relative;
+  padding-left: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba($color-dark, 0.82);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0.65em;
+    left: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: $color-primary-dark;
+  }
+}
+
+.rsr-limites__articles a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: $color-white;
+  text-decoration: underline;
+  text-decoration-color: rgba($color-mint, 0.6);
+  text-underline-offset: 0.2em;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-mint;
+  }
+}

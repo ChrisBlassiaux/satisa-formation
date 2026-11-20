@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { FORMULA_OPTIONS, PROJECT_TYPES } from "@/lib/contact";
+import { useState, useSyncExternalStore, type FormEvent } from "react";
+import { FORMULA_OPTIONS, IDEA_BOX_TYPE, PROJECT_TYPES, hasFormulas } from "@/lib/contact";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -10,10 +10,25 @@ function Required() {
   return <span className="form-required" aria-hidden="true">*</span>;
 }
 
+// Type de projet demandé par l'adresse (ex. /rendez-vous?projet=idees depuis la boîte à outils).
+// Lu sans effet : côté serveur la valeur est vide, le navigateur la lit à l'affichage.
+function subscribeToLocation(callback: () => void) {
+  window.addEventListener("popstate", callback);
+  return () => window.removeEventListener("popstate", callback);
+}
+
+function typeFromUrl(): string {
+  const requested = new URLSearchParams(window.location.search).get("projet") ?? "";
+  return PROJECT_TYPES.some((type) => type.value === requested) ? requested : "";
+}
+
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [projectType, setProjectType] = useState("");
+  const urlProjectType = useSyncExternalStore(subscribeToLocation, typeFromUrl, () => "");
+  const [chosenProjectType, setChosenProjectType] = useState<string | null>(null);
+  const projectType = chosenProjectType ?? urlProjectType;
+  const isIdeaBox = projectType === IDEA_BOX_TYPE;
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -84,7 +99,7 @@ export default function ContactForm() {
           name="type_projet"
           required
           value={projectType}
-          onChange={(event) => setProjectType(event.target.value)}
+          onChange={(event) => setChosenProjectType(event.target.value)}
         >
           <option value="">Choisir un type de projet</option>
           {PROJECT_TYPES.map((type) => (
@@ -94,20 +109,28 @@ export default function ContactForm() {
           ))}
         </select>
       </div>
-      <div className="form-field">
-        <label htmlFor="request">La formule souhaitée</label>
-        <select id="request" name="demande" key={projectType} defaultValue="" disabled={!projectType}>
-          <option value="">{projectType ? "Choisir une formule" : "Choisissez d'abord un type de projet"}</option>
-          {(FORMULA_OPTIONS[projectType] ?? []).map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
+      {hasFormulas(projectType) || !projectType ? (
+        <div className="form-field">
+          <label htmlFor="request">La formule souhaitée</label>
+          <select id="request" name="demande" key={projectType} defaultValue="" disabled={!projectType}>
+            <option value="">{projectType ? "Choisir une formule" : "Choisissez d'abord un type de projet"}</option>
+            {(FORMULA_OPTIONS[projectType] ?? []).map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : null}
       <div className="form-field">
         <label htmlFor="message">Message</label>
-        <textarea id="message" name="message" rows={4} required></textarea>
+        <textarea
+          id="message"
+          name="message"
+          rows={4}
+          required
+          placeholder={isIdeaBox ? "Quel outil ou quelle idée vous aiderait dans votre projet de formation ?" : undefined}
+        ></textarea>
       </div>
       <p className="form-note">* Champs obligatoires</p>
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="form-honeypot" aria-hidden="true" />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
+import { IDEA_BOX_TYPE } from "@/lib/contact";
 import ToolCard, { TOOLS } from "@/components/ToolCard";
 
 const TITLE = "Boîte à outils : outils gratuits pour votre projet de formation - Satisa Formation";
@@ -43,7 +44,7 @@ export default function ToolboxPage() {
                 <span className="tb-card__tag">Une idée ?</span>
                 <h3 className="tb-card__title">Un outil vous manque ?</h3>
                 <p className="tb-card__text">Dites-nous quel outil vous aiderait dans votre projet de formation.</p>
-                <Link href={ROUTES.contact} className="btn btn--outline tb-card__cta">
+                <Link href={`${ROUTES.contact}?projet=${IDEA_BOX_TYPE}`} className="btn btn--outline tb-card__cta">
                   Nous écrire
                 </Link>
               </div>

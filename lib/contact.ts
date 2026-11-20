@@ -4,11 +4,15 @@
 
 export type FormulaOption = { value: string; label: string };
 
+// Boîte à idées : pas de formule à choisir, la personne décrit son idée dans le message.
+export const IDEA_BOX_TYPE = "idees";
+
 export const PROJECT_TYPES: FormulaOption[] = [
   { value: "rncp", label: "Dépôt RNCP" },
   { value: "rs", label: "Dépôt RS" },
   { value: "conception", label: "Conception pédagogique" },
   { value: "digitalisation", label: "Digitalisation" },
+  { value: IDEA_BOX_TYPE, label: "Boîte à idées" },
 ];
 
 export const PROJECT_TYPE_LABELS: Record<string, string> = Object.fromEntries(
@@ -41,6 +45,11 @@ export const FORMULA_OPTIONS: Record<string, FormulaOption[]> = {
     OTHER,
   ],
 };
+
+/** Les types de projet sans formule (boîte à idées) n'affichent pas le champ « La formule souhaitée ». */
+export function hasFormulas(projectType: string): boolean {
+  return (FORMULA_OPTIONS[projectType]?.length ?? 0) > 0;
+}
 
 export function formulaLabel(projectType: string, value: string): string | undefined {
   return FORMULA_OPTIONS[projectType]?.find((option) => option.value === value)?.label;
