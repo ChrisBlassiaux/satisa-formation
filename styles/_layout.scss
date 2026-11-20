@@ -414,7 +414,7 @@
   }
 }
 
-// Titre de colonne : le lien de la rubrique, souligné d'un court trait jaune.
+// Titre de colonne : le lien de la rubrique, souligné d'un court trait bleu ciel (couleur du bouton « Prendre un rendez-vous »).
 .site-footer__col h3 {
   position: relative;
   margin-bottom: $spacing-sm;
@@ -432,7 +432,7 @@
     width: 28px;
     height: 3px;
     border-radius: 2px;
-    background: #fecc01;
+    background: $color-mint;
   }
 
   a {
