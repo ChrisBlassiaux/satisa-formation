@@ -380,42 +380,42 @@ function VueResultat({
         </>
       )}
 
-      <div className="rsr-chiffres">
-        <div className="rsr-chiffre">
-          <p className="rsr-chiffre__label">Durée indicative</p>
-          <p className="rsr-chiffre__valeur">{resultat.dureeIndicative}</p>
-          <p className="rsr-chiffre__note">De la préparation du dossier à la décision de France Compétences.</p>
-        </div>
-        <div className="rsr-chiffre">
-          <p className="rsr-chiffre__label">Coût indicatif d&apos;accompagnement</p>
-          <p className="rsr-chiffre__valeur">{formule.prixTexte}</p>
-          <p className="rsr-chiffre__note">{resultat.fraisDepot}</p>
-        </div>
-      </div>
-
       <div className="rsr-formule">
-        <p className="rsr-formule__label">Formule recommandée</p>
-        <p className="rsr-formule__nom">{formule.nom}</p>
+        <p className="rsr-formule__label">Formule adaptée</p>
+        <h3 className="rsr-formule__titre">{formule.nom}</h3>
         <p className="rsr-formule__sous-titre">{formule.sousTitre}</p>
         <p>{formule.description}</p>
+        <div className="rsr-chiffres">
+          <div className="rsr-chiffre">
+            <p className="rsr-chiffre__label">Durée indicative</p>
+            <p className="rsr-chiffre__valeur">{resultat.dureeIndicative}</p>
+            <p className="rsr-chiffre__note">De la préparation du dossier à la décision de France Compétences.</p>
+          </div>
+          <div className="rsr-chiffre">
+            <p className="rsr-chiffre__label">Coût indicatif d&apos;accompagnement</p>
+            <p className="rsr-chiffre__valeur">{formule.prixTexte}</p>
+            <p className="rsr-chiffre__note">{resultat.fraisDepot}</p>
+          </div>
+        </div>
         <div className="rsr-formule__actions">
-          <Link href={pageDeLaFormule(resultat)} className="btn btn--outline">
+          <Link href={pageDeLaFormule(resultat)} className="btn btn--primary">
             Voir cette formule
           </Link>
         </div>
       </div>
 
-      <p className="rsr-avertissement" role="note">
-        {resultat.avertissement}
-      </p>
-
-      <div className="rsr-partage">
-        <button type="button" className="btn btn--outline" onClick={copierLien}>
-          Copier le lien de ce résultat
-        </button>
-        <span role="status" aria-live="polite" className="rsr-partage__etat">
-          {copie ? "Lien copié." : ""}
-        </span>
+      <div className="rsr-avertissement">
+        <p className="rsr-avertissement__texte" role="note">
+          {resultat.avertissement}
+        </p>
+        <div className="rsr-partage">
+          <button type="button" className="btn btn--outline" onClick={copierLien}>
+            Copier le lien de ce résultat
+          </button>
+          <span role="status" aria-live="polite" className="rsr-partage__etat">
+            {copie ? "Lien copié." : ""}
+          </span>
+        </div>
       </div>
 
       <div className="sim-contact rsr-contact">

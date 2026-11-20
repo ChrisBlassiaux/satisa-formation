@@ -366,35 +366,67 @@ $rsr-ciel-clair: $color-mint-light;
   font-size: $fs-small;
 }
 
+// Bloc « Notre recommandation » : fond foncé pour que la recommandation de Satisa saute aux yeux.
 .rsr-formule {
   margin-top: $spacing-md;
   padding: $spacing-md;
   border-radius: $radius-md;
-  background: $color-mint-light;
-  color: $color-dark;
+  background: $color-dark;
+  color: $color-white;
+
+  @include from($bp-tablet) {
+    padding: $spacing-lg;
+  }
 
   p {
     margin: 0 0 0.35rem;
-    color: $color-dark;
+    color: rgba($color-white, 0.88);
   }
 }
 
-.rsr-formule__label {
+.rsr-formule .rsr-formule__label {
+  margin-bottom: 0.2rem;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $color-primary-dark !important;
+  color: $color-mint;
 }
 
-.rsr-formule__nom {
-  font-size: 1.35rem;
+// Le titre : le nom de la formule, en grand.
+.rsr-formule__titre {
+  margin: 0 0 $spacing-xs;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: $color-white;
+
+  @include from($bp-tablet) {
+    font-size: 2.25rem;
+  }
+}
+
+.rsr-formule .rsr-formule__sous-titre {
+  font-size: 1.1rem;
   font-weight: 700;
+  color: $color-mint;
 }
 
-.rsr-formule__sous-titre {
-  font-weight: 600;
-  color: $color-primary-dark !important;
+// Durée et coût indicatifs : sur fond blanc, pour ressortir du fond foncé.
+.rsr-formule .rsr-chiffres {
+  margin-top: $spacing-sm;
+}
+
+.rsr-formule .rsr-chiffre {
+  border-color: transparent;
+  background: $color-white;
+
+  p {
+    color: $color-dark;
+  }
+}
+
+.rsr-formule .rsr-chiffre .rsr-chiffre__label {
+  color: $color-muted;
 }
 
 .rsr-formule__actions {
@@ -404,12 +436,22 @@ $rsr-ciel-clair: $color-mint-light;
   margin-top: $spacing-sm;
 }
 
+// Avertissement et bouton « Copier le lien de ce résultat » réunis dans un seul bloc.
 .rsr-avertissement {
   margin: $spacing-md 0 0;
-  padding: 0.7rem 0.9rem;
+  padding: $spacing-sm $spacing-md;
   border-left: 4px solid $color-primary;
   border-radius: 0 $radius-sm $radius-sm 0;
   background: $color-surface;
+  color: $color-dark;
+
+  .btn {
+    background: $color-white;
+  }
+}
+
+.rsr-avertissement__texte {
+  margin: 0;
   font-size: $fs-small;
   font-weight: 600;
   color: $color-dark;
