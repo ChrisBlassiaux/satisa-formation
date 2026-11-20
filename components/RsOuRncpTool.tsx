@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type FormEvent, type RefObject } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import CalBookingButton from "@/components/CalBookingButton";
 import { ROUTES } from "@/lib/routes";
@@ -382,7 +383,16 @@ function VueResultat({
       )}
 
       <div className="rsr-formule">
-        <p className="rsr-formule__label">Formule adaptée</p>
+        <div className="rsr-formule__entete">
+          <p className="rsr-formule__label">Formule recommandée</p>
+          <Image
+            className="rsr-formule__logo"
+            src="/images/logo/logo-satisa-blanc.svg"
+            alt="Satisa Formation"
+            width={330}
+            height={152}
+          />
+        </div>
         <h3 className="rsr-formule__titre">{formule.nom}</h3>
         <p className="rsr-formule__sous-titre">{formule.sousTitre}</p>
         <p>{formule.description}</p>

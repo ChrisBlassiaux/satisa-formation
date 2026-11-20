@@ -175,12 +175,6 @@ $rsr-ciel-clair: $color-mint-light;
   &:focus {
     outline: none;
   }
-
-  &:focus-visible {
-    outline: 2px solid $color-primary;
-    outline-offset: 4px;
-    border-radius: 4px;
-  }
 }
 
 .rsr-options {
@@ -286,12 +280,6 @@ $rsr-ciel-clair: $color-mint-light;
 
   &:focus {
     outline: none;
-  }
-
-  &:focus-visible {
-    outline: 2px solid $color-primary;
-    outline-offset: 4px;
-    border-radius: 4px;
   }
 }
 
@@ -418,8 +406,27 @@ $rsr-ciel-clair: $color-mint-light;
   }
 }
 
-.rsr-formule .rsr-formule__label {
+// En-tête du bloc : l'étiquette à gauche, le logo Satisa Formation à droite (c'est Satisa qui recommande).
+.rsr-formule__entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
   margin-bottom: 0.2rem;
+}
+
+.rsr-formule__logo {
+  flex-shrink: 0;
+  width: auto;
+  height: 30px;
+
+  @include from($bp-tablet) {
+    height: 38px;
+  }
+}
+
+.rsr-formule .rsr-formule__label {
+  margin-bottom: 0;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
