@@ -360,7 +360,7 @@ export const CONFIG: Config = {
     },
     {
       id: "nature",
-      titre: "Que certifie votre formation ?",
+      titre: "Que voulez-vous certifier ?",
       pourquoi:
         "C'est la question la plus importante. Le RNCP certifie un métier complet ; le RS certifie une compétence qui s'ajoute à un métier. Certaines actions ne peuvent pas être enregistrées du tout.",
       options: [

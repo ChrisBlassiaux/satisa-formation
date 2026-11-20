@@ -182,7 +182,7 @@ export default function RsOuRncpGuide() {
           <figure className="sg-hour rsr-etapes">
             <div className="sg-hour__grid">
               <div className="sg-hour__panel sg-hour__panel--learner">
-                <h3 className="sg-hour__heading">Étape 1 : le bon répertoire. Que certifie votre formation&nbsp;?</h3>
+                <h3 className="sg-hour__heading">Étape 1 : le bon répertoire. Que voulez-vous certifier&nbsp;?</h3>
                 <ul className="sg-hour__list">
                   <li>
                     <span className="sg-hour__icon">{ICONS.briefcase}</span>
