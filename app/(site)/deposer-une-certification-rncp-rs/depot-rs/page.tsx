@@ -182,7 +182,7 @@ export default function CertificationRsPage() {
           </div>
 
           <OfferAccordion>
-            <div className="offer-row">
+            <div className="offer-row" id="offre-diagnostic">
               <button type="button" className="offer-row__header" aria-expanded="false" aria-controls="offer-body-1">
                 <span className="offer-row__title">
                   <span className="offer-row__name-row">
@@ -202,7 +202,7 @@ export default function CertificationRsPage() {
             </div>
 
             <div className="offer-row-pair">
-              <div className="offer-row">
+              <div className="offer-row" id="offre-guidee">
                 <button type="button" className="offer-row__header" data-pair="23" aria-expanded="false" aria-controls="offer-body-2">
                   <span className="offer-row__title">
                     <span className="offer-row__name-row">
@@ -237,7 +237,7 @@ export default function CertificationRsPage() {
                 </div>
               </div>
 
-              <div className="offer-row">
+              <div className="offer-row" id="offre-pilotee">
                 <button type="button" className="offer-row__header" data-pair="23" aria-expanded="false" aria-controls="offer-body-3">
                   <span className="offer-row__title">
                     <span className="offer-row__name-row">

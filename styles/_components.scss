@@ -298,6 +298,8 @@
 }
 
 .offer-row {
+  // Arrivée par un lien direct (#offre-…) : la formule s'arrête sous l'en-tête fixe et le bandeau du site.
+  scroll-margin-top: 150px;
   display: flex;
   flex-direction: column;
   height: 100%;

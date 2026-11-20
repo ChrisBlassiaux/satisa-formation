@@ -30,33 +30,57 @@ export default function OfferAccordion({ children }: { children: React.ReactNode
       syncRowState(btn);
     }
 
+    // Ouvre une formule (et sa voisine quand elles sont côte à côte, comme au clic).
+    function expand(btn: HTMLButtonElement) {
+      const pairsLinked = window.matchMedia(PAIR_BREAKPOINT).matches;
+      const pairKey = btn.getAttribute("data-pair");
+      if (pairKey && pairsLinked) {
+        container!
+          .querySelectorAll<HTMLButtonElement>(`.offer-row__header[data-pair="${pairKey}"]`)
+          .forEach((member) => setExpanded(member, true));
+        return;
+      }
+      if (pairKey) {
+        // Empilées sur mobile : ouvrir l'une ferme sa voisine.
+        container!
+          .querySelectorAll<HTMLButtonElement>(`.offer-row__header[data-pair="${pairKey}"]`)
+          .forEach((member) => {
+            if (member !== btn) setExpanded(member, false);
+          });
+      }
+      setExpanded(btn, true);
+    }
+
     function handleClick(this: HTMLButtonElement) {
       const pairsLinked = window.matchMedia(PAIR_BREAKPOINT).matches;
       const pairKey = this.getAttribute("data-pair");
       const expanding = this.getAttribute("aria-expanded") !== "true";
 
-      if (pairKey && pairsLinked) {
-        // Side by side: both offers of the pair open and close together.
-        const group = Array.from(
-          container!.querySelectorAll<HTMLButtonElement>(
-            `.offer-row__header[data-pair="${pairKey}"]`
-          )
-        );
-        group.forEach((btn) => setExpanded(btn, expanding));
+      if (expanding) {
+        expand(this);
         return;
       }
-
-      if (pairKey && !pairsLinked && expanding) {
-        // Stacked on mobile: opening one closes its pair-mate so only one shows at a time.
-        const siblings = Array.from(
-          container!.querySelectorAll<HTMLButtonElement>(
-            `.offer-row__header[data-pair="${pairKey}"]`
-          )
-        ).filter((btn) => btn !== this);
-        siblings.forEach((btn) => setExpanded(btn, false));
+      if (pairKey && pairsLinked) {
+        // Côte à côte : les deux formules de la paire se ferment ensemble.
+        container!
+          .querySelectorAll<HTMLButtonElement>(`.offer-row__header[data-pair="${pairKey}"]`)
+          .forEach((member) => setExpanded(member, false));
+        return;
       }
+      setExpanded(this, false);
+    }
 
-      setExpanded(this, expanding);
+    // Lien direct vers une formule (ex. …/depot-rncp#offre-diagnostic, depuis le test « RS ou RNCP ? ») :
+    // la formule s'ouvre et la page s'y place.
+    function openFromHash() {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id) return;
+      const row = document.getElementById(id);
+      if (!row || !container!.contains(row) || !row.classList.contains("offer-row")) return;
+      const header = row.querySelector<HTMLButtonElement>(".offer-row__header");
+      if (!header) return;
+      expand(header);
+      row.scrollIntoView({ block: "start" });
     }
 
     // Below the breakpoint where paired offers sit side by side, they stack in a
@@ -80,8 +104,12 @@ export default function OfferAccordion({ children }: { children: React.ReactNode
       header.addEventListener("click", handleClick);
     });
 
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+
     return () => {
       headers.forEach((header) => header.removeEventListener("click", handleClick));
+      window.removeEventListener("hashchange", openFromHash);
     };
   }, []);
 

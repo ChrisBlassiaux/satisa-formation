@@ -5,6 +5,7 @@ import Link from "next/link";
 import CalBookingButton from "@/components/CalBookingButton";
 import { ROUTES } from "@/lib/routes";
 import { CONFIG, decoder, encoder, evaluer, type Answers, type QuestionId, type Resultat } from "@/lib/rsRncp";
+import { lienFormule } from "@/lib/rsRncp/liens";
 
 // Outil gratuit « RS ou RNCP ? » : 10 questions, un verdict calculé immédiatement par des règles (lib/rsRncp),
 // aucune donnée personnelle demandée avant le résultat. Le formulaire facultatif n'apparaît qu'APRÈS le résultat.
@@ -53,9 +54,7 @@ function lienDuResultat(reponses: Answers): string {
 }
 
 function pageDeLaFormule(resultat: Resultat): string {
-  if (resultat.verdict === "rncp") return ROUTES.certificationRncp;
-  if (resultat.verdict === "rs") return ROUTES.certificationRs;
-  return ROUTES.certification;
+  return lienFormule(resultat, { rncp: ROUTES.certificationRncp, rs: ROUTES.certificationRs });
 }
 
 export default function RsOuRncpTool() {
