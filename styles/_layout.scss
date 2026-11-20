@@ -331,8 +331,9 @@
     padding: $spacing-lg;
   }
 
-  // Grand écran : la marque à gauche, les actions à droite sur une même ligne.
-  @include from($bp-desktop) {
+  // Très grand écran seulement : la marque à gauche, les trois boutons à droite sur une même ligne.
+  // En dessous, ils passent sous la marque pour ne pas retomber en deux lignes déséquilibrées.
+  @media (min-width: 1200px) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -344,7 +345,11 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-sm;
-  max-width: 44ch;
+  max-width: 52ch;
+
+  @media (min-width: 1200px) {
+    max-width: 34ch;
+  }
 }
 
 .site-footer__brand img {
@@ -359,11 +364,48 @@
   font-size: $fs-small;
 }
 
+// Moyens de contact : les trois boutons d'abord, puis un filet et la ligne LinkedIn, alignée sur le bord gauche des boutons.
 .site-footer__actions {
   display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.site-footer__cta {
+  display: flex;
   flex-wrap: wrap;
+  gap: $spacing-sm;
+
+  .btn {
+    padding-inline: 1.3em;
+  }
+}
+
+// Le filet couvre toute la largeur, mais seul le lien (icône + texte) est cliquable.
+.site-footer__social-row {
+  padding-top: $spacing-sm;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.site-footer__social {
+  display: inline-flex;
   align-items: center;
   gap: $spacing-sm;
+  font-size: $fs-small;
+  font-weight: 600;
+  color: $color-white;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-mint;
+  }
+
+  &:hover .social-link--footer,
+  &:focus-visible .social-link--footer {
+    background: $color-mint;
+    border-color: $color-mint;
+    color: $color-dark;
+  }
 }
 
 // Bouton « fantôme » : contour clair sur le fond sombre du bandeau.
@@ -371,26 +413,13 @@
   border: 1.5px solid rgba(255, 255, 255, 0.4);
   background: transparent;
   color: $color-white;
+  gap: 0.5rem;
 
   &:hover,
   &:focus-visible {
     border-color: $color-mint;
     background: $color-mint;
     color: $color-dark;
-  }
-}
-
-.site-footer__mail {
-  padding-inline: $spacing-xs;
-  font-size: $fs-small;
-  font-weight: 600;
-  color: $color-white;
-  text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.35);
-  text-underline-offset: 0.25em;
-
-  &:hover {
-    color: $color-mint;
   }
 }
 

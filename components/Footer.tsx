@@ -57,25 +57,35 @@ export default function Footer() {
             <p>Ingénierie de certification RNCP/RS et ingénierie pédagogique et digitale pour les organismes de formation.</p>
           </div>
           <div className="site-footer__actions">
-            <Link href={ROUTES.contact} className="btn btn--primary">
-              Prendre un rendez-vous
-            </Link>
-            <a href="https://wa.me/33783456753" className="btn site-footer__ghost" target="_blank" rel="noopener">
-              Discuter sur WhatsApp
-            </a>
-            <a href="mailto:chris@satisa.fr" className="site-footer__mail">
-              chris@satisa.fr
-            </a>
-            <a
-              href={LINKEDIN_URL}
-              className="social-link social-link--footer"
-              target="_blank"
-              rel="noopener noreferrer me"
-              aria-label="Chris Blassiaux sur LinkedIn"
-              title="LinkedIn"
-            >
-              <LinkedInIcon />
-            </a>
+            {/* Les trois façons de nous écrire ou de nous appeler, puis les réseaux sur une ligne à part. */}
+            <div className="site-footer__cta">
+              <Link href={ROUTES.contact} className="btn btn--primary">
+                Prendre un rendez-vous
+              </Link>
+              <a href="https://wa.me/33783456753" className="btn site-footer__ghost" target="_blank" rel="noopener">
+                Discuter sur WhatsApp
+              </a>
+              <a href="mailto:chris@satisa.fr" className="btn site-footer__ghost">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="m3 7 9 6 9-6" />
+                </svg>
+                chris@satisa.fr
+              </a>
+            </div>
+            <div className="site-footer__social-row">
+              <a
+                href={LINKEDIN_URL}
+                className="site-footer__social"
+                target="_blank"
+                rel="noopener noreferrer me"
+              >
+                <span className="social-link social-link--footer" aria-hidden="true">
+                  <LinkedInIcon />
+                </span>
+                Suivre Satisa sur LinkedIn
+              </a>
+            </div>
           </div>
         </div>
 
