@@ -1,10 +1,11 @@
 // Outil « RS ou RNCP ? » : demande de contact faite APRÈS l'affichage du résultat.
 //
-// Une seule interface, `envoyerDemande(payload)`, avec deux implémentations interchangeables :
+// Une seule interface, `envoyerDemande(payload)`, avec plusieurs implémentations interchangeables :
 //   - en développement : un adaptateur SIMULÉ, qui journalise la demande dans la console et dans un fichier local
 //     (`.data/rs-ou-rncp-demandes.jsonl`, ignoré par git) ;
 //   - en production : un adaptateur WEBHOOK, dont l'URL vient de la variable d'environnement SATISA_WEBHOOK_URL
-//     (voir AUTOMATION.md pour le brancher à Make, n8n ou Zapier).
+//     (voir AUTOMATION.md pour le brancher à Make, n8n ou Zapier) ;
+//   - en production sans webhook : un adaptateur E-MAIL (courriel.ts), si la messagerie du site est configurée.
 // Ce fichier ne connaît ni le moteur de règles ni l'interface : les dépendances sont passées en paramètre.
 
 import type { Answers, Config, Resultat } from "./types";
@@ -186,15 +187,21 @@ export function adaptateurIndisponible(): AdaptateurDemande {
 
 type Environnement = Record<string, string | undefined>;
 
-/** Choisit l'adaptateur : webhook si l'URL est définie, sinon simulé hors production, sinon indisponible. */
+/**
+ * Choisit l'adaptateur :
+ *   - webhook si l'URL est définie ;
+ *   - en production sans webhook : e-mail si la messagerie du site est configurée, sinon « indisponible » ;
+ *   - hors production : simulé (jamais d'e-mail réel pendant le développement).
+ */
 export function choisirAdaptateur(
   env: Environnement,
   ecrire: (fichier: string, objet: unknown) => Promise<void>,
+  courriel?: () => AdaptateurDemande | null,
 ): AdaptateurDemande {
   const url = env.SATISA_WEBHOOK_URL;
   if (url) return adaptateurWebhook({ url, secret: env.SATISA_WEBHOOK_SECRET });
   if (env.NODE_ENV !== "production") return adaptateurSimule({ ecrire });
-  return adaptateurIndisponible();
+  return courriel?.() ?? adaptateurIndisponible();
 }
 
 /** Interface unique : envoie la demande avec l'adaptateur choisi. */

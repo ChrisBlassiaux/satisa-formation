@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import { CONFIG, encoder, evaluer } from "@/lib/rsRncp";
 import { creerLimiteur, evaluerAntiSpam } from "@/lib/rsRncp/antispam";
+import { adaptateurCourriel } from "@/lib/rsRncp/courriel";
 import { choisirAdaptateur, construireDemande, envoyerDemande } from "@/lib/rsRncp/demande";
 import { ecrireLigneJson } from "@/lib/rsRncp/journal";
 import { ROUTES } from "@/lib/routes";
@@ -45,7 +47,24 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: construction.erreur }, { status: 400 });
   }
 
-  const adaptateur = choisirAdaptateur(process.env, ecrireLigneJson);
+  // Sans webhook, la demande part par e-mail (même messagerie que le simulateur et le formulaire de contact).
+  const adaptateur = choisirAdaptateur(process.env, ecrireLigneJson, () => {
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPassword = process.env.SMTP_APP_PASSWORD;
+    if (!smtpUser || !smtpPassword) return null;
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: { user: smtpUser, pass: smtpPassword },
+    });
+    return adaptateurCourriel({
+      config: CONFIG,
+      expediteur: `"Satisa Formation" <${smtpUser}>`,
+      destinataire: smtpUser,
+      envoyer: (mail) => transporter.sendMail(mail),
+    });
+  });
   const envoi = await envoyerDemande(construction.payload, adaptateur);
   if (!envoi.ok) {
     console.error(`[rs-ou-rncp] Échec de l'envoi (${adaptateur.nom}) : ${envoi.erreur}`);

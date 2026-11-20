@@ -13,6 +13,7 @@ import {
   type ContexteConstruction,
   type DemandePayload,
 } from "../../lib/rsRncp/demande.ts";
+import { adaptateurCourriel, construireCourriel, type Courriel } from "../../lib/rsRncp/courriel.ts";
 import { choisirAdaptateurEvenements, validerEvenement } from "../../lib/rsRncp/evenements.ts";
 import type { Answers } from "../../lib/rsRncp/types.ts";
 
@@ -197,6 +198,40 @@ test("choix de l'adaptateur : webhook si l'URL existe, simulé en développement
   assert.equal(prod.nom, "indisponible");
   assert.equal((await envoyerDemande(payloadValide(), prod)).ok, false);
   assert.equal((await adaptateurIndisponible().envoyer(payloadValide())).ok, false);
+});
+
+test("choix de l'adaptateur : en production sans webhook, e-mail si la messagerie est configurée", () => {
+  const ecrire = async () => undefined;
+  const courriel = () => adaptateurCourriel({ envoyer: async () => undefined, config: CONFIG, expediteur: "a@b.fr", destinataire: "a@b.fr" });
+  assert.equal(choisirAdaptateur({ NODE_ENV: "production" }, ecrire, courriel).nom, "courriel");
+  assert.equal(choisirAdaptateur({ NODE_ENV: "production" }, ecrire, () => null).nom, "indisponible");
+  // Le webhook garde la priorité, et le développement reste simulé même si la messagerie est configurée.
+  assert.equal(choisirAdaptateur({ NODE_ENV: "production", SATISA_WEBHOOK_URL: "https://hook.example/x" }, ecrire, courriel).nom, "webhook");
+  assert.equal(choisirAdaptateur({ NODE_ENV: "development" }, ecrire, courriel).nom, "simule");
+});
+
+test("e-mail : contient le contact, le résultat, les réponses lisibles et le consentement ; le contenu est échappé", async () => {
+  const construction = construireDemande({ ...valide, structure: "<b>Org</b>\nTest", nom: "Dupont" }, contexte);
+  assert.ok(construction.ok);
+  const mail = construireCourriel(construction.payload, CONFIG, { expediteur: "site@satisa.fr", destinataire: "chris@satisa.fr" });
+  assert.equal(mail.to, "chris@satisa.fr");
+  assert.equal(mail.replyTo, "marie@organisme.fr");
+  assert.ok(!/[\r\n]/.test(mail.subject), "pas de saut de ligne dans l'objet");
+  assert.ok(mail.text.includes("Marie Dupont"));
+  assert.ok(mail.text.includes(construction.payload.resultat.verdictTitre));
+  assert.ok(mail.text.includes("Réponses au test"));
+  assert.ok(mail.text.includes(CONFIG.questions[0].titre));
+  assert.ok(mail.text.includes(construction.payload.lienResultat));
+  assert.ok(mail.text.includes("Consentement : accepté"));
+  assert.ok(!mail.html.includes("<b>Org</b>"), "le HTML saisi par le visiteur est échappé");
+  assert.ok(mail.html.includes("&lt;b&gt;Org&lt;/b&gt;"));
+
+  const envoyes: Courriel[] = [];
+  const bon = adaptateurCourriel({ envoyer: async (m) => void envoyes.push(m), config: CONFIG, expediteur: "site@satisa.fr", destinataire: "chris@satisa.fr" });
+  assert.equal((await bon.envoyer(construction.payload)).ok, true);
+  assert.equal(envoyes.length, 1);
+  const casse = adaptateurCourriel({ envoyer: async () => { throw new Error("SMTP"); }, config: CONFIG, expediteur: "site@satisa.fr", destinataire: "chris@satisa.fr" });
+  assert.equal((await casse.envoyer(construction.payload)).ok, false);
 });
 
 // ---------- Statistiques anonymes ----------

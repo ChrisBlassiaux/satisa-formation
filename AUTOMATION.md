@@ -8,6 +8,9 @@ Ce document explique, en langage simple, comment brancher l'outil à un outil d'
 3. une **relance automatique** soit envoyée quelques jours plus tard.
 
 > Rien de tout cela n'est actif tant que la variable `SATISA_WEBHOOK_URL` n'est pas renseignée sur l'hébergement.
+> **Sans webhook**, en production, la demande est envoyée **par e-mail à Satisa** (même messagerie que le simulateur de
+> prix et le formulaire de contact, variables `SMTP_USER` et `SMTP_APP_PASSWORD`) : elle arrive dans la boîte avec le
+> résultat et les réponses au test. L'automatisation Notion, l'e-mail de résultat et la relance, eux, nécessitent le webhook.
 > En local, les demandes sont simplement « simulées » : elles s'affichent dans la console et dans le fichier
 > `.data/rs-ou-rncp-demandes.jsonl` (ignoré par git). Aucun e-mail n'est envoyé.
 
@@ -44,8 +47,9 @@ Le site ne stocke **rien** : les données vont directement à votre outil d'auto
 4. Redéployez le site (Vercel le fait en général tout seul après un changement de variable).
 5. Testez avec une vraie adresse à vous (voir §5).
 
-> Sans `SATISA_WEBHOOK_URL`, en **production**, le formulaire répond « L'envoi a échoué » (le site refuse plutôt que de
-> perdre une demande en silence). En développement, il reste simulé.
+> Sans `SATISA_WEBHOOK_URL`, en **production**, la demande part par e-mail à Satisa si la messagerie du site est
+> configurée ; sinon le formulaire répond « L'envoi a échoué » (le site refuse plutôt que de perdre une demande en
+> silence). En développement, il reste simulé (jamais d'e-mail réel).
 
 ## 3. Ce que reçoit votre webhook (le « payload »)
 
