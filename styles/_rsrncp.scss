@@ -612,6 +612,11 @@ $rsr-ciel-clair: $color-mint-light;
 
   @include from($bp-desktop) {
     grid-template-columns: repeat(3, 1fr);
+
+    // Le texte reste sous sa pastille, sur une largeur de lecture confortable (sans toucher le texte voisin).
+    li {
+      padding-inline: 2.75rem;
+    }
   }
 }
 
