@@ -64,6 +64,7 @@ export default function RsOuRncpTool() {
   const [reponses, setReponses] = useState<Answers>({});
   const [erreur, setErreur] = useState("");
   const [parcours, setParcours] = useState("");
+  const [copie, setCopie] = useState(false);
   const titreRef = useRef<HTMLHeadingElement>(null);
   const ecranPrecedent = useRef<string | null>(null);
 
@@ -96,6 +97,16 @@ export default function RsOuRncpTool() {
     ecranPrecedent.current = ecran;
     titreRef.current?.focus();
   }, [vueAffichee, index]);
+
+  async function copierLien() {
+    try {
+      await navigator.clipboard.writeText(lienDuResultat(reponsesAffichees));
+      setCopie(true);
+      window.setTimeout(() => setCopie(false), 2500);
+    } catch {
+      setCopie(false);
+    }
+  }
 
   function commencer() {
     const identifiant = nouvelIdentifiant();
@@ -151,9 +162,21 @@ export default function RsOuRncpTool() {
 
   return (
     <div className="sim rsr" id="test">
-      <div className="sim__head">
-        <p className="sim__title">RS ou RNCP ? Le test gratuit</p>
-        <p>10 questions, 2 minutes, sans inscription.</p>
+      <div className="sim__head rsr-entete">
+        <div>
+          <p className="sim__title">RS ou RNCP ? Le test gratuit</p>
+          <p>10 questions, 2 minutes, sans inscription.</p>
+        </div>
+        {vueAffichee === "resultat" && resultat && (
+          <div className="rsr-entete__action">
+            <span role="status" aria-live="polite" className="rsr-entete__etat">
+              {copie ? "Lien copié." : ""}
+            </span>
+            <button type="button" className="btn rsr-entete__copier" onClick={copierLien}>
+              Copier le lien de ce résultat
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="sim__body">
@@ -271,7 +294,6 @@ function VueResultat({
   titreRef: RefObject<HTMLHeadingElement | null>;
   onRecommencer: () => void;
 }) {
-  const [copie, setCopie] = useState(false);
   const [contact, setContact] = useState({ prenom: "", nom: "", structure: "", email: "", tel: "", website: "" });
   const [consentement, setConsentement] = useState(false);
   const [statut, setStatut] = useState<StatutEnvoi>("inactif");
@@ -295,16 +317,6 @@ function VueResultat({
         </button>
       </div>
     );
-  }
-
-  async function copierLien() {
-    try {
-      await navigator.clipboard.writeText(lienDuResultat(reponses));
-      setCopie(true);
-      window.setTimeout(() => setCopie(false), 2500);
-    } catch {
-      setCopie(false);
-    }
   }
 
   async function envoyer(evenement: FormEvent<HTMLFormElement>) {
@@ -399,7 +411,14 @@ function VueResultat({
         <div className="rsr-chiffres">
           <div className="rsr-chiffre">
             <p className="rsr-chiffre__label">Durée indicative</p>
-            <p className="rsr-chiffre__valeur">{resultat.dureeIndicative}</p>
+            <p className="rsr-chiffre__valeur">
+              {/* « Les deux répertoires » : une ligne par répertoire, au lieu d'un texte coupé au milieu. */}
+              {resultat.dureeIndicative.split(" · ").map((ligne) => (
+                <span key={ligne} className="rsr-chiffre__ligne">
+                  {ligne.replace(/(\d+) mois/, "$1\u00a0mois")}
+                </span>
+              ))}
+            </p>
             <p className="rsr-chiffre__note">De la préparation du dossier à la décision de France Compétences.</p>
           </div>
           <div className="rsr-chiffre">
@@ -412,20 +431,6 @@ function VueResultat({
           <Link href={pageDeLaFormule(resultat)} className="btn btn--primary">
             Voir cette formule
           </Link>
-        </div>
-      </div>
-
-      <div className="rsr-avertissement">
-        <p className="rsr-avertissement__texte" role="note">
-          {resultat.avertissement}
-        </p>
-        <div className="rsr-partage">
-          <button type="button" className="btn btn--outline" onClick={copierLien}>
-            Copier le lien de ce résultat
-          </button>
-          <span role="status" aria-live="polite" className="rsr-partage__etat">
-            {copie ? "Lien copié." : ""}
-          </span>
         </div>
       </div>
 
