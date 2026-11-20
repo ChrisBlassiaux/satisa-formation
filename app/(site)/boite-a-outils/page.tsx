@@ -1,24 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
+import { breadcrumbJsonLd } from "@/lib/formations";
 import { IDEA_BOX_TYPE } from "@/lib/contact";
 import ToolCard, { TOOLS } from "@/components/ToolCard";
 
 const TITLE = "Boîte à outils : outils gratuits pour votre projet de formation - Satisa Formation";
 const DESCRIPTION =
-  "Des outils gratuits pour avancer sur votre projet : estimer le prix d'une formation e-learning, choisir entre RS et RNCP. Sans inscription.";
+  "Les outils gratuits de Satisa Formation pour avancer sur votre projet de certification ou de formation. Sans inscription.";
 
-// Page de test : non indexée tant qu'elle n'est pas validée.
+const URL = `https://www.satisa-formation.fr${ROUTES.tools}`;
+
+// Page indexable : elle est dans le menu, le pied de page, le plan du site et llms.txt.
 export const metadata: Metadata = {
   title: "Boîte à outils",
   description: DESCRIPTION,
-  robots: { index: false, follow: true },
-  openGraph: { title: TITLE, description: DESCRIPTION, siteName: "Satisa Formation", locale: "fr_FR", type: "website" },
+  alternates: { canonical: URL },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: "Satisa Formation", locale: "fr_FR", type: "website" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
+
+const BREADCRUMB_JSON_LD = breadcrumbJsonLd([{ name: "Boîte à outils", path: ROUTES.tools }]);
 
 export default function ToolboxPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }} />
+
       <section className="hero-page hero-page--formations">
         <div className="container">
           <p className="eyebrow">Boîte à outils</p>
