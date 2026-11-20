@@ -11,7 +11,7 @@ type CalFn = ((...args: unknown[]) => void) & {
 };
 
 // Cal.com's embed script sets third-party cookies as soon as it loads, so it is
-// only fetched when the visitor shows interest in booking (hover, focus, tap).
+// only fetched once the visitor explicitly asks to book (click).
 function loadCal(): void {
   const w = window as unknown as { Cal?: CalFn };
   if (w.Cal) return;
@@ -64,9 +64,6 @@ export default function CalBookingButton({ className = "btn btn--primary btn--bl
     <button
       type="button"
       className={className}
-      onPointerEnter={loadCal}
-      onFocus={loadCal}
-      onTouchStart={loadCal}
       onClick={openCal}
     >
       Choisir un créneau

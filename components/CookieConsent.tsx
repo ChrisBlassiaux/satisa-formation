@@ -139,7 +139,7 @@ export default function CookieConsent() {
             {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${GA_ID}');`}
+gtag('config', '${GA_ID}', { cookie_expires: 34128000 });`}
           </Script>
         </>
       )}
@@ -191,9 +191,18 @@ gtag('config', '${GA_ID}');`}
                   <li className="cookie-option">
                     <div>
                       <p className="cookie-option__name">Cookies nécessaires</p>
-                      <p className="cookie-option__desc">Fonctionnement du site et prise de rendez-vous en ligne.</p>
+                      <p className="cookie-option__desc">Fonctionnement du site.</p>
                     </div>
                     <span className="cookie-option__always">Toujours actifs</span>
+                  </li>
+                  <li className="cookie-option">
+                    <div>
+                      <p className="cookie-option__name">Prise de rendez-vous (Cal.com)</p>
+                      <p className="cookie-option__desc">
+                        Chargée uniquement quand vous cliquez sur « Prendre un rendez-vous » ou « Choisir un créneau ».
+                      </p>
+                    </div>
+                    <span className="cookie-option__always">À votre clic</span>
                   </li>
                   <li className="cookie-option">
                     <div>
