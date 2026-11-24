@@ -9,6 +9,7 @@ export const ROUTES = {
   formationsDigitalisation: "/concevoir-digitaliser-vos-formations/digitalisation-formation",
   formationsSimulateur: "/concevoir-digitaliser-vos-formations/simulateur-prix-digitalisation",
   tools: "/boite-a-outils",
+  advent: "/calendrier-de-l-avent",
   about: "/a-propos",
   blog: "/blog",
   contact: "/rendez-vous",
