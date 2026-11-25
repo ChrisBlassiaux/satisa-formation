@@ -1,0 +1,62 @@
+@use 'variables' as *;
+
+// Fil d'Ariane : petite ligne discrète sous l'en-tête, fond blanc pour rester neutre quelle que soit la couleur du hero.
+.breadcrumb {
+  background: $color-white;
+  border-bottom: 1px solid $color-border;
+  padding-block: 0.6rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+
+  // La page courante prend la place restante et se tronque avec « … » si son titre est long.
+  &:last-child {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  & + &::before {
+    content: "›";
+    color: $color-muted;
+    opacity: 0.7;
+  }
+
+  a {
+    color: $color-muted;
+    text-decoration: none;
+    transition: color 0.15s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-primary-dark;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
+  [aria-current="page"] {
+    color: $color-ink;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+}

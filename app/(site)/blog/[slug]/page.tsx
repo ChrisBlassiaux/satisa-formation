@@ -6,6 +6,7 @@ import * as React from "react";
 import Markdoc, { Tag, type Config, type RenderableTreeNode } from "@markdoc/markdoc";
 import { ROUTES, LINKEDIN_URL } from "@/lib/routes";
 import LinkedInIcon from "@/components/LinkedInIcon";
+import { BreadcrumbNav } from "@/components/Breadcrumb";
 import { addImageDimensions, promoteTableHeaders } from "@/lib/markdoc-enhance";
 import { getAllPosts, getPost, getPostSlugs, CATEGORY_LABELS, formatPostDate, computeReadingTime } from "@/lib/posts";
 
@@ -509,6 +510,13 @@ export default async function BlogPostPage({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       )}
+
+      <BreadcrumbNav
+        trail={[
+          { name: "Blog", path: ROUTES.blog },
+          { name: post.title, path: `${ROUTES.blog}/${slug}` },
+        ]}
+      />
 
       <section>
         <div className="container article-header">
