@@ -48,7 +48,7 @@ export const OFFRES: Offre[] = [
     profil: {
       intro: "Le stagiaire devra avoir quelques compétences permettant de poursuivre l'apprentissage durant le stage.",
       competences: ["Rédaction", "Design (Canva)", "Connaissance de l'univers de LinkedIn et du web"],
-      plus: ["L'outil Notion"],
+      plus: ["L'outil Notion", "L'organisation"],
     },
     conditions: [
       "Le stage a pour objectif de finaliser un cursus de formation et s'effectuera sur une durée de deux mois maximum (non rémunérés).",
