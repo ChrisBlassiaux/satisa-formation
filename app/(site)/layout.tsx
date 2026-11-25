@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "@/styles/globals.scss";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Breadcrumb from "@/components/Breadcrumb";
 import FloatingCta from "@/components/FloatingCta";
 import CookieConsent from "@/components/CookieConsent";
 
@@ -39,7 +38,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Aller au contenu
         </a>
         <Header />
-        <Breadcrumb />
         <main id="main">{children}</main>
         <Footer />
         <FloatingCta />

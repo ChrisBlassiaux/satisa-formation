@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CalBookingButton from "@/components/CalBookingButton";
 import ContactForm from "@/components/ContactForm";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Prendre rendez-vous : consultant RNCP/RS",
@@ -30,6 +31,7 @@ export default function ContactPage() {
   return (
     <>
       <section>
+        <Breadcrumb />
         <div className="container section-head section-head--center">
           <p className="eyebrow">Contact</p>
           <h1>Parlons de votre projet</h1>

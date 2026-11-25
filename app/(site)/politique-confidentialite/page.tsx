@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <section>
+      <Breadcrumb />
       <div className="container legal-content">
         <h1>Politique de confidentialité</h1>
 

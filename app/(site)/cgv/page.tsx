@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Conditions générales de vente",
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
 export default function CgvPage() {
   return (
     <section>
+      <Breadcrumb />
       <div className="container legal-content">
         <h1>Conditions générales de vente</h1>
 

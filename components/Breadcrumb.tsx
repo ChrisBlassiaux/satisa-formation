@@ -4,10 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ROUTES } from "@/lib/routes";
 
-// Fil d'Ariane visible, affiché sous l'en-tête sur toutes les pages sauf l'accueil.
+// Fil d'Ariane visible, placé en haut du hero de chaque page (sauf l'accueil), dans le fond du hero.
 // Le parcours de chaque page est déclaré ici, à un seul endroit. Les libellés reprennent ceux du menu.
 // Les données structurées (BreadcrumbList) restent déclarées page par page : ce composant n'en ajoute pas.
-// Les articles du blog (titre variable) utilisent BreadcrumbNav directement depuis leur page.
+// Les articles du blog (titre variable) utilisent BreadcrumbNav avec leur propre parcours.
+// tone="light" : texte clair, pour les héros à fond sombre.
 
 export type BreadcrumbStep = { name: string; path: string };
 
@@ -33,12 +34,23 @@ const TRAILS: Record<string, BreadcrumbStep[]> = {
   [ROUTES.privacy]: [{ name: "Politique de confidentialité", path: ROUTES.privacy }],
 };
 
+const LEGAL_PATHS: string[] = [ROUTES.legalMentions, ROUTES.cgv, ROUTES.privacy];
+
 // Affichage seul : la dernière étape est la page courante (non cliquable).
-export function BreadcrumbNav({ trail }: { trail: BreadcrumbStep[] }) {
+// narrow : classe de largeur du bloc de texte de la page (pages légales, articles), pour aligner le fil sur le titre.
+export function BreadcrumbNav({
+  trail,
+  tone = "dark",
+  narrow,
+}: {
+  trail: BreadcrumbStep[];
+  tone?: "dark" | "light";
+  narrow?: "legal-content" | "article-header";
+}) {
   const steps = [{ name: "Accueil", path: ROUTES.home }, ...trail];
   return (
-    <nav className="breadcrumb" aria-label="Fil d'Ariane">
-      <div className="container">
+    <nav className={`breadcrumb${tone === "light" ? " breadcrumb--light" : ""}`} aria-label="Fil d'Ariane">
+      <div className={narrow ? `container ${narrow}` : "container"}>
         <ol className="breadcrumb__list">
           {steps.map((step, index) => {
             const isLast = index === steps.length - 1;
@@ -58,10 +70,11 @@ export function BreadcrumbNav({ trail }: { trail: BreadcrumbStep[] }) {
   );
 }
 
-export default function Breadcrumb() {
+export default function Breadcrumb({ tone }: { tone?: "dark" | "light" }) {
   const pathname = usePathname();
   const clean = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   const trail = TRAILS[clean];
   if (!trail) return null;
-  return <BreadcrumbNav trail={trail} />;
+  const narrow = LEGAL_PATHS.includes(clean) ? "legal-content" : undefined;
+  return <BreadcrumbNav trail={trail} tone={tone} narrow={narrow} />;
 }

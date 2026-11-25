@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Mentions légales",
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
 export default function LegalMentionsPage() {
   return (
     <section>
+      <Breadcrumb />
       <div className="container legal-content">
         <h1>Mentions légales</h1>
 

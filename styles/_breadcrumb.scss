@@ -1,12 +1,17 @@
 @use 'variables' as *;
 
-// Fil d'Ariane : petite ligne discrète sous l'en-tête, fond blanc pour rester neutre quelle que soit la couleur du hero.
+// Fil d'Ariane : petite ligne en haut du hero de chaque page, sur le fond du hero (pas de barre séparée).
 .breadcrumb {
-  background: $color-white;
-  border-bottom: 1px solid $color-border;
-  padding-block: 0.6rem;
+  position: relative;
+  z-index: 2;
+  margin-bottom: $spacing-md;
   font-size: 0.8125rem;
   line-height: 1.4;
+}
+
+// Le fil prend la place du haut du hero : on réduit l'espace au-dessus pour ne pas allonger le hero.
+section:has(> .breadcrumb) {
+  padding-top: $spacing-sm;
 }
 
 .breadcrumb__list {
@@ -58,5 +63,27 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
+  }
+}
+
+// Variante pour les héros à fond sombre.
+.breadcrumb--light {
+  .breadcrumb__item {
+    &::before {
+      color: rgba($color-white, 0.7);
+    }
+
+    a {
+      color: rgba($color-white, 0.78);
+
+      &:hover,
+      &:focus-visible {
+        color: $color-white;
+      }
+    }
+
+    [aria-current="page"] {
+      color: $color-white;
+    }
   }
 }

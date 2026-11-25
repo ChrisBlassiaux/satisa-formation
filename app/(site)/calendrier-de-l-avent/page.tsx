@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdventCalendar from "@/components/AdventCalendar";
 import { Etoiles, Neige } from "@/components/AdventDecor";
+import Breadcrumb from "@/components/Breadcrumb";
 
 // Page temporaire : ni indexée par Google, ni dans le plan du site, ni dans le menu. À retirer après l'opération.
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 export default function AdventPage() {
   return (
     <section className="avent-page">
+      <Breadcrumb tone="light" />
       <Neige nombre={40} />
       <Etoiles nombre={26} />
       <div className="container avent-page__contenu">

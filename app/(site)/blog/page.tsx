@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import { getAllPosts, CATEGORY_LABELS, formatPostDate } from "@/lib/posts";
 import BlogFilters from "@/components/BlogFilters";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Blog certification RNCP/RS et ingénierie pédagogique",
@@ -35,6 +36,7 @@ export default async function BlogIndexPage() {
   return (
     <>
       <section>
+        <Breadcrumb />
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Le blog</p>

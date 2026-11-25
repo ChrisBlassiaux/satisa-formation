@@ -6,6 +6,7 @@ import { breadcrumbJsonLd, faqJsonLd, type FaqItem } from "@/lib/formations";
 import FaqList from "@/components/FaqList";
 import RsOuRncpGuide from "@/components/RsOuRncpGuide";
 import RsOuRncpTool from "@/components/RsOuRncpTool";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const TITLE = "Test gratuit : RS ou RNCP ? - Satisa Formation";
 const DESCRIPTION =
@@ -68,6 +69,7 @@ export default function RsOuRncpPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }} />
 
       <section className="rsr-cover">
+        <Breadcrumb />
         <div className="container sim-cover">
           <div className="sim-cover__text">
             <p className="sim-intro__eyebrow">Test gratuit</p>

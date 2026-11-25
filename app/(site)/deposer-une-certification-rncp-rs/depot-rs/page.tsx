@@ -8,6 +8,7 @@ import DiagnosticFaisabilite from "@/components/DiagnosticFaisabilite";
 import DepotProcess from "@/components/DepotProcess";
 import RsOuRncpBanner from "@/components/RsOuRncpBanner";
 import { serviceJsonLd } from "@/lib/schema";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const TITLE = "Accompagnement au dépôt RS - Satisa Formation";
 const DESCRIPTION =
@@ -150,6 +151,7 @@ export default function CertificationRsPage() {
       <RsOuRncpBanner />
 
       <section className="hero-page hero-page--certification">
+        <Breadcrumb />
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Certification RS</p>

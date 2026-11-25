@@ -15,6 +15,7 @@ import {
 import FaqList from "@/components/FaqList";
 import LinkArrow from "@/components/LinkArrow";
 import SimulatorBanner from "@/components/SimulatorBanner";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const TITLE = "Digitalisation de formation : e-learning et LMS - Satisa Formation";
 const DESCRIPTION =
@@ -236,6 +237,7 @@ export default function DigitalisationPage() {
       <SimulatorBanner />
 
       <section className="hero-page hero-page--formations hero-page--wide-h1">
+        <Breadcrumb />
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Digitalisation des formations</p>

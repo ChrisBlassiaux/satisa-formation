@@ -6,6 +6,7 @@ import FaqList from "@/components/FaqList";
 import FormulaCard from "@/components/FormulaCard";
 import LinkArrow from "@/components/LinkArrow";
 import ConceptionSections from "@/components/ConceptionSections";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const TITLE = "Conception de formation conforme Qualiopi - Satisa Formation";
 const DESCRIPTION =
@@ -43,6 +44,7 @@ export default function ConceptionPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }} />
 
       <section className="hero-page hero-page--formations hero-page--wide-h1">
+        <Breadcrumb />
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Conception pédagogique</p>

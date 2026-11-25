@@ -7,6 +7,7 @@ import DigitalisationSimulator from "@/components/DigitalisationSimulator";
 import FaqList from "@/components/FaqList";
 import LinkArrow from "@/components/LinkArrow";
 import SimulatorGuide from "@/components/SimulatorGuide";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const TITLE = "Calculateur de coût e-learning - Satisa Formation";
 const DESCRIPTION =
@@ -83,6 +84,7 @@ export default function SimulateurPrixPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }} />
 
       <section className="dg-sim dg-sim--cover">
+        <Breadcrumb tone="light" />
         <div className="container sim-cover">
           <div className="sim-cover__text">
             <p className="sim-intro__eyebrow">Calculateur de coût e-learning</p>

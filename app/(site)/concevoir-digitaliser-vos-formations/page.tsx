@@ -4,6 +4,7 @@ import { ROUTES } from "@/lib/routes";
 import { FAQ_FORMATIONS, breadcrumbJsonLd, faqJsonLd } from "@/lib/formations";
 import FaqList from "@/components/FaqList";
 import LinkArrow from "@/components/LinkArrow";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const TITLE = "Ingénierie pédagogique et digitalisation - Satisa Formation";
 const DESCRIPTION =
@@ -40,6 +41,7 @@ export default function FormationsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(FAQ_FORMATIONS)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }} />
       <section className="hero-page hero-page--formations">
+        <Breadcrumb />
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Ingénierie pédagogique &amp; digital</p>

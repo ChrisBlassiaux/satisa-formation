@@ -6,6 +6,7 @@ import { ROUTES, LINKEDIN_URL } from "@/lib/routes";
 import RevealTimeline from "@/components/RevealTimeline";
 import TimelineLogoBadge from "@/components/TimelineLogoBadge";
 import PhotoPanel from "@/components/PhotoPanel";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const TITLE = "Consultant RNCP/RS et ingénieur pédagogique - Satisa Formation";
 const DESCRIPTION =
@@ -41,6 +42,7 @@ export default function AboutPage() {
       />
 
       <section>
+        <Breadcrumb />
         <div className="container hero-page--split">
           <div className="about-photo">
             <Image

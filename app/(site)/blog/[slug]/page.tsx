@@ -511,14 +511,14 @@ export default async function BlogPostPage({
         />
       )}
 
-      <BreadcrumbNav
-        trail={[
-          { name: "Blog", path: ROUTES.blog },
-          { name: post.title, path: `${ROUTES.blog}/${slug}` },
-        ]}
-      />
-
       <section>
+        <BreadcrumbNav
+          narrow="article-header"
+          trail={[
+            { name: "Blog", path: ROUTES.blog },
+            { name: post.title, path: `${ROUTES.blog}/${slug}` },
+          ]}
+        />
         <div className="container article-header">
           <p className="eyebrow">{CATEGORY_LABELS[post.category]}</p>
           <h1>{post.title}</h1>

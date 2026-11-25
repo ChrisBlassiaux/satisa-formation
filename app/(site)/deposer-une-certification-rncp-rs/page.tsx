@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import RsOuRncpBanner from "@/components/RsOuRncpBanner";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const TITLE = "Dépôt de certification RNCP/RS - Satisa Formation";
 const DESCRIPTION =
@@ -96,6 +97,7 @@ export default function CertificationPage() {
       <RsOuRncpBanner />
 
       <section className="hero-page hero-page--certification">
+        <Breadcrumb />
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Certification RNCP/RS</p>

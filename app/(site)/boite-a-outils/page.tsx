@@ -4,6 +4,7 @@ import { ROUTES } from "@/lib/routes";
 import { breadcrumbJsonLd } from "@/lib/formations";
 import { IDEA_BOX_TYPE } from "@/lib/contact";
 import ToolCard, { TOOLS } from "@/components/ToolCard";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const TITLE = "Boîte à outils : outils gratuits pour votre projet de formation - Satisa Formation";
 const DESCRIPTION =
@@ -28,6 +29,7 @@ export default function ToolboxPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }} />
 
       <section className="hero-page hero-page--formations">
+        <Breadcrumb />
         <div className="container">
           <p className="eyebrow">Boîte à outils</p>
           <h1>Des outils gratuits pour avancer sur votre projet</h1>
