@@ -333,7 +333,7 @@ export default function CertificationRncpPage() {
 
       <DepotProcess
         title="Comment se déroule l’accompagnement au dépôt RNCP"
-        intro="Une certification RNCP atteste qu’une personne maîtrise un métier. Pour l’enregistrer, France Compétences attend la preuve que ce métier répond à un besoin réel, que vos référentiels sont solides et que vos titulaires s’insèrent dans les emplois visés. Voici comment Satisa vous accompagne, du diagnostic jusqu’à la décision."
+        intro="Une certification RNCP atteste qu’une personne maîtrise un métier. Pour l’enregistrer, France Compétences attend la preuve que ce métier répond à un besoin réel sur le marché de l’emploi, que vos référentiels et vos modalités d’évaluation sont solides et que vos titulaires s’insèrent dans les emplois visés. Voici comment Satisa vous accompagne, du diagnostic jusqu’à la décision."
         stats={[
           { value: "6 étapes", label: "du diagnostic de faisabilité à la décision de France Compétences" },
           { value: "À partir de 10 mois", label: "durée évaluée dès le diagnostic, du diagnostic à la décision, selon l’existant actuel" },
