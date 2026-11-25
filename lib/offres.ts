@@ -63,7 +63,7 @@ export const OFFRES: Offre[] = [
     ],
     secteur: "Formation technique et professionnelle",
     avantDePostuler: [
-      "Vous acceptez de travailler à distance.",
+      "Vous acceptez de travailler 100 % à distance.",
       "Vous recherchez un stage d'une durée de deux mois maximum.",
       "Vos dates de stage figurent sur votre CV.",
     ],
