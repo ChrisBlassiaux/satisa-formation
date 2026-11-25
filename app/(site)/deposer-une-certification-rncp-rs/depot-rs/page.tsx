@@ -155,7 +155,7 @@ export default function CertificationRsPage() {
         <div className="container hero-page__layout">
           <div>
             <p className="eyebrow">Certification RS</p>
-            <h1>Déposez votre certification RS auprès de France Compétences</h1>
+            <h1>Dépôt de certification RS auprès de France Compétences</h1>
             <p className="hero-page__subtitle">
               Sans dépôt de certification RS enregistrée auprès de France Compétences, votre expertise reste non
               reconnue officiellement et vos apprenants n&apos;ont accès ni au CPF ni à une certification
