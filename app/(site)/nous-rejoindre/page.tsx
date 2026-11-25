@@ -141,11 +141,6 @@ export default function JobsPage() {
                             ))}
                           </ul>
                         </section>
-
-                        <section className="job__block">
-                          <h4>Secteur</h4>
-                          <p>{offre.secteur}</p>
-                        </section>
                       </div>
 
                       <aside className="job__apply">

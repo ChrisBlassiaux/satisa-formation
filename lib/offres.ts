@@ -25,7 +25,6 @@ export type Offre = {
     plus: string[];
   };
   conditions: string[];
-  secteur: string;
   /** Points à vérifier avant de candidater (questions de présélection). */
   avantDePostuler: string[];
   candidature: {
@@ -61,7 +60,6 @@ export const OFFRES: Offre[] = [
       "Idéal pour un stage en première ou deuxième année de communication (ou en formation).",
       "Nous sommes souples concernant la date de début du stage.",
     ],
-    secteur: "Formation technique et professionnelle",
     avantDePostuler: [
       "Vous acceptez de travailler 100 % à distance.",
       "Vous recherchez un stage d'une durée de deux mois maximum.",
