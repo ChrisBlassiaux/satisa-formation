@@ -41,7 +41,7 @@ export const OFFRES: Offre[] = [
     alerte: "Nous recrutons pour un stage de 2 mois maximum (pas d'alternance).",
     accroche: "Satisa Formation recherche un stagiaire pour le poste de Community Manager.",
     aPropos:
-      "Satisa Formation accompagne les organismes de formation sur deux expertises complémentaires : l'ingénierie de certification RNCP et RS auprès de France Compétences, et la conception et digitalisation de formations. Selon les besoins et les ressources de chaque structure, Satisa intervient sur tout ou une partie du projet.",
+      "Satisa Formation accompagne les organismes de formation sur deux expertises complémentaires : l'ingénierie de certification RNCP et RS auprès de France Compétences, et la conception et digitalisation de formations.",
     descriptif: "L'objectif du stage est le développement du projet Satisa Formation à travers notre présence en ligne.",
     missions:
       "Le community manager s'occupera de consolider et d'animer la communauté Satisa Formation sur LinkedIn, et sur le site internet. Cela via la création de contenus pour les réseaux sociaux et la création de contenu pour le site web en respectant la charte graphique Satisa Formation.",
