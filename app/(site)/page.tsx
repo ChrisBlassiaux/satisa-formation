@@ -1,4 +1,5 @@
 import { ORGANIZATION_JSON_LD } from "@/lib/schema";
+import AdventBanner from "@/components/AdventBanner";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,6 +42,7 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
       />
 
+      <AdventBanner />
 
       <section className="hero--sunrays">
         <div className="hero__rays" aria-hidden="true">
