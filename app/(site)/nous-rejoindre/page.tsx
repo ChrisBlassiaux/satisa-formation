@@ -4,6 +4,7 @@ import { ROUTES } from "@/lib/routes";
 import { breadcrumbJsonLd } from "@/lib/formations";
 import { OFFRES } from "@/lib/offres";
 import { formatPostDate } from "@/lib/posts";
+import ApplicationForm from "@/components/ApplicationForm";
 import Breadcrumb from "@/components/Breadcrumb";
 import JobsDeepLink from "@/components/JobsDeepLink";
 
@@ -150,16 +151,18 @@ export default function JobsPage() {
                             <li key={point}>{point}</li>
                           ))}
                         </ul>
-                        <a
-                          className="btn btn--primary"
-                          href={`mailto:${offre.candidature.email}?subject=${encodeURIComponent(offre.candidature.objet)}`}
-                        >
-                          Postuler par e-mail
+                        <a className="btn btn--primary" href={`#postuler-${offre.id}`}>
+                          Postuler
                         </a>
                         <p className="job__mail">
                           Ou écrivez à <strong>{offre.candidature.email}</strong> avec l&apos;objet « {offre.candidature.objet} ».
                         </p>
                       </aside>
+
+                      <div className="job__form" id={`postuler-${offre.id}`}>
+                        <h4>Postuler à cette offre</h4>
+                        <ApplicationForm offerId={offre.id} durations={offre.candidature.durees} email={offre.candidature.email} />
+                      </div>
                     </div>
                   </details>
                 ))}

@@ -203,7 +203,8 @@
   @include from($bp-desktop) {
     grid-template-columns: minmax(0, 1fr) 340px;
     align-items: start;
-    gap: $spacing-xl;
+    // Pas d'espace entre les lignes : tant que le formulaire est masqué, il ne doit rien rester sous le texte.
+    gap: 0 $spacing-xl;
   }
 }
 
@@ -322,8 +323,74 @@
     }
   }
 
+  // Colonne de droite sur toute la hauteur de l'offre et du formulaire : l'encadré suit le défilement.
   @include from($bp-desktop) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
     position: sticky;
     top: 100px;
+  }
+}
+
+// Formulaire de candidature : masqué tant qu'on n'a pas cliqué sur « Postuler » (l'ancre de l'adresse le désigne),
+// puis affiché sous le texte de l'offre ; sur mobile, il vient après « Avant de postuler ».
+.job__form:not(:target) {
+  display: none;
+}
+
+.job__form {
+  min-width: 0;
+  // Filet épais et grande respiration : on passe de la lecture de l'offre à la candidature.
+  padding-top: $spacing-lg;
+  border-top: 3px solid $color-primary;
+  scroll-margin-top: 100px;
+
+  @include from($bp-desktop) {
+    grid-column: 1;
+    margin-top: $spacing-lg;
+  }
+
+  h4 {
+    margin-bottom: $spacing-sm;
+    font-size: 1.15rem;
+    color: $color-dark;
+  }
+
+  // La marge des champs suffit : pas de double espace quand les deux colonnes s'empilent.
+  .form-row {
+    row-gap: 0;
+  }
+
+  .form-field {
+    min-width: 0;
+  }
+
+  // Même hauteur pour la date et la liste de durées, qui se partagent une ligne.
+  .form-field input:not([type='file']),
+  .form-field select {
+    height: 3rem;
+  }
+
+  input[type='file']::file-selector-button {
+    margin-right: $spacing-xs;
+    padding: 0.35em 0.9em;
+    border: 0;
+    border-radius: $radius-sm;
+    background: $color-mint-light;
+    color: $color-teal-dark;
+    font: inherit;
+    font-size: $fs-small;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .form-note,
+  .form-error {
+    margin-bottom: $spacing-sm;
+  }
+
+  .form-note a {
+    color: $color-primary-dark;
+    text-decoration: underline;
   }
 }

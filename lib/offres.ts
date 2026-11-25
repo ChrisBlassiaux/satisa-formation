@@ -30,6 +30,8 @@ export type Offre = {
   candidature: {
     email: string;
     objet: string;
+    /** Durées proposées dans le formulaire de candidature. */
+    durees: string[];
   };
 };
 
@@ -68,6 +70,7 @@ export const OFFRES: Offre[] = [
     candidature: {
       email: "chris@satisa.fr",
       objet: "Candidature - Community manager (stage)",
+      durees: ["1 mois", "6 semaines", "2 mois"],
     },
   },
 ];

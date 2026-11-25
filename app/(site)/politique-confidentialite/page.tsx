@@ -55,6 +55,15 @@ export default function PrivacyPolicyPage() {
           <br />
           Finalité : traiter votre demande et assurer le suivi des échanges.
         </p>
+        <p>
+          <strong>Candidatures (page « Nous rejoindre »)</strong>
+          <br />
+          Données collectées : prénom, nom, email, téléphone, date de début et durée souhaitées, lien LinkedIn ou
+          portfolio, CV et message.
+          <br />
+          Finalité : étudier votre candidature et vous répondre. Ces données sont transmises par email et ne sont pas
+          enregistrées sur le site.
+        </p>
 
         <h2>4. Cookies et outils tiers</h2>
         <p>
@@ -83,6 +92,10 @@ export default function PrivacyPolicyPage() {
           Données des formulaires de contact : conservées pendant la durée nécessaire au traitement de la demande
           et jusqu&apos;à 3 ans maximum dans un cadre de suivi commercial BtoB.
         </p>
+        <p>
+          Données des candidatures, CV compris : conservées jusqu&apos;à 2 ans maximum après le dernier contact, sauf
+          demande de suppression de votre part.
+        </p>
 
         <h2>7. Vos droits</h2>
         <p>
@@ -101,7 +114,7 @@ export default function PrivacyPolicyPage() {
         <p>
           La présente politique peut être mise à jour pour refléter les évolutions légales ou techniques.
           <br />
-          Dernière mise à jour : août 2026.
+          Dernière mise à jour : novembre 2026.
         </p>
       </div>
     </section>
