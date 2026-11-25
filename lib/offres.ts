@@ -51,11 +51,11 @@ export const OFFRES: Offre[] = [
       plus: ["L'outil Notion", "L'organisation"],
     },
     conditions: [
-      "Le stage a pour objectif de finaliser un cursus de formation et s'effectuera sur une durée de deux mois maximum (non rémunérés).",
+      "Le stage a pour objectif de compléter ou de finaliser un cursus de formation. Il dure deux mois maximum et n'est pas rémunéré.",
       "Stage 100 % en télétravail (mais suivi !).",
       "Avec son propre ordinateur.",
       "En autonomie.",
-      "Idéal pour un stage en première année de communication (ou en formation).",
+      "Idéal pour un stage en première ou deuxième année de communication (ou en formation).",
       "Nous sommes souples concernant la date de début du stage.",
     ],
     secteur: "Formation technique et professionnelle",
