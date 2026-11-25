@@ -11,6 +11,7 @@ export const ROUTES = {
   tools: "/boite-a-outils",
   advent: "/calendrier-de-l-avent",
   about: "/a-propos",
+  jobs: "/offres-d-emploi",
   blog: "/blog",
   contact: "/rendez-vous",
   legalMentions: "/mentions-legales",

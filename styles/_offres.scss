@@ -1,0 +1,219 @@
+@use 'variables' as *;
+
+// Page « Offres d'emploi » (préfixes job-) : une carte par offre, avec ses sections et un bloc « Postuler » en bas.
+.job-list {
+  display: grid;
+  gap: $spacing-lg;
+}
+
+.job-empty {
+  max-width: 60ch;
+  color: $color-muted;
+}
+
+.job {
+  scroll-margin-top: 110px;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-white;
+  box-shadow: 0 1px 2px rgba($color-dark, 0.05), 0 8px 24px rgba($color-dark, 0.06);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover,
+  &[open] {
+    border-color: rgba($color-primary, 0.5);
+  }
+
+  h3,
+  h4,
+  p,
+  ul {
+    margin: 0;
+  }
+}
+
+// Carte fermée : titre et pastilles à gauche, invitation à déplier à droite. Un clic ouvre toute l'offre.
+.job__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  cursor: pointer;
+  list-style: none;
+  border-radius: $radius-lg;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  @include from($bp-tablet) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.job__head {
+  display: grid;
+  gap: $spacing-xs;
+  min-width: 0;
+}
+
+.job__title {
+  font-size: $fs-h3;
+}
+
+.job__toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.4rem;
+  color: $color-primary-dark;
+  font-size: $fs-small;
+  font-weight: 600;
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  .job__toggle-close {
+    display: none;
+  }
+
+  // Sur téléphone, seul le chevron reste affiché.
+  .job__toggle-open,
+  .job__toggle-close {
+    @media (max-width: ($bp-tablet - 1)) {
+      display: none !important;
+    }
+  }
+}
+
+.job[open] .job__toggle {
+  .job__toggle-open {
+    display: none;
+  }
+
+  .job__toggle-close {
+    display: inline;
+  }
+
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+.job__content {
+  padding: 0 $spacing-md $spacing-md;
+
+  @include from($bp-tablet) {
+    padding: 0 $spacing-lg $spacing-lg;
+  }
+}
+
+.job__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.job__chip {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: $color-mint-light;
+  color: $color-primary-dark;
+  font-size: $fs-small;
+  font-weight: 600;
+}
+
+.job .job__alert {
+  margin-top: $spacing-sm;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid $color-ray-yellow;
+  border-radius: $radius-sm;
+  background: rgba($color-ray-yellow, 0.14);
+  color: $color-ink;
+  font-weight: 600;
+}
+
+.job .job__lead {
+  margin-top: $spacing-sm;
+  font-size: 1.05rem;
+  color: $color-ink;
+}
+
+.job .job__body {
+  margin-top: $spacing-md;
+  padding-top: $spacing-md;
+  border-top: 1px solid $color-border;
+
+  // Deux colonnes qui s'équilibrent seules : on lit la colonne de gauche puis celle de droite.
+  @include from($bp-desktop) {
+    column-count: 2;
+    column-gap: $spacing-xl;
+  }
+}
+
+// Le bloc « section » du composant est global (padding) : on le neutralise à l'intérieur d'une offre.
+.job .job__block {
+  padding: 0;
+  display: grid;
+  align-content: start;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-md;
+  break-inside: avoid;
+
+  h4 {
+    font-size: 1.05rem;
+    color: $color-primary-dark;
+  }
+
+  p {
+    color: $color-ink;
+  }
+
+  ul {
+    padding-left: 1.2rem;
+    list-style: disc;
+    display: grid;
+    gap: 0.25rem;
+  }
+}
+
+.job .job__sub {
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+.job .job__apply {
+  display: grid;
+  gap: $spacing-sm;
+  align-items: center;
+  margin-top: $spacing-md;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-md;
+  background: $color-surface;
+  border: 1px solid $color-border;
+
+  h4 {
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+  }
+
+  ul {
+    padding-left: 1.2rem;
+    list-style: disc;
+    display: grid;
+    gap: 0.25rem;
+    color: $color-muted;
+  }
+
+  @include from($bp-tablet) {
+    grid-template-columns: 1fr auto;
+    gap: $spacing-md;
+  }
+}
