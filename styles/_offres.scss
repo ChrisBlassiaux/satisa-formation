@@ -8,6 +8,15 @@
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
 }
 
+// Simple repère au-dessus des cartes : reste un titre pour les lecteurs d'écran, mais se lit comme du texte courant.
+.job-count {
+  margin-bottom: $spacing-sm;
+  font-size: $fs-body;
+  font-weight: 400;
+  letter-spacing: normal;
+  color: $color-muted;
+}
+
 .job-empty {
   max-width: 60ch;
   color: $color-muted;

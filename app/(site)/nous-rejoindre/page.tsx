@@ -49,9 +49,9 @@ export default function JobsPage() {
             </p>
           ) : (
             <>
-              <div className="section-head">
-                <h2>{OFFRES.length === 1 ? "1 offre ouverte" : `${OFFRES.length} offres ouvertes`}</h2>
-              </div>
+              <h2 className="job-count">
+                {OFFRES.length === 1 ? "1 offre ouverte" : `${OFFRES.length} offres ouvertes`}
+              </h2>
               <div className="job-list">
                 {OFFRES.map((offre) => (
                   <details key={offre.id} id={offre.id} className="job">
