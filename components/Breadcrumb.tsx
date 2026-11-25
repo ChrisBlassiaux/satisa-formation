@@ -28,7 +28,7 @@ const TRAILS: Record<string, BreadcrumbStep[]> = {
   [ROUTES.advent]: [{ name: "Calendrier de l'Avent", path: ROUTES.advent }],
   [ROUTES.blog]: [{ name: "Blog", path: ROUTES.blog }],
   [ROUTES.about]: [{ name: "À propos", path: ROUTES.about }],
-  [ROUTES.jobs]: [{ name: "Offres d'emploi", path: ROUTES.jobs }],
+  [ROUTES.jobs]: [{ name: "Nous rejoindre", path: ROUTES.jobs }],
   [ROUTES.contact]: [{ name: "Prendre rendez-vous", path: ROUTES.contact }],
   [ROUTES.legalMentions]: [{ name: "Mentions légales", path: ROUTES.legalMentions }],
   [ROUTES.cgv]: [{ name: "Conditions générales de vente", path: ROUTES.cgv }],

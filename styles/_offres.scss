@@ -3,7 +3,9 @@
 // Page « Offres d'emploi » (préfixes job-) : une carte par offre, avec ses sections et un bloc « Postuler » en bas.
 .job-list {
   display: grid;
-  gap: $spacing-lg;
+  gap: $spacing-md;
+  align-items: start;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
 }
 
 .job-empty {
@@ -24,6 +26,15 @@
     border-color: rgba($color-primary, 0.5);
   }
 
+  // Fermée : une carte carrée. Ouverte : elle prend toute la largeur de la grille pour afficher l'offre.
+  &:not([open]) {
+    aspect-ratio: 1 / 1;
+  }
+
+  &[open] {
+    grid-column: 1 / -1;
+  }
+
   h3,
   h4,
   p,
@@ -35,9 +46,11 @@
 // Carte fermée : titre et pastilles à gauche, invitation à déplier à droite. Un clic ouvre toute l'offre.
 .job__summary {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
   gap: $spacing-sm;
+  height: 100%;
   padding: $spacing-md;
   cursor: pointer;
   list-style: none;
@@ -53,8 +66,57 @@
   }
 
   @include from($bp-tablet) {
-    padding: $spacing-md $spacing-lg;
+    padding: $spacing-lg;
   }
+}
+
+// Ouverte : l'en-tête passe sur une ligne (titre à gauche, « Masquer » à droite).
+.job[open] .job__summary {
+  height: auto;
+  padding-bottom: $spacing-sm;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.job__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  align-self: stretch;
+}
+
+// Le type de collaboration (STAGE) est la première chose que l'on lit sur la carte.
+.job__type {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: $color-dark;
+  color: $color-white;
+  font-size: $fs-small;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.job[open] .job__top {
+  align-self: auto;
+  gap: $spacing-sm;
+}
+
+.job__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: $radius-md;
+  background: $color-mint-light;
+  color: $color-primary-dark;
+}
+
+.job[open] .job__icon {
+  display: none;
 }
 
 .job__head {
@@ -70,8 +132,12 @@
 .job__toggle {
   display: inline-flex;
   flex-shrink: 0;
+  align-self: stretch;
   align-items: center;
+  justify-content: space-between;
   gap: 0.4rem;
+  padding-top: $spacing-sm;
+  border-top: 1px solid $color-border;
   color: $color-primary-dark;
   font-size: $fs-small;
   font-weight: 600;
@@ -83,17 +149,15 @@
   .job__toggle-close {
     display: none;
   }
-
-  // Sur téléphone, seul le chevron reste affiché.
-  .job__toggle-open,
-  .job__toggle-close {
-    @media (max-width: ($bp-tablet - 1)) {
-      display: none !important;
-    }
-  }
 }
 
+// Ouverte : « Masquer » passe à droite de l'en-tête, sans filet.
 .job[open] .job__toggle {
+  align-self: center;
+  margin-left: auto;
+  padding-top: 0;
+  border-top: 0;
+
   .job__toggle-open {
     display: none;
   }

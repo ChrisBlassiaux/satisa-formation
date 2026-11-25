@@ -6,6 +6,8 @@ export type Offre = {
   /** Identifiant utilisé comme ancre de l'URL (#community-manager). */
   id: string;
   titre: string;
+  /** Type de collaboration, mis en avant sur la carte (Stage, CDI, etc.). */
+  type: string;
   /** Pastilles affichées sous le titre. */
   pastilles: string[];
   /** Encadré d'alerte en tête de l'offre. */
@@ -34,7 +36,8 @@ export const OFFRES: Offre[] = [
   {
     id: "community-manager",
     titre: "Community manager",
-    pastilles: ["Stage", "2 mois maximum", "100 % télétravail", "Non rémunéré"],
+    type: "Stage",
+    pastilles: ["2 mois maximum", "100 % télétravail", "Non rémunéré"],
     alerte: "Nous recrutons pour un stage de 2 mois maximum (pas d'alternance).",
     accroche: "Satisa Formation recherche un stagiaire pour le poste de Community Manager.",
     aPropos:

@@ -46,7 +46,7 @@ export default function Footer() {
             <ul>
               <li><Link href={ROUTES.about}>À propos</Link></li>
               <li><Link href={ROUTES.blog}>Blog</Link></li>
-              <li><Link href={ROUTES.jobs}>Offres d&apos;emploi</Link></li>
+              <li><Link href={ROUTES.jobs}>Nous rejoindre</Link></li>
             </ul>
           </div>
         </div>

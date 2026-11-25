@@ -4,33 +4,36 @@ import { ROUTES } from "@/lib/routes";
 import { breadcrumbJsonLd } from "@/lib/formations";
 import { OFFRES } from "@/lib/offres";
 import Breadcrumb from "@/components/Breadcrumb";
+import JobsDeepLink from "@/components/JobsDeepLink";
 
-const TITLE = "Offres d'emploi et de stage - Satisa Formation";
+const TITLE = "Nous rejoindre : offres d'emploi et de stage - Satisa Formation";
 const DESCRIPTION =
   "Rejoignez Satisa Formation : retrouvez les offres d'emploi et de stage ouvertes, comme le stage de community manager en télétravail.";
 
 const URL = `https://www.satisa-formation.fr${ROUTES.jobs}`;
 
 export const metadata: Metadata = {
-  title: "Offres d'emploi et de stage",
+  title: "Nous rejoindre : offres d'emploi et de stage",
   description: DESCRIPTION,
   alternates: { canonical: URL },
   openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: "Satisa Formation", locale: "fr_FR", type: "website" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
-const BREADCRUMB_JSON_LD = breadcrumbJsonLd([{ name: "Offres d'emploi", path: ROUTES.jobs }]);
+const BREADCRUMB_JSON_LD = breadcrumbJsonLd([{ name: "Nous rejoindre", path: ROUTES.jobs }]);
 
 export default function JobsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSON_LD) }} />
 
+      <JobsDeepLink />
+
       <section className="hero-page hero-page--formations">
         <Breadcrumb />
         <div className="container">
-          <p className="eyebrow">Rejoindre Satisa</p>
-          <h1>Offres d&apos;emploi</h1>
+          <p className="eyebrow">Recrutement</p>
+          <h1>Nous rejoindre</h1>
           <p className="hero-page__subtitle">
             Satisa Formation recrute. Retrouvez ici les postes et les stages actuellement ouverts.
           </p>
@@ -53,6 +56,15 @@ export default function JobsPage() {
                 {OFFRES.map((offre) => (
                   <details key={offre.id} id={offre.id} className="job">
                     <summary className="job__summary">
+                      <span className="job__top">
+                        <span className="job__icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" />
+                            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 13h20" />
+                          </svg>
+                        </span>
+                        <span className="job__type">{offre.type}</span>
+                      </span>
                       <span className="job__head">
                         <h3 className="job__title">{offre.titre}</h3>
                         <span className="job__chips">
