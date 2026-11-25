@@ -58,7 +58,7 @@ const FAQ_RS_OU_RNCP: FaqItem[] = [
 ];
 
 const BREADCRUMB_JSON_LD = breadcrumbJsonLd([
-  { name: "Déposer une certification RNCP/RS", path: ROUTES.certification },
+  { name: "Boîte à outils", path: ROUTES.tools },
   { name: "Test RS ou RNCP", path: ROUTES.certificationRsOuRncp },
 ]);
 

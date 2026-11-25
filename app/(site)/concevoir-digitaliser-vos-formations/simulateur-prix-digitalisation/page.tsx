@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 const BREADCRUMB_JSON_LD = breadcrumbJsonLd([
-  { name: "Concevoir et digitaliser vos formations", path: ROUTES.formations },
+  { name: "Boîte à outils", path: ROUTES.tools },
   { name: "Simulateur de prix de digitalisation", path: ROUTES.formationsSimulateur },
 ]);
 

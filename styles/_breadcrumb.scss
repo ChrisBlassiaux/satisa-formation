@@ -9,13 +9,9 @@
   line-height: 1.4;
 }
 
-// Le fil prend la place du haut du hero : on réduit l'espace au-dessus pour ne pas allonger le hero.
+// Le fil prend la place du haut du hero : même respiration au-dessus sur toutes les pages, avec ou sans bandeau,
+// sans reprendre tout l'espace habituel d'une section (le hero resterait trop long).
 section:has(> .breadcrumb) {
-  padding-top: $spacing-sm;
-}
-
-// Quand un bandeau (test gratuit, simulateur) est collé au-dessus du hero, le fil d'Ariane respire davantage.
-.dg-banner + section:has(> .breadcrumb) {
   padding-top: $spacing-lg;
 }
 

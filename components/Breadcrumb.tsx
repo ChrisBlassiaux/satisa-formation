@@ -14,17 +14,19 @@ export type BreadcrumbStep = { name: string; path: string };
 
 const CERTIFICATION: BreadcrumbStep = { name: "Certification RNCP/RS", path: ROUTES.certification };
 const FORMATIONS: BreadcrumbStep = { name: "Formations et digital", path: ROUTES.formations };
+// Les outils découlent de la boîte à outils, même quand leur adresse est rangée sous une autre rubrique.
+const TOOLS: BreadcrumbStep = { name: "Boîte à outils", path: ROUTES.tools };
 
 const TRAILS: Record<string, BreadcrumbStep[]> = {
   [ROUTES.certification]: [CERTIFICATION],
   [ROUTES.certificationRncp]: [CERTIFICATION, { name: "Dépôt RNCP", path: ROUTES.certificationRncp }],
   [ROUTES.certificationRs]: [CERTIFICATION, { name: "Dépôt RS", path: ROUTES.certificationRs }],
-  [ROUTES.certificationRsOuRncp]: [CERTIFICATION, { name: "Test RS ou RNCP", path: ROUTES.certificationRsOuRncp }],
+  [ROUTES.certificationRsOuRncp]: [TOOLS, { name: "Test RS ou RNCP", path: ROUTES.certificationRsOuRncp }],
   [ROUTES.formations]: [FORMATIONS],
   [ROUTES.formationsConception]: [FORMATIONS, { name: "Conception pédagogique", path: ROUTES.formationsConception }],
   [ROUTES.formationsDigitalisation]: [FORMATIONS, { name: "Digitalisation", path: ROUTES.formationsDigitalisation }],
-  [ROUTES.formationsSimulateur]: [FORMATIONS, { name: "Simulateur de prix e-learning", path: ROUTES.formationsSimulateur }],
-  [ROUTES.tools]: [{ name: "Boîte à outils", path: ROUTES.tools }],
+  [ROUTES.formationsSimulateur]: [TOOLS, { name: "Simulateur de prix e-learning", path: ROUTES.formationsSimulateur }],
+  [ROUTES.tools]: [TOOLS],
   [ROUTES.advent]: [{ name: "Calendrier de l'Avent", path: ROUTES.advent }],
   [ROUTES.blog]: [{ name: "Blog", path: ROUTES.blog }],
   [ROUTES.about]: [{ name: "À propos", path: ROUTES.about }],
