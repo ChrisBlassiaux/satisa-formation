@@ -1,16 +1,15 @@
 @use 'variables' as *;
 
-// Page « Offres d'emploi » (préfixes job-) : une carte par offre, avec ses sections et un bloc « Postuler » en bas.
+// Page « Nous rejoindre » (préfixe job-) : une carte horizontale par offre ; dépliée, l'offre se lit à gauche
+// et l'encadré de candidature reste à droite pendant le défilement.
 .job-list {
   display: grid;
   gap: $spacing-md;
-  align-items: start;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
 }
 
 // Simple repère au-dessus des cartes : reste un titre pour les lecteurs d'écran, mais se lit comme du texte courant.
 .job-count {
-  margin-bottom: $spacing-sm;
+  margin-bottom: $spacing-md;
   font-size: $fs-body;
   font-weight: 400;
   letter-spacing: normal;
@@ -24,24 +23,17 @@
 
 .job {
   scroll-margin-top: 110px;
+  // « clip » (et non « hidden ») : les coins restent arrondis sans empêcher l'encadré de candidature de suivre le défilement.
+  overflow: clip;
   border: 1px solid $color-border;
   border-radius: $radius-lg;
   background: $color-white;
   box-shadow: 0 1px 2px rgba($color-dark, 0.05), 0 8px 24px rgba($color-dark, 0.06);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 
-  &:hover,
-  &[open] {
-    border-color: rgba($color-primary, 0.5);
-  }
-
-  // Fermée : une carte carrée. Ouverte : elle prend toute la largeur de la grille pour afficher l'offre.
-  &:not([open]) {
-    aspect-ratio: 1 / 1;
-  }
-
-  &[open] {
-    grid-column: 1 / -1;
+  &:hover {
+    border-color: rgba($color-primary-dark, 0.35);
+    box-shadow: 0 2px 4px rgba($color-dark, 0.06), 0 14px 36px rgba($color-dark, 0.12);
   }
 
   h3,
@@ -52,18 +44,10 @@
   }
 }
 
-// Carte fermée : titre et pastilles à gauche, invitation à déplier à droite. Un clic ouvre toute l'offre.
 .job__summary {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: $spacing-sm;
-  height: 100%;
-  padding: $spacing-md;
+  display: grid;
   cursor: pointer;
   list-style: none;
-  border-radius: $radius-lg;
 
   &::-webkit-details-marker {
     display: none;
@@ -71,101 +55,121 @@
 
   &:focus-visible {
     outline: 3px solid $color-primary;
-    outline-offset: 2px;
+    outline-offset: -3px;
   }
+
+  @include from($bp-tablet) {
+    grid-template-columns: 170px minmax(0, 1fr) auto;
+  }
+}
+
+// Bloc foncé à motif de points : le type de collaboration (STAGE) est la première chose que l'on lit.
+.job__badge {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-md;
+  background: $color-dark;
+  color: $color-mint;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(circle, rgba($color-mint, 0.4) 2px, transparent 2.5px);
+    background-size: 16px 16px;
+    -webkit-mask-image: radial-gradient(circle at 100% 0, #000 10%, transparent 70%);
+    mask-image: radial-gradient(circle at 100% 0, #000 10%, transparent 70%);
+  }
+
+  @include from($bp-tablet) {
+    flex-direction: column;
+    justify-content: center;
+    padding: $spacing-md;
+  }
+}
+
+.job__type {
+  color: $color-white;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.job__head {
+  display: grid;
+  align-content: center;
+  gap: $spacing-xs;
+  min-width: 0;
+  padding: $spacing-md;
 
   @include from($bp-tablet) {
     padding: $spacing-lg;
   }
 }
 
-// Ouverte : l'en-tête passe sur une ligne (titre à gauche, « Masquer » à droite).
-.job[open] .job__summary {
-  height: auto;
-  padding-bottom: $spacing-sm;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
+.job__title {
+  font-size: $fs-h3;
+  color: $color-dark;
 }
 
-.job__top {
+.job__lead {
+  color: $color-muted;
+}
+
+.job__chips {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: $spacing-sm;
-  align-self: stretch;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
 }
 
-// Le type de collaboration (STAGE) est la première chose que l'on lit sur la carte.
-.job__type {
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  background: $color-dark;
-  color: $color-white;
+.job__chip {
+  padding: 0.25rem 0.75rem;
+  border-radius: $radius-sm;
+  background: $color-mint-light;
+  color: $color-teal-dark;
   font-size: $fs-small;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
-.job[open] .job__top {
-  align-self: auto;
-  gap: $spacing-sm;
-}
-
-.job__icon {
+// Faux bouton : c'est tout l'en-tête de la carte qui déplie l'offre.
+.job__toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: $radius-md;
-  background: $color-mint-light;
-  color: $color-primary-dark;
-}
-
-.job[open] .job__icon {
-  display: none;
-}
-
-.job__head {
-  display: grid;
-  gap: $spacing-xs;
-  min-width: 0;
-}
-
-.job__title {
-  font-size: $fs-h3;
-}
-
-.job__toggle {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-self: stretch;
-  align-items: center;
-  justify-content: space-between;
   gap: 0.4rem;
-  padding-top: $spacing-sm;
-  border-top: 1px solid $color-border;
-  color: $color-primary-dark;
+  margin: 0 $spacing-md $spacing-md;
+  padding: 0.75em 1.3em;
+  border: 1.5px solid $color-dark;
+  border-radius: $radius-md;
+  background: $color-dark;
+  color: $color-white;
   font-size: $fs-small;
-  font-weight: 600;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
 
   svg {
     transition: transform 0.2s ease;
   }
 
-  .job__toggle-close {
-    display: none;
+  @include from($bp-tablet) {
+    align-self: center;
+    margin: 0 $spacing-lg 0 0;
   }
 }
 
-// Ouverte : « Masquer » passe à droite de l'en-tête, sans filet.
+.job__toggle-close {
+  display: none;
+}
+
 .job[open] .job__toggle {
-  align-self: center;
-  margin-left: auto;
-  padding-top: 0;
-  border-top: 0;
+  background: $color-white;
+  color: $color-dark;
 
   .job__toggle-open {
     display: none;
@@ -181,112 +185,139 @@
 }
 
 .job__content {
-  padding: 0 $spacing-md $spacing-md;
+  display: grid;
+  gap: $spacing-lg;
+  padding: $spacing-md;
+  border-top: 1px solid $color-border;
 
   @include from($bp-tablet) {
-    padding: 0 $spacing-lg $spacing-lg;
+    padding: $spacing-lg;
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+    gap: $spacing-xl;
   }
 }
 
-.job__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.job__chip {
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  background: $color-mint-light;
-  color: $color-primary-dark;
-  font-size: $fs-small;
-  font-weight: 600;
+.job__main {
+  display: grid;
+  gap: $spacing-md;
+  min-width: 0;
 }
 
 .job .job__alert {
-  margin-top: $spacing-sm;
-  padding: 0.75rem 1rem;
-  border-left: 4px solid $color-ray-yellow;
-  border-radius: $radius-sm;
-  background: rgba($color-ray-yellow, 0.14);
-  color: $color-ink;
-  font-weight: 600;
-}
-
-.job .job__lead {
-  margin-top: $spacing-sm;
-  font-size: 1.05rem;
-  color: $color-ink;
-}
-
-.job .job__body {
-  margin-top: $spacing-md;
-  padding-top: $spacing-md;
-  border-top: 1px solid $color-border;
-
-  // Deux colonnes qui s'équilibrent seules : on lit la colonne de gauche puis celle de droite.
-  @include from($bp-desktop) {
-    column-count: 2;
-    column-gap: $spacing-xl;
-  }
+  padding: 0.8rem 1rem;
+  border-radius: $radius-md;
+  background: $color-mint-light;
+  color: $color-teal-dark;
+  font-weight: 700;
 }
 
 // Le bloc « section » du composant est global (padding) : on le neutralise à l'intérieur d'une offre.
 .job .job__block {
-  padding: 0;
   display: grid;
-  align-content: start;
   gap: $spacing-xs;
-  margin-bottom: $spacing-md;
-  break-inside: avoid;
+  padding: 0;
+
+  & + .job__block {
+    padding-top: $spacing-md;
+    border-top: 1px solid $color-border;
+  }
 
   h4 {
-    font-size: 1.05rem;
-    color: $color-primary-dark;
+    font-size: 1.15rem;
+    color: $color-dark;
   }
 
   p {
     color: $color-ink;
   }
+}
 
-  ul {
-    padding-left: 1.2rem;
-    list-style: disc;
-    display: grid;
-    gap: 0.25rem;
+.job__skills {
+  display: grid;
+  gap: $spacing-sm;
+  margin-top: $spacing-xs;
+
+  @include from($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
+.job__skill {
+  display: grid;
+  align-content: start;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-md;
+  background: $color-surface;
+  border: 1px solid $color-border;
+}
+
 .job .job__sub {
-  margin-top: 0.5rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: $color-primary-dark;
+}
+
+.job .job__checks {
+  display: grid;
+  gap: 0.45rem;
+  list-style: none;
+  padding: 0;
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0.3rem;
+      top: 0.42em;
+      width: 0.3rem;
+      height: 0.6rem;
+      border: solid $color-primary;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
 }
 
 .job .job__apply {
   display: grid;
   gap: $spacing-sm;
-  align-items: center;
-  margin-top: $spacing-md;
-  padding: $spacing-sm $spacing-md;
-  border-radius: $radius-md;
-  background: $color-surface;
-  border: 1px solid $color-border;
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  background: $color-dark;
+  color: rgba($color-white, 0.88);
 
   h4 {
-    margin-bottom: 0.25rem;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
+    color: $color-white;
   }
 
-  ul {
-    padding-left: 1.2rem;
-    list-style: disc;
-    display: grid;
-    gap: 0.25rem;
-    color: $color-muted;
+  .job__checks {
+    font-size: $fs-small;
+
+    li::before {
+      border-color: $color-mint;
+    }
   }
 
-  @include from($bp-tablet) {
-    grid-template-columns: 1fr auto;
-    gap: $spacing-md;
+  .job__mail {
+    font-size: $fs-small;
+    color: rgba($color-white, 0.7);
+    overflow-wrap: anywhere;
+
+    strong {
+      color: $color-white;
+    }
+  }
+
+  @include from($bp-desktop) {
+    position: sticky;
+    top: 100px;
   }
 }
