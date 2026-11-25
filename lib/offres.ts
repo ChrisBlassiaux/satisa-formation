@@ -8,6 +8,8 @@ export type Offre = {
   titre: string;
   /** Type de collaboration, mis en avant sur la carte (Stage, CDI, etc.). */
   type: string;
+  /** Date de mise en ligne de l'offre, au format AAAA-MM-JJ. */
+  datePublication: string;
   /** Pastilles affichées sous le titre. */
   pastilles: string[];
   /** Encadré d'alerte en tête de l'offre. */
@@ -37,6 +39,7 @@ export const OFFRES: Offre[] = [
     id: "community-manager",
     titre: "Community manager",
     type: "Stage",
+    datePublication: "2026-11-25",
     pastilles: ["2 mois maximum", "100 % télétravail", "Non rémunéré"],
     alerte: "Nous recrutons pour un stage de 2 mois maximum (pas d'alternance).",
     accroche: "Satisa Formation recherche un stagiaire pour le poste de Community Manager.",

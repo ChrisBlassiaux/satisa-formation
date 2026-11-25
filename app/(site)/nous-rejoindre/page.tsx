@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import { breadcrumbJsonLd } from "@/lib/formations";
 import { OFFRES } from "@/lib/offres";
+import { formatPostDate } from "@/lib/posts";
 import Breadcrumb from "@/components/Breadcrumb";
 import JobsDeepLink from "@/components/JobsDeepLink";
 
@@ -72,6 +73,9 @@ export default function JobsPage() {
                               {pastille}
                             </span>
                           ))}
+                        </span>
+                        <span className="job__date">
+                          Offre publiée le <time dateTime={offre.datePublication}>{formatPostDate(offre.datePublication)}</time>
                         </span>
                       </span>
                       <span className="job__toggle" aria-hidden="true">

@@ -136,6 +136,12 @@
   font-weight: 600;
 }
 
+.job__date {
+  margin-top: 0.25rem;
+  font-size: $fs-small;
+  color: $color-muted;
+}
+
 // Faux bouton : c'est tout l'en-tête de la carte qui déplie l'offre.
 .job__toggle {
   display: inline-flex;
