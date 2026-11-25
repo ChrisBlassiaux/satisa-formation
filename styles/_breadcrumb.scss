@@ -14,6 +14,11 @@ section:has(> .breadcrumb) {
   padding-top: $spacing-sm;
 }
 
+// Quand un bandeau (test gratuit, simulateur) est collé au-dessus du hero, le fil d'Ariane respire davantage.
+.dg-banner + section:has(> .breadcrumb) {
+  padding-top: $spacing-lg;
+}
+
 .breadcrumb__list {
   display: flex;
   flex-wrap: nowrap;
