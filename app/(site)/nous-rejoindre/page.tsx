@@ -154,9 +154,6 @@ export default function JobsPage() {
                         <a className="btn btn--primary" href={`#postuler-${offre.id}`}>
                           Postuler
                         </a>
-                        <p className="job__mail">
-                          Ou écrivez à <strong>{offre.candidature.email}</strong> avec l&apos;objet « {offre.candidature.objet} ».
-                        </p>
                       </aside>
 
                       <div className="job__form" id={`postuler-${offre.id}`}>

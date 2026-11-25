@@ -313,16 +313,6 @@
     }
   }
 
-  .job__mail {
-    font-size: $fs-small;
-    color: rgba($color-white, 0.7);
-    overflow-wrap: anywhere;
-
-    strong {
-      color: $color-white;
-    }
-  }
-
   // Colonne de droite sur toute la hauteur de l'offre et du formulaire : l'encadré suit le défilement.
   @include from($bp-desktop) {
     grid-column: 2;
