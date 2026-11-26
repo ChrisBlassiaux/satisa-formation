@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,9 +10,14 @@ export default function Header() {
   const pathname = usePathname();
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [submenuForceClosed, setSubmenuForceClosed] = useState(false);
+  const scrollTopPending = useRef(false);
 
   useEffect(() => {
     setIsMobileNavOpen(false);
+    if (scrollTopPending.current) {
+      scrollTopPending.current = false;
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
     // Client-side navigation keeps focus on the clicked link, which keeps a
     // :focus-within submenu open even after the page has changed.
     if (document.activeElement instanceof HTMLElement) {
@@ -35,10 +40,23 @@ export default function Header() {
     setSubmenuForceClosed(false);
   }
 
+  // Next keeps the scroll position when the new page is already "visible", which the open mobile menu (it pushes
+  // the content down) makes it believe. Links clicked while the menu is open must land at the top.
+  function handleHeaderClick(event: React.MouseEvent<HTMLElement>) {
+    const link = (event.target as Element).closest("a");
+    if (!isMobileNavOpen || !link) return;
+    if (link.pathname === pathname) {
+      setIsMobileNavOpen(false);
+      window.scrollTo({ top: 0, behavior: "instant" });
+    } else {
+      scrollTopPending.current = true;
+    }
+  }
+
   const isActive = (href: string) => pathname === href;
 
   return (
-    <header className="site-header">
+    <header className="site-header" onClick={handleHeaderClick}>
       <div className="container site-header__inner">
         <Link href={ROUTES.home} className="site-header__logo" aria-label="Satisa Formation, accueil">
           <Image src="/images/logo/logo-satisa-noir.svg" alt="Satisa Formation" width={330} height={152} priority />

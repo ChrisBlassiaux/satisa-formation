@@ -985,6 +985,11 @@
 .sim-more-formulas {
   margin: $spacing-md 0 0;
   text-align: center;
+
+  // Libellé long : il passe à la ligne sur les petits écrans au lieu d'élargir la page.
+  .btn {
+    white-space: normal;
+  }
 }
 
 .sim__error {
