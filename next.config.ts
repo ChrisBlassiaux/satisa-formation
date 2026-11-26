@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
   experimental: {
     globalNotFound: true,
   },
+  // Fichiers du calendrier de l'Avent : lus à la demande par leur route, ils doivent partir avec le déploiement.
+  outputFileTracingIncludes: {
+    "/calendrier-de-l-avent/fichiers/*": ["./content/avent/**/*"],
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
