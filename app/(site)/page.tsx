@@ -1,5 +1,4 @@
 import { ORGANIZATION_JSON_LD } from "@/lib/schema";
-import AdventBanner from "@/components/AdventBanner";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,7 +58,6 @@ export default async function HomePage() {
             </g>
           </svg>
         </div>
-        <AdventBanner />
         <div className="container hero__content">
           <div className="hero__grid">
             <div className="hero__intro">

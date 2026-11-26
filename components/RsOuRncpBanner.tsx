@@ -4,7 +4,7 @@ import { Cadeau } from "@/components/AdventDecor";
 
 // Pendant l'Avent, le calendrier prend la place du test sur les 3 pages certification. Passer à false pour rétablir
 // le test (le lien vers le test en haut de la page principale disparaît alors).
-export const ADVENT_PROMO_ACTIVE = true;
+export const ADVENT_PROMO_ACTIVE = false;
 
 // Bandeau des pages « Certification RNCP/RS » : renvoi vers le test gratuit « RS ou RNCP ? ».
 export default function RsOuRncpBanner() {
