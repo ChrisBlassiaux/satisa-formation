@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { CV_MAX_BYTES, CV_MAX_LABEL, MESSAGE_MAX_LENGTH } from "@/lib/application";
+import { FILES_MAX_BYTES, FILES_MAX_LABEL, MESSAGE_MAX_LENGTH } from "@/lib/application";
 import { ROUTES } from "@/lib/routes";
 
 type Status = "idle" | "sending" | "sent" | "error";
@@ -27,10 +27,12 @@ export default function ApplicationForm({ offerId, durations, email }: { offerId
     const form = event.currentTarget;
     const data = new FormData(form);
     const cv = data.get("cv");
+    const portfolio = data.get("portfolio");
+    const totalSize = (cv instanceof File ? cv.size : 0) + (portfolio instanceof File ? portfolio.size : 0);
 
-    if (cv instanceof File && cv.size > CV_MAX_BYTES) {
+    if (totalSize > FILES_MAX_BYTES) {
       setStatus("error");
-      setErrorMessage(`Votre CV dépasse ${CV_MAX_LABEL}.`);
+      setErrorMessage(`Vos fichiers dépassent ${FILES_MAX_LABEL} au total.`);
       return;
     }
 
@@ -102,19 +104,25 @@ export default function ApplicationForm({ offerId, durations, email }: { offerId
           </select>
         </div>
       </div>
-      <div className="form-field">
-        <label htmlFor={id("link")}>Lien LinkedIn ou portfolio</label>
-        <input type="text" id={id("link")} name="link" inputMode="url" />
+      <div className="form-row">
+        <div className="form-field">
+          <label htmlFor={id("link")}>Lien LinkedIn / portfolio</label>
+          <input type="text" id={id("link")} name="link" inputMode="url" />
+        </div>
+        <div className="form-field">
+          <label htmlFor={id("portfolio")}>Portfolio (fichier PDF)</label>
+          <input type="file" id={id("portfolio")} name="portfolio" accept="application/pdf,.pdf" />
+        </div>
       </div>
       <div className="form-field">
-        <label htmlFor={id("cv")}>CV (PDF, {CV_MAX_LABEL} maximum) <Required /></label>
+        <label htmlFor={id("cv")}>CV (PDF) <Required /></label>
         <input type="file" id={id("cv")} name="cv" accept="application/pdf,.pdf" required />
       </div>
       <div className="form-field">
         <label htmlFor={id("message")}>Message court <Required /></label>
         <textarea id={id("message")} name="message" rows={3} maxLength={MESSAGE_MAX_LENGTH} required></textarea>
       </div>
-      <p className="form-note">* Champs obligatoires</p>
+      <p className="form-note">* Champs obligatoires. Fichiers PDF, {FILES_MAX_LABEL} au total (CV + portfolio).</p>
       <p className="form-note">
         Les informations et le CV envoyés servent uniquement à étudier votre candidature.{" "}
         <Link href={ROUTES.privacy}>Politique de confidentialité</Link>

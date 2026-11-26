@@ -2,9 +2,10 @@
 
 import type { Offre } from "./offres";
 
-// Vercel refuse les requêtes de plus de 4,5 Mo : le CV est limité à 4 Mo pour laisser la place aux autres champs.
-export const CV_MAX_BYTES = 4 * 1024 * 1024;
-export const CV_MAX_LABEL = "4 Mo";
+// Vercel refuse les requêtes de plus de 4,5 Mo : les fichiers (CV + portfolio) sont limités à 4 Mo au total
+// pour laisser la place aux autres champs.
+export const FILES_MAX_BYTES = 4 * 1024 * 1024;
+export const FILES_MAX_LABEL = "4 Mo";
 
 export const MESSAGE_MAX_LENGTH = 5000;
 const FIELD_MAX_LENGTH = 300;
@@ -20,11 +21,17 @@ export type Application = {
   link: string;
   message: string;
   cv: { filename: string; content: Uint8Array };
+  /** Portfolio en fichier PDF (facultatif : on peut aussi indiquer un lien). */
+  portfolio?: { filename: string; content: Uint8Array };
 };
 
 type Result = { ok: true; application: Application } | { ok: false; error: string };
 
 const fail = (error: string): Result => ({ ok: false, error });
+
+// Nom de fichier de la pièce jointe : lettres, chiffres, espaces et quelques signes seulement.
+const safeName = (prefix: string, firstName: string, lastName: string) =>
+  `${prefix} - ${firstName} ${lastName}`.replace(/[^\p{L}\p{N} ._-]/gu, "").slice(0, 100);
 
 export async function parseApplication(form: FormData, offers: Offre[]): Promise<Result> {
   // Les champs courts tiennent sur une ligne : un retour à la ligne ne doit pas atteindre l'objet de l'e-mail.
@@ -64,12 +71,24 @@ export async function parseApplication(form: FormData, offers: Offre[]): Promise
 
   const file = form.get("cv");
   if (!(file instanceof Blob) || file.size === 0) return fail("Merci de joindre votre CV au format PDF.");
-  if (file.size > CV_MAX_BYTES) return fail(`Votre CV dépasse ${CV_MAX_LABEL}.`);
+  const portfolioFile = form.get("portfolio");
+  const hasPortfolio = portfolioFile instanceof Blob && portfolioFile.size > 0;
+  const totalSize = file.size + (hasPortfolio ? portfolioFile.size : 0);
+  if (totalSize > FILES_MAX_BYTES) return fail(`Vos fichiers dépassent ${FILES_MAX_LABEL} au total.`);
   const content = new Uint8Array(await file.arrayBuffer());
   // On vérifie la signature du fichier : l'extension seule ne prouve pas qu'il s'agit d'un PDF.
   if (new TextDecoder().decode(content.subarray(0, 5)) !== "%PDF-") return fail("Votre CV doit être un fichier PDF.");
 
-  const filename = `CV - ${firstName} ${lastName}`.replace(/[^\p{L}\p{N} ._-]/gu, "").slice(0, 100);
+  let portfolio: Application["portfolio"];
+  if (hasPortfolio) {
+    const portfolioContent = new Uint8Array(await portfolioFile.arrayBuffer());
+    if (new TextDecoder().decode(portfolioContent.subarray(0, 5)) !== "%PDF-") {
+      return fail("Votre portfolio doit être un fichier PDF.");
+    }
+    portfolio = { filename: `${safeName("Portfolio", firstName, lastName)}.pdf`, content: portfolioContent };
+  }
+
+  const filename = safeName("CV", firstName, lastName);
 
   return {
     ok: true,
@@ -84,11 +103,12 @@ export async function parseApplication(form: FormData, offers: Offre[]): Promise
       link,
       message,
       cv: { filename: `${filename}.pdf`, content },
+      ...(portfolio ? { portfolio } : {}),
     },
   };
 }
 
-export function applicationMail({ offer, firstName, lastName, email, phone, startDate, duration, link, message }: Application) {
+export function applicationMail({ offer, firstName, lastName, email, phone, startDate, duration, link, message, portfolio }: Application) {
   const [year, month, day] = startDate.split("-");
   const lines = [
     `Offre : ${offer.titre} (${offer.type})`,
@@ -97,7 +117,8 @@ export function applicationMail({ offer, firstName, lastName, email, phone, star
     `Téléphone : ${phone}`,
     `Début souhaité : ${day}/${month}/${year}`,
     `Durée souhaitée : ${duration}`,
-    ...(link ? [`LinkedIn ou portfolio : ${link}`] : []),
+    ...(link ? [`Lien LinkedIn / portfolio : ${link}`] : []),
+    ...(portfolio ? ["Portfolio : en pièce jointe (PDF)"] : []),
     "",
     message,
   ];

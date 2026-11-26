@@ -4,7 +4,7 @@ import { applicationMail, parseApplication } from "@/lib/application";
 import { OFFRES } from "@/lib/offres";
 import { creerLimiteur, evaluerAntiSpam } from "@/lib/rsRncp/antispam";
 
-// Candidature à une offre, CV en pièce jointe. Rien n'est enregistré sur le site : tout part par e-mail.
+// Candidature à une offre, CV (et portfolio facultatif) en pièces jointes. Rien n'est enregistré sur le site : tout part par e-mail.
 // Protections : champ piège, délai minimal de soumission, limitation de débit (5 envois par adresse et par 10 minutes).
 const limiter = creerLimiteur({ max: 5, fenetreMs: 10 * 60 * 1000 });
 
@@ -71,6 +71,15 @@ export async function POST(request: Request) {
           content: Buffer.from(application.cv.content),
           contentType: "application/pdf",
         },
+        ...(application.portfolio
+          ? [
+              {
+                filename: application.portfolio.filename,
+                content: Buffer.from(application.portfolio.content),
+                contentType: "application/pdf",
+              },
+            ]
+          : []),
       ],
     });
   } catch (error) {

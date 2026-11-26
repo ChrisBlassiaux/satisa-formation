@@ -35,9 +35,10 @@ export default function JobsPage() {
         <Breadcrumb />
         <div className="container">
           <p className="eyebrow">Recrutement</p>
-          <h1>Nous rejoindre</h1>
+          <h1>Nous rejoindre : offres d&apos;emploi chez Satisa Formation</h1>
           <p className="hero-page__subtitle">
-            Satisa Formation recrute. Retrouvez ici les postes et les stages actuellement ouverts.
+            Vous souhaitez rejoindre Satisa Formation ? Retrouvez ici nos offres d&apos;emploi en cours et candidatez
+            directement en ligne.
           </p>
         </div>
       </section>

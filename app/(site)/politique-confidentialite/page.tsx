@@ -82,8 +82,8 @@ export default function PrivacyPolicyPage() {
         <p>
           <strong>Candidatures (page « Nous rejoindre »)</strong>
           <br />
-          Données collectées : prénom, nom, email, téléphone, date de début et durée souhaitées, lien LinkedIn ou
-          portfolio, CV et message.
+          Données collectées : prénom, nom, email, téléphone, date de début et durée souhaitées, lien LinkedIn /
+          portfolio, portfolio en fichier PDF (facultatif), CV et message.
           <br />
           Finalité : étudier votre candidature et vous répondre. Ces données sont utilisées uniquement pour le poste
           auquel vous avez postulé, et pour aucune autre finalité. Elles sont transmises par email et ne sont pas

@@ -56,7 +56,7 @@ export const OFFRES: Offre[] = [
     },
     conditions: [
       "Le stage a pour objectif de compléter ou de finaliser un cursus de formation. Il dure deux mois maximum et n'est pas rémunéré.",
-      "Stage 100 % en télétravail (mais suivi !).",
+      "Stage 100 % en télétravail sur un bureau virtuel (mais suivi !).",
       "Avec son propre ordinateur.",
       "En autonomie.",
       "Idéal pour un stage en première ou deuxième année de communication (ou en formation).",
