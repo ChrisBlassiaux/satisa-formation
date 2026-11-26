@@ -119,8 +119,8 @@ export default function ApplicationForm({ offerId, durations, email }: { offerId
         <input type="file" id={id("cv")} name="cv" accept="application/pdf,.pdf" required />
       </div>
       <div className="form-field">
-        <label htmlFor={id("message")}>Message court <Required /></label>
-        <textarea id={id("message")} name="message" rows={3} maxLength={MESSAGE_MAX_LENGTH} required></textarea>
+        <label htmlFor={id("message")}>Message court</label>
+        <textarea id={id("message")} name="message" rows={3} maxLength={MESSAGE_MAX_LENGTH}></textarea>
       </div>
       <p className="form-note">* Champs obligatoires. Fichiers PDF, {FILES_MAX_LABEL} au total (CV + portfolio).</p>
       <p className="form-note">

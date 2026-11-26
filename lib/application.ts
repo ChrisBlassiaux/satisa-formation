@@ -53,7 +53,7 @@ export async function parseApplication(form: FormData, offers: Offre[]): Promise
   const rawMessage = form.get("message");
   const message = typeof rawMessage === "string" ? rawMessage.trim() : "";
 
-  if (!firstName || !lastName || !email || !phone || !startDate || !duration || !message) {
+  if (!firstName || !lastName || !email || !phone || !startDate || !duration) {
     return fail("Merci de remplir tous les champs requis.");
   }
   if ([firstName, lastName, email, phone, link].some((value) => value.length > FIELD_MAX_LENGTH)) {
@@ -119,8 +119,7 @@ export function applicationMail({ offer, firstName, lastName, email, phone, star
     `Durée souhaitée : ${duration}`,
     ...(link ? [`Lien LinkedIn / portfolio : ${link}`] : []),
     ...(portfolio ? ["Portfolio : en pièce jointe (PDF)"] : []),
-    "",
-    message,
+    ...(message ? ["", message] : []),
   ];
   return { subject: `${offer.candidature.objet} - ${firstName} ${lastName}`, text: lines.join("\n") };
 }

@@ -31,7 +31,7 @@ export default function JobsPage() {
 
       <JobsDeepLink />
 
-      <section className="hero-page hero-page--formations">
+      <section className="hero-page hero-page--formations hero-page--wide-h1">
         <Breadcrumb />
         <div className="container">
           <p className="eyebrow">Recrutement</p>
