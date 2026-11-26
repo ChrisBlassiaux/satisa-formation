@@ -1,11 +1,11 @@
 import "server-only";
 import { ANNEE_AVENT, type CaseAvent } from "@/lib/avent";
-import { LINKEDIN_URL, ROUTES } from "@/lib/routes";
+import { ROUTES } from "@/lib/routes";
 
 // Contenu des cases et règle d'ouverture, côté serveur uniquement : le navigateur ne reçoit que les cases ouvertes
 // (« server-only » fait échouer la compilation si un composant client importe ce fichier).
-// CONTENU PROVISOIRE : les textes, l'ordre et les types de cases sont à valider. Les cases « modèle » n'ont pas
-// encore de fichier à télécharger.
+// Contenu repris du tableau de la page Notion « Le calendrier » (version du 26/11/2026). Ce tableau peut évoluer :
+// le reprendre dans sa dernière version avant chaque mise en production. `href: null` = ressource pas encore validée.
 // Pour un fichier : le déposer dans content/avent/ et indiquer son nom avec `fichier`. Jamais dans public/, où il
 // serait accessible à tous avant son jour.
 
@@ -20,30 +20,30 @@ const SIMULATION_POSSIBLE = process.env.NODE_ENV === "development" || process.en
 const article = (slug: string) => `${ROUTES.blog}/${slug}`;
 
 const CASES_AVENT: CaseSource[] = [
-  { jour: 1, type: "outil", titre: "Le test RS ou RNCP", texte: "10 questions, 2 minutes : découvrez si votre certification relève du RS ou du RNCP.", cta: { label: "Faire le test", href: ROUTES.certificationRsOuRncp } },
-  { jour: 2, type: "expertise", titre: "RNCP ou RS : comment choisir en 2026 ?", texte: "Budget, délais, financement : le comparatif pour choisir le bon répertoire.", cta: { label: "Lire l'article", href: article("rncp-ou-rs-guide-complet") } },
-  { jour: 3, type: "modele", titre: "Checklist : mon dossier est-il prêt ?", texte: "Les points à vérifier avant de déposer, en une page.", cta: { label: "Télécharger le modèle", href: null } },
-  { jour: 4, type: "expertise", titre: "Suis-je éligible au RNCP ?", texte: "Les critères d'éligibilité et les conditions à remplir en 2026.", cta: { label: "Lire l'article", href: article("suis-je-eligible-au-rncp-criteres-d-eligibilite-et-conditions-2026") } },
-  { jour: 5, type: "expertise", titre: "Suis-je éligible au RS ?", texte: "Les critères d'éligibilité et les conditions du Répertoire spécifique.", cta: { label: "Lire l'article", href: article("certification-rncp-suis-je-eligible-au-rs-criteres-de-certification-au-repertoire-specifique") } },
-  { jour: 6, type: "service", titre: "Un mini-audit offert de 20 minutes", texte: "Parlons de votre projet de certification, sans engagement.", cta: { label: "Prendre rendez-vous", href: ROUTES.contact } },
-  { jour: 7, type: "expertise", titre: "Comment lire une fiche France Compétences ?", texte: "Apprenez à décrypter une fiche RNCP ou RS, ligne par ligne.", cta: { label: "Lire l'article", href: article("comment-lire-une-fiche-france-competences-rncp-ou-rs") } },
-  { jour: 8, type: "modele", titre: "Les étapes d'un dépôt, de A à Z", texte: "Le parcours complet d'un dépôt, étape par étape.", cta: { label: "Télécharger le modèle", href: null } },
-  { jour: 9, type: "expertise", titre: "Passer d'un RS à un RNCP : est-ce possible ?", texte: "C'est une nouvelle demande : ce qui se réutilise, ce qu'il faut refaire.", cta: { label: "Lire l'article", href: article("passer-d-une-certification-rs-a-un-rncp-est-ce-possible") } },
-  { jour: 10, type: "outil", titre: "Le simulateur de prix e-learning", texte: "Estimez en 1 minute le prix de la digitalisation de votre formation.", cta: { label: "Calculer mon tarif", href: ROUTES.formationsSimulateur } },
-  { jour: 11, type: "expertise", titre: "Qui peut délivrer une certification ?", texte: "Certificateur, organisme habilité, ou ni l'un ni l'autre : trois statuts possibles.", cta: { label: "Lire l'article", href: article("organisme-certificateur-ou-organisme-habilite-qui-peut-delivrer-une-certification-rncp-ou-rs") } },
-  { jour: 12, type: "modele", titre: "Trame de référentiel de compétences", texte: "Une trame prête à remplir, avec un exemple.", cta: { label: "Télécharger le modèle", href: null } },
-  { jour: 13, type: "expertise", titre: "Comment devenir organisme habilité ?", texte: "Préparer et évaluer sur la certification d'un autre organisme : ce qu'il faut savoir.", cta: { label: "Lire l'article", href: article("comment-devenir-organisme-habilite-sur-une-certification-rncp-ou-rs") } },
-  { jour: 14, type: "service", titre: "Une relecture express de votre positionnement", texte: "RS ou RNCP : un avis rapide sur votre projet.", cta: { label: "Prendre rendez-vous", href: ROUTES.contact } },
-  { jour: 15, type: "expertise", titre: "Évaluation formative, sommative, certificative", texte: "Trois évaluations, trois rôles : les différences en formation professionnelle.", cta: { label: "Lire l'article", href: article("evaluation-formative-sommative-certificative-quelles-differences-en-formation-professionnelle") } },
-  { jour: 16, type: "modele", titre: "Grille : lire une fiche France Compétences", texte: "Une grille pour ne rien oublier à la lecture d'une fiche.", cta: { label: "Télécharger le modèle", href: null } },
-  { jour: 17, type: "expertise", titre: "Passer l'examen en ligne : est-ce possible ?", texte: "Les règles de télésurveillance et la position de la CNIL.", cta: { label: "Lire l'article", href: article("passer-l-examen-d-une-certification-rncp-ou-rs-en-ligne-est-ce-possible-regles-telesurveillance-cnil") } },
-  { jour: 18, type: "modele", titre: "Trame de scénario pédagogique", texte: "Structurer un module e-learning avant de le produire.", cta: { label: "Télécharger le modèle", href: null } },
-  { jour: 19, type: "expertise", titre: "Le conseil express de Chris", texte: "Un conseil court, directement applicable à votre projet.", cta: null },
-  { jour: 20, type: "service", titre: "Questions-réponses en direct sur LinkedIn", texte: "Posez vos questions sur la certification, en direct.", cta: { label: "Rejoindre sur LinkedIn", href: LINKEDIN_URL } },
-  { jour: 21, type: "expertise", titre: "Le conseil express de Chris", texte: "Un conseil court, directement applicable à votre projet.", cta: null },
-  { jour: 22, type: "modele", titre: "Comparer deux devis e-learning", texte: "La checklist pour comparer ce que chaque devis inclut vraiment.", cta: { label: "Télécharger le modèle", href: null } },
-  { jour: 23, type: "expertise", titre: "Le conseil express de Chris", texte: "Un conseil court, directement applicable à votre projet.", cta: null },
-  { jour: 24, type: "offre", titre: "Une offre pour finir l'année", texte: "Une offre spéciale sur le diagnostic de faisabilité, réservée aux visiteurs du calendrier.", cta: { label: "Prendre rendez-vous", href: ROUTES.contact } },
+  { jour: 1, type: "guide", titre: "Pourquoi créer une certification ?", texte: "Les bonnes et les mauvaises raisons, et 3 questions pour tester votre projet.", cta: { label: "Télécharger le guide", href: null } },
+  { jour: 2, type: "outil", titre: "Test « RS ou RNCP ? »", texte: "En 2 minutes, voyez vers quel répertoire orienter votre certification.", cta: { label: "Faire le test", href: ROUTES.certificationRsOuRncp } },
+  { jour: 3, type: "infographie", titre: "Les étapes d'un dépôt", texte: "Le parcours d'un dépôt, résumé en une page.", cta: { label: "Télécharger l'infographie", href: null } },
+  { jour: 4, type: "infographie", titre: "Vrai ou faux : 6 idées reçues sur le dépôt", texte: "Six idées reçues sur le dépôt, passées au crible.", cta: { label: "Télécharger l'infographie", href: null } },
+  { jour: 5, type: "citation", titre: "La citation du week-end", texte: "« Choisir entre RNCP et RS, ce n'est pas une question de prestige. C'est une question de ce que vos apprenants savent faire à la sortie. » Chris", cta: { label: "Lire l'article", href: article("rncp-ou-rs-guide-complet") } },
+  { jour: 6, type: "citation", titre: "La citation du week-end", texte: "« Porter une certification, c'est s'engager sur un métier, pas seulement sur une formation. » Chris", cta: { label: "Lire l'article", href: article("organisme-certificateur-ou-organisme-habilite-qui-peut-delivrer-une-certification-rncp-ou-rs") } },
+  { jour: 7, type: "modele", titre: "Trame d'analyse d'opportunité", texte: "Un document à remplir pour analyser l'opportunité de votre projet.", cta: { label: "Télécharger le modèle", href: null } },
+  { jour: 8, type: "checklist", titre: "Les pièces d'un dossier de dépôt", texte: "Les pièces à réunir, dont le règlement de certification, à cocher une à une.", cta: { label: "Télécharger la checklist", href: null } },
+  { jour: 9, type: "outil", titre: "Rétroplanning simplifié", texte: "Les grandes phases de votre projet, à planifier dans un tableau.", cta: { label: "Ouvrir le rétroplanning", href: null } },
+  { jour: 10, type: "infographie", titre: "Repères temps et budget d'un dépôt", texte: "Les repères à connaître avant de vous lancer, en une page.", cta: { label: "Télécharger l'infographie", href: null } },
+  { jour: 11, type: "infographie", titre: "Les erreurs qui fragilisent un dossier", texte: "Les erreurs à éviter, réunies en une page.", cta: { label: "Télécharger l'infographie", href: null } },
+  { jour: 12, type: "citation", titre: "La citation du week-end", texte: "« Le meilleur moment pour préparer un dépôt, c'est avant d'en avoir besoin. » Chris", cta: { label: "Lire l'article", href: article("suis-je-eligible-au-rncp-criteres-d-eligibilite-et-conditions-2026") } },
+  { jour: 13, type: "citation", titre: "La citation du week-end", texte: "« Un dossier solide ne raconte pas une formation. Il prouve un métier. » Chris", cta: { label: "Lire l'article", href: article("certification-rncp-suis-je-eligible-au-rs-criteres-de-certification-au-repertoire-specifique") } },
+  { jour: 14, type: "video", titre: "Lire une fiche France Compétences", texte: "Une vidéo pour apprendre à lire une fiche RNCP ou RS.", cta: { label: "Voir la vidéo", href: null } },
+  { jour: 15, type: "guide", titre: "Comprendre et structurer un référentiel", texte: "Activités, compétences, blocs et évaluation : comment les organiser.", cta: { label: "Télécharger le guide", href: null } },
+  { jour: 16, type: "modele", titre: "Construire son programme", texte: "Une trame de programme à remplir, avec des verbes d'action.", cta: { label: "Télécharger le modèle", href: null } },
+  { jour: 17, type: "modele", titre: "Grille d'évaluation certificative", texte: "Une grille à compléter, avec une ligne d'exemple.", cta: { label: "Télécharger le modèle", href: null } },
+  { jour: 18, type: "infographie", titre: "Qui fait quoi dans un projet de certification ?", texte: "Porteur, experts métier, jury, partenaires : le rôle de chacun en une page.", cta: { label: "Télécharger l'infographie", href: null } },
+  { jour: 19, type: "citation", titre: "La citation du week-end", texte: "« Une compétence qui ne s'évalue pas n'a pas sa place dans un référentiel. » Chris", cta: { label: "Lire l'article", href: article("evaluation-formative-sommative-certificative-quelles-differences-en-formation-professionnelle") } },
+  { jour: 20, type: "citation", titre: "La citation du week-end", texte: "« En ligne ou en salle, une épreuve certificative doit prouver la même chose. » Chris", cta: { label: "Lire l'article", href: article("passer-l-examen-d-une-certification-rncp-ou-rs-en-ligne-est-ce-possible-regles-telesurveillance-cnil") } },
+  { jour: 21, type: "guide", titre: "Suivre ses anciens apprenants", texte: "Un guide et un questionnaire modifiable pour suivre vos anciens apprenants.", cta: { label: "Télécharger les documents", href: null } },
+  { jour: 22, type: "checklist", titre: "Choisir son accompagnement : les questions à poser", texte: "Les questions à poser avant de choisir, réunies en une page.", cta: { label: "Télécharger la checklist", href: null } },
+  { jour: 23, type: "outil", titre: "Simulateur de prix e-learning et blended", texte: "Estimez le prix de la digitalisation de votre formation.", cta: { label: "Calculer mon tarif", href: ROUTES.formationsSimulateur } },
+  { jour: 24, type: "offre", titre: "Récapitulatif et offre de diagnostic", texte: "Le récapitulatif du calendrier et une offre sur le diagnostic de faisabilité, valable jusqu'au 31 janvier.", cta: { label: "Prendre rendez-vous", href: ROUTES.contact } },
 ];
 
 /**

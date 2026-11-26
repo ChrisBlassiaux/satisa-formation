@@ -4,13 +4,16 @@
 export const ANNEE_AVENT = 2026;
 export const NOMBRE_CASES = 24;
 
-export type TypeCase = "expertise" | "outil" | "modele" | "service" | "offre";
+export type TypeCase = "guide" | "checklist" | "modele" | "infographie" | "video" | "outil" | "citation" | "offre";
 
 export const TYPE_LABELS: Record<TypeCase, string> = {
-  expertise: "Expertise",
-  outil: "Outil",
+  guide: "Guide",
+  checklist: "Checklist",
   modele: "Modèle",
-  service: "Rendez-vous",
+  infographie: "Infographie",
+  video: "Vidéo",
+  outil: "Outil",
+  citation: "Citation",
   offre: "Offre",
 };
 

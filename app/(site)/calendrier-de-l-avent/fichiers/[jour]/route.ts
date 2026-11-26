@@ -12,6 +12,7 @@ const TYPES: Record<string, string> = {
   ".pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
   ".png": "image/png",
   ".jpg": "image/jpeg",
+  ".zip": "application/zip",
 };
 
 const introuvable = () => new Response("Fichier introuvable", { status: 404, headers: { "Cache-Control": "no-store" } });
