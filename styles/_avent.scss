@@ -95,11 +95,31 @@ $avent-or: #fecc01;
 }
 
 // ----- Bandeau de l'accueil -----
+// Carte posée sur le hero : les rayons de soleil restent visibles autour. Les règles « :has » ne s'appliquent que
+// quand le bandeau est présent : le retirer de la page suffit à rendre au hero sa mise en page habituelle.
+.hero--sunrays:has(> .avent-bandeau-zone) {
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: $spacing-sm;
+
+  > .hero__content {
+    margin-block: auto;
+    padding-top: $spacing-lg;
+  }
+}
+
+.avent-bandeau-zone {
+  position: relative;
+  z-index: 1;
+}
+
 .avent-bandeau {
   position: relative;
   overflow: hidden;
   padding: 0;
+  border-radius: $radius-lg;
   background: linear-gradient(100deg, $avent-nuit 0%, $avent-nuit-clair 55%, $avent-nuit 100%);
+  box-shadow: 0 14px 34px rgba($color-dark, 0.18);
   color: $color-white;
 }
 
@@ -109,8 +129,7 @@ $avent-or: #fecc01;
   z-index: 2;
   display: flex;
   justify-content: space-between;
-  padding: 6px 12px 0;
-  border-top: 3px solid rgba($avent-or, 0.55);
+  padding: 4px 16px 0;
 
   span {
     width: 10px;
@@ -141,25 +160,33 @@ $avent-or: #fecc01;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: $spacing-sm $spacing-md;
-  padding-block: $spacing-md;
+  gap: $spacing-xs $spacing-md;
+  padding: $spacing-xs $spacing-sm $spacing-sm;
 
   @include from($bp-tablet) {
     flex-wrap: nowrap;
     justify-content: space-between;
-    padding-block: $spacing-lg;
+    padding-inline: $spacing-md;
   }
 }
 
+@media (max-width: #{$bp-tablet - 1px}) {
+  // Une ampoule sur deux sur mobile, pour qu'elles ne se chevauchent pas.
+  .avent-bandeau .avent-guirlande span:nth-child(even) {
+    display: none;
+  }
+}
+
+// Le cadeau est masqué sur mobile pour garder un bandeau bas.
 .avent-bandeau__cadeau {
+  display: none;
   flex-shrink: 0;
   width: 56px;
   height: 56px;
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
 
   @include from($bp-tablet) {
-    width: 72px;
-    height: 72px;
+    display: block;
   }
 }
 
@@ -173,6 +200,7 @@ $avent-or: #fecc01;
 
   p {
     margin: 0;
+    text-wrap: balance;
   }
 }
 
@@ -194,25 +222,30 @@ $avent-or: #fecc01;
 }
 
 .avent-bandeau__titre {
-  margin-top: 0.2rem !important;
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.25;
   color: $color-white !important;
 
   @include from($bp-tablet) {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
+}
+
+.avent-bandeau__sous-titre {
+  font-size: $fs-small;
+  color: rgba($color-white, 0.82) !important;
 }
 
 .avent-bandeau__bouton {
   position: relative;
   flex-shrink: 0;
   overflow: hidden;
-  padding: 0.95rem 1.7rem;
-  border-radius: 999px;
+  padding: 0.85em 1.6em;
+  border-radius: $radius-md;
   background: $avent-or;
-  font-weight: 800;
+  font-size: $fs-small;
+  font-weight: 700;
   color: $avent-nuit;
   animation: avent-halo 2.4s ease-in-out infinite;
   transition: transform 0.15s ease;

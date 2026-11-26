@@ -42,8 +42,6 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
       />
 
-      <AdventBanner />
-
       <section className="hero--sunrays">
         <div className="hero__rays" aria-hidden="true">
           <svg viewBox="0 0 1200 800" preserveAspectRatio="xMinYMid slice" role="presentation" aria-hidden="true" focusable="false">
@@ -61,6 +59,7 @@ export default async function HomePage() {
             </g>
           </svg>
         </div>
+        <AdventBanner />
         <div className="container hero__content">
           <div className="hero__grid">
             <div className="hero__intro">
