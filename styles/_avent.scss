@@ -374,26 +374,6 @@ $avent-or: #fecc01;
   animation: none;
 }
 
-.avent-barre__fermer {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: 0;
-  border-radius: $radius-sm;
-  background: transparent;
-  color: rgba($color-white, 0.8);
-  cursor: pointer;
-
-  &:hover,
-  &:focus-visible {
-    background: rgba($color-white, 0.12);
-    color: $color-white;
-  }
-}
-
 // ----- Page du calendrier -----
 .avent-page {
   position: relative;

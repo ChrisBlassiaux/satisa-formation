@@ -6,21 +6,9 @@ import { ROUTES } from "@/lib/routes";
 import { Cadeau } from "@/components/AdventDecor";
 
 // Le grand bandeau suit le défilement tant que le hero est à l'écran ; quand la fin du hero le rattrape, cette
-// version compacte prend le relais sous le menu. La croix la ferme pour la visite en cours.
-const STORAGE_KEY = "satisa-avent-barre-fermee";
-
-// Le stockage peut être indisponible (navigation privée, cookies bloqués) : la barre reste alors affichée.
-function wasClosed() {
-  try {
-    return window.sessionStorage.getItem(STORAGE_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
-
+// version compacte prend le relais sous le menu.
 export default function AdventStickyBar({ bannerId }: { bannerId: string }) {
   const [placement, setPlacement] = useState({ visible: false, top: 0 });
-  const [closed, setClosed] = useState(false);
 
   useEffect(() => {
     const zone = document.getElementById(bannerId)?.parentElement;
@@ -34,7 +22,6 @@ export default function AdventStickyBar({ bannerId }: { bannerId: string }) {
       observer?.disconnect();
       const top = header?.offsetHeight ?? 0;
       zone.style.setProperty("--avent-header", `${top}px`);
-      if (closed || wasClosed()) return;
       // Moment où la fin du hero commence à pousser le grand bandeau : sa position collée, sa hauteur et la marge
       // basse du hero.
       const line = Math.ceil(
@@ -60,18 +47,7 @@ export default function AdventStickyBar({ bannerId }: { bannerId: string }) {
       observer?.disconnect();
       zone.classList.remove("is-compact");
     };
-  }, [bannerId, closed]);
-
-  if (closed) return null;
-
-  function close() {
-    try {
-      window.sessionStorage.setItem(STORAGE_KEY, "1");
-    } catch {
-      // Sans stockage, la fermeture vaut jusqu'au prochain chargement de la page.
-    }
-    setClosed(true);
-  }
+  }, [bannerId]);
 
   return (
     <aside
@@ -94,11 +70,6 @@ export default function AdventStickyBar({ bannerId }: { bannerId: string }) {
             Ouvrir<span className="avent-barre__long"> le calendrier</span>
           </span>
         </Link>
-        <button type="button" className="avent-barre__fermer" onClick={close} aria-label="Fermer le bandeau du calendrier">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
-            <path d="M6 6l12 12M18 6 6 18" />
-          </svg>
-        </button>
       </div>
     </aside>
   );
