@@ -3,7 +3,6 @@ import Link from "next/link";
 import AdventCalendar from "@/components/AdventCalendar";
 import { Etoiles, Neige } from "@/components/AdventDecor";
 import Breadcrumb from "@/components/Breadcrumb";
-import LinkArrow from "@/components/LinkArrow";
 import { RATTRAPAGE_POSSIBLE } from "@/lib/aventCases";
 import { ROUTES } from "@/lib/routes";
 
@@ -83,12 +82,45 @@ export default function AdventPage() {
               </li>
             ))}
           </ol>
-          <div className="avent-objectif__pied">
-            <p>Dans les cases : des repères en une page, des documents à réutiliser et des outils en ligne.</p>
-            {RATTRAPAGE_POSSIBLE && <p>Vous arrivez en cours de route ? Les cases passées restent ouvertes.</p>}
-            <Link href={ROUTES.contact} className="avent-objectif__lien">
-              Prendre un rendez-vous <LinkArrow />
-            </Link>
+          <ul className="avent-infos">
+            <li className="avent-info">
+              <svg className="avent-info__icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" />
+                <path d="M14 3v5h5M9 13h6M9 17h4" />
+              </svg>
+              <div>
+                <h3>Dans les cases</h3>
+                <p>Des repères en une page, des documents à réutiliser et des outils en ligne.</p>
+              </div>
+            </li>
+            {RATTRAPAGE_POSSIBLE && (
+              <li className="avent-info">
+                <svg className="avent-info__icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="4" y="11" width="16" height="10" rx="2" />
+                  <path d="M8 11V7a4 4 0 0 1 7.7-1.5" />
+                </svg>
+                <div>
+                  <h3>Vous arrivez en cours de route ?</h3>
+                  <p>Les cases passées restent ouvertes.</p>
+                </div>
+              </li>
+            )}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section-tinted section--flush-top">
+        <div className="container">
+          <div className="cta-banner">
+            <div>
+              <h2>Parlons de votre projet pour 2027</h2>
+              <p>30 minutes pour clarifier votre idée et voir par où commencer, sans engagement.</p>
+            </div>
+            <div className="cta-banner__actions">
+              <Link href={ROUTES.contact} className="btn btn--primary">
+                Prendre un rendez-vous
+              </Link>
+            </div>
           </div>
         </div>
       </section>

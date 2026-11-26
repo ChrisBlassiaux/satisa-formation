@@ -754,29 +754,46 @@ $avent-repere: 44px;
   }
 }
 
-.avent-objectif__pied {
+// Les deux précisions sous la frise : côte à côte à partir de la tablette.
+.avent-infos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1px;
+  margin: $spacing-lg 0 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid $color-primary;
+  border-radius: $radius-lg;
+  background: rgba($color-primary, 0.4); // Visible dans l'écart de 1px : sert de séparateur.
+  list-style: none;
+}
+
+.avent-info {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: $spacing-xs;
-  margin-top: $spacing-lg;
-  text-align: center;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  background: $color-mint-light;
+
+  h3 {
+    margin: 0 0 0.15rem;
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
 
   p {
-    max-width: 60ch;
-    font-weight: 600;
+    color: $color-muted;
   }
 }
 
-.avent-objectif__lien {
-  display: inline-flex;
-  align-items: center;
-  gap: $spacing-xs;
-  margin-top: $spacing-xs;
-  font-weight: 700;
+.avent-info__icone {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  padding: 11px;
+  border-radius: 50%;
+  background: $color-white;
   color: $color-primary-dark;
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
 
 // ----- Fenêtre qui s'ouvre avec le contenu de la case -----
