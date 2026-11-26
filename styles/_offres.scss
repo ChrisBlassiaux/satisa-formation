@@ -361,13 +361,18 @@
     height: 3rem;
   }
 
+  // Champ fichier : le navigateur aligne son contenu en haut et ne tient pas compte de « align-items ».
+  // On fixe donc la hauteur du bouton (2rem) et on répartit le reste en marge haute et basse (7px) : la boîte
+  // fait 3rem comme les autres champs, avec le bouton et le texte centrés.
   .form-field input[type='file'] {
-    padding-block: 0;
+    height: auto;
+    padding-block: 7px;
   }
 
   input[type='file']::file-selector-button {
+    height: 2rem;
     margin-right: $spacing-xs;
-    padding: 0.35em 0.9em;
+    padding: 0 0.9em;
     border: 0;
     border-radius: $radius-sm;
     background: $color-mint-light;
@@ -375,6 +380,8 @@
     font: inherit;
     font-size: $fs-small;
     font-weight: 700;
+    // Après « font: inherit », qui remettrait l'interligne hérité : le texte du bouton reste centré dans ses 2rem.
+    line-height: 2rem;
     cursor: pointer;
   }
 
