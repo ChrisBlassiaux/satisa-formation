@@ -1,3 +1,4 @@
+import { frenchText } from "@/lib/typography";
 import { ORGANIZATION_JSON_LD } from "@/lib/schema";
 import AdventBanner from "@/components/AdventBanner";
 import type { Metadata } from "next";
@@ -347,7 +348,7 @@ export default async function HomePage() {
                     <span>·</span>
                     <time dateTime={post.date}>{formatPostDate(post.date)}</time>
                   </div>
-                  <h3 className="post-card__title">{post.title}</h3>
+                  <h3 className="post-card__title">{frenchText(post.title)}</h3>
                 </div>
               </Link>
             ))}

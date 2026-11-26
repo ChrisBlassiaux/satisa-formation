@@ -7,7 +7,8 @@ import Markdoc, { Tag, type Config, type RenderableTreeNode } from "@markdoc/mar
 import { ROUTES, LINKEDIN_URL } from "@/lib/routes";
 import LinkedInIcon from "@/components/LinkedInIcon";
 import { BreadcrumbNav } from "@/components/Breadcrumb";
-import { addImageDimensions, promoteTableHeaders } from "@/lib/markdoc-enhance";
+import { addImageDimensions, frenchTypography, promoteTableHeaders } from "@/lib/markdoc-enhance";
+import { frenchText } from "@/lib/typography";
 import { getAllPosts, getPost, getPostSlugs, CATEGORY_LABELS, formatPostDate, computeReadingTime } from "@/lib/posts";
 
 function slugify(text: string): string {
@@ -440,7 +441,7 @@ export default async function BlogPostPage({
   const { node } = await post.content();
   const renderable = await addImageDimensions(promoteTableHeaders(autoWrapFaqSection(Markdoc.transform(node, MARKDOC_CONFIG))));
   const article = highlightSections(renderable);
-  const contentHtml = Markdoc.renderers.react(article.body, React);
+  const contentHtml = Markdoc.renderers.react(frenchTypography(article.body), React);
   const tocItems = collectToc(article.body);
   const readingTime = computeReadingTime(node);
 
@@ -521,7 +522,7 @@ export default async function BlogPostPage({
         />
         <div className="container article-header">
           <p className="eyebrow">{CATEGORY_LABELS[post.category]}</p>
-          <h1>{post.title}</h1>
+          <h1>{frenchText(post.title)}</h1>
           <p className="post-card__meta">
             <time dateTime={postDate}>{formatPostDate(postDate)}</time>
             <span>·</span>
@@ -556,7 +557,7 @@ export default async function BlogPostPage({
               <ul>
                 {tocItems.map((item) => (
                   <li key={item.id} className={item.level === 3 ? "article-toc__item--sub" : undefined}>
-                    <a href={`#${item.id}`}>{item.text}</a>
+                    <a href={`#${item.id}`}>{frenchText(item.text)}</a>
                   </li>
                 ))}
               </ul>
@@ -616,7 +617,7 @@ export default async function BlogPostPage({
                       <span>·</span>
                       <time dateTime={suggested.date}>{formatPostDate(suggested.date)}</time>
                     </div>
-                    <h3 className="post-card__title">{suggested.title}</h3>
+                    <h3 className="post-card__title">{frenchText(suggested.title)}</h3>
                   </div>
                 </Link>
               ))}

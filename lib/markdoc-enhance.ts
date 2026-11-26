@@ -1,5 +1,6 @@
 import { join } from "node:path";
 import sharp from "sharp";
+import { frenchText } from "@/lib/typography";
 import { Tag, type RenderableTreeNode } from "@markdoc/markdoc";
 
 type TagChild = Tag["children"][number];
@@ -75,4 +76,13 @@ export async function addImageDimensions(node: RenderableTreeNode): Promise<Rend
   }
 
   return new Tag(node.name, attributes, children);
+}
+
+// Applique la typographie française (lib/typography.ts) à tous les textes d'un article, sauf dans le code.
+// Le contenu écrit dans Keystatic n'est pas modifié : seul le rendu l'est.
+export function frenchTypography(node: RenderableTreeNode): RenderableTreeNode {
+  if (typeof node === "string") return frenchText(node);
+  if (!isTag(node)) return node;
+  if (node.name === "code" || node.name === "pre") return node;
+  return new Tag(node.name, node.attributes, node.children.map(frenchTypography));
 }

@@ -1,3 +1,4 @@
+import { frenchText } from "@/lib/typography";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -38,7 +39,7 @@ export default async function BlogIndexPage() {
       <section>
         <Breadcrumb />
         <div className="container">
-          <div className="section-head">
+          <div className="section-head section-head--wide">
             <p className="eyebrow">Le blog</p>
             <h1>Certification et digitalisation, expliquées sans jargon</h1>
             <p className="hero-page__subtitle" style={{ marginTop: "1rem" }}>
@@ -85,7 +86,7 @@ export default async function BlogIndexPage() {
                       <span>·</span>
                       <time dateTime={post.date}>{formatPostDate(post.date)}</time>
                     </div>
-                    <h2 className="post-card__title">{post.title}</h2>
+                    <h2 className="post-card__title">{frenchText(post.title)}</h2>
                   </div>
                 </Link>
               ))}

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ROUTES } from "@/lib/routes";
+import { frenchText } from "@/lib/typography";
 
 // Fil d'Ariane visible, placé en haut du hero de chaque page (sauf l'accueil), dans le fond du hero.
 // Le parcours de chaque page est déclaré ici, à un seul endroit. Les libellés reprennent ceux du menu.
@@ -60,7 +61,7 @@ export function BreadcrumbNav({
             return (
               <li key={step.path} className="breadcrumb__item">
                 {isLast ? (
-                  <span aria-current="page">{step.name}</span>
+                  <span aria-current="page">{frenchText(step.name)}</span>
                 ) : (
                   <Link href={step.path}>{step.name}</Link>
                 )}

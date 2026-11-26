@@ -105,6 +105,15 @@ section {
     margin-inline: auto;
     text-align: center;
   }
+
+  // Variante pour un titre de page : le titre (h1) occupe toute la largeur au lieu de se couper à 640 px.
+  &--wide {
+    max-width: none;
+
+    .hero-page__subtitle {
+      max-width: 60ch;
+    }
+  }
 }
 
 .visually-hidden {
