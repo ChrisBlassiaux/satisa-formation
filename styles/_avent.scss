@@ -273,6 +273,117 @@ $avent-or: #fecc01;
   }
 }
 
+// ----- Barre compacte, collée sous le menu pendant le défilement -----
+.avent-barre {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 90; // Sous le menu (100) et ses sous-menus.
+  border-bottom: 2px solid $avent-or;
+  background: linear-gradient(100deg, $avent-nuit 0%, $avent-nuit-clair 55%, $avent-nuit 100%);
+  box-shadow: 0 8px 20px rgba($color-dark, 0.18);
+  color: $color-white;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+
+  &.is-visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.avent-barre__contenu {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding-block: 0.45rem;
+
+  @include from($bp-tablet) {
+    gap: $spacing-sm;
+  }
+}
+
+.avent-barre__cadeau {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.avent-barre__texte {
+  display: flex;
+  flex: 1;
+  align-items: baseline;
+  gap: $spacing-sm;
+  min-width: 0;
+  margin: 0;
+  color: $color-white;
+}
+
+.avent-barre__etiquette {
+  display: none;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $avent-or;
+
+  @include from($bp-desktop) {
+    display: inline;
+  }
+}
+
+.avent-barre__titre {
+  overflow: hidden;
+  font-size: $fs-small;
+  font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// Libellés longs à partir de la tablette, courts sur mobile.
+.avent-barre__long {
+  display: none;
+
+  @include from($bp-tablet) {
+    display: inline;
+  }
+}
+
+.avent-barre__court {
+  @include from($bp-tablet) {
+    display: none;
+  }
+}
+
+// Même bouton que le grand bandeau, en plus bas et sans halo pulsé.
+.avent-bandeau__bouton.avent-barre__bouton {
+  padding: 0.5em 1.1em;
+  animation: none;
+}
+
+.avent-barre__fermer {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: $radius-sm;
+  background: transparent;
+  color: rgba($color-white, 0.8);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba($color-white, 0.12);
+    color: $color-white;
+  }
+}
+
 // ----- Page du calendrier -----
 .avent-page {
   position: relative;
@@ -642,6 +753,10 @@ $avent-or: #fecc01;
   .avent-case.is-aujourdhui,
   .avent-boite[open] {
     animation: none;
+  }
+
+  .avent-barre {
+    transition: none;
   }
 
   .avent-neige span {
