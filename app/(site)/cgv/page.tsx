@@ -95,6 +95,11 @@ export default function CgvPage() {
           expresse du Prestataire. En cas de contradiction entre le devis et les CGV, le devis prévaut pour les
           points qu&apos;il traite expressément.
         </p>
+        <p>
+          Les outils en ligne proposés gratuitement sur le site (simulateur de prix, test RS ou RNCP) ne constituent
+          pas une prestation au sens des présentes CGV. Leurs résultats sont indicatifs et n&apos;engagent pas le
+          Prestataire.
+        </p>
 
         <h2>3. Description des prestations</h2>
         <p>Le Prestataire propose les formules suivantes. Leur contenu détaillé et leur prix figurent sur le site et dans le devis.</p>
@@ -176,6 +181,11 @@ export default function CgvPage() {
         <p>
           Les prix peuvent être révisés à tout moment, sans effet rétroactif sur les devis déjà acceptés. Les
           tarifs affichés sur le site sont ceux en vigueur à la date d&apos;émission du devis.
+        </p>
+        <p>
+          Le résultat du simulateur de prix en ligne est une estimation indicative : il ne constitue pas un devis.
+          Seul le devis établi par le Prestataire et signé par le Client engage les parties, au prix et aux conditions
+          qui y figurent.
         </p>
         <p>Sauf mention contraire au devis, les prix ne comprennent pas :</p>
         <ul>
@@ -485,10 +495,12 @@ export default function CgvPage() {
 
         <h2>17. Protection des données personnelles</h2>
         <p>
-          Pour les données de ses clients et prospects (contact, facturation), le Prestataire agit en qualité de
-          responsable de traitement et les utilise exclusivement pour la réalisation et le suivi des missions. Elles
-          ne sont ni cédées, ni louées, ni échangées avec des tiers à des fins commerciales. Les informations
-          complémentaires figurent dans la <Link href={ROUTES.privacy}>politique de confidentialité</Link> du site.
+          Pour les données des visiteurs du site, prospects, clients et candidats (contact, demandes envoyées par les
+          formulaires et outils du site, facturation, candidatures), le Prestataire agit en qualité de responsable de
+          traitement. Ces données sont utilisées uniquement pour répondre aux demandes, réaliser et suivre les
+          missions et, pour les candidatures, les étudier. Elles ne sont ni cédées, ni louées, ni échangées avec des
+          tiers à des fins commerciales. Les finalités, les durées de conservation, les prestataires concernés et les
+          droits des personnes sont détaillés dans la <Link href={ROUTES.privacy}>politique de confidentialité</Link>.
         </p>
         <p>
           Lorsque le Client confie au Prestataire des données personnelles de tiers (apprenants, titulaires,
