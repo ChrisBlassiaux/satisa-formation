@@ -181,7 +181,11 @@ export default function AdventCalendar() {
             <p className="avent-boite__texte">{choisie.texte}</p>
             {choisie.cta &&
               (choisie.cta.href ? (
-                choisie.cta.href.startsWith("http") ? (
+                choisie.cta.telechargement ? (
+                  <a href={choisie.cta.href} className="btn btn--dark" download>
+                    {choisie.cta.label}
+                  </a>
+                ) : choisie.cta.href.startsWith("http") ? (
                   <a href={choisie.cta.href} className="btn btn--dark" target="_blank" rel="noopener noreferrer">
                     {choisie.cta.label}
                   </a>

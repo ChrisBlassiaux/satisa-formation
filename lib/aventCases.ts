@@ -5,15 +5,21 @@ import { LINKEDIN_URL, ROUTES } from "@/lib/routes";
 // Contenu des cases et règle d'ouverture, côté serveur uniquement : le navigateur ne reçoit que les cases ouvertes
 // (« server-only » fait échouer la compilation si un composant client importe ce fichier).
 // CONTENU PROVISOIRE : les textes, l'ordre et les types de cases sont à valider. Les cases « modèle » n'ont pas
-// encore de fichier à télécharger. Un fichier placé dans public/ serait accessible à tous avant son jour : le servir
-// par une route qui vérifie la date.
+// encore de fichier à télécharger.
+// Pour un fichier : le déposer dans content/avent/ et indiquer son nom avec `fichier`. Jamais dans public/, où il
+// serait accessible à tous avant son jour.
 
 /** Une case dont le jour est passé peut-elle encore s'ouvrir (rattrapage) ? Décision à prendre. */
 export const RATTRAPAGE_POSSIBLE = true;
 
+type CaseSource = CaseAvent & { fichier?: string };
+
+// Date simulée : en local et sur l'aperçu Vercel (accès réservé à l'équipe) uniquement, jamais en production.
+const SIMULATION_POSSIBLE = process.env.NODE_ENV === "development" || process.env.VERCEL_ENV === "preview";
+
 const article = (slug: string) => `${ROUTES.blog}/${slug}`;
 
-const CASES_AVENT: CaseAvent[] = [
+const CASES_AVENT: CaseSource[] = [
   { jour: 1, type: "outil", titre: "Le test RS ou RNCP", texte: "10 questions, 2 minutes : découvrez si votre certification relève du RS ou du RNCP.", cta: { label: "Faire le test", href: ROUTES.certificationRsOuRncp } },
   { jour: 2, type: "expertise", titre: "RNCP ou RS : comment choisir en 2026 ?", texte: "Budget, délais, financement : le comparatif pour choisir le bon répertoire.", cta: { label: "Lire l'article", href: article("rncp-ou-rs-guide-complet") } },
   { jour: 3, type: "modele", titre: "Checklist : mon dossier est-il prêt ?", texte: "Les points à vérifier avant de déposer, en une page.", cta: { label: "Télécharger le modèle", href: null } },
@@ -57,6 +63,28 @@ export function jourOuvrable(maintenant: Date): number {
   return 25;
 }
 
-export function casesOuvertes(jour: number): CaseAvent[] {
+/** Jour à appliquer à une requête : la date du serveur, ou la date simulée (`?jour=`) quand c'est permis. */
+export function jourDeLaRequete(request: Request) {
+  const demande = new URL(request.url).searchParams.get("jour");
+  const valeur = SIMULATION_POSSIBLE && demande !== null ? Number(demande) : NaN;
+  const simule = Number.isInteger(valeur) && valeur >= 0 && valeur <= 25;
+  return { jour: simule ? valeur : jourOuvrable(new Date()), simule, simulationPossible: SIMULATION_POSSIBLE };
+}
+
+function sourcesOuvertes(jour: number): CaseSource[] {
   return CASES_AVENT.filter((c) => c.jour === jour || (RATTRAPAGE_POSSIBLE && c.jour < jour));
+}
+
+/** Cases ouvertes, telles qu'envoyées au navigateur : un fichier devient un lien vers la route de téléchargement. */
+export function casesOuvertes(jour: number, simule: boolean): CaseAvent[] {
+  return sourcesOuvertes(jour).map(({ fichier, ...c }) => {
+    if (!fichier) return c;
+    const href = `${ROUTES.advent}/fichiers/${c.jour}${simule ? `?jour=${jour}` : ""}`;
+    return { ...c, cta: { label: c.cta?.label ?? "Télécharger", href, telechargement: true } };
+  });
+}
+
+/** Nom du fichier d'une case, seulement si elle est ouverte. */
+export function fichierOuvert(numero: number, jour: number): string | undefined {
+  return sourcesOuvertes(jour).find((c) => c.jour === numero)?.fichier;
 }

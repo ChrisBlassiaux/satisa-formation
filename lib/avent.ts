@@ -19,8 +19,8 @@ export type CaseAvent = {
   type: TypeCase;
   titre: string;
   texte: string;
-  /** `href: null` = ressource pas encore disponible (bouton désactivé). */
-  cta: { label: string; href: string | null } | null;
+  /** `href: null` = ressource pas encore disponible (bouton désactivé). `telechargement` : le lien est un fichier. */
+  cta: { label: string; href: string | null; telechargement?: boolean } | null;
 };
 
 /** Réponse de la route du calendrier : seules les cases dont le jour est arrivé y figurent. */
