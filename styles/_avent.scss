@@ -480,6 +480,7 @@ $avent-or: #fecc01;
   margin: 0;
   font-size: 1.1rem;
   color: rgba($color-white, 0.85);
+  text-wrap: balance;
 }
 
 // Grille des 24 cases : trois colonnes sur mobile, quatre sur tablette, six sur grand écran.
@@ -652,6 +653,130 @@ $avent-or: #fecc01;
 .avent-case.is-verrouillee {
   filter: grayscale(0.7) brightness(0.55);
   box-shadow: none;
+}
+
+// ----- Sous le calendrier : objectif et les quatre temps du mois -----
+.avent-objectif__chapo {
+  margin-top: $spacing-sm;
+  font-size: 1.1rem;
+  color: $color-muted;
+}
+
+// Frise : verticale sur mobile (repère à gauche de la carte), horizontale sur ordinateur (repère au-dessus).
+.avent-etapes {
+  display: grid;
+  gap: $spacing-md;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include from($bp-desktop) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+$avent-repere: 44px;
+
+.avent-etape {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: $spacing-sm;
+
+  // Trait qui relie un repère au suivant.
+  &:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    top: $avent-repere;
+    bottom: -$spacing-md;
+    left: calc(#{$avent-repere * 0.5} - 1px);
+    width: 2px;
+    background: $color-primary;
+
+    @include from($bp-desktop) {
+      top: calc(#{$avent-repere * 0.5} - 1px);
+      bottom: auto;
+      left: calc(50% + #{$avent-repere * 0.5});
+      width: calc(100% + #{$spacing-md} - #{$avent-repere});
+      height: 2px;
+    }
+  }
+
+  @include from($bp-desktop) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+  }
+}
+
+.avent-etape__repere {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $avent-repere;
+  height: $avent-repere;
+  border-radius: 50%;
+  background: $avent-nuit;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: $avent-or;
+}
+
+.avent-etape__carte {
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  background: $color-white;
+  box-shadow: 0 10px 26px rgba($color-dark, 0.07);
+
+  @include from($bp-desktop) {
+    align-self: stretch;
+    justify-self: stretch;
+    text-align: center;
+  }
+
+  h3 {
+    margin: 0.35rem 0 $spacing-xs;
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
+
+  p {
+    color: $color-muted;
+  }
+
+  .avent-etape__dates {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $color-primary-dark;
+  }
+}
+
+.avent-objectif__pied {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-top: $spacing-lg;
+  text-align: center;
+
+  p {
+    max-width: 60ch;
+    font-weight: 600;
+  }
+}
+
+.avent-objectif__lien {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-top: $spacing-xs;
+  font-weight: 700;
+  color: $color-primary-dark;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 // ----- Fenêtre qui s'ouvre avec le contenu de la case -----

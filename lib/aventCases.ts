@@ -9,7 +9,7 @@ import { LINKEDIN_URL, ROUTES } from "@/lib/routes";
 // par une route qui vérifie la date.
 
 /** Une case dont le jour est passé peut-elle encore s'ouvrir (rattrapage) ? Décision à prendre. */
-const RATTRAPAGE_POSSIBLE = true;
+export const RATTRAPAGE_POSSIBLE = true;
 
 const article = (slug: string) => `${ROUTES.blog}/${slug}`;
 
