@@ -68,19 +68,24 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dg-banner__text {
+  // L'icône reste à côté du texte : sur mobile, les deux lignes sont alignées entre elles.
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
   margin: 0;
   transition: font-size $dg-banner-ease;
-  font-size: $fs-small;
+  font-size: 0.8125rem;
   font-weight: 600;
   line-height: 1.25;
   color: $color-white;
 
   @include from($bp-tablet) {
+    font-size: $fs-small;
     text-align: center;
   }
 }
 
-// Sur mobile, texte court : le bandeau reste collé en haut et doit rester bas.
+// Sur mobile, deux lignes courtes et un bouton d'un mot : le bandeau reste collé en haut et doit rester bas.
 .dg-banner__long {
   display: none;
 
@@ -95,13 +100,17 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+.dg-banner__detail {
+  display: block;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
 .dg-banner__sparkle {
-  display: inline-block;
+  flex-shrink: 0;
   width: 1.35em;
   height: 1.35em;
-  transition: width $dg-banner-ease, height $dg-banner-ease, margin $dg-banner-ease;
-  margin-right: 0.45em;
-  vertical-align: -0.3em;
+  transition: width $dg-banner-ease, height $dg-banner-ease;
   color: #fecc01;
 }
 
@@ -282,6 +291,12 @@ $dg-banner-ease: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
     background 0.15s ease,
     border-color 0.15s ease,
     color 0.15s ease;
+}
+
+@media (max-width: #{$bp-tablet - 1px}) {
+  .btn.dg-banner__cta .link-arrow {
+    display: none;
+  }
 }
 
 // Version compacte (page défilée) : le bandeau, le texte et le bouton rétrécissent en douceur.

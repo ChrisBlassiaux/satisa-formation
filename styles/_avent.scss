@@ -110,7 +110,8 @@ $avent-or: #fecc01;
   }
 }
 
-// Le bandeau suit le défilement sous le menu jusqu'à la fin du hero, puis cède la place à la barre compacte.
+// Le bandeau cède la place à la barre compacte : dès le défilement sur mobile ; sur écran plus large, il suit sous
+// le menu jusqu'à la fin du hero.
 .avent-bandeau-zone {
   position: sticky;
   top: calc(var(--avent-header, 66px) + #{$spacing-xs});
@@ -242,9 +243,15 @@ $avent-or: #fecc01;
   }
 }
 
+// Masqué sur mobile pour garder un bandeau bas.
 .avent-bandeau__sous-titre {
+  display: none;
   font-size: $fs-small;
   color: rgba($color-white, 0.82) !important;
+
+  @include from($bp-tablet) {
+    display: block;
+  }
 }
 
 .avent-bandeau__bouton {
@@ -322,35 +329,51 @@ $avent-or: #fecc01;
   height: 30px;
 }
 
+// Sur mobile, deux lignes comme les autres bandeaux ; à partir de la tablette, une seule.
 .avent-barre__texte {
   display: flex;
   flex: 1;
-  align-items: baseline;
-  gap: $spacing-sm;
+  flex-direction: column;
   min-width: 0;
   margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.25;
   color: $color-white;
+
+  @include from($bp-tablet) {
+    flex-direction: row;
+    align-items: baseline;
+    gap: $spacing-sm;
+    font-size: $fs-small;
+  }
 }
 
 .avent-barre__etiquette {
-  display: none;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-weight: 700;
   color: $avent-or;
+
+  @include from($bp-tablet) {
+    display: none;
+  }
 
   @include from($bp-desktop) {
     display: inline;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 }
 
 .avent-barre__titre {
-  overflow: hidden;
-  font-size: $fs-small;
-  font-weight: 700;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  font-weight: 500;
+
+  @include from($bp-tablet) {
+    overflow: hidden;
+    font-weight: 700;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 // Libellés longs à partir de la tablette, courts sur mobile.
@@ -379,7 +402,8 @@ $avent-or: #fecc01;
   border-bottom: 2px solid $avent-or;
   background: linear-gradient(100deg, $avent-nuit 0%, $avent-nuit-clair 55%, $avent-nuit 100%);
 
-  .dg-banner__kicker {
+  .dg-banner__kicker,
+  .dg-banner__title {
     color: $avent-or;
   }
 
@@ -392,13 +416,6 @@ $avent-or: #fecc01;
       color: $avent-nuit;
     }
   }
-}
-
-// Cadeau à côté du texte : sur mobile, les deux lignes restent alignées entre elles.
-.dg-banner--avent .dg-banner__text {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
 }
 
 .dg-banner__gift {

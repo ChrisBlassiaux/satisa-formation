@@ -14,18 +14,16 @@ export default function RsOuRncpBanner() {
         variant="avent"
         label="Calendrier de l'Avent"
         icon={<Cadeau className="dg-banner__gift" />}
-        shortText="Calendrier de l'Avent RNCP/RS"
+        shortTitle="Calendrier de l'Avent"
+        shortDetail="Enregistrement RNCP/RS"
+        shortCta="Ouvrir"
         longText={
           <>
             <span className="dg-banner__kicker">Calendrier de l&apos;Avent :</span> préparez votre enregistrement
             RNCP/RS<span className="dg-banner__extra">, une surprise chaque jour du 1er au 24 décembre</span>
           </>
         }
-        cta={
-          <span>
-            Ouvrir<span className="dg-banner__long"> le calendrier</span>
-          </span>
-        }
+        cta="Ouvrir le calendrier"
         href={ROUTES.advent}
       />
     );
@@ -35,7 +33,9 @@ export default function RsOuRncpBanner() {
     <PromoBanner
       variant="ciel"
       label="Test gratuit RS ou RNCP"
-      shortText="Test gratuit : RS ou RNCP ?"
+      shortTitle="RS ou RNCP ?"
+      shortDetail="Le test en 2 minutes"
+      shortCta="Tester"
       longText="RNCP ou RS : quelle certification pour votre organisme ? Faites le test en 2 minutes."
       cta="Faire le test"
       href={ROUTES.certificationRsOuRncp}

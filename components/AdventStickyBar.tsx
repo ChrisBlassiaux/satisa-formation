@@ -5,8 +5,12 @@ import { useEffect, useState } from "react";
 import { ROUTES } from "@/lib/routes";
 import { Cadeau } from "@/components/AdventDecor";
 
-// Le grand bandeau suit le défilement tant que le hero est à l'écran ; quand la fin du hero le rattrape, cette
-// version compacte prend le relais sous le menu.
+// Cette version compacte prend le relais du grand bandeau sous le menu. Sur mobile, dès que l'on défile. Sur écran
+// plus large, le grand bandeau suit le défilement tant que le hero est à l'écran, jusqu'à ce que la fin du hero le
+// rattrape.
+const MOBILE_QUERY = "(max-width: 767px)";
+const MOBILE_COMPACT_ABOVE = 48;
+
 export default function AdventStickyBar({ bannerId }: { bannerId: string }) {
   const [placement, setPlacement] = useState({ visible: false, top: 0 });
 
@@ -16,24 +20,36 @@ export default function AdventStickyBar({ bannerId }: { bannerId: string }) {
     if (!zone || !hero) return;
     // Bloc du menu fermé : le menu mobile ouvert passe par-dessus les bandeaux.
     const header = document.querySelector<HTMLElement>(".site-header__inner");
+    const mobile = window.matchMedia(MOBILE_QUERY);
     let observer: IntersectionObserver | undefined;
+    let top = 0;
+
+    const show = (visible: boolean) => {
+      setPlacement((current) =>
+        current.visible === visible && current.top === top ? current : { visible, top },
+      );
+      zone.classList.toggle("is-compact", visible);
+    };
+    const onScroll = () => show(window.scrollY > MOBILE_COMPACT_ABOVE);
 
     const observe = () => {
       observer?.disconnect();
-      const top = header?.offsetHeight ?? 0;
+      window.removeEventListener("scroll", onScroll);
+      top = header?.offsetHeight ?? 0;
       zone.style.setProperty("--avent-header", `${top}px`);
+      if (mobile.matches) {
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return;
+      }
       // Moment où la fin du hero commence à pousser le grand bandeau : sa position collée, sa hauteur et la marge
       // basse du hero.
       const line = Math.ceil(
         parseFloat(getComputedStyle(zone).top) + zone.offsetHeight + parseFloat(getComputedStyle(hero).paddingBottom),
       );
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          setPlacement({ visible: !entry.isIntersecting, top });
-          zone.classList.toggle("is-compact", !entry.isIntersecting);
-        },
-        { rootMargin: `-${line}px 0px 0px 0px` },
-      );
+      observer = new IntersectionObserver(([entry]) => show(!entry.isIntersecting), {
+        rootMargin: `-${line}px 0px 0px 0px`,
+      });
       observer.observe(hero);
     };
 
@@ -45,6 +61,7 @@ export default function AdventStickyBar({ bannerId }: { bannerId: string }) {
     return () => {
       resize.disconnect();
       observer?.disconnect();
+      window.removeEventListener("scroll", onScroll);
       zone.classList.remove("is-compact");
     };
   }, [bannerId]);

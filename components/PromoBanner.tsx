@@ -14,12 +14,16 @@ const EXPAND_BELOW = 12;
 type PromoBannerProps = {
   /** Nom du bandeau pour les lecteurs d'écran. */
   label: string;
-  /** Texte court (mobile). */
-  shortText: React.ReactNode;
+  /** Mobile : titre sur la première ligne. */
+  shortTitle: string;
+  /** Mobile : complément sur la seconde ligne. */
+  shortDetail: string;
+  /** Mobile : texte du bouton, un seul mot de préférence. */
+  shortCta: string;
   /** Texte complet (tablette et ordinateur). */
   longText: React.ReactNode;
-  /** Texte du bouton. */
-  cta: React.ReactNode;
+  /** Texte du bouton (tablette et ordinateur). */
+  cta: string;
   href: string;
   /**
    * « sombre » : fond bleu nuit (simulateur de prix). « ciel » : fond bleu ciel clair (test RS ou RNCP).
@@ -32,7 +36,9 @@ type PromoBannerProps = {
 
 export default function PromoBanner({
   label,
-  shortText,
+  shortTitle,
+  shortDetail,
+  shortCta,
   longText,
   cta,
   href,
@@ -67,11 +73,16 @@ export default function PromoBanner({
               <path className="dg-banner__sparkle-tiny" d="M18 15l.6 1.6 1.6.6-1.6.6L18 19.4l-.6-1.6-1.6-.6 1.6-.6z" />
             </svg>
           )}
-          <span className="dg-banner__short">{shortText}</span>
+          <span className="dg-banner__short">
+            <span className="dg-banner__title">{shortTitle}</span>
+            <span className="dg-banner__detail">{shortDetail}</span>
+          </span>
           <span className="dg-banner__long">{longText}</span>
         </p>
         <Link href={href} className={`btn ${variant === "ciel" ? "btn--dark" : "btn--primary"} dg-banner__cta`}>
-          {cta} <LinkArrow />
+          <span className="dg-banner__short">{shortCta}</span>
+          <span className="dg-banner__long">{cta}</span>
+          <LinkArrow />
         </Link>
       </div>
     </aside>
