@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { ROUTES } from "@/lib/routes";
 import { Cadeau } from "@/components/AdventDecor";
 
-// Version compacte du bandeau du calendrier : elle se colle sous le menu quand le grand bandeau sort de l'écran.
-// La croix la ferme pour la visite en cours.
+// Le grand bandeau suit le défilement tant que le hero est à l'écran ; quand la fin du hero le rattrape, cette
+// version compacte prend le relais sous le menu. La croix la ferme pour la visite en cours.
 const STORAGE_KEY = "satisa-avent-barre-fermee";
 
 // Le stockage peut être indisponible (navigation privée, cookies bloqués) : la barre reste alors affichée.
@@ -23,28 +23,42 @@ export default function AdventStickyBar({ bannerId }: { bannerId: string }) {
   const [closed, setClosed] = useState(false);
 
   useEffect(() => {
-    const banner = document.getElementById(bannerId);
-    if (!banner || closed || wasClosed()) return;
-    // Bloc du menu fermé : le menu mobile ouvert passe par-dessus la barre.
+    const zone = document.getElementById(bannerId)?.parentElement;
+    const hero = zone?.parentElement;
+    if (!zone || !hero) return;
+    // Bloc du menu fermé : le menu mobile ouvert passe par-dessus les bandeaux.
     const header = document.querySelector<HTMLElement>(".site-header__inner");
     let observer: IntersectionObserver | undefined;
 
     const observe = () => {
       observer?.disconnect();
       const top = header?.offsetHeight ?? 0;
-      observer = new IntersectionObserver(([entry]) => setPlacement({ visible: !entry.isIntersecting, top }), {
-        rootMargin: `-${top}px 0px 0px 0px`,
-      });
-      observer.observe(banner);
+      zone.style.setProperty("--avent-header", `${top}px`);
+      if (closed || wasClosed()) return;
+      // Moment où la fin du hero commence à pousser le grand bandeau : sa position collée, sa hauteur et la marge
+      // basse du hero.
+      const line = Math.ceil(
+        parseFloat(getComputedStyle(zone).top) + zone.offsetHeight + parseFloat(getComputedStyle(hero).paddingBottom),
+      );
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          setPlacement({ visible: !entry.isIntersecting, top });
+          zone.classList.toggle("is-compact", !entry.isIntersecting);
+        },
+        { rootMargin: `-${line}px 0px 0px 0px` },
+      );
+      observer.observe(hero);
     };
 
     observe();
-    // La hauteur du menu change avec la largeur de l'écran et au chargement du logo.
+    // Les hauteurs changent avec la largeur de l'écran et au chargement du logo.
     const resize = new ResizeObserver(observe);
+    resize.observe(zone);
     if (header) resize.observe(header);
     return () => {
       resize.disconnect();
       observer?.disconnect();
+      zone.classList.remove("is-compact");
     };
   }, [bannerId, closed]);
 
