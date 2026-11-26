@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
-import RsOuRncpBanner from "@/components/RsOuRncpBanner";
+import RsOuRncpBanner, { ADVENT_PROMO_ACTIVE } from "@/components/RsOuRncpBanner";
 import Breadcrumb from "@/components/Breadcrumb";
 
 const TITLE = "Dépôt de certification RNCP/RS - Satisa Formation";
@@ -115,6 +115,11 @@ export default function CertificationPage() {
                 Dépôt RS
               </Link>
             </div>
+            {ADVENT_PROMO_ACTIVE && (
+              <p className="hero-page__test-link">
+                <Link href={ROUTES.certificationRsOuRncp}>RNCP ou RS ? Faites le test en 2 minutes</Link>
+              </p>
+            )}
           </div>
           <div className="hero-page__visual" aria-hidden="true">
             <div className="hero-page__visual-shape">

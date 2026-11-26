@@ -374,6 +374,47 @@ $avent-or: #fecc01;
   animation: none;
 }
 
+// ----- Bandeau des pages certification : même comportement que .dg-banner, aux couleurs de l'Avent -----
+.dg-banner--avent {
+  border-bottom: 2px solid $avent-or;
+  background: linear-gradient(100deg, $avent-nuit 0%, $avent-nuit-clair 55%, $avent-nuit 100%);
+
+  .dg-banner__kicker {
+    color: $avent-or;
+  }
+
+  .btn.dg-banner__cta {
+    background: $avent-or;
+    color: $avent-nuit;
+
+    &:hover {
+      background: $avent-or;
+      color: $avent-nuit;
+    }
+  }
+}
+
+// Cadeau à côté du texte : sur mobile, les deux lignes restent alignées entre elles.
+.dg-banner--avent .dg-banner__text {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.dg-banner__gift {
+  flex-shrink: 0;
+  width: 1.7em;
+  height: 1.7em;
+}
+
+.dg-banner__extra {
+  display: none;
+
+  @include from($bp-desktop) {
+    display: inline;
+  }
+}
+
 // ----- Page du calendrier -----
 .avent-page {
   position: relative;

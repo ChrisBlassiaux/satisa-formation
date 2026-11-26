@@ -15,17 +15,30 @@ type PromoBannerProps = {
   /** Nom du bandeau pour les lecteurs d'écran. */
   label: string;
   /** Texte court (mobile). */
-  shortText: string;
+  shortText: React.ReactNode;
   /** Texte complet (tablette et ordinateur). */
-  longText: string;
+  longText: React.ReactNode;
   /** Texte du bouton. */
-  cta: string;
+  cta: React.ReactNode;
   href: string;
-  /** « sombre » : fond bleu nuit (simulateur de prix). « ciel » : fond bleu ciel clair (test RS ou RNCP). */
-  variant?: "sombre" | "ciel";
+  /**
+   * « sombre » : fond bleu nuit (simulateur de prix). « ciel » : fond bleu ciel clair (test RS ou RNCP).
+   * « avent » : bleu nuit et or (calendrier de l'Avent).
+   */
+  variant?: "sombre" | "ciel" | "avent";
+  /** Remplace les étoiles affichées devant le texte. */
+  icon?: React.ReactNode;
 };
 
-export default function PromoBanner({ label, shortText, longText, cta, href, variant = "sombre" }: PromoBannerProps) {
+export default function PromoBanner({
+  label,
+  shortText,
+  longText,
+  cta,
+  href,
+  variant = "sombre",
+  icon,
+}: PromoBannerProps) {
   const [compact, setCompact] = useState(false);
 
   useEffect(() => {
@@ -39,7 +52,7 @@ export default function PromoBanner({ label, shortText, longText, cta, href, var
     return () => window.removeEventListener("scroll", update);
   }, []);
 
-  const classes = ["dg-banner", variant === "ciel" ? "dg-banner--ciel" : "", compact ? "dg-banner--compact" : ""]
+  const classes = ["dg-banner", variant !== "sombre" ? `dg-banner--${variant}` : "", compact ? "dg-banner--compact" : ""]
     .filter(Boolean)
     .join(" ");
 
@@ -47,11 +60,13 @@ export default function PromoBanner({ label, shortText, longText, cta, href, var
     <aside className={classes} aria-label={label}>
       <div className="container dg-banner__inner">
         <p className="dg-banner__text">
-          <svg className="dg-banner__sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path className="dg-banner__sparkle-main" d="M10 4l1.9 5.1L17 11l-5.1 1.9L10 18l-1.9-5.1L3 11l5.1-1.9z" />
-            <path className="dg-banner__sparkle-small" d="M18.5 2l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" />
-            <path className="dg-banner__sparkle-tiny" d="M18 15l.6 1.6 1.6.6-1.6.6L18 19.4l-.6-1.6-1.6-.6 1.6-.6z" />
-          </svg>
+          {icon ?? (
+            <svg className="dg-banner__sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path className="dg-banner__sparkle-main" d="M10 4l1.9 5.1L17 11l-5.1 1.9L10 18l-1.9-5.1L3 11l5.1-1.9z" />
+              <path className="dg-banner__sparkle-small" d="M18.5 2l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" />
+              <path className="dg-banner__sparkle-tiny" d="M18 15l.6 1.6 1.6.6-1.6.6L18 19.4l-.6-1.6-1.6-.6 1.6-.6z" />
+            </svg>
+          )}
           <span className="dg-banner__short">{shortText}</span>
           <span className="dg-banner__long">{longText}</span>
         </p>

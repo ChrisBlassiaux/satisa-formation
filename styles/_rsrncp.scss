@@ -21,6 +21,19 @@ $rsr-ciel-clair: $color-mint-light;
   }
 }
 
+// Lien vers le test en haut de la page certification, quand le bandeau est occupé par une autre annonce.
+.hero-page__test-link {
+  margin: $spacing-sm 0 0;
+  font-size: $fs-small;
+  font-weight: 600;
+
+  a {
+    color: $color-primary-dark;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
 // ---------- Couverture de la page du test : fond bleu ciel clair, même mise en page que le simulateur de prix ----------
 .rsr-cover {
   position: relative;
