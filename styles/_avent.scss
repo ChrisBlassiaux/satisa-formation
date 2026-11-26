@@ -770,7 +770,14 @@ $avent-or: #fecc01;
   color: $color-muted;
 }
 
-// ----- Aperçu local : simulateur de date (absent en production) -----
+.avent-erreur {
+  margin: 0 0 $spacing-md;
+  font-weight: 700;
+  text-align: center;
+  color: $avent-or;
+}
+
+// ----- Aperçu : simulateur de date (absent en production) -----
 .avent-apercu {
   display: flex;
   flex-wrap: wrap;

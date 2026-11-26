@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { ANNEE_AVENT, CASES_AVENT, RATTRAPAGE_POSSIBLE, TYPE_LABELS, jourOuvrable, type CaseAvent } from "@/lib/avent";
+import { ANNEE_AVENT, NOMBRE_CASES, TYPE_LABELS, type CaseAvent, type EtatCalendrier } from "@/lib/avent";
+import { ROUTES } from "@/lib/routes";
 
-// Le calendrier : 24 cases-cadeaux. Seule la case du jour (et, si le rattrapage est permis, celles déjà passées)
-// peut s'ouvrir ; les autres sont verrouillées. Les cases ouvertes sont mémorisées dans le navigateur.
+// Le calendrier : 24 cases-cadeaux. Le serveur indique le jour et n'envoie que le contenu des cases qui peuvent
+// s'ouvrir ; les autres sont verrouillées. Les cases ouvertes sont mémorisées dans le navigateur.
 
 const CLE_OUVERTES = `avent-${ANNEE_AVENT}-ouvertes`;
 
@@ -36,13 +37,10 @@ function memoriserOuverte(jour: number, deja: number[]) {
   }
 }
 
-// Jour réel : lu dans le navigateur (la page est générée à l'avance, la date du serveur serait périmée).
-function abonnerJour(rappel: () => void) {
-  const minuteur = window.setInterval(rappel, 60_000);
-  return () => window.clearInterval(minuteur);
-}
+const ROUTE_CASES = `${ROUTES.advent}/cases`;
 
-const APERCU_LOCAL = process.env.NODE_ENV !== "production";
+// Tant que le serveur n'a pas répondu, tout reste verrouillé.
+const CALENDRIER_FERME: EtatCalendrier = { jour: 0, cases: [], simulationPossible: false };
 
 const ICONES: Record<string, React.ReactNode> = {
   cadenas: (
@@ -59,13 +57,33 @@ const ICONES: Record<string, React.ReactNode> = {
 };
 
 export default function AdventCalendar() {
-  const jourReel = useSyncExternalStore(
-    abonnerJour,
-    () => jourOuvrable(new Date()),
-    () => 0,
-  );
+  const [calendrier, setCalendrier] = useState(CALENDRIER_FERME);
   const [simule, setSimule] = useState<number | null>(null);
-  const jour = simule ?? jourReel;
+  const [enErreur, setEnErreur] = useState(false);
+  const { jour } = calendrier;
+  const contenus = new Map(calendrier.cases.map((c) => [c.jour, c]));
+
+  useEffect(() => {
+    const annulation = new AbortController();
+    async function charger() {
+      try {
+        const adresse = simule === null ? ROUTE_CASES : `${ROUTE_CASES}?jour=${simule}`;
+        const reponse = await fetch(adresse, { cache: "no-store", signal: annulation.signal });
+        if (!reponse.ok) throw new Error(`HTTP ${reponse.status}`);
+        setCalendrier(await reponse.json());
+        setEnErreur(false);
+      } catch {
+        if (!annulation.signal.aborted) setEnErreur(true);
+      }
+    }
+    charger();
+    // La case suivante s'ouvre à minuit sans recharger la page.
+    const minuteur = window.setInterval(charger, 60_000);
+    return () => {
+      annulation.abort();
+      window.clearInterval(minuteur);
+    };
+  }, [simule]);
 
   const ouvertesBrut = useSyncExternalStore(abonnerOuvertes, lireOuvertes, () => "[]");
   const ouvertes: number[] = (() => {
@@ -87,43 +105,47 @@ export default function AdventCalendar() {
     if (!choisie && element.open) element.close();
   }, [choisie]);
 
-  function etat(c: CaseAvent): "verrouillee" | "aujourdhui" | "disponible" | "ouverte" {
-    if (c.jour > jour) return "verrouillee";
-    if (ouvertes.includes(c.jour)) return "ouverte";
-    return c.jour === jour ? "aujourdhui" : "disponible";
+  function etat(numero: number): "verrouillee" | "aujourdhui" | "disponible" | "ouverte" {
+    if (numero > jour) return "verrouillee";
+    if (ouvertes.includes(numero)) return "ouverte";
+    return numero === jour ? "aujourdhui" : "disponible";
   }
 
   function ouvrir(c: CaseAvent) {
-    const peutOuvrir = c.jour === jour || (RATTRAPAGE_POSSIBLE && c.jour < jour);
-    if (!peutOuvrir) return;
     memoriserOuverte(c.jour, ouvertes);
     setChoisie(c);
   }
 
   return (
     <>
+      {enErreur && (
+        <p className="avent-erreur" role="alert">
+          Le calendrier n&apos;a pas pu se charger. Vérifiez votre connexion : un nouvel essai a lieu dans une minute.
+        </p>
+      )}
+
       <ol className="avent-grille" aria-label="Les 24 cases du calendrier de l'Avent">
-        {CASES_AVENT.map((c) => {
-          const e = etat(c);
-          const ouvrable = e !== "verrouillee" && (c.jour === jour || RATTRAPAGE_POSSIBLE);
+        {Array.from({ length: NOMBRE_CASES }, (_, i) => i + 1).map((numero) => {
+          const e = etat(numero);
+          const contenu = contenus.get(numero);
           return (
-            <li key={c.jour}>
+            <li key={numero}>
               <button
                 type="button"
-                className={`avent-case avent-case--v${c.jour % 4} is-${e}`}
-                onClick={() => ouvrir(c)}
-                disabled={!ouvrable}
+                className={`avent-case avent-case--v${numero % 4} is-${e}`}
+                onClick={() => contenu && ouvrir(contenu)}
+                disabled={!contenu}
                 aria-label={
                   e === "verrouillee"
-                    ? `Case du ${c.jour} décembre, pas encore disponible`
+                    ? `Case du ${numero} décembre, pas encore disponible`
                     : e === "aujourdhui"
-                      ? `Ouvrir la case du jour, le ${c.jour} décembre`
-                      : `Ouvrir la case du ${c.jour} décembre`
+                      ? `Ouvrir la case du jour, le ${numero} décembre`
+                      : `Ouvrir la case du ${numero} décembre`
                 }
               >
                 <span className="avent-case__ruban avent-case__ruban--v" aria-hidden="true" />
                 <span className="avent-case__ruban avent-case__ruban--h" aria-hidden="true" />
-                <span className="avent-case__numero">{c.jour}</span>
+                <span className="avent-case__numero">{numero}</span>
                 {e === "verrouillee" && <span className="avent-case__icone">{ICONES.cadenas}</span>}
                 {e === "ouverte" && <span className="avent-case__icone">{ICONES.coche}</span>}
                 {e === "aujourdhui" && <span className="avent-case__etiquette">Aujourd&apos;hui</span>}
@@ -177,9 +199,9 @@ export default function AdventCalendar() {
         )}
       </dialog>
 
-      {APERCU_LOCAL && (
+      {calendrier.simulationPossible && (
         <div className="avent-apercu">
-          <label htmlFor="avent-apercu-jour">Aperçu local (absent en production) : simuler la date</label>
+          <label htmlFor="avent-apercu-jour">Aperçu (absent en production) : simuler la date</label>
           <select
             id="avent-apercu-jour"
             value={simule === null ? "reel" : String(simule)}
